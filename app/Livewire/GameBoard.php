@@ -84,6 +84,10 @@ class GameBoard extends Component
             return;
         }
 
+        if (!in_array(strtoupper($option), ['A', 'B'], true)) {
+            return;
+        }
+
         $result = $gameService->processTurn($this->myPlayer, $option, $this->currentCard);
 
         $this->lastEffects = $result['effects'];
