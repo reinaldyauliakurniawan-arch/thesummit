@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.5s>
 <div class="max-w-lg mx-auto px-4 pt-6">
 <div class="text-center mb-6"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-mountain-800 border border-trust-500/30">
 <span class="text-xs text-mountain-400">Kode Room:</span><span class="font-mono text-2xl font-bold text-trust-400 tracking-widest">{{ $room->code }}</span>

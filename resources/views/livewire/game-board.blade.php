@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.5s>
     <div class="max-w-2xl mx-auto px-4 pt-4 pb-8">
 
         <!-- Header -->

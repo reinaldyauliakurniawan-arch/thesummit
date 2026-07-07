@@ -1,4 +1,4 @@
-<div>
+<div wire:poll.10s>
     <div class="max-w-4xl mx-auto px-4 pt-6 pb-4">
         <h1 class="text-2xl font-bold font-expedition text-mountain-100">Basecamp Dashboard</h1>
         <p class="text-mountain-400 text-sm mt-1">Selamat datang, {{ auth()->user()->name }}!</p>
