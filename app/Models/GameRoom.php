@@ -33,9 +33,25 @@ class GameRoom extends Model
     {
         static::creating(function (GameRoom $room) {
             if (empty($room->code)) {
-                $room->code = strtoupper(Str::random(6));
+                $room->code = self::generateUniqueCode();
             }
         });
+    }
+
+    /**
+     * Generate a unique 6-character room code with collision retry.
+     */
+    public static function generateUniqueCode(int $maxAttempts = 10): string
+    {
+        for ($i = 0; $i < $maxAttempts; $i++) {
+            $code = strtoupper(Str::random(6));
+            if (!self::where('code', $code)->exists()) {
+                return $code;
+            }
+        }
+
+        // Fallback: append 2 extra chars to guarantee uniqueness
+        return strtoupper(Str::random(8));
     }
 
     // ─── Relationships ──────────────────────────────────────────────
