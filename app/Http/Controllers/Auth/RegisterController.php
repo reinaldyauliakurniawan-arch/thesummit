@@ -23,13 +23,13 @@ class RegisterController extends Controller
             'password'              => 'required|string|min:8|confirmed',
         ]);
 
-        User::create([
+        $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        Auth::login(Auth::user());
+        Auth::login($user);
 
         return redirect()->route('dashboard');
     }
