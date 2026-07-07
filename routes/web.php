@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     // Rooms
     Route::get('/rooms', [RoomController::class, 'index'])->name('rooms.index');
     Route::post('/rooms', [RoomController::class, 'store'])->name('rooms.store');
-    Route::get('/rooms/{room}/join', [RoomController::class, 'join'])->name('rooms.join');
+    Route::get('/rooms/join/{code}', [RoomController::class, 'join'])->name('rooms.join');
     Route::delete('/rooms/{room}/leave', [RoomController::class, 'leave'])->name('rooms.leave');
     Route::get('/rooms/{room}/lobby', RoomLobby::class)
         ->middleware('game.player')
