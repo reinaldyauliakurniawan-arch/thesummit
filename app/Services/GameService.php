@@ -50,19 +50,33 @@ class GameService
             return $pool->inRandomOrder()->firstOrFail();
         }
 
-        // Strategy 3: Full pool — no exclusions (complete reset)
+        // Strategy 3: Full pool — no exclusions (complete reset, PRD 9.7)
         $pool = ExpeditionCard::where('level', $level)
             ->where('kategori', $category);
 
-        if ($pool->count() > 0) {
-            return $pool->inRandomOrder()->firstOrFail();
+        $card = $pool->inRandomOrder()->first();
+        if ($card) {
+            return $card;
         }
 
-        // Absolute fallback: should never happen with proper seeder data
-        Log::error("drawCard: No cards available for level={$level}, category={$category}");
-        throw new \RuntimeException(
-            "Tidak ada kartu ekspedisi untuk level {$level} ({$category})."
-        );
+        // Strategy 4: Cross-category fallback — same level, any category
+        // (e.g. if skillset pool is somehow empty, pull from mindset)
+        Log::warning("drawCard: No cards for level={$level}, category={$category}, falling back to any category");
+        $card = ExpeditionCard::where('level', $level)->inRandomOrder()->first();
+        if ($card) {
+            return $card;
+        }
+
+        // Strategy 5: Absolute reset — any card in the game
+        Log::warning("drawCard: No cards at all for level={$level}, pulling from any level");
+        $card = ExpeditionCard::inRandomOrder()->first();
+        if ($card) {
+            return $card;
+        }
+
+        // This should NEVER happen if the seeder ran correctly
+        Log::error("drawCard: Expedition cards table is completely empty");
+        throw new \RuntimeException('Tabel expedition_cards kosong. Jalankan seeder terlebih dahulu.');
     }
 
     /**
