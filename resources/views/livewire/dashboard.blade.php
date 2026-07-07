@@ -50,7 +50,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <span class="font-mono font-bold text-trust-400">{{ $room->code }}</span>
-                            <span class="text-sm text-mountain-300 ml-2">{{ $room->players->count() }}/6</span>
+                            <span class="text-sm text-mountain-300 ml-2">{{ $room->players->count() }}/{{ config('summit.max_players') }}</span>
                         </div>
                         <span class="text-xs text-mountain-500">{{ $room->host->name }}</span>
                     </div>
