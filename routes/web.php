@@ -30,12 +30,20 @@ Route::middleware('auth')->group(function () {
     Route::post('/rooms', [RoomController::class, 'store'])->name('rooms.store');
     Route::get('/rooms/{room}/join', [RoomController::class, 'join'])->name('rooms.join');
     Route::delete('/rooms/{room}/leave', [RoomController::class, 'leave'])->name('rooms.leave');
-    Route::get('/rooms/{room}/lobby', RoomLobby::class)->name('rooms.lobby');
-    Route::post('/rooms/{room}/start', [RoomController::class, 'start'])->name('rooms.start');
+    Route::get('/rooms/{room}/lobby', RoomLobby::class)
+        ->middleware('game.player')
+        ->name('rooms.lobby');
+    Route::post('/rooms/{room}/start', [RoomController::class, 'start'])
+        ->middleware('game.player')
+        ->name('rooms.start');
 
     // Game
-    Route::get('/game/{room}', GameBoard::class)->name('game.board');
-    Route::get('/game/{room}/summary', GameSummary::class)->name('game.summary');
+    Route::get('/game/{room}', GameBoard::class)
+        ->middleware('game.player')
+        ->name('game.board');
+    Route::get('/game/{room}/summary', GameSummary::class)
+        ->middleware('game.player')
+        ->name('game.summary');
 
     // Admin
     Route::prefix('admin')->name('admin.')->group(function () {
