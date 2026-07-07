@@ -1,106 +1,452 @@
 <?php
+
 namespace App\Services;
-use App\Enums\GameStatus;use App\Enums\Level;use App\Enums\Badge;
-use App\Models\GameRoom;use App\Models\GamePlayer;use App\Models\ExpeditionCard;use App\Models\GameTurn;use App\Models\GameResult;
+
+use App\Enums\GameStatus;
+use App\Enums\Level;
+use App\Enums\Badge;
+use App\Models\GameRoom;
+use App\Models\GamePlayer;
+use App\Models\ExpeditionCard;
+use App\Models\GameTurn;
+use App\Models\GameResult;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
-class GameService{
-  public function drawCard(GamePlayer $p,int $turnNum):ExpeditionCard{
-    $level=$p->current_level;$cat=($turnNum%2===1)?'mindset':'skillset';
-    $played=$p->getPlayedCardIds();$last2=$p->getLastTwoCardIds();
-    $pool=ExpeditionCard::where('level',$level)->where('kategori',$cat)->when(!empty($played),fn($q)=>$q->whereNotIn('id',$played));
-    if($pool->count()===0) $pool=ExpeditionCard::where('level',$level)->where('kategori',$cat)->when(!empty($last2),fn($q)=>$q->whereNotIn('id',$last2));
-    return $pool->inRandomOrder()->firstOrFail();
-  }
+class GameService
+{
+    /**
+     * Draw an expedition card for the player.
+     * Tries 3 strategies: (1) unplayed cards, (2) all except last 2, (3) full pool reset.
+     * Throws only if no cards exist at all for the level+category combination.
+     */
+    public function drawCard(GamePlayer $player, int $turnNumber): ExpeditionCard
+    {
+        $level = $player->current_level;
+        $category = ($turnNumber % 2 === 1) ? 'mindset' : 'skillset';
 
-  public function applyCardEffects(GamePlayer $p,ExpeditionCard $c,string $opt):array{
-    $e=$c->getEffects($opt);$p->mp=max(0,$p->mp+$e['mp']);$p->sp=max(0,$p->sp+$e['sp']);$p->tt=max(0,$p->tt+$e['tt']);$p->save();return $e;
-  }
+        $playedIds = $player->getPlayedCardIds();
+        $lastTwoIds = $player->getLastTwoCardIds();
 
-  public function rollRiskDie():int{return rand(1,6);}
+        // Strategy 1: Exclude all previously played cards
+        $pool = ExpeditionCard::where('level', $level)
+            ->where('kategori', $category)
+            ->when(!empty($playedIds), function ($query) use ($playedIds) {
+                $query->whereNotIn('id', $playedIds);
+            });
 
-  public function resolveRiskDie(int $roll):array{
-    $cfg=config('summit.risk_die');$tt=0;$dys=null;
-    if(in_array($roll,$cfg['dysfunction_range'])){$tt=$cfg['dysfunction_tt_penalty'];$dys=array_rand(config('summit.dysfunctions'));}
-    elseif(in_array($roll,$cfg['bonus_range'])){$tt=$cfg['bonus_tt_reward'];}
-    return ['roll'=>$roll,'tt_delta'=>$tt,'dysfunction'=>$dys];
-  }
+        if ($pool->count() > 0) {
+            return $pool->inRandomOrder()->firstOrFail();
+        }
 
-  public function checkRopeBridge(GamePlayer $p):?string{
-    $lvl=Level::from($p->current_level);$next=$lvl->next();if(!$next)return null;
-    $key='to_'.$next->value;
-    if($p->meetsThreshold($key)){$p->current_level=$next->value;$p->save();return 'success';}
-    return 'fail';
-  }
+        // Strategy 2: Exclude only the last 2 played cards (PRD 9.7 reset)
+        $pool = ExpeditionCard::where('level', $level)
+            ->where('kategori', $category)
+            ->when(!empty($lastTwoIds), function ($query) use ($lastTwoIds) {
+                $query->whereNotIn('id', $lastTwoIds);
+            });
 
-  public function checkFinalWin(GamePlayer $p):bool{return $p->current_level==='summit'&&$p->meetsThreshold('final_win');}
+        if ($pool->count() > 0) {
+            return $pool->inRandomOrder()->firstOrFail();
+        }
 
-  public function processTurn(GamePlayer $p,string $chosen,?ExpeditionCard $card=null):array{
-    return DB::transaction(function()use($p,$chosen,$card){
-      $room=$p->room;$tn=$p->turns()->count()+1;
-      if(!$card)$card=$this->drawCard($p,$tn);
-      $fx=$this->applyCardEffects($p,$card,$chosen);
-      $mpF=$fx['mp'];$spF=$fx['sp'];$ttF=$fx['tt'];$extra=$fx['extra'];$riskR=null;$dys=null;
-      if($card->isKrisis()){$riskR=$this->rollRiskDie();$ro=$this->resolveRiskDie($riskR);if($ro['tt_delta']!==0){$p->tt=max(0,$p->tt+$ro['tt_delta']);$p->save();$ttF+=$ro['tt_delta'];}$dys=$ro['dysfunction'];}
-      GameTurn::create(['game_room_id'=>$room->id,'game_player_id'=>$p->id,'expedition_card_id'=>$card->id,'chosen_option'=>$chosen,'risk_die_result'=>$riskR,'mp_effect'=>$mpF,'sp_effect'=>$spF,'tt_effect'=>$ttF,'extra_effect_applied'=>$extra,'dysfunction_triggered'=>$dys]);
-      $triggeredFinal=false;
-      if($this->checkFinalWin($p)&&$room->status===GameStatus::InProgress){$room->status=GameStatus::FinalRound;$room->save();$triggeredFinal=true;}
-      $this->advanceTurn($room);
-      return ['card'=>$card,'effects'=>['mp'=>$mpF,'sp'=>$spF,'tt'=>$ttF],'risk_die'=>$riskR,'dysfunction'=>$dys,'extra'=>$extra,'triggered_final_round'=>$triggeredFinal,'player'=>$p->fresh()];
-    });
-  }
+        // Strategy 3: Full pool — no exclusions (complete reset)
+        $pool = ExpeditionCard::where('level', $level)
+            ->where('kategori', $category);
 
-  public function attemptRopeBridge(GamePlayer $p):array{
-    return DB::transaction(function()use($p){
-      $res=$this->checkRopeBridge($p);$lt=$p->turns()->latest()->first();
-      if($lt){$lt->rope_bridge_attempted=true;$lt->rope_bridge_success=($res==='success');$lt->save();}
-      $tf=false;if($this->checkFinalWin($p)){$room=$p->room;if($room->status===GameStatus::InProgress){$room->status=GameStatus::FinalRound;$room->save();$tf=true;}}
-      return ['result'=>$res,'player'=>$p->fresh(),'triggered_final_round'=>$tf];
-    });
-  }
+        if ($pool->count() > 0) {
+            return $pool->inRandomOrder()->firstOrFail();
+        }
 
-  public function advanceTurn(GameRoom $room):void{
-    if($room->status===GameStatus::Finished)return;
-    $aps=$room->players()->where('is_active',true)->orderBy('turn_order')->get();
-    if($aps->isEmpty())return;
-    if(!$room->current_turn_player_id){$next=$aps->first();}
-    else{$cur=$aps->firstWhere('id',$room->current_turn_player_id);$ci=$cur?$aps->search($cur):-1;$next=$aps[($ci+1)%$aps->count()];}
-    $room->current_turn_player_id=$next->id;$room->current_turn_started_at=now();$room->save();
-    if($room->status===GameStatus::FinalRound){if($room->turns()->where('game_player_id',$next->id)->exists())$this->finishGame($room);}
-    $next->user->notify(new \App\Notifications\TurnNotification($room,$next));
-  }
+        // Absolute fallback: should never happen with proper seeder data
+        Log::error("drawCard: No cards available for level={$level}, category={$category}");
+        throw new \RuntimeException(
+            "Tidak ada kartu ekspedisi untuk level {$level} ({$category})."
+        );
+    }
 
-  public function processTimeout(GameRoom $room):void{
-    if(!in_array($room->status->value,['in_progress','final_round']))return;
-    $cp=$room->currentPlayer;if(!$cp)return;
-    $th=config('summit.turn_timeout_hours',24);
-    if($room->current_turn_started_at&&$room->current_turn_started_at->addHours($th)->isFuture())return;
-    $tn=$cp->turns()->count()+1;$card=$this->drawCard($cp,$tn);
-    $opt=$card->opsi_b_tt>=$card->opsi_a_tt?'B':'A';
-    $this->processTurn($cp,$opt,$card);
-  }
+    /**
+     * Apply the chosen option's effects to the player's stats.
+     * Returns the effects array for display.
+     */
+    public function applyCardEffects(GamePlayer $player, ExpeditionCard $card, string $option): array
+    {
+        $effects = $card->getEffects($option);
 
-  public function finishGame(GameRoom $room):void{
-    DB::transaction(function()use($room){
-      $room->status=GameStatus::Finished;$room->current_turn_player_id=null;$room->current_turn_started_at=null;$room->save();
-      $ps=$room->players()->where('is_active',true)->get()->map(fn($p)=>tap($p,function($p){$p->score=$p->calculateScore();}));
-      $sorted=$ps->sortByDesc(fn($p)=>($p->current_level==='summit'&&$p->tt>=8?'1':'0').'.'.$p->score.'.'.$p->tt.'.'.str_pad(99-$p->turn_order,2,'0',STR_PAD_LEFT));
-      $rank=1;
-      foreach($sorted as $p){
-        $b='none';if($p->current_level==='summit'&&$p->tt>=8)$b='the_carrier';elseif($p->current_level==='summit'&&$p->tt<8)$b='solo_peak';
-        GameResult::create(['game_room_id'=>$room->id,'game_player_id'=>$p->id,'final_level'=>$p->current_level,'final_mp'=>$p->mp,'final_sp'=>$p->sp,'final_tt'=>$p->tt,'final_score'=>$p->score,'badge'=>$b,'rank'=>$rank]);
-        $rank++;
-      }
-      foreach($room->players as $gp)$gp->user->notify(new \App\Notifications\GameFinishedNotification($room,$gp));
-    });
-  }
+        $player->mp = max(0, $player->mp + $effects['mp']);
+        $player->sp = max(0, $player->sp + $effects['sp']);
+        $player->tt = max(0, $player->tt + $effects['tt']);
+        $player->save();
 
-  public function startGame(GameRoom $room):void{
-    DB::transaction(function()use($room){
-      $ps=$room->players()->where('is_active',true)->inRandomOrder()->get();
-      foreach($ps as $i=>$p){$p->turn_order=$i+1;$p->save();}
-      $room->status=GameStatus::InProgress;$room->current_turn_player_id=$ps->first()->id;$room->current_turn_started_at=now();$room->save();
-      $ps->first()->user->notify(new \App\Notifications\TurnNotification($room,$ps->first()));
-    });
-  }
+        return $effects;
+    }
+
+    /**
+     * Roll the Risk Die (1-6).
+     */
+    public function rollRiskDie(): int
+    {
+        return rand(1, 6);
+    }
+
+    /**
+     * Resolve a Risk Die roll into TT delta and optional dysfunction trigger.
+     */
+    public function resolveRiskDie(int $roll): array
+    {
+        $config = config('summit.risk_die');
+        $ttDelta = 0;
+        $dysfunction = null;
+
+        if (in_array($roll, $config['dysfunction_range'])) {
+            $ttDelta = $config['dysfunction_tt_penalty'];
+            $dysfunctions = config('summit.dysfunctions');
+            $dysfunction = array_rand($dysfunctions);
+        } elseif (in_array($roll, $config['bonus_range'])) {
+            $ttDelta = $config['bonus_tt_reward'];
+        }
+
+        return [
+            'roll'          => $roll,
+            'tt_delta'      => $ttDelta,
+            'dysfunction'   => $dysfunction,
+        ];
+    }
+
+    /**
+     * Check if the player meets the Rope Bridge threshold for the next level.
+     * Returns 'success' (auto-advances), 'fail', or null (already at summit).
+     */
+    public function checkRopeBridge(GamePlayer $player): ?string
+    {
+        $currentLevel = Level::from($player->current_level);
+        $nextLevel = $currentLevel->next();
+
+        if (!$nextLevel) {
+            return null;
+        }
+
+        $thresholdKey = 'to_' . $nextLevel->value;
+
+        if ($player->meetsThreshold($thresholdKey)) {
+            $player->current_level = $nextLevel->value;
+            $player->save();
+            return 'success';
+        }
+
+        return 'fail';
+    }
+
+    /**
+     * Check if the player has reached the final win condition (summit + threshold).
+     */
+    public function checkFinalWin(GamePlayer $player): bool
+    {
+        return $player->current_level === 'summit'
+            && $player->meetsThreshold('final_win');
+    }
+
+    /**
+     * Set the room into Final Round status if conditions are met.
+     * Returns true if final round was just triggered by this call.
+     */
+    protected function triggerFinalRoundIfNeeded(GameRoom $room, GamePlayer $player): bool
+    {
+        if ($room->status !== GameStatus::InProgress) {
+            return false;
+        }
+
+        if (!$this->checkFinalWin($player)) {
+            return false;
+        }
+
+        $room->status = GameStatus::FinalRound;
+        $room->final_round_started_at = now();
+        $room->save();
+
+        return true;
+    }
+
+    /**
+     * Process a player's turn: draw card, apply effects, roll risk die (krisis),
+     * record turn, check final round trigger, and advance to next player.
+     */
+    public function processTurn(GamePlayer $player, string $chosenOption, ?ExpeditionCard $card = null): array
+    {
+        return DB::transaction(function () use ($player, $chosenOption, $card) {
+            $room = $player->room;
+            $turnNumber = $player->turns()->count() + 1;
+
+            if (!$card) {
+                $card = $this->drawCard($player, $turnNumber);
+            }
+
+            // Apply chosen option effects
+            $effects = $this->applyCardEffects($player, $card, $chosenOption);
+            $mpEffect = $effects['mp'];
+            $spEffect = $effects['sp'];
+            $ttEffect = $effects['tt'];
+            $extraEffect = $effects['extra'];
+
+            // Roll Risk Die for krisis cards
+            $riskDieResult = null;
+            $dysfunction = null;
+
+            if ($card->isKrisis()) {
+                $riskDieResult = $this->rollRiskDie();
+                $riskResult = $this->resolveRiskDie($riskDieResult);
+
+                if ($riskResult['tt_delta'] !== 0) {
+                    $player->tt = max(0, $player->tt + $riskResult['tt_delta']);
+                    $player->save();
+                    $ttEffect += $riskResult['tt_delta'];
+                }
+
+                $dysfunction = $riskResult['dysfunction'];
+            }
+
+            // Record the turn
+            GameTurn::create([
+                'game_room_id'           => $room->id,
+                'game_player_id'         => $player->id,
+                'expedition_card_id'     => $card->id,
+                'chosen_option'          => $chosenOption,
+                'risk_die_result'        => $riskDieResult,
+                'mp_effect'              => $mpEffect,
+                'sp_effect'              => $spEffect,
+                        'tt_effect'              => $ttEffect,
+                'extra_effect_applied'   => $extraEffect,
+                'dysfunction_triggered'  => $dysfunction,
+            ]);
+
+            // Check if this triggers Final Round
+            $triggeredFinal = $this->triggerFinalRoundIfNeeded($room, $player);
+
+            // Advance to the next player
+            $this->advanceTurn($room);
+
+            return [
+                'card'                 => $card,
+                'effects'              => [
+                    'mp' => $mpEffect,
+                    'sp' => $spEffect,
+                    'tt' => $ttEffect,
+                ],
+                'risk_die'             => $riskDieResult,
+                'dysfunction'          => $dysfunction,
+                'extra'                => $extraEffect,
+                'triggered_final_round' => $triggeredFinal,
+                'player'               => $player->fresh(),
+            ];
+        });
+    }
+
+    /**
+     * Attempt the Rope Bridge check for a player.
+     * Only triggers final round if not already in final_round (prevents double-trigger).
+     */
+    public function attemptRopeBridge(GamePlayer $player): array
+    {
+        return DB::transaction(function () use ($player) {
+            $result = $this->checkRopeBridge($player);
+
+            // Record the attempt on the latest turn
+            $latestTurn = $player->turns()->latest()->first();
+            if ($latestTurn) {
+                $latestTurn->rope_bridge_attempted = true;
+                $latestTurn->rope_bridge_success = ($result === 'success');
+                $latestTurn->save();
+            }
+
+            // Only check final win if we haven't already entered final round.
+            // This prevents double-trigger from processTurn() + attemptRopeBridge()
+            // both calling checkFinalWin on the same player.
+            $triggeredFinal = false;
+            $room = $player->room;
+            if ($room->status === GameStatus::InProgress) {
+                $triggeredFinal = $this->triggerFinalRoundIfNeeded($room, $player);
+            }
+
+            return [
+                'result'                => $result,
+                'player'                => $player->fresh(),
+                'triggered_final_round' => $triggeredFinal,
+            ];
+        });
+    }
+
+    /**
+     * Advance the turn to the next active player.
+     *
+     * CRITICAL FIX (Bug #2): In Final Round mode, we only check if the next player
+     * has taken their FINAL ROUND turn (i.e., a turn created AFTER final_round_started_at).
+     * Previously this checked ALL turns including pre-final-round ones, causing
+     * premature finishGame() on the very next player who had any prior turn.
+     */
+    public function advanceTurn(GameRoom $room): void
+    {
+        if ($room->status === GameStatus::Finished) {
+            return;
+        }
+
+        $activePlayers = $room->players()
+            ->where('is_active', true)
+            ->orderBy('turn_order')
+            ->get();
+
+        if ($activePlayers->isEmpty()) {
+            return;
+        }
+
+        // Determine the next player in rotation
+        if (!$room->current_turn_player_id) {
+            $next = $activePlayers->first();
+        } else {
+            $current = $activePlayers->firstWhere('id', $room->current_turn_player_id);
+            $currentIndex = $current ? $activePlayers->search($current) : -1;
+            $nextIndex = ($currentIndex + 1) % $activePlayers->count();
+            $next = $activePlayers[$nextIndex];
+        }
+
+        // Set the next player's turn
+        $room->current_turn_player_id = $next->id;
+        $room->current_turn_started_at = now();
+        $room->save();
+
+        // In Final Round, check if this player already had their final-round turn.
+        // Only count turns taken AFTER final_round_started_at to avoid counting
+        // turns from before final round was triggered (PRD 9.5 compliance).
+        if ($room->status === GameStatus::FinalRound) {
+            $hasFinalTurn = $room->turns()
+                ->where('game_player_id', $next->id)
+                ->where('created_at', '>=', $room->final_round_started_at)
+                ->exists();
+
+            if ($hasFinalTurn) {
+                $this->finishGame($room);
+                return;
+            }
+        }
+
+        // Notify the next player
+        $next->user->notify(new \App\Notifications\TurnNotification($room, $next));
+    }
+
+    /**
+     * Process a timed-out turn by auto-playing the safer option.
+     */
+    public function processTimeout(GameRoom $room): void
+    {
+        if (!in_array($room->status->value, ['in_progress', 'final_round'])) {
+            return;
+        }
+
+        $currentPlayer = $room->currentPlayer;
+        if (!$currentPlayer) {
+            return;
+        }
+
+        $timeoutHours = config('summit.turn_timeout_hours', 24);
+        if (
+            $room->current_turn_started_at &&
+            $room->current_turn_started_at->addHours($timeoutHours)->isFuture()
+        ) {
+            return;
+        }
+
+        // Auto-play: pick the option with higher TT (safer for team)
+        $turnNumber = $currentPlayer->turns()->count() + 1;
+        $card = $this->drawCard($currentPlayer, $turnNumber);
+        $autoOption = ($card->opsi_b_tt >= $card->opsi_a_tt) ? 'B' : 'A';
+
+        $this->processTurn($currentPlayer, $autoOption, $card);
+    }
+
+    /**
+     * Finish the game: calculate scores, assign badges, rank players.
+     */
+    public function finishGame(GameRoom $room): void
+    {
+        DB::transaction(function () use ($room) {
+            $room->status = GameStatus::Finished;
+            $room->current_turn_player_id = null;
+            $room->current_turn_started_at = null;
+            $room->save();
+
+            // Calculate scores for all active players
+            $players = $room->players()
+                ->where('is_active', true)
+                ->get()
+                ->map(function ($player) {
+                    $player->score = $player->calculateScore();
+                    return $player;
+                });
+
+            // Sort: The Carrier (summit + TT>=8) first, then by score, then TT, then earlier turn_order
+            $sorted = $players->sortByDesc(function ($player) {
+                $isCarrier = ($player->current_level === 'summit' && $player->tt >= 8) ? '1' : '0';
+                return $isCarrier . '.' . $player->score . '.' . $player->tt . '.' . str_pad(99 - $player->turn_order, 2, '0', STR_PAD_LEFT);
+            });
+
+            $rank = 1;
+            foreach ($sorted as $player) {
+                // Determine badge
+                if ($player->current_level === 'summit' && $player->tt >= 8) {
+                    $badge = 'the_carrier';
+                } elseif ($player->current_level === 'summit' && $player->tt < 8) {
+                    $badge = 'solo_peak';
+                } else {
+                    $badge = 'none';
+                }
+
+                GameResult::create([
+                    'game_room_id'   => $room->id,
+                    'game_player_id' => $player->id,
+                    'final_level'    => $player->current_level,
+                    'final_mp'       => $player->mp,
+                    'final_sp'       => $player->sp,
+                    'final_tt'       => $player->tt,
+                    'final_score'    => $player->score,
+                    'badge'          => $badge,
+                    'rank'           => $rank,
+                ]);
+
+                $rank++;
+            }
+
+            // Notify all players
+            foreach ($room->players as $gamePlayer) {
+                $gamePlayer->user->notify(
+                    new \App\Notifications\GameFinishedNotification($room, $gamePlayer)
+                );
+            }
+        });
+    }
+
+    /**
+     * Start the game: shuffle turn order and set first player.
+     */
+    public function startGame(GameRoom $room): void
+    {
+        DB::transaction(function () use ($room) {
+            $players = $room->players()
+                ->where('is_active', true)
+                ->inRandomOrder()
+                ->get();
+
+            foreach ($players as $index => $player) {
+                $player->turn_order = $index + 1;
+                $player->save();
+            }
+
+            $room->status = GameStatus::InProgress;
+            $room->current_turn_player_id = $players->first()->id;
+            $room->current_turn_started_at = now();
+            $room->save();
+
+            $players->first()->user->notify(
+                new \App\Notifications\TurnNotification($room, $players->first())
+            );
+        });
+    }
 }

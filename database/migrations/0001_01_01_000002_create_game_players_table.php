@@ -1,3 +1,32 @@
 <?php
-use Illuminate\Database\Migrations\Migration;use Illuminate\Database\Schema\Blueprint;use Illuminate\Support\Facades\Schema;
-return new class extends Migration{public function up():void{Schema::create('game_players',fn(B &$t)=>{$t->id();$t->foreignId('game_room_id')->constrained()->cascadeOnDelete();$t->foreignId('user_id')->constrained()->cascadeOnDelete();$t->string('current_level',20)->default('basecamp');$t->unsignedTinyInteger('mp')->default(0);$t->unsignedTinyInteger('sp')->default(0);$t->unsignedTinyInteger('tt')->default(0);$t->unsignedTinyInteger('turn_order')->default(0);$t->boolean('is_active')->default(true);$t->timestamp('joined_at')->useCurrent();$t->timestamps();$t->unique(['game_room_id','user_id']);$t->index(['game_room_id','turn_order']);});}public function down():void{Schema::dropIfExists('game_players');}};
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('game_players', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('game_room_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('current_level', 20)->default('basecamp');
+            $table->unsignedTinyInteger('mp')->default(0);
+            $table->unsignedTinyInteger('sp')->default(0);
+            $table->unsignedTinyInteger('tt')->default(0);
+            $table->unsignedTinyInteger('turn_order')->default(0);
+            $table->boolean('is_active')->default(true);
+            $table->timestamp('joined_at')->useCurrent();
+            $table->timestamps();
+            $table->unique(['game_room_id', 'user_id']);
+            $table->index(['game_room_id', 'turn_order']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('game_players');
+    }
+};

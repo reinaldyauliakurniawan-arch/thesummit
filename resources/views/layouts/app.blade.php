@@ -17,4 +17,9 @@
 @endguest
 </div></div></nav>
 <main>{{ $slot }}</main>
+
+@auth
+<livewire:onboarding />
+@endauth
+
 @livewireStyles @livewireScripts</body></html>
