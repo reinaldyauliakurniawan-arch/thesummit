@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'game.player' => \App\Http\Middleware\EnsureGamePlayer::class,
+            'admin'       => \App\Http\Middleware\EnsureIsAdmin::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

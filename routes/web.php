@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
         ->name('game.summary');
 
     // Admin
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         Route::get('/cards', [AdminController::class, 'indexCards'])->name('cards.index');
         Route::get('/cards/create', [AdminController::class, 'createCard'])->name('cards.create');
         Route::post('/cards', [AdminController::class, 'storeCard'])->name('cards.store');
