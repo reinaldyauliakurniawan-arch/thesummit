@@ -114,6 +114,10 @@ class GameBoard extends Component
 
     public function attemptRopeBridge(GameService $gameService): void
     {
+        if (!$this->isMyTurn) {
+            return;
+        }
+
         $result = $gameService->attemptRopeBridge($this->myPlayer);
         $freshPlayer = $this->myPlayer->fresh();
 
