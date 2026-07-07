@@ -3,7 +3,7 @@
 <div class="text-center mb-6"><div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-mountain-800 border border-trust-500/30">
 <span class="text-xs text-mountain-400">Kode Room:</span><span class="font-mono text-2xl font-bold text-trust-400 tracking-widest">{{ $room->code }}</span>
 </div></div>
-<div class="text-center mb-6"><span class="px-3 py-1 rounded-full text-xs font-semibold bg-trust-800 text-trust-200">Menunggu — {{ $room->playerCount() }}/6 pemain</span></div>
+<div class="text-center mb-6"><span class="px-3 py-1 rounded-full text-xs font-semibold bg-trust-800 text-trust-200">Menunggu — {{ $room->playerCount() }}/{{ config('summit.max_players') }} pemain</span></div>
 <div class="space-y-2 mb-6">@foreach($room->players as $p)
 <div class="flex items-center gap-3 p-3 rounded-xl bg-mountain-900/50 border border-mountain-800">
 <div class="w-8 h-8 rounded-full bg-mountain-700 flex items-center justify-center text-sm font-bold text-mountain-300">{{ strtoupper(substr($p->user->name,0,1)) }}</div>
