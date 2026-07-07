@@ -1,0 +1,3 @@
+<?php
+use Illuminate\Database\Migrations\Migration;use Illuminate\Database\Schema\Blueprint;use Illuminate\Support\Facades\Schema;
+return new class extends Migration{public function up():void{Schema::create('game_results',fn(B &$t)=>{$t->id();$t->foreignId('game_room_id')->constrained()->cascadeOnDelete();$t->foreignId('game_player_id')->constrained()->cascadeOnDelete();$t->string('final_level',20);$t->unsignedTinyInteger('final_mp');$t->unsignedTinyInteger('final_sp');$t->unsignedTinyInteger('final_tt');$t->unsignedSmallInteger('final_score');$t->string('badge',30)->default('none');$t->unsignedTinyInteger('rank');$t->timestamps();$t->unique(['game_room_id','game_player_id']);});}public function down():void{Schema::dropIfExists('game_results');}};
