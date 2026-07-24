@@ -36,7 +36,7 @@ class GamePlayer extends Model
 
     public function room()
     {
-        return $this->belongsTo(GameRoom::class);
+        return $this->belongsTo(GameRoom::class, 'game_room_id');
     }
 
     public function user()

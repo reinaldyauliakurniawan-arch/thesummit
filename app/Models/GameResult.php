@@ -36,6 +36,6 @@ class GameResult extends Model
 
     public function player()
     {
-        return $this->belongsTo(GamePlayer::class);
+        return $this->belongsTo(GamePlayer::class, 'game_player_id');
     }
 }

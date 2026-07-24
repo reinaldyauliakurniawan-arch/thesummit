@@ -1,4 +1,32 @@
-@props(['currentSlide' => 0])
+<?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
+
+$__newAttributes = [];
+$__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames((['currentSlide' => 0]));
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (in_array($__key, $__propNames)) {
+        $$__key = $$__key ?? $__value;
+    } else {
+        $__newAttributes[$__key] = $__value;
+    }
+}
+
+$attributes = new \Illuminate\View\ComponentAttributeBag($__newAttributes);
+
+unset($__propNames);
+unset($__newAttributes);
+
+foreach (array_filter((['currentSlide' => 0]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
+    $$__key = $$__key ?? $__value;
+}
+
+$__defined_vars = get_defined_vars();
+
+foreach ($attributes->all() as $__key => $__value) {
+    if (array_key_exists($__key, $__defined_vars)) unset($$__key);
+}
+
+unset($__defined_vars); ?>
 
 <div x-data="{
     slide: 0,
@@ -7,7 +35,7 @@
         {
             icon: 'mountain',
             title: 'Selamat Datang di The Summit!',
-            body: 'Sebuah board game simulasi leadership pipeline berbasis Lencioni\'s 5 Dysfunctions. Naiki 3 level — Basecamp, Camp, hingga Summit — bersama timmu.'
+            body: 'Sebuah board game simulasi leadership pipeline berbasis Lencioni\\\'s 5 Dysfunctions. Naiki 3 level — Basecamp, Camp, hingga Summit — bersama timmu.'
         },
         {
             icon: 'compass',
@@ -40,7 +68,7 @@
         return this.slide === this.total - 1;
     },
     dismiss() {
-        @this.dismiss();
+        window.Livewire.find('<?php echo e($_instance->getId()); ?>').dismiss();
     }
 }" x-show="true" x-cloak
    class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
@@ -116,4 +144,4 @@
             </div>
         </div>
     </div>
-</div>
+</div><?php /**PATH C:\laragon\www\thesummit\resources\views/components/onboarding-slide.blade.php ENDPATH**/ ?>

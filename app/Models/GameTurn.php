@@ -43,7 +43,7 @@ class GameTurn extends Model
 
     public function player()
     {
-        return $this->belongsTo(GamePlayer::class);
+        return $this->belongsTo(GamePlayer::class, 'game_player_id');
     }
 
     public function card()
