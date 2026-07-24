@@ -54,8 +54,8 @@ class ExpeditionCard extends Model
      */
     public function getEffects(string $option): array
     {
-        $suffix = strtoupper($option);
-        if (!in_array($suffix, ['A', 'B'], true)) {
+        $suffix = strtolower($option);
+        if (!in_array($suffix, ['a', 'b'], true)) {
             throw new \InvalidArgumentException("Invalid option: {$option}. Must be 'A' or 'B'.");
         }
 

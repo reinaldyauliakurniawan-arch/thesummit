@@ -73,7 +73,7 @@
                         <div>
                             <span class="font-mono font-bold text-trust-400">{{ $gameRoom->code }}</span>
                             <span class="text-xs ml-2 px-2 py-0.5 rounded-full bg-camp-800 text-camp-200">
-                                {{ ucfirst($gameRoom->status) }}
+                                {{ $gameRoom->status->label() }}
                             </span>
                         </div>
                     </div>

@@ -73,7 +73,7 @@
                         <div>
                             <span class="font-mono font-bold text-trust-400"><?php echo e($gameRoom->code); ?></span>
                             <span class="text-xs ml-2 px-2 py-0.5 rounded-full bg-camp-800 text-camp-200">
-                                <?php echo e(ucfirst($gameRoom->status)); ?>
+                                <?php echo e($gameRoom->status->label()); ?>
 
                             </span>
                         </div>
@@ -84,4 +84,5 @@
         </div>
         <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
     </div>
-</div><?php /**PATH C:\laragon\www\thesummit\resources\views/livewire/dashboard.blade.php ENDPATH**/ ?>
+</div>
+<?php /**PATH C:\laragon\www\thesummit\resources\views/livewire/dashboard.blade.php ENDPATH**/ ?>

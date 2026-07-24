@@ -72,6 +72,9 @@ class GameService
     public function applyCardEffects(GamePlayer $player, ExpeditionCard $card, string $option): array
     {
         $effects = $card->getEffects($option);
+        $effects['mp'] = $effects['mp'] ?? 0;
+        $effects['sp'] = $effects['sp'] ?? 0;
+        $effects['tt'] = $effects['tt'] ?? 0;
 
         $player->mp = max(0, $player->mp + $effects['mp']);
         $player->sp = max(0, $player->sp + $effects['sp']);
