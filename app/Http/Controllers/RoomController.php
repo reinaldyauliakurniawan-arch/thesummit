@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GameRoom;
 use App\Models\GamePlayer;
 use App\Services\GameService;
+use App\Enums\GameStatus;
 use Illuminate\Support\Facades\Auth;
 
 class RoomController extends Controller
@@ -51,7 +52,7 @@ class RoomController extends Controller
     {
         $room = GameRoom::where('code', $code)->firstOrFail();
 
-        if ($room->status !== 'waiting') {
+        if ($room->status !== GameStatus::Waiting) {
             return back()->withErrors(['msg' => 'Room sudah dimulai.']);
         }
 
@@ -74,7 +75,7 @@ class RoomController extends Controller
 
     public function leave(Request $request, GameRoom $room)
     {
-        if ($room->status !== 'waiting') {
+        if ($room->status !== GameStatus::Waiting) {
             return back()->withErrors(['msg' => 'Tidak bisa keluar.']);
         }
 

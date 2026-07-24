@@ -23,7 +23,7 @@ class RoomLobby extends Component
     public function getCanStartProperty(): bool
     {
         return $this->isHost
-            && $this->room->status === 'waiting'
+            && $this->room->status === \App\Enums\GameStatus::Waiting
             && $this->room->playerCount() >= config('summit.min_players');
     }
 
