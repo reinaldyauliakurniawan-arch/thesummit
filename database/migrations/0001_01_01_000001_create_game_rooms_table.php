@@ -10,13 +10,10 @@ return new class extends Migration
     {
         Schema::create('game_rooms', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('host_user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('host_user_id')->constrained('users')->cascadeOnDelete();
             $table->string('code', 8)->unique();
             $table->string('status', 20)->default('waiting')->index();
-            $table->foreignId('current_turn_player_id')
-                ->nullable()
-                ->constrained('game_players')
-                ->nullOnDelete();
+            $table->unsignedBigInteger('current_turn_player_id')->nullable();
             $table->timestamp('current_turn_started_at')->nullable();
             $table->timestamp('final_round_started_at')->nullable();
             $table->timestamps();

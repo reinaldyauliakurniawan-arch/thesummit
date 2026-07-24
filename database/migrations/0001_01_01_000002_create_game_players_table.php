@@ -23,10 +23,19 @@ return new class extends Migration
             $table->unique(['game_room_id', 'user_id']);
             $table->index(['game_room_id', 'turn_order']);
         });
+
+        Schema::table('game_rooms', function (Blueprint $table) {
+            $table->foreign('current_turn_player_id')
+                ->references('id')->on('game_players')
+                ->nullOnDelete();
+        });
     }
 
     public function down(): void
     {
+        Schema::table('game_rooms', function (Blueprint $table) {
+            $table->dropForeign(['current_turn_player_id']);
+        });
         Schema::dropIfExists('game_players');
     }
 };
