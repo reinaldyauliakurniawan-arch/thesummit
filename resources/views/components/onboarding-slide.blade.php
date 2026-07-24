@@ -27,7 +27,7 @@
         {
             icon: 'badge',
             title: 'Badge & Scoring',
-            body: 'Skor = (Level x 10) + TT akhir. Raih badge \"The Carrier\" (Summit + TT>=8) atau \"Solo Peak\" (Summit + TT<8). Main asinkron — 24 jam per giliran!'
+            body: 'Skor = (Level x 10) + TT akhir. Raih badge &quot;The Carrier&quot; (Summit + TT&gt;=8) atau &quot;Solo Peak&quot; (Summit + TT&lt;8). Main asinkron — 24 jam per giliran!'
         }
     ],
     next() {

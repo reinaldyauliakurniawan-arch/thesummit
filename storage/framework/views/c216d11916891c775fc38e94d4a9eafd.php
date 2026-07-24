@@ -1,15 +1,16 @@
-@component('layouts.app', ['title' => 'Daftar Room'])
+<?php $__env->startComponent('layouts.app', ['title' => 'Daftar Room']); ?>
 <div class="max-w-4xl mx-auto px-4 pt-6 pb-8">
-    @if($errors->any())
+    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($errors->any()): ?>
         <div class="mb-4 p-4 rounded-xl bg-red-900/40 border border-red-700 text-red-200 text-sm">
-            {{ $errors->first() }}
+            <?php echo e($errors->first()); ?>
+
         </div>
-    @endif
+    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
     <div class="flex items-center justify-between mb-6">
         <h1 class="text-2xl font-bold font-expedition text-mountain-100">Daftar Room</h1>
-        <form method="POST" action="{{ route('rooms.store') }}">
-            @csrf
+        <form method="POST" action="<?php echo e(route('rooms.store')); ?>">
+            <?php echo csrf_field(); ?>
             <button class="px-4 py-2 rounded-xl bg-trust-500 text-mountain-950 font-bold text-sm">+ Buat Room</button>
         </form>
     </div>
@@ -33,4 +34,5 @@
         }
     </script>
 </div>
-@endcomponent
+<?php echo $__env->renderComponent(); ?>
+<?php /**PATH C:\laragon\www\thesummit\resources\views/room/index.blade.php ENDPATH**/ ?>

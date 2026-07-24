@@ -39,6 +39,9 @@ class RoomLobby extends Component
 
     public function render()
     {
-        return view('livewire.room-lobby')->layout('layouts.app');
+        return view('livewire.room-lobby', [
+            'canStart' => $this->canStart,
+            'isHost' => $this->isHost,
+        ])->layout('layouts.app');
     }
 }
