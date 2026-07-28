@@ -140,23 +140,52 @@ class SocialEngine
     }
 
     /**
-     * Auto-check and break expired promises (e.g. not fulfilled within N turns).
+     * Check for stale promises — tracked for analytics/reputation only.
+     *
+     * Per PRD Feature 5: Promises are purely social. They are NEVER auto-resolved
+     * by the system. Instead, lingering unfulfilled promises contribute to
+     * a reputation decay signal that is surfaced to players but is non-blocking.
+     *
+     * The old auto-break behavior has been removed. This method now only
+     * applies a soft reputation nudge (logged, non-mechanical) for promises
+     * that have been active for 5+ turns without resolution.
+     *
+     * @return array List of stale promise IDs and their decay applied (for logging)
      */
-    public function checkExpiredPromises(GameRoom $room, int $currentTurnCount): void
+    public function checkExpiredPromises(GameRoom $room, int $currentTurnCount): array
     {
         $activePromises = Promise::where('game_room_id', $room->id)
             ->active()
             ->get();
+
+        $stalePromises = [];
 
         foreach ($activePromises as $promise) {
             $turnsSinceCreation = $room->turns()
                 ->where('created_at', '>=', $promise->created_at)
                 ->count();
 
-            // Auto-break if not fulfilled within 5 turns
             if ($turnsSinceCreation >= 5) {
-                $this->breakPromise($promise);
+                // Soft reputation decay: non-blocking, logged for analytics
+                // This replaces the old auto-break that forcibly resolved promises.
+                // The promise remains active — it's up to the players to fulfill or break it.
+                Log::info("social_engine:stale_promise", [
+                    'promise_id' => $promise->id,
+                    'promiser' => $promise->promiser_player_id,
+                    'turns_stale' => $turnsSinceCreation,
+                    'event' => 'reputation_decay_signal',
+                    'mechanism' => 'non_blocking',
+                    'replaced' => 'auto_break_removed',
+                ]);
+
+                $stalePromises[] = [
+                    'promise_id' => $promise->id,
+                    'turns_stale' => $turnsSinceCreation,
+                    'decay_applied' => 'reputation_signal_only',
+                ];
             }
         }
+
+        return $stalePromises;
     }
 }

@@ -25,6 +25,7 @@ class GameService
     protected SocialEngine $socialEngine;
     protected ReflectionEngine $reflectionEngine;
     protected ChallengeGenerator $challengeGenerator;
+    protected ChallengeFollowUpService $challengeFollowUp;
 
     public function __construct()
     {
@@ -34,6 +35,7 @@ class GameService
         $this->socialEngine = app(SocialEngine::class);
         $this->reflectionEngine = app(ReflectionEngine::class);
         $this->challengeGenerator = app(ChallengeGenerator::class);
+        $this->challengeFollowUp = app(ChallengeFollowUpService::class);
     }
 
     /**
@@ -521,10 +523,13 @@ class GameService
 
     /**
      * Start the game: shuffle turn order and set first player.
+     * Also checks for unresolved RealWorldChallenges from prior sessions (PRD Feature 8).
+     *
+     * @return array Start result including any unresolved challenges
      */
-    public function startGame(GameRoom $room): void
+    public function startGame(GameRoom $room): array
     {
-        DB::transaction(function () use ($room) {
+        return DB::transaction(function () use ($room) {
             $players = $room->players()
                 ->where('is_active', true)
                 ->inRandomOrder()
@@ -543,6 +548,23 @@ class GameService
             $players->first()->user->notify(
                 new TurnNotification($room, $players->first())
             );
+
+            // ── PRD Feature 8: Real-World Action Loop follow-up ──
+            $unresolvedChallenges = [];
+            foreach ($players as $player) {
+                $user = $player->user;
+                if ($user) {
+                    $userChallenges = $this->challengeFollowUp->getUnresolvedChallenges($user);
+                    if (!empty($userChallenges)) {
+                        $unresolvedChallenges[$player->id] = $userChallenges;
+                    }
+                }
+            }
+
+            return [
+                'started' => true,
+                'unresolved_challenges' => $unresolvedChallenges,
+            ];
         });
     }
 

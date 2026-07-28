@@ -17,12 +17,15 @@ class PlayerBehavior extends Model
         'behavior_type',
         'score',
         'evidence',
+        'source',
+        'context_modifier',
     ];
 
     protected function casts(): array
     {
         return [
             'score' => 'integer',
+            'context_modifier' => 'float',
             'created_at' => 'datetime',
         ];
     }
