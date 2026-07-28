@@ -36,12 +36,18 @@ return [
     ],
 
     'scoring' => [
-        'formula'      => '(level_reached * 10) + final_tt',
+        'formula'      => '(level_reached * 10) + (final_tt * 1.5, max 15) + reputation(capped ±5) + leadership_diversity(0-5) - selfish_tax(0-10)',
         'level_values' => [
             'basecamp' => 1,
             'camp'     => 2,
             'summit'   => 3,
         ],
+        'tt_weight'                  => 1.5,
+        'tt_bonus_cap'               => 15,
+        'reputation_cap'             => 5,
+        'leadership_diversity_max'   => 5,
+        'selfish_tax_per_promise'    => 2,
+        'selfish_tax_cap'            => 10,
     ],
 
     'risk_die' => [
@@ -61,9 +67,11 @@ return [
     ],
 
     'badges' => [
-        'the_carrier' => ['label' => 'The Carrier'],
-        'solo_peak'   => ['label' => 'Solo Peak'],
-        'none'        => ['label' => 'Climber'],
+        'the_carrier'    => ['label' => 'The Carrier',    'description' => 'Summit + TT>=8 + rep>=0 + promises_kept >= broken'],
+        'the_catalyst'   => ['label' => 'The Catalyst',   'description' => 'Highest TT + positive cross-player effects (did not summit)'],
+        'the_strategist' => ['label' => 'The Strategist', 'description' => 'Most diverse leadership behaviors (4+ dimensions)'],
+        'solo_peak'      => ['label' => 'Solo Peak',      'description' => 'Summit + TT<8 or rep<0 or net negative promises'],
+        'none'           => ['label' => 'Climber',        'description' => 'Default badge'],
     ],
 
     // ── V2: Persistent Consequences ──

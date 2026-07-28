@@ -471,21 +471,28 @@ class GameService
                     return $player;
                 });
 
-            // Sort: The Carrier first, then by score, then TT, then earlier turn_order
-            $sorted = $players->sortByDesc(function ($player) {
-                $isCarrier = ($player->current_level === 'summit' && $player->tt >= 8) ? '1' : '0';
-                return $isCarrier . '.' . $player->score . '.' . $player->tt . '.' . str_pad(99 - $player->turn_order, 2, '0', STR_PAD_LEFT);
+            // ── TASK 6: Gameplay-first ranking ──
+            // Badge priority: Carrier > Catalyst > Strategist > SoloPeak > Climber
+            // Within same badge tier: sort by score
+            // Within same score: sort by TT (leadership signal)
+            $badgePriority = [
+                'the_carrier'    => 5,
+                'the_catalyst'   => 4,
+                'the_strategist' => 3,
+                'solo_peak'      => 2,
+                'none'           => 1,
+            ];
+
+            $sorted = $players->sortByDesc(function ($player) use ($badgePriority) {
+                $badge = $this->assignBadge($player);
+                $badgeScore = $badgePriority[$badge] ?? 0;
+                // Sort: badge_tier . score . TT . turn_order
+                return $badgeScore . '.' . $player->score . '.' . $player->tt . '.' . str_pad(99 - $player->turn_order, 2, '0', STR_PAD_LEFT);
             });
 
             $rank = 1;
             foreach ($sorted as $player) {
-                if ($player->current_level === 'summit' && $player->tt >= 8) {
-                    $badge = 'the_carrier';
-                } elseif ($player->current_level === 'summit' && $player->tt < 8) {
-                    $badge = 'solo_peak';
-                } else {
-                    $badge = 'none';
-                }
+                $badge = $this->assignBadge($player);
 
                 $result = GameResult::create([
                     'game_room_id'      => $room->id,
@@ -519,6 +526,37 @@ class GameService
                 );
             }
         });
+    }
+
+    /**
+     * Assign badge based on gameplay-first criteria.
+     *
+     * Priority order (a player can only get ONE badge):
+     * 1. The Carrier    — Summit + TT>=8 + reputation>=0 + promises_kept >= promises_broken
+     * 2. The Catalyst   — Did NOT summit + highest TT + positive cross-player effects
+     * 3. The Strategist — 4+ distinct leadership behaviors demonstrated
+     * 4. Solo Peak      — Summit + TT<8 or reputation<0 or net negative promises
+     * 5. Climber        — Default (did not summit and no special qualification)
+     */
+    protected function assignBadge(GamePlayer $player): string
+    {
+        if ($player->qualifiesAsCarrier()) {
+            return 'the_carrier';
+        }
+
+        if ($player->qualifiesAsCatalyst()) {
+            return 'the_catalyst';
+        }
+
+        if ($player->qualifiesAsStrategist()) {
+            return 'the_strategist';
+        }
+
+        if ($player->current_level === 'summit') {
+            return 'solo_peak';
+        }
+
+        return 'none';
     }
 
     /**

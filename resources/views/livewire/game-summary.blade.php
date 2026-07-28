@@ -17,6 +17,12 @@
     </div>
     @if($results->first()->badge === 'the_carrier')
         <p class="text-trust-400 text-sm mt-2 italic">"The real winner is the one who makes everybody win."</p>
+    @elseif($results->first()->badge === 'the_catalyst')
+        <p class="text-camp-400 text-sm mt-2 italic">"You didn't reach the top, but you lifted everyone closer."</p>
+    @elseif($results->first()->badge === 'the_strategist')
+        <p class="text-summit-400 text-sm mt-2 italic">"True leadership is not about one strength — it's about many."</p>
+    @elseif($results->first()->badge === 'solo_peak')
+        <p class="text-summit-300 text-sm mt-2 italic">"You reached the peak. But who climbed with you?"</p>
     @endif
 </div>
 @endif

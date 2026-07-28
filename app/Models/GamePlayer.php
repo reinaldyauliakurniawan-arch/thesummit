@@ -155,11 +155,124 @@ class GamePlayer extends Model
     }
 
     /**
-     * Calculate the player's score: (level_value * 10) + TT.
+     * Calculate the player's score using gameplay-first formula.
+     *
+     * Old formula: (level * 10) + TT  — optimizer-friendly, no leadership signal.
+     * New formula:
+     *   base          = level_value * 10
+     *   + TT bonus    = final_tt * 1.5  (still matters but not dominant)
+     *   + rep bonus   = reputation (capped at +5, floor at -5)
+     *   + leadership  = evidence diversity bonus (0-5 pts)
+     *   - selfish tax  = penalty if promises_broken > promises_kept
+     *
+     * Key changes vs old:
+     * 1. Reputation matters — selfish play now has a cost.
+     * 2. Evidence diversity rewards versatile leaders over stat-hoarders.
+     * 3. Selfish tax punishes promise-breaking.
+     * 4. TT weighted at 1.5x instead of 1:1 — prevents pure TT optimization.
      */
-    public function calculateScore(): int
+    public function calculateScore(): float
     {
         $levelValue = config("summit.scoring.level_values.{$this->current_level}", 1);
-        return ($levelValue * 10) + $this->tt;
+
+        // Base: progression still matters most
+        $base = $levelValue * 10;
+
+        // TT bonus: team trust, but capped to prevent min-maxing
+        $ttBonus = min($this->tt * 1.5, 15);
+
+        // Reputation bonus: social capital (capped)
+        $repBonus = max(-5, min(5, $this->reputation ?? 0));
+
+        // Leadership diversity bonus: how many different behaviors demonstrated
+        $diversityBonus = $this->calculateLeadershipDiversityBonus();
+
+        // Selfish tax: if you broke more promises than you kept
+        $selfishTax = 0;
+        $kept = $this->promises_kept ?? 0;
+        $broken = $this->promises_broken ?? 0;
+        if ($broken > $kept && $broken > 0) {
+            $selfishTax = min(($broken - $kept) * 2, 10);
+        }
+
+        return round($base + $ttBonus + $repBonus + $diversityBonus - $selfishTax, 1);
+    }
+
+    /**
+     * Calculate leadership diversity bonus based on evidence spread.
+     * Returns 0-5 points based on how many distinct behavior dimensions
+     * the player demonstrated with confidence >= 0.5.
+     *
+     * Uses behavior_data stored on turns (via BehaviorTracker).
+     * Falls back to 0 if insufficient data.
+     */
+    public function calculateLeadershipDiversityBonus(): int
+    {
+        // Count distinct behavior types from turn data
+        $behaviorTypes = $this->turns()
+            ->whereNotNull('behavior_data')
+            ->pluck('behavior_data')
+            ->flatMap(function ($data) {
+                // behavior_data is JSON with dimension => score mapping
+                $decoded = json_decode($data, true);
+                if (!is_array($decoded)) return [];
+                // Get keys where magnitude >= 1 (meaningful evidence)
+                return array_keys(array_filter($decoded, fn($v) => abs($v ?? 0) >= 1));
+            })
+            ->unique()
+            ->count();
+
+        // 0 types = 0 bonus, 1 = 0, 2 = 1, 3 = 2, 4 = 3, 5 = 4, 6+ = 5
+        return min(max($behaviorTypes - 1, 0), 5);
+    }
+
+    /**
+     * Check if this player qualifies for The Carrier badge.
+     * Requirements: Summit + TT >= 8 + reputation >= 0 + net positive promises.
+     */
+    public function qualifiesAsCarrier(): bool
+    {
+        return $this->current_level === 'summit'
+            && $this->tt >= 8
+            && ($this->reputation ?? 0) >= 0
+            && ($this->promises_kept ?? 0) >= ($this->promises_broken ?? 0);
+    }
+
+    /**
+     * Check if this player qualifies for The Catalyst badge.
+     * Requirements: Did NOT summit + highest TT in room + gave positive cross-player effects.
+     */
+    public function qualifiesAsCatalyst(): bool
+    {
+        if ($this->current_level === 'summit') {
+            return false;
+        }
+
+        $room = $this->room;
+        if (!$room) return false;
+
+        // Must have given positive cross-player effects
+        $positiveEffectsGiven = $this->crossPlayerEffectsGiven()
+            ->where('effect_delta', '>', 0)
+            ->exists();
+
+        if (!$positiveEffectsGiven) return false;
+
+        // Must be top 2 in TT among non-summit players
+        $maxTT = $room->players()
+            ->where('is_active', true)
+            ->where('current_level', '!=', 'summit')
+            ->max('tt');
+
+        return $this->tt >= ($maxTT - 1);
+    }
+
+    /**
+     * Check if this player qualifies for The Strategist badge.
+     * Requirements: 4+ distinct leadership behaviors with meaningful evidence.
+     */
+    public function qualifiesAsStrategist(): bool
+    {
+        return $this->calculateLeadershipDiversityBonus() >= 4;
     }
 }

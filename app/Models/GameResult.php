@@ -30,7 +30,7 @@ class GameResult extends Model
             'final_mp'          => 'integer',
             'final_sp'          => 'integer',
             'final_tt'          => 'integer',
-            'final_score'       => 'integer',
+            'final_score'       => 'float',
             'rank'              => 'integer',
             'final_reputation'  => 'integer',
             'final_resources'  => 'integer',
