@@ -1,0 +1,83 @@
+{
+  "id": "basecamp_skillset_003",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Email penting yang kamu kirim tidak dibaca penerima. Kamu perlu follow up tapi tidak ingin terkesan mendesak."
+  },
+  "choices": {
+    "A": {
+      "text": "Kirim ulang email dengan subject baru yang lebih menarik dan tambahkan ringkasan poin.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Telepon atau ajak meeting singkat untuk bahas isi email secara langsung.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Direct communication builds rapport"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "empathy": 1
+      }
+    }
+  }
+}

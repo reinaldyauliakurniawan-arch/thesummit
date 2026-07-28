@@ -1,0 +1,146 @@
+{
+  "id": "camp_mindset_009",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Target tim dinaikkan 50% tanpa penambahan resource. Reaksi tim beragam — frustasi, pasrah, marah."
+  },
+  "choices": {
+    "A": {
+      "text": "Dukung tim dengan menyampaikan keberatan ke manajemen bersama data, minta revisi target.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Advocating earns loyalty"
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "mp",
+              "operator": "<=",
+              "value": 3
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Without capability, motivation crumbles"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "empathy": 2,
+        "decisiveness": 1
+      }
+    },
+    "B": {
+      "text": "Motivasi tim dengan framing positif bahwa ini kesempatan membuktikan kapabilitas.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "mp",
+              "operator": ">=",
+              "value": 10
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "is_hidden": true,
+            "label": "Positive framing earns visibility when backed by results"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "control": 1,
+        "empathy": -1
+      }
+    }
+  }
+}

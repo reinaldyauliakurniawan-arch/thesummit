@@ -1,0 +1,74 @@
+{
+  "id": "basecamp_mindset_010",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Kamu sering menyalahkan kondisi eksternal atas hasil kerjamu yang tidak optimal. Tim sedang evaluasi kinerja individu."
+  },
+  "choices": {
+    "A": {
+      "text": "Akui tanggung jawab penuh dan tunjukkan rencana perbaikan konkret.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Jelaskan konteks kesulitan yang kamu hadapi secara objektif tanpa menyalahkan siapapun.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1
+      }
+    }
+  }
+}

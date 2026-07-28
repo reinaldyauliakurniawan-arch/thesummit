@@ -1,0 +1,74 @@
+{
+  "id": "basecamp_skillset_001",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu diminta presentasi progress proyek ke stakeholders. Waktu 10 menit, materi banyak."
+  },
+  "choices": {
+    "A": {
+      "text": "Fokus pada 3 poin kunci dengan data yang kuat, sisanya jadi lampiran.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Buat visualisasi infografis yang ringkas dan biarkan audiens bertanya untuk detail.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "collaboration": 1
+      }
+    }
+  }
+}

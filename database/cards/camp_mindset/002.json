@@ -1,0 +1,105 @@
+{
+  "id": "camp_mindset_002",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu baru dipromosikan jadi lead tim. Bekas rekan selevelmu sekarang bawahanmu. Ada ketegangan halus."
+  },
+  "choices": {
+    "A": {
+      "text": "Pertahankan gaya komunikasi yang sama seperti sebelum promosi.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "empathy": 2,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Tetapkan ekspektasi baru jelas tentang peran dan tanggung jawab masing-masing.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": ">=",
+              "value": 6
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "is_hidden": true,
+            "label": "Clear expectations earn trust over time"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 2,
+        "empathy": -1
+      }
+    }
+  }
+}

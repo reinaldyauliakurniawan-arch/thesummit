@@ -1,0 +1,147 @@
+{
+  "id": "summit_skillset_005",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Investigasi internal mengungkap satu tim melaporkan metrik yang dipoles selama 6 bulan. Lead klaim hanya mengikuti budaya yang sudah ada."
+  },
+  "choices": {
+    "A": {
+      "text": "Tangani sistemik: audit metrik semua tim, perbaiki proses pelaporan, latih ulang para lead.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Systemic fix prevents recurrence"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "coaching": 1,
+        "empathy": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Berikan sanksi tegas ke lead sebagai contoh untuk semua.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": "<=",
+              "value": 4
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Punitive approach creates fear culture"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "decisiveness": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "id": "camp_skillset_004",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu perlu hiring 1 anggota tim. Budget terbatas dan pasar kerja kompetitif.",
+    "hidden_reveal": "Kandidat dengan growth mindset ternyata juga diminati competitor — deadline untuk offer ada minggu ini."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Fokus pada kandidat dengan growth mindset tinggi meski experience-nya masih minim.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 4,
+            "is_hidden": false,
+            "label": "High-growth hire develops faster than expected"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "coaching": 2,
+        "collaboration": 1,
+        "risk_taking": 1
+      }
+    },
+    "B": {
+      "text": "Tunggu sampai ketemu kandidat yang benar-benar match semua kriteria.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 1,
+        "decisiveness": 1,
+        "risk_taking": -1
+      }
+    }
+  }
+}

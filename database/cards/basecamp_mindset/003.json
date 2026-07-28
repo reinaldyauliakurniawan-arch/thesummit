@@ -1,0 +1,91 @@
+{
+  "id": "basecamp_mindset_003",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu diundang ke networking event setelah jam kerja. Kamu lelah dan punya deadline besok, tapi event ini dihadiri orang yang bisa bantu karirmu."
+  },
+  "choices": {
+    "A": {
+      "text": "Pergi ke event, prioritaskan relasi jangka panjang meski besok lebih berat.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 4,
+            "is_hidden": false,
+            "label": "Network benefit matures"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Tidak pergi, istirahat dan fokus deliver deadline dengan kualitas terbaik.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 1
+      }
+    }
+  }
+}

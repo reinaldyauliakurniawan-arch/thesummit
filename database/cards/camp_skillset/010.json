@@ -1,0 +1,131 @@
+{
+  "id": "camp_skillset_010",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Beberapa anggota diam-diam memotong proses QA karena merasa lambat. Penyebab peningkatan bug di produksi.",
+    "hidden_reveal": "Ternyata QA lambat karena 1 tool berbayar belum di-approve procurement — bukan masalah proses tapi budget."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Investigasi alasan pemotongan proses, perbaiki proses QA yang memang terlalu berat.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Improved QA process earns trust"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "empathy": 2,
+        "coaching": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Tegaskan QA wajib dan berikan warning ke yang melanggar.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "decisiveness": 1
+      }
+    }
+  }
+}

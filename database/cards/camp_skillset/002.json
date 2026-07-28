@@ -1,0 +1,101 @@
+{
+  "id": "camp_skillset_002",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Standar code review tidak konsisten — kadang ketat, kadang formalitas. Ini menyebabkan bug yang seharusnya bisa dicegah."
+  },
+  "choices": {
+    "A": {
+      "text": "Buat checklist wajib untuk code review dan sosialisasikan ke seluruh tim.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 2,
+            "is_hidden": false,
+            "label": "Consistent review builds quality culture"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "control": 1,
+        "coaching": 1
+      }
+    },
+    "B": {
+      "text": "Assign reviewer tetap per modul agar paling paham konteksnya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 2,
+        "collaboration": -1
+      }
+    }
+  }
+}

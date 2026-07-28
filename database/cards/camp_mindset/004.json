@@ -1,0 +1,100 @@
+{
+  "id": "camp_mindset_004",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu harus memutuskan siapa presentasi ke direksi — ada 2 kandidat sama-sama kompeten dengan gaya berbeda."
+  },
+  "choices": {
+    "A": {
+      "text": "Pilih yang paling siap dan berikan yang lain kesempatan di forum berbeda.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "coaching": 1
+      }
+    },
+    "B": {
+      "text": "Buat format co-presentation agar keduanya mendapat exposure yang adil.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Co-presentation builds team capability"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "coaching": 1,
+        "empathy": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "id": "summit_skillset_008",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Team lead membiarkan anggota underperform tanpa intervensi karena tidak mau terlihat kejam."
+  },
+  "choices": {
+    "A": {
+      "text": "Coaching intensif tentang performance management yang tulus tapi tegas, dampingi prosesnya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Coaching the coach multiplies impact"
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "coaching": 2,
+        "collaboration": 1,
+        "empathy": 2
+      }
+    },
+    "B": {
+      "text": "Ambil alih proses performance management langsung untuk anggota yang underperform.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "decisiveness": 2,
+        "coaching": -1,
+        "empathy": -1
+      }
+    }
+  }
+}

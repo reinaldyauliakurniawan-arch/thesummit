@@ -1,0 +1,89 @@
+{
+  "id": "basecamp_mindset_005",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Atasanmu memuji hasil kerjamu di depan tim, tapi ada bagian yang dibantu rekanmu yang tidak disebutkan.",
+    "hidden_reveal": "Rekanmu sebenarnya sudah noticed dan sedang menunggu apakah kamu akan menyebutnya atau tidak."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Terima pujian dan nanti privat sampaikan kontribusi rekanmu kepada atasan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 2,
+            "is_hidden": false,
+            "label": "Private credit-sharing builds trust"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Langsung saat itu sebutkan bahwa ini kerja tim, bukan hanya kamu.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "empathy": 2,
+        "collaboration": 1
+      }
+    }
+  }
+}

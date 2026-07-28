@@ -1,0 +1,194 @@
+{
+  "id": "summit_skillset_010",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Perusahaan merger. Kamu harus integrasikan 2 tim leadership dengan budaya sangat berbeda. Tim lama merasa terancam, tim baru merasa tidak dihargai.",
+    "hidden_reveal": "CEO sebenarnya mengharapkan integrasi budaya yang otentik — dia akan mengevaluasi bagaimana kamu menangani ini sebagai faktor dalam penilaianmu."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "before_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Workshop merged culture di mana kedua pihak berkontribusi menetapkan nilai-nilai dan cara kerja baru.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 2,
+            "description": "Inclusive culture building earns loyalty from both sides"
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Cultural integration strengthens over time"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "empathy": 2,
+        "coaching": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Tetapkan culture perusahaan yang sudah ada sebagai standar, minta tim baru beradaptasi.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -2
+              }
+            },
+            "exclude_source": false
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": "<=",
+              "value": 4
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Imposed culture causes disengagement"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "collaboration": -2,
+        "empathy": -2
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "camp_skillset_001",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu harus membagikan tugas sprint. Ada tugas penting tapi membosankan, dan tugas menarik tapi impact rendah."
+  },
+  "choices": {
+    "A": {
+      "text": "Rotasi tugas membosankan secara adil di setiap sprint.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Fair rotation builds versatile team"
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "flexibility",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "coaching": 1,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Assign berdasarkan keahlian masing-masing untuk efisiensi terbaik.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 2,
+        "adaptability": -1
+      }
+    }
+  }
+}

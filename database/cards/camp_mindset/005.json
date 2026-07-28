@@ -1,0 +1,128 @@
+{
+  "id": "camp_mindset_005",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Anggota tim sangat berbakat tapi sulit menerima masukan dan cenderung bekerja sendiri, mengganggu koordinasi.",
+    "hidden_reveal": "Anggota tim ini sebenarnya insecure — performancenya drop saat merasa di-judge."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "before_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Cari proyek yang butuh keahlian spesifiknya tapi mengharuskan kolaborasi.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "coaching": 2,
+        "adaptability": 1,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Berikan feedback langsung tentang pentingnya kolaborasi dan dampingi prosesnya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "mp",
+              "operator": ">=",
+              "value": 10
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "High MP with low TT signals solo behavior"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "control": 1,
+        "coaching": 1
+      }
+    }
+  }
+}

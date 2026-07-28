@@ -1,0 +1,97 @@
+{
+  "id": "basecamp_mindset_009",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "inattention_to_results"
+  },
+  "narrative": {
+    "situation": "Proyekmu dibatalkan tiba-tiba oleh manajemen tanpa penjelasan memadai. Kamu frustrasi dan kehilangan motivasi."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Terima keputusan, cari pelajaran dari proses yang sudah dilalui, fokus ke tugas berikutnya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Minta meeting dengan manajemen untuk memahami alasan pembatalan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "type": "reveal_information",
+          "target": "self",
+          "params": {
+            "reveal_type": "full",
+            "content": "Ternyata pembatalan karena anggaran direalokasi untuk proyek yang kamu tolak bulan lalu.",
+            "scope": "chooser"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 1,
+        "adaptability": -1
+      }
+    }
+  }
+}

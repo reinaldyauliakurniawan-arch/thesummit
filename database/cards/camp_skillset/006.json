@@ -1,0 +1,114 @@
+{
+  "id": "camp_skillset_006",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Onboarding anggota baru memakan waktu lebih lama. Proses yang ada tidak efektif, anggota baru bingung."
+  },
+  "choices": {
+    "A": {
+      "text": "Assign buddy untuk setiap anggota baru dan buat 30-day learning plan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 2,
+            "is_hidden": false,
+            "label": "Buddy system accelerates integration"
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "coaching": 2,
+        "collaboration": 1,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Berikan akses ke semua dokumentasi dan biarkan mereka belajar mandiri.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "id": "basecamp_mindset_001",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu mendapat tugas proyek baru yang menarik, tapi deadline-nya sangat ketat. Kamu antusias tapi khawatir bisa deliver tepat waktu.",
+    "outcome_hint_a": "Waktu terasa terbuang di awal, tapi scope jadi jelas.",
+    "outcome_hint_b": "Eksekusi cepat tapi ada risiko salah arah.",
+    "hidden_reveal": "Ternyata atasan sedang memantau siapa yang proaktif vs siapa yang langsung kerja."
+  },
+  "choices": {
+    "A": {
+      "text": "Minta klarifikasi scope dulu sebelum mulai, meski terasa membuang waktu di awal.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "mp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Scope benefit materializes"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Langsung eksekusi dan beradaptasi seiring jalan, percaya pada kemampuanmu.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "risk_taking": 1,
+        "adaptability": 1
+      }
+    }
+  }
+}

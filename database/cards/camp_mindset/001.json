@@ -1,0 +1,114 @@
+{
+  "id": "camp_mindset_001",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Anggota tim yang biasanya bagus tiba-tiba menurun. Kamu tahu dia ada masalah pribadi, tapi deadline tidak bisa ditunda.",
+    "hidden_reveal": "Masalah pribadi anggota tim sebenarnya terkait burnout — dia sudah minta bantuan 2 minggu lalu tapi tidak ada yang merespons."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Ajak bicara personal, tawarkan fleksibilitas sementara, redistribusi beban kerja.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Team sees you care"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "empathy": 2,
+        "collaboration": 1,
+        "coaching": 1
+      }
+    },
+    "B": {
+      "text": "Tetap tuntut standar kinerja yang sama karena tim lain juga bekerja keras.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 2,
+        "empathy": -1
+      }
+    }
+  }
+}

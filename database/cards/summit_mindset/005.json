@@ -1,0 +1,139 @@
+{
+  "id": "summit_mindset_005",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Dua team lead bersaing untuk posisi kosong. Persaingan merusak kolaborasi dan menimbulkan politik internal."
+  },
+  "choices": {
+    "A": {
+      "text": "Buat proses seleksi transparan dan objektif, pastikan yang kalah tetap mendapat pengembangan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Fair process maintains morale"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "empathy": 1,
+        "decisiveness": 1
+      }
+    },
+    "B": {
+      "text": "Pilih yang paling siap secara diam-diam dan kontrol informasi agar tidak menimbulkan gejolak.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": "<=",
+              "value": 4
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": -2
+              }
+            },
+            "is_hidden": true,
+            "label": "Secrecy erodes trust fast"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "collaboration": -2,
+        "empathy": -1
+      }
+    }
+  }
+}

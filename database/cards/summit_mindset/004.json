@@ -1,0 +1,138 @@
+{
+  "id": "summit_mindset_004",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Organisasi mengalami perubahan strategi besar. Para lead bingung tentang prioritas baru, tim kehilangan fokus.",
+    "hidden_reveal": "Perubahan strategi ini sebenarnya respons terhadap competitor yang sudah 6 bulan lebih maju."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "before_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Kumpulkan semua lead, breakdown strategi baru menjadi inisiatif per tim, bantu translate ke eksekusi.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 2,
+            "is_hidden": false,
+            "label": "Hands-on translation earns credibility"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "coaching": 1,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Buat dokumen strategi detail dan distribusikan, biarkan lead mengartikulasikan sendiri ke timnya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "control": 1,
+        "collaboration": -1
+      }
+    }
+  }
+}

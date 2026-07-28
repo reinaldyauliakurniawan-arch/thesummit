@@ -1,0 +1,101 @@
+{
+  "id": "camp_skillset_008",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "fear_of_conflict"
+  },
+  "narrative": {
+    "situation": "Dua subtim membuat keputusan teknis bertentangan untuk modul yang saling terhubung. Integrasi minggu depan bermasalah."
+  },
+  "choices": {
+    "A": {
+      "text": "Panggil kedua lead, fasilitasi diskusi teknis untuk temukan arsitektur yang menyatukan keduanya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Collaborative resolution builds respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "coaching": 1,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Putuskan sendiri arsitektur yang lebih baik dan minta kedua pihak mengikutinya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "control": 2
+      }
+    }
+  }
+}

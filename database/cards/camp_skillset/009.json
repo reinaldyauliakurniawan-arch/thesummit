@@ -1,0 +1,147 @@
+{
+  "id": "camp_skillset_009",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Anggota tim paling berpengalaman mengajukan resign. Dia knowledge base untuk sistem kritis, belum ada dokumentasi memadai."
+  },
+  "choices": {
+    "A": {
+      "text": "Negosiasi masa transisi 1 bulan dan jalankan knowledge transfer intensif.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Knowledge transfer strengthens remaining team"
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "coaching": 1,
+        "empathy": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Terima resign segera dan distribusikan tugasnya ke anggota lain.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "sp",
+              "operator": "<=",
+              "value": 5
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "flexibility",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Knowledge gap reduces flexibility"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "control": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "basecamp_skillset_002",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu perlu menguasai tools baru. Ada 2 opsi: training resmi 3 hari atau belajar mandiri seminggu dari resource online."
+  },
+  "choices": {
+    "A": {
+      "text": "Ikut training resmi — lebih terstruktur dan ada sertifikat.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Belajar mandiri — lebih fleksibel dan langsung praktik di proyek nyata.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "risk_taking": 1
+      }
+    }
+  }
+}

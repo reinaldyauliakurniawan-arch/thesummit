@@ -1,0 +1,150 @@
+{
+  "id": "summit_mindset_010",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Kamu ditawari memimpin divisi baru lebih besar, tapi meninggalkan tim yang kamu bangun 2 tahun di saat mereka paling butuh arahan."
+  },
+  "choices": {
+    "A": {
+      "text": "Terima tawaran tapi pastikan succession plan kuat dan tetap support tim lama sebagai mentor.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Mentor role from above strengthens both teams"
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Continued support shows genuine care"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "coaching": 1,
+        "collaboration": 1,
+        "risk_taking": 1
+      }
+    },
+    "B": {
+      "text": "Tolak tawaran karena komitmenmu kepada tim saat ini adalah prioritas.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": ">=",
+              "value": 5
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "is_hidden": true,
+            "label": "Loyalty is recognized"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "empathy": 2,
+        "collaboration": 1,
+        "decisiveness": -1
+      }
+    }
+  }
+}

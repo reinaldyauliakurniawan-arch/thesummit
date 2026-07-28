@@ -1,0 +1,107 @@
+{
+  "id": "camp_skillset_005",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Klien meminta perubahan spesifikasi signifikan di tengah sprint. Tim sudah commit pada plan awal."
+  },
+  "choices": {
+    "A": {
+      "text": "Negosiasi masukkan perubahan ke sprint berikutnya, tawarkan solusi interim.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "collaboration": 1,
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Terima perubahan, rescope sprint, komunikasikan dampaknya transparan ke tim.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "collaboration": 1,
+        "control": -1
+      }
+    }
+  }
+}

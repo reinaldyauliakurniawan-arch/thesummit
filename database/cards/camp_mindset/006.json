@@ -1,0 +1,115 @@
+{
+  "id": "camp_mindset_006",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Tim mencapai target kuartalan tapi sebagian besar kontribusi dari 2-3 orang. Anggota lain tidak berkembang."
+  },
+  "choices": {
+    "A": {
+      "text": "Buat program mentoring internal di mana top performer membimbing yang lain.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 4,
+            "is_hidden": false,
+            "label": "Mentoring develops team capacity"
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "coaching": 2,
+        "collaboration": 1,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Rotasi tugas agar setiap orang mendapat tantangan baru yang berbeda.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "decisiveness": 1
+      }
+    }
+  }
+}

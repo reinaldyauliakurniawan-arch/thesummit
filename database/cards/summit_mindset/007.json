@@ -1,0 +1,146 @@
+{
+  "id": "summit_mindset_007",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Board minta pemotongan budget 30%. Kamu harus komunikasikan ke para lead yang sudah commit plan tahunan."
+  },
+  "choices": {
+    "A": {
+      "text": "Libatkan para lead dalam reprioritization, berikan mereka otoritas tentukan apa yang dipotong.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Shared ownership builds commitment"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "coaching": 2,
+        "empathy": 1
+      }
+    },
+    "B": {
+      "text": "Tentukan sendiri pemotongan per tim berdasarkan data objektif sebagai keputusan final.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": "<=",
+              "value": 3
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "flexibility",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Top-down cuts reduce team agility"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "control": 2,
+        "collaboration": -2
+      }
+    }
+  }
+}

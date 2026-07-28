@@ -1,0 +1,142 @@
+{
+  "id": "summit_skillset_006",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "fear_of_conflict"
+  },
+  "narrative": {
+    "situation": "Dua tim debat terbuka di slack tentang arsitektur. Debat sudah menyerang personal, produktivitas kedua tim turun 40%."
+  },
+  "choices": {
+    "A": {
+      "text": "Mediasi langsung, bawa kedua lead ke ruangan, fasilitasi diskusi berbasis data.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Data-driven resolution earns respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "empathy": 1,
+        "coaching": 1,
+        "decisiveness": 1
+      }
+    },
+    "B": {
+      "text": "Putuskan sendiri arsitektur yang benar dan larang perdebatan lebih lanjut.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "flexibility",
+                "delta": -1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "decisiveness": 2,
+        "collaboration": -2,
+        "empathy": -1
+      }
+    }
+  }
+}

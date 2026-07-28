@@ -1,0 +1,142 @@
+{
+  "id": "camp_mindset_010",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Anggota tim senior menolak proses barumu. Dia bilang proses lama sudah cukup baik dan perubahan membuang waktu.",
+    "hidden_reveal": "Anggota senior ini sebenarnya takut proses baru akan mengekspos kelemahan skillnya."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "before_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Dengarkan keberatannya, cari titik valid, libatkan dia dalam penyempurnaan proses baru.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": false,
+            "label": "Inclusive process earns senior buy-in"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "empathy": 2,
+        "collaboration": 1,
+        "coaching": 1,
+        "adaptability": 1
+      }
+    },
+    "B": {
+      "text": "Tegaskan keputusan sudah dibuat dan semua wajib mengikutinya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 2,
+            "is_hidden": false,
+            "label": "Authority signal earns respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "control": 2,
+        "adaptability": 1
+      }
+    }
+  }
+}

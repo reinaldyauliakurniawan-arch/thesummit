@@ -1,0 +1,146 @@
+{
+  "id": "summit_mindset_003",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Salah satu team lead menunjukkan potensi luar biasa dan siap naik level. Tapi jika dipromosikan, timnya kehilangan momentum."
+  },
+  "choices": {
+    "A": {
+      "text": "Siapkan successor-nya sekarang, promosikan dalam 2-3 bulan dengan transisi terencana.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 4,
+            "is_hidden": false,
+            "label": "Succession planning develops two leaders"
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "sp",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        }
+      ],
+      "behavior_tags": {
+        "coaching": 2,
+        "collaboration": 1,
+        "decisiveness": 1,
+        "risk_taking": 1
+      }
+    },
+    "B": {
+      "text": "Tunda promosi sampai timnya benar-benar stabil dengan performa konsisten.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "mp",
+              "operator": ">=",
+              "value": 10
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "is_hidden": true,
+            "label": "Patience earns team stability"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "control": 1
+      }
+    }
+  }
+}

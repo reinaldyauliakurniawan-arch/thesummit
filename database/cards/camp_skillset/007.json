@@ -1,0 +1,116 @@
+{
+  "id": "camp_skillset_007",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Bug kritis di produksi tepat saat tim merayakan milestone. Bug berasal dari kode yang di-review senior tim."
+  },
+  "choices": {
+    "A": {
+      "text": "Fokus fix bug dulu, lalu lakukan blameless post-mortem.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Blameless culture strengthens team"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 2,
+        "empathy": 1,
+        "decisiveness": 1
+      }
+    },
+    "B": {
+      "text": "Cari tahu siapa yang salah dan pastikan ada konsekuensi agar tidak terulang.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "decisiveness": 1
+      }
+    }
+  }
+}

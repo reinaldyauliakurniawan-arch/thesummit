@@ -1,0 +1,147 @@
+{
+  "id": "summit_mindset_009",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "inattention_to_results"
+  },
+  "narrative": {
+    "situation": "Tim terbaikmu mencapai semua KPI tapi dengan cara merusak hubungan tim lain (hoarding resource, tidak berbagi info)."
+  },
+  "choices": {
+    "A": {
+      "text": "Apresiasi hasilnya tapi tegaskan caranya tidak sejalan dengan budaya organisasi.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "affect_team",
+          "target": "other_players",
+          "params": {
+            "effect": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              }
+            },
+            "exclude_source": true
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Values-first leadership earns respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "empathy": 1,
+        "collaboration": 1
+      }
+    },
+    "B": {
+      "text": "Biarkan karena hasilnya penting untuk organisasi, urusan internal bisa disesuaikan nanti.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": "<=",
+              "value": 4
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Tolerating toxicity spreads dysfunction"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 1,
+        "collaboration": -2,
+        "empathy": -1
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "id": "basecamp_skillset_004",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu ditugaskan menulis dokumentasi teknis untuk sistem yang ada. Dokumentasi sebelumnya berantakan dan tidak konsisten.",
+    "hidden_reveal": "Tim lain ternyata sudah mengeluh tentang dokumentasi ini ke atasan — ada ekspektasi tinggi untuk perbaikan."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Tulis ulang dari awal dengan template baru yang rapi dan konsisten.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 4,
+            "is_hidden": false,
+            "label": "Clean docs earn long-term respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "decisiveness": 1
+      }
+    },
+    "B": {
+      "text": "Perbaiki bagian paling kritis dulu dan buat guideline untuk ke depannya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "collaboration": 1,
+        "coaching": 1
+      }
+    }
+  }
+}

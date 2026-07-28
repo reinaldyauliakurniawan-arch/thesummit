@@ -1,0 +1,134 @@
+{
+  "id": "basecamp_mindset_008",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Atasan memintamu melakukan sesuatu yang bertentangan dengan nilai-nilaimu. Bukan ilegal, tapi terasa tidak etis.",
+    "hidden_reveal": "Atasan sedang diuji oleh manajemen atas komitmen etika timnya."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "before_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Ikuti arahan atasan karena dia tahu lebih banyak tentang konteks bisnis.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": "<=",
+              "value": 3
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": -2
+              }
+            },
+            "is_hidden": true,
+            "label": "Low trust amplifies reputational damage"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 2,
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Sampaikan keberatan dengan sopan dan tawarkan alternatif yang tetap memenuhi tujuan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": ">=",
+              "value": 6
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 2
+              }
+            },
+            "is_hidden": true,
+            "label": "Standing firm on values earns respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "risk_taking": 1,
+        "adaptability": 1
+      }
+    }
+  }
+}

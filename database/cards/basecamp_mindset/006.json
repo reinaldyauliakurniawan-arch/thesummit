@@ -1,0 +1,79 @@
+{
+  "id": "basecamp_mindset_006",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu merasa stuck di comfort zone. Setiap hari terasa rutin tanpa tantangan baru dalam 3 bulan terakhir.",
+    "hidden_reveal": "Ternyata atasan sudah mencatat siapa yang proaktif vs pasif — inisiatif ini jadi bahan evaluasi karir."
+  },
+  "choices": {
+    "A": {
+      "text": "Ambil inisiatif mengusulkan proyek improvement ke atasan meski belum diminta.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "risk_taking": 1,
+        "decisiveness": 1
+      }
+    },
+    "B": {
+      "text": "Gunakan waktu luang untuk belajar skill baru yang bisa langsung diaplikasikan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 3
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 2
+      }
+    }
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
+  }
+}

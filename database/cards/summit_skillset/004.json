@@ -1,0 +1,146 @@
+{
+  "id": "summit_skillset_004",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu perlu presentasi kinerja divisi ke board. Data menunjukkan hasil campuran — peningkatan signifikan di beberapa area, penurunan di area lain.",
+    "hidden_reveal": "Board sebenarnya sudah mendapat laporan terpisah dari auditor internal — mereka tahu area yang menurun."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "before_choice",
+    "reveal_scope": "chooser"
+  },
+  "choices": {
+    "A": {
+      "text": "Presentasi transparan dengan focus pada pembelajaran dan rencana aksi untuk area yang menurun.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 2
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              }
+            },
+            "trigger_after_rounds": 2,
+            "is_hidden": false,
+            "label": "Transparency builds board trust long-term"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "adaptability": 1,
+        "empathy": 1,
+        "collaboration": 1
+      }
+    },
+    "B": {
+      "text": "Highlight area yang berhasil dan minimalkan area yang menurun dengan framing konteks yang memihak.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "mp",
+              "operator": "<=",
+              "value": 5
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": -1
+              }
+            },
+            "is_hidden": true,
+            "label": "Spinning catches up eventually"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "control": 2,
+        "adaptability": -1,
+        "empathy": -1
+      }
+    }
+  }
+}

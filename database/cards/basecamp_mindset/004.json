@@ -1,0 +1,92 @@
+{
+  "id": "basecamp_mindset_004",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Kamu menyadari bahwa selama ini sering menghindari tugas yang kelihatannya terlalu sulit. Ada satu tugas besar dengan deadline 2 minggu."
+  },
+  "choices": {
+    "A": {
+      "text": "Pecah tugas menjadi milestone kecil dan mulai dari bagian yang paling kamu kuasai.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Cari mentor yang lebih berpengalaman untuk membimbingmu mengerjakan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Mentor appreciates your outreach"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "collaboration": 1,
+        "coaching": 1,
+        "adaptability": 1
+      }
+    }
+  }
+}

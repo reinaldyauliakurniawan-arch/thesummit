@@ -1,0 +1,101 @@
+{
+  "id": "camp_mindset_007",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "crisis",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28",
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Kamu tahu anggota tim akan di-PHK. Dia tidak tahu dan kamu diminta turunkan evaluasinya sebagai justifikasi."
+  },
+  "choices": {
+    "A": {
+      "text": "Tolak permintaan dan sampaikan ke HR bahwa kamu tidak bisa menjadi bagian dari proses tidak transparan.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "type": "relationship_change",
+          "target": "other_players",
+          "params": {
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Integrity earns team respect"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 2,
+        "empathy": 2,
+        "control": 1
+      }
+    },
+    "B": {
+      "text": "Ikuti arahan manajemen karena ini keputusan bisnis.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        }
+      ],
+      "behavior_tags": {
+        "adaptability": 1,
+        "empathy": -2
+      }
+    }
+  }
+}

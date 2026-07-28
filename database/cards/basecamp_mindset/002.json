@@ -1,0 +1,96 @@
+{
+  "id": "basecamp_mindset_002",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "dilemma",
+  "metadata": {
+    "author": "summit-team",
+    "created": "2026-07-28"
+  },
+  "narrative": {
+    "situation": "Seorang rekan senior memberikan feedback yang cukup tajam tentang presentasimu. Evaluasinya tidak sepenuhnya adil, tapi ada poin yang benar."
+  },
+  "choices": {
+    "A": {
+      "text": "Terima semua feedback dan berkomitmen memperbaiki tanpa mempertanyakan validitasnya.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
+          "params": {
+            "condition": {
+              "type": "stat_threshold",
+              "stat": "tt",
+              "operator": ">=",
+              "value": 8
+            },
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "reputation",
+                "delta": 2
+              }
+            },
+            "is_hidden": false,
+            "label": "Team trust unlocks reputation boost"
+          }
+        }
+      ],
+      "behavior_tags": {
+        "empathy": 2,
+        "adaptability": -1
+      }
+    },
+    "B": {
+      "text": "Diskusikan balik poin-poin yang kamu anggap tidak adil sambil mengakui yang benar.",
+      "effects": [
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        }
+      ],
+      "behavior_tags": {
+        "decisiveness": 1,
+        "empathy": -1
+      }
+    }
+  }
+}
