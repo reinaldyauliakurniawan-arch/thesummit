@@ -1,0 +1,5223 @@
+{
+  "conflict_avoider": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 41.0,
+      "avg_score": 2.71,
+      "median_score": 3.0,
+      "score_stdev": 0.71,
+      "avg_confidence": 0.46,
+      "quality_distribution": {
+        "insufficient": 181,
+        "weak": 122,
+        "medium": 4
+      },
+      "avg_proving": 0.78,
+      "avg_disproving": 0.45
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 100.0,
+      "avg_score": 1.57,
+      "median_score": 2,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.587,
+      "quality_distribution": {
+        "medium": 106,
+        "weak": 173,
+        "contradictory": 28
+      },
+      "avg_proving": 2.87,
+      "avg_disproving": 2.29
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 100.0,
+      "avg_score": 2.62,
+      "median_score": 3,
+      "score_stdev": 0.76,
+      "avg_confidence": 0.617,
+      "quality_distribution": {
+        "weak": 298,
+        "medium": 9
+      },
+      "avg_proving": 3.03,
+      "avg_disproving": 0.02
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 100.0,
+      "avg_score": 1.24,
+      "median_score": 1,
+      "score_stdev": 0.44,
+      "avg_confidence": 0.686,
+      "quality_distribution": {
+        "weak": 303,
+        "medium": 4
+      },
+      "avg_proving": 1.9,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 100.0,
+      "avg_score": 2.6,
+      "median_score": 3,
+      "score_stdev": 0.83,
+      "avg_confidence": 0.666,
+      "quality_distribution": {
+        "contradictory": 50,
+        "weak": 227,
+        "medium": 26,
+        "strong": 3,
+        "repeated": 1
+      },
+      "avg_proving": 3.08,
+      "avg_disproving": 1.68
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 94.1,
+      "avg_score": 2.47,
+      "median_score": 2.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.314,
+      "quality_distribution": {
+        "weak": 202,
+        "insufficient": 101,
+        "medium": 4
+      },
+      "avg_proving": 1.26,
+      "avg_disproving": 0.47
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 307,
+      "fair_pct": 100.0,
+      "avg_score": 2.47,
+      "median_score": 2.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.629,
+      "quality_distribution": {
+        "medium": 117,
+        "weak": 187,
+        "contradictory": 3
+      },
+      "avg_proving": 4.51,
+      "avg_disproving": 1.19
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 307,
+      "fair_pct": 98.4,
+      "avg_score": 2.64,
+      "median_score": 3.0,
+      "score_stdev": 0.64,
+      "avg_confidence": 0.407,
+      "quality_distribution": {
+        "weak": 244,
+        "insufficient": 63
+      },
+      "avg_proving": 1.71,
+      "avg_disproving": 0.3
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 307,
+      "fair_pct": 82.4,
+      "avg_score": 1.84,
+      "median_score": 1.0,
+      "score_stdev": 0.94,
+      "avg_confidence": 0.376,
+      "quality_distribution": {
+        "weak": 146,
+        "insufficient": 161
+      },
+      "avg_proving": 0.84,
+      "avg_disproving": 0.44
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 307,
+      "fair_pct": 97.7,
+      "avg_score": 1.05,
+      "median_score": 1,
+      "score_stdev": 0.25,
+      "avg_confidence": 0.401,
+      "quality_distribution": {
+        "weak": 239,
+        "insufficient": 68
+      },
+      "avg_proving": 0.62,
+      "avg_disproving": 0.19
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 307,
+      "fair_pct": 80.1,
+      "avg_score": 2.87,
+      "median_score": 3.0,
+      "score_stdev": 0.5,
+      "avg_confidence": 0.368,
+      "quality_distribution": {
+        "insufficient": 169,
+        "weak": 138
+      },
+      "avg_proving": 1.32,
+      "avg_disproving": 0.22
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 307,
+      "fair_pct": 71.7,
+      "avg_score": 2.14,
+      "median_score": 3.0,
+      "score_stdev": 1.03,
+      "avg_confidence": 0.25,
+      "quality_distribution": {
+        "insufficient": 293,
+        "weak": 14
+      },
+      "avg_proving": 0.72,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 307,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 307
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 23.8,
+      "avg_score": 2.75,
+      "median_score": 3.0,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.618,
+      "quality_distribution": {
+        "medium": 55,
+        "insufficient": 235,
+        "weak": 17
+      },
+      "avg_proving": 0.61,
+      "avg_disproving": 0.02
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 18.9,
+      "avg_score": 2.05,
+      "median_score": 2,
+      "score_stdev": 0.29,
+      "avg_confidence": 0.282,
+      "quality_distribution": {
+        "weak": 57,
+        "insufficient": 250
+      },
+      "avg_proving": 0.2,
+      "avg_disproving": 0.01
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 17.3,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.246,
+      "quality_distribution": {
+        "insufficient": 305,
+        "weak": 2
+      },
+      "avg_proving": 0.18,
+      "avg_disproving": 0.16
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 17.9,
+      "avg_score": 1.04,
+      "median_score": 1,
+      "score_stdev": 0.28,
+      "avg_confidence": 0.435,
+      "quality_distribution": {
+        "insufficient": 256,
+        "weak": 51
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.34
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 3.3,
+      "avg_score": 2.14,
+      "median_score": 3,
+      "score_stdev": 1.07,
+      "avg_confidence": 0.367,
+      "quality_distribution": {
+        "insufficient": 300,
+        "weak": 7
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 74.6,
+      "avg_score": 2.41,
+      "median_score": 3,
+      "score_stdev": 0.91,
+      "avg_confidence": 0.521,
+      "quality_distribution": {
+        "medium": 114,
+        "weak": 115,
+        "insufficient": 78
+      },
+      "avg_proving": 1.48,
+      "avg_disproving": 0.02
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 37.8,
+      "avg_score": 1.18,
+      "median_score": 1.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.519,
+      "quality_distribution": {
+        "weak": 56,
+        "insufficient": 191,
+        "medium": 60
+      },
+      "avg_proving": 0.44,
+      "avg_disproving": 0.7
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 2.0,
+      "avg_score": 2.67,
+      "median_score": 3.0,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.57,
+      "quality_distribution": {
+        "insufficient": 301,
+        "medium": 2,
+        "weak": 4
+      },
+      "avg_proving": 0.05,
+      "avg_disproving": 0.01
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 0.3,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0,
+      "avg_confidence": 0.45,
+      "quality_distribution": {
+        "insufficient": 306,
+        "weak": 1
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 3.3,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.444,
+      "quality_distribution": {
+        "insufficient": 298,
+        "weak": 9
+      },
+      "avg_proving": 0.07,
+      "avg_disproving": 0.0
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 307,
+      "fair_pct": 17.6,
+      "avg_score": 1.06,
+      "median_score": 1.0,
+      "score_stdev": 0.3,
+      "avg_confidence": 0.456,
+      "quality_distribution": {
+        "weak": 51,
+        "insufficient": 253,
+        "medium": 3
+      },
+      "avg_proving": 0.18,
+      "avg_disproving": 0.18
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 307
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 20.5,
+      "avg_score": 1.92,
+      "median_score": 2,
+      "score_stdev": 0.33,
+      "avg_confidence": 0.29,
+      "quality_distribution": {
+        "insufficient": 244,
+        "weak": 61,
+        "medium": 2
+      },
+      "avg_proving": 0.2,
+      "avg_disproving": 0.02
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 307
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 307
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 1.0,
+      "avg_score": 1.33,
+      "median_score": 1,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.427,
+      "quality_distribution": {
+        "insufficient": 304,
+        "weak": 2,
+        "medium": 1
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 0.3,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0.24,
+      "quality_distribution": {
+        "insufficient": 307
+      },
+      "avg_proving": 0.0,
+      "avg_disproving": 0
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 307,
+      "fair_pct": 19.5,
+      "avg_score": 2.08,
+      "median_score": 2.0,
+      "score_stdev": 0.33,
+      "avg_confidence": 0.289,
+      "quality_distribution": {
+        "insufficient": 247,
+        "weak": 59,
+        "medium": 1
+      },
+      "avg_proving": 0.21,
+      "avg_disproving": 0.16
+    }
+  },
+  "people_pleaser": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 31.0,
+      "avg_score": 1.35,
+      "median_score": 1,
+      "score_stdev": 0.69,
+      "avg_confidence": 0.519,
+      "quality_distribution": {
+        "insufficient": 203,
+        "weak": 74,
+        "medium": 16,
+        "strong": 1
+      },
+      "avg_proving": 0.39,
+      "avg_disproving": 0.59
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 100.0,
+      "avg_score": 3.01,
+      "median_score": 3.0,
+      "score_stdev": 1.19,
+      "avg_confidence": 0.67,
+      "quality_distribution": {
+        "medium": 133,
+        "strong": 53,
+        "contradictory": 64,
+        "weak": 44
+      },
+      "avg_proving": 4.35,
+      "avg_disproving": 1.77
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 99.7,
+      "avg_score": 2.91,
+      "median_score": 3,
+      "score_stdev": 0.33,
+      "avg_confidence": 0.601,
+      "quality_distribution": {
+        "medium": 127,
+        "weak": 164,
+        "insufficient": 3
+      },
+      "avg_proving": 3.49,
+      "avg_disproving": 0.0
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 100.0,
+      "avg_score": 1.49,
+      "median_score": 1.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.639,
+      "quality_distribution": {
+        "weak": 266,
+        "medium": 26,
+        "insufficient": 2
+      },
+      "avg_proving": 2.1,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 99.3,
+      "avg_score": 3.12,
+      "median_score": 3.0,
+      "score_stdev": 0.49,
+      "avg_confidence": 0.739,
+      "quality_distribution": {
+        "strong": 69,
+        "medium": 155,
+        "contradictory": 50,
+        "weak": 17,
+        "insufficient": 2,
+        "repeated": 1
+      },
+      "avg_proving": 4.84,
+      "avg_disproving": 1.42
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 89.8,
+      "avg_score": 2.98,
+      "median_score": 3.0,
+      "score_stdev": 0.15,
+      "avg_confidence": 0.526,
+      "quality_distribution": {
+        "medium": 130,
+        "weak": 132,
+        "insufficient": 32
+      },
+      "avg_proving": 2.05,
+      "avg_disproving": 0.03
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 294,
+      "fair_pct": 100.0,
+      "avg_score": 1.88,
+      "median_score": 2.0,
+      "score_stdev": 0.81,
+      "avg_confidence": 0.646,
+      "quality_distribution": {
+        "medium": 207,
+        "weak": 83,
+        "strong": 4
+      },
+      "avg_proving": 4.32,
+      "avg_disproving": 1.46
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 294,
+      "fair_pct": 95.9,
+      "avg_score": 2.25,
+      "median_score": 3,
+      "score_stdev": 0.95,
+      "avg_confidence": 0.369,
+      "quality_distribution": {
+        "weak": 213,
+        "insufficient": 81
+      },
+      "avg_proving": 1.4,
+      "avg_disproving": 0.14
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 294,
+      "fair_pct": 98.3,
+      "avg_score": 2.55,
+      "median_score": 3,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.417,
+      "quality_distribution": {
+        "insufficient": 77,
+        "weak": 217
+      },
+      "avg_proving": 1.47,
+      "avg_disproving": 0.31
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 294,
+      "fair_pct": 95.6,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.379,
+      "quality_distribution": {
+        "insufficient": 89,
+        "weak": 205
+      },
+      "avg_proving": 0.36,
+      "avg_disproving": 0.0
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 294,
+      "fair_pct": 89.5,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.463,
+      "quality_distribution": {
+        "weak": 260,
+        "insufficient": 34
+      },
+      "avg_proving": 2.01,
+      "avg_disproving": 0.0
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 294,
+      "fair_pct": 60.5,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.384,
+      "quality_distribution": {
+        "insufficient": 134,
+        "weak": 160
+      },
+      "avg_proving": 0.06,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 294,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 294
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 88.4,
+      "avg_score": 1.9,
+      "median_score": 1.0,
+      "score_stdev": 0.96,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "weak": 135,
+        "insufficient": 90,
+        "medium": 69
+      },
+      "avg_proving": 1.23,
+      "avg_disproving": 0.02
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 31.3,
+      "avg_score": 2.87,
+      "median_score": 3.0,
+      "score_stdev": 0.37,
+      "avg_confidence": 0.456,
+      "quality_distribution": {
+        "weak": 81,
+        "insufficient": 202,
+        "medium": 11
+      },
+      "avg_proving": 0.63,
+      "avg_disproving": 0.01
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 20.7,
+      "avg_score": 2.93,
+      "median_score": 3.0,
+      "score_stdev": 0.37,
+      "avg_confidence": 0.39,
+      "quality_distribution": {
+        "insufficient": 238,
+        "weak": 56
+      },
+      "avg_proving": 0.38,
+      "avg_disproving": 0.02
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 18.4,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.401,
+      "quality_distribution": {
+        "weak": 54,
+        "insufficient": 240
+      },
+      "avg_proving": 0.37,
+      "avg_disproving": 0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 44.2,
+      "avg_score": 2.81,
+      "median_score": 3.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.352,
+      "quality_distribution": {
+        "insufficient": 220,
+        "weak": 72,
+        "medium": 2
+      },
+      "avg_proving": 0.66,
+      "avg_disproving": 0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 72.8,
+      "avg_score": 1.74,
+      "median_score": 1.0,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.47,
+      "quality_distribution": {
+        "weak": 165,
+        "insufficient": 80,
+        "medium": 44,
+        "strong": 5
+      },
+      "avg_proving": 1.03,
+      "avg_disproving": 0.39
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 72.8,
+      "avg_score": 2.9,
+      "median_score": 3.0,
+      "score_stdev": 0.39,
+      "avg_confidence": 0.654,
+      "quality_distribution": {
+        "medium": 197,
+        "insufficient": 80,
+        "strong": 7,
+        "weak": 10
+      },
+      "avg_proving": 2.44,
+      "avg_disproving": 0.42
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 5.1,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.641,
+      "quality_distribution": {
+        "insufficient": 279,
+        "weak": 5,
+        "medium": 10
+      },
+      "avg_proving": 0.15,
+      "avg_disproving": 0.02
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 0.7,
+      "avg_score": 2.5,
+      "median_score": 2.5,
+      "score_stdev": 0.71,
+      "avg_confidence": 0.36,
+      "quality_distribution": {
+        "insufficient": 292,
+        "weak": 2
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 65.0,
+      "avg_score": 2.99,
+      "median_score": 3,
+      "score_stdev": 0.07,
+      "avg_confidence": 0.466,
+      "quality_distribution": {
+        "insufficient": 103,
+        "medium": 61,
+        "weak": 130
+      },
+      "avg_proving": 1.36,
+      "avg_disproving": 0.17
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 294,
+      "fair_pct": 58.5,
+      "avg_score": 2.32,
+      "median_score": 3.0,
+      "score_stdev": 0.95,
+      "avg_confidence": 0.552,
+      "quality_distribution": {
+        "medium": 113,
+        "weak": 59,
+        "insufficient": 122
+      },
+      "avg_proving": 1.16,
+      "avg_disproving": 0.2
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 0.7,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "insufficient": 292,
+        "weak": 2
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 66.0,
+      "avg_score": 1.39,
+      "median_score": 1.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.468,
+      "quality_distribution": {
+        "weak": 134,
+        "medium": 58,
+        "insufficient": 102
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.03
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 294
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 2.0,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.355,
+      "quality_distribution": {
+        "insufficient": 289,
+        "weak": 5
+      },
+      "avg_proving": 0.0,
+      "avg_disproving": 0.01
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 3.4,
+      "avg_score": 2.44,
+      "median_score": 3,
+      "score_stdev": 0.88,
+      "avg_confidence": 0.416,
+      "quality_distribution": {
+        "insufficient": 285,
+        "weak": 8,
+        "medium": 1
+      },
+      "avg_proving": 0.05,
+      "avg_disproving": 0.01
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 1.4,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "insufficient": 290,
+        "weak": 4
+      },
+      "avg_proving": 0.03,
+      "avg_disproving": 0
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 294,
+      "fair_pct": 48.6,
+      "avg_score": 2.91,
+      "median_score": 3.0,
+      "score_stdev": 0.33,
+      "avg_confidence": 0.562,
+      "quality_distribution": {
+        "medium": 64,
+        "insufficient": 152,
+        "weak": 77,
+        "strong": 1
+      },
+      "avg_proving": 1.14,
+      "avg_disproving": 0.01
+    }
+  },
+  "micromanager": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 49.0,
+      "avg_score": 2.14,
+      "median_score": 3.0,
+      "score_stdev": 0.99,
+      "avg_confidence": 0.479,
+      "quality_distribution": {
+        "insufficient": 152,
+        "weak": 134,
+        "medium": 12
+      },
+      "avg_proving": 0.8,
+      "avg_disproving": 0.66
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 98.7,
+      "avg_score": 1.09,
+      "median_score": 1.0,
+      "score_stdev": 0.35,
+      "avg_confidence": 0.535,
+      "quality_distribution": {
+        "weak": 196,
+        "medium": 94,
+        "insufficient": 4,
+        "strong": 2,
+        "contradictory": 2
+      },
+      "avg_proving": 1.31,
+      "avg_disproving": 2.06
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 99.7,
+      "avg_score": 2.33,
+      "median_score": 3.0,
+      "score_stdev": 0.89,
+      "avg_confidence": 0.544,
+      "quality_distribution": {
+        "medium": 131,
+        "weak": 113,
+        "insufficient": 54
+      },
+      "avg_proving": 2.13,
+      "avg_disproving": 0.72
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 100.0,
+      "avg_score": 2.29,
+      "median_score": 3.0,
+      "score_stdev": 0.81,
+      "avg_confidence": 0.629,
+      "quality_distribution": {
+        "medium": 128,
+        "weak": 164,
+        "insufficient": 4,
+        "strong": 2
+      },
+      "avg_proving": 2.97,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 99.7,
+      "avg_score": 1.27,
+      "median_score": 1.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.652,
+      "quality_distribution": {
+        "contradictory": 161,
+        "strong": 52,
+        "medium": 65,
+        "weak": 19,
+        "insufficient": 1
+      },
+      "avg_proving": 2.53,
+      "avg_disproving": 3.19
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 70.8,
+      "avg_score": 1.1,
+      "median_score": 1.0,
+      "score_stdev": 0.36,
+      "avg_confidence": 0.388,
+      "quality_distribution": {
+        "weak": 140,
+        "insufficient": 140,
+        "medium": 18
+      },
+      "avg_proving": 0.26,
+      "avg_disproving": 1.03
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 100.0,
+      "avg_score": 2.37,
+      "median_score": 2.0,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.713,
+      "quality_distribution": {
+        "medium": 266,
+        "weak": 28,
+        "strong": 4
+      },
+      "avg_proving": 4.5,
+      "avg_disproving": 0.61
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 77.5,
+      "avg_score": 2.62,
+      "median_score": 3.0,
+      "score_stdev": 0.53,
+      "avg_confidence": 0.43,
+      "quality_distribution": {
+        "insufficient": 134,
+        "weak": 164
+      },
+      "avg_proving": 1.55,
+      "avg_disproving": 0.72
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 77.9,
+      "avg_score": 2.68,
+      "median_score": 3.0,
+      "score_stdev": 0.52,
+      "avg_confidence": 0.406,
+      "quality_distribution": {
+        "insufficient": 76,
+        "weak": 222
+      },
+      "avg_proving": 1.56,
+      "avg_disproving": 0.02
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 74.8,
+      "avg_score": 1.95,
+      "median_score": 2,
+      "score_stdev": 0.64,
+      "avg_confidence": 0.344,
+      "quality_distribution": {
+        "insufficient": 191,
+        "weak": 107
+      },
+      "avg_proving": 1.0,
+      "avg_disproving": 0.5
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 68.5,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.341,
+      "quality_distribution": {
+        "weak": 129,
+        "insufficient": 169
+      },
+      "avg_proving": 0.03,
+      "avg_disproving": 1.1
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 26.8,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.394,
+      "quality_distribution": {
+        "insufficient": 221,
+        "weak": 77
+      },
+      "avg_proving": 0.53,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 298
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 91.3,
+      "avg_score": 2.59,
+      "median_score": 3,
+      "score_stdev": 0.63,
+      "avg_confidence": 0.481,
+      "quality_distribution": {
+        "weak": 246,
+        "medium": 20,
+        "insufficient": 30,
+        "contradictory": 1,
+        "strong": 1
+      },
+      "avg_proving": 1.92,
+      "avg_disproving": 1.17
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 65.8,
+      "avg_score": 1.69,
+      "median_score": 2.0,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.36,
+      "quality_distribution": {
+        "weak": 185,
+        "insufficient": 104,
+        "medium": 9
+      },
+      "avg_proving": 0.67,
+      "avg_disproving": 0.3
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 43.0,
+      "avg_score": 2.97,
+      "median_score": 3.0,
+      "score_stdev": 0.26,
+      "avg_confidence": 0.49,
+      "quality_distribution": {
+        "weak": 118,
+        "insufficient": 180
+      },
+      "avg_proving": 0.99,
+      "avg_disproving": 0.05
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 2.7,
+      "avg_score": 1.71,
+      "median_score": 2,
+      "score_stdev": 0.76,
+      "avg_confidence": 0.371,
+      "quality_distribution": {
+        "insufficient": 291,
+        "weak": 5,
+        "medium": 2
+      },
+      "avg_proving": 0.03,
+      "avg_disproving": 0.03
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 65.8,
+      "avg_score": 2.98,
+      "median_score": 3.0,
+      "score_stdev": 0.13,
+      "avg_confidence": 0.481,
+      "quality_distribution": {
+        "weak": 179,
+        "insufficient": 112,
+        "medium": 7
+      },
+      "avg_proving": 1.65,
+      "avg_disproving": 0.02
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 60.4,
+      "avg_score": 2.68,
+      "median_score": 3.0,
+      "score_stdev": 0.56,
+      "avg_confidence": 0.688,
+      "quality_distribution": {
+        "insufficient": 118,
+        "medium": 109,
+        "strong": 52,
+        "weak": 19
+      },
+      "avg_proving": 1.83,
+      "avg_disproving": 0
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 91.6,
+      "avg_score": 1.05,
+      "median_score": 1,
+      "score_stdev": 0.27,
+      "avg_confidence": 0.525,
+      "quality_distribution": {
+        "weak": 125,
+        "medium": 148,
+        "insufficient": 25
+      },
+      "avg_proving": 0.55,
+      "avg_disproving": 1.58
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 61.7,
+      "avg_score": 2.45,
+      "median_score": 3.0,
+      "score_stdev": 0.69,
+      "avg_confidence": 0.48,
+      "quality_distribution": {
+        "weak": 121,
+        "insufficient": 114,
+        "medium": 63
+      },
+      "avg_proving": 1.33,
+      "avg_disproving": 0.51
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 2.0,
+      "avg_score": 2.17,
+      "median_score": 2.0,
+      "score_stdev": 0.41,
+      "avg_confidence": 0.3,
+      "quality_distribution": {
+        "insufficient": 292,
+        "weak": 6
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.02
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 67.8,
+      "avg_score": 2.83,
+      "median_score": 3.0,
+      "score_stdev": 0.5,
+      "avg_confidence": 0.527,
+      "quality_distribution": {
+        "weak": 136,
+        "insufficient": 102,
+        "medium": 60
+      },
+      "avg_proving": 1.63,
+      "avg_disproving": 0.68
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 24.5,
+      "avg_score": 1.22,
+      "median_score": 1,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.654,
+      "quality_distribution": {
+        "insufficient": 225,
+        "medium": 66,
+        "weak": 7
+      },
+      "avg_proving": 0.12,
+      "avg_disproving": 0.6
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 1.7,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.36,
+      "quality_distribution": {
+        "insufficient": 295,
+        "weak": 3
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.03
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 51.3,
+      "avg_score": 1.97,
+      "median_score": 2,
+      "score_stdev": 0.96,
+      "avg_confidence": 0.416,
+      "quality_distribution": {
+        "insufficient": 149,
+        "weak": 87,
+        "medium": 61,
+        "strong": 1
+      },
+      "avg_proving": 0.54,
+      "avg_disproving": 0
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 298
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 1.7,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0,
+      "avg_confidence": 0.246,
+      "quality_distribution": {
+        "insufficient": 297,
+        "weak": 1
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0.02
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 6.0,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.459,
+      "quality_distribution": {
+        "insufficient": 282,
+        "weak": 13,
+        "medium": 3
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.13
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 1.3,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.318,
+      "quality_distribution": {
+        "insufficient": 296,
+        "weak": 2
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.02
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 32.9,
+      "avg_score": 1.02,
+      "median_score": 1.0,
+      "score_stdev": 0.14,
+      "avg_confidence": 0.618,
+      "quality_distribution": {
+        "insufficient": 202,
+        "strong": 52,
+        "weak": 32,
+        "medium": 12
+      },
+      "avg_proving": 0.2,
+      "avg_disproving": 0.07
+    }
+  },
+  "controller": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 23.8,
+      "avg_score": 2.85,
+      "median_score": 3.0,
+      "score_stdev": 0.5,
+      "avg_confidence": 0.558,
+      "quality_distribution": {
+        "medium": 61,
+        "insufficient": 218,
+        "weak": 7
+      },
+      "avg_proving": 0.49,
+      "avg_disproving": 0.24
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 99.0,
+      "avg_score": 1.34,
+      "median_score": 1,
+      "score_stdev": 0.56,
+      "avg_confidence": 0.595,
+      "quality_distribution": {
+        "medium": 203,
+        "weak": 76,
+        "insufficient": 3,
+        "contradictory": 4
+      },
+      "avg_proving": 1.76,
+      "avg_disproving": 1.54
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 99.7,
+      "avg_score": 2.29,
+      "median_score": 3.0,
+      "score_stdev": 0.9,
+      "avg_confidence": 0.491,
+      "quality_distribution": {
+        "insufficient": 56,
+        "medium": 133,
+        "weak": 97
+      },
+      "avg_proving": 2.16,
+      "avg_disproving": 0.36
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 100.0,
+      "avg_score": 1.81,
+      "median_score": 2,
+      "score_stdev": 0.81,
+      "avg_confidence": 0.627,
+      "quality_distribution": {
+        "medium": 190,
+        "weak": 94,
+        "strong": 1,
+        "insufficient": 1
+      },
+      "avg_proving": 1.88,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 98.6,
+      "avg_score": 1.19,
+      "median_score": 1,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.557,
+      "quality_distribution": {
+        "medium": 205,
+        "weak": 58,
+        "contradictory": 11,
+        "strong": 8,
+        "insufficient": 4
+      },
+      "avg_proving": 1.9,
+      "avg_disproving": 1.58
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 90.9,
+      "avg_score": 1.58,
+      "median_score": 1,
+      "score_stdev": 0.87,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "weak": 186,
+        "medium": 69,
+        "insufficient": 31
+      },
+      "avg_proving": 0.57,
+      "avg_disproving": 0.88
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 286,
+      "fair_pct": 99.0,
+      "avg_score": 2.81,
+      "median_score": 3,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.768,
+      "quality_distribution": {
+        "medium": 259,
+        "strong": 10,
+        "weak": 14,
+        "insufficient": 3
+      },
+      "avg_proving": 4.05,
+      "avg_disproving": 0.01
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 286,
+      "fair_pct": 58.7,
+      "avg_score": 2.98,
+      "median_score": 3,
+      "score_stdev": 0.18,
+      "avg_confidence": 0.512,
+      "quality_distribution": {
+        "insufficient": 135,
+        "weak": 151
+      },
+      "avg_proving": 1.31,
+      "avg_disproving": 0.36
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 286,
+      "fair_pct": 92.3,
+      "avg_score": 2,
+      "median_score": 2.0,
+      "score_stdev": 0.99,
+      "avg_confidence": 0.382,
+      "quality_distribution": {
+        "weak": 144,
+        "insufficient": 142
+      },
+      "avg_proving": 1.16,
+      "avg_disproving": 0.01
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 286,
+      "fair_pct": 54.2,
+      "avg_score": 2.03,
+      "median_score": 3.0,
+      "score_stdev": 1.0,
+      "avg_confidence": 0.372,
+      "quality_distribution": {
+        "weak": 128,
+        "insufficient": 158
+      },
+      "avg_proving": 0.77,
+      "avg_disproving": 0
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 286,
+      "fair_pct": 29.0,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.446,
+      "quality_distribution": {
+        "insufficient": 221,
+        "weak": 65
+      },
+      "avg_proving": 0.52,
+      "avg_disproving": 0.27
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 286,
+      "fair_pct": 44.4,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.399,
+      "quality_distribution": {
+        "insufficient": 160,
+        "weak": 126
+      },
+      "avg_proving": 0.88,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 286,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 286
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 57.7,
+      "avg_score": 1.21,
+      "median_score": 1.0,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.425,
+      "quality_distribution": {
+        "weak": 136,
+        "insufficient": 124,
+        "medium": 25,
+        "strong": 1
+      },
+      "avg_proving": 0.4,
+      "avg_disproving": 0.98
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 86.0,
+      "avg_score": 2.43,
+      "median_score": 3.0,
+      "score_stdev": 0.87,
+      "avg_confidence": 0.501,
+      "quality_distribution": {
+        "medium": 107,
+        "weak": 137,
+        "insufficient": 42
+      },
+      "avg_proving": 1.59,
+      "avg_disproving": 0.65
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 5.9,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.353,
+      "quality_distribution": {
+        "insufficient": 274,
+        "weak": 12
+      },
+      "avg_proving": 0.1,
+      "avg_disproving": 0.02
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 4.2,
+      "avg_score": 2.92,
+      "median_score": 3.0,
+      "score_stdev": 0.29,
+      "avg_confidence": 0.464,
+      "quality_distribution": {
+        "insufficient": 274,
+        "weak": 10,
+        "medium": 2
+      },
+      "avg_proving": 0.09,
+      "avg_disproving": 0.0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 71.3,
+      "avg_score": 2.98,
+      "median_score": 3.0,
+      "score_stdev": 0.16,
+      "avg_confidence": 0.507,
+      "quality_distribution": {
+        "weak": 138,
+        "medium": 58,
+        "insufficient": 90
+      },
+      "avg_proving": 1.6,
+      "avg_disproving": 0.0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 71.7,
+      "avg_score": 1.66,
+      "median_score": 1,
+      "score_stdev": 0.83,
+      "avg_confidence": 0.497,
+      "quality_distribution": {
+        "medium": 89,
+        "insufficient": 81,
+        "weak": 109,
+        "strong": 7
+      },
+      "avg_proving": 1.17,
+      "avg_disproving": 0.62
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 78.7,
+      "avg_score": 1.44,
+      "median_score": 1,
+      "score_stdev": 0.65,
+      "avg_confidence": 0.534,
+      "quality_distribution": {
+        "weak": 130,
+        "insufficient": 61,
+        "medium": 94,
+        "strong": 1
+      },
+      "avg_proving": 1.09,
+      "avg_disproving": 0.97
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 15.0,
+      "avg_score": 1.51,
+      "median_score": 1,
+      "score_stdev": 0.8,
+      "avg_confidence": 0.508,
+      "quality_distribution": {
+        "insufficient": 243,
+        "medium": 21,
+        "weak": 22
+      },
+      "avg_proving": 0.17,
+      "avg_disproving": 0.19
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 2.1,
+      "avg_score": 2,
+      "median_score": 2.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.27,
+      "quality_distribution": {
+        "insufficient": 280,
+        "weak": 6
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.02
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 90.9,
+      "avg_score": 1.75,
+      "median_score": 2,
+      "score_stdev": 0.62,
+      "avg_confidence": 0.359,
+      "quality_distribution": {
+        "medium": 65,
+        "weak": 134,
+        "insufficient": 87
+      },
+      "avg_proving": 0.97,
+      "avg_disproving": 1.13
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 286,
+      "fair_pct": 24.8,
+      "avg_score": 2.82,
+      "median_score": 3,
+      "score_stdev": 0.57,
+      "avg_confidence": 0.56,
+      "quality_distribution": {
+        "medium": 66,
+        "insufficient": 215,
+        "weak": 5
+      },
+      "avg_proving": 0.69,
+      "avg_disproving": 0.05
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 20.3,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.256,
+      "quality_distribution": {
+        "insufficient": 281,
+        "weak": 5
+      },
+      "avg_proving": 0.22,
+      "avg_disproving": 0.19
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 71.7,
+      "avg_score": 1.57,
+      "median_score": 1.0,
+      "score_stdev": 0.63,
+      "avg_confidence": 0.341,
+      "quality_distribution": {
+        "weak": 145,
+        "insufficient": 134,
+        "medium": 7
+      },
+      "avg_proving": 0.71,
+      "avg_disproving": 0.25
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 286
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 20.6,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.269,
+      "quality_distribution": {
+        "insufficient": 228,
+        "weak": 58
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0.2
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 11.2,
+      "avg_score": 1.42,
+      "median_score": 1,
+      "score_stdev": 0.69,
+      "avg_confidence": 0.355,
+      "quality_distribution": {
+        "insufficient": 267,
+        "weak": 16,
+        "medium": 3
+      },
+      "avg_proving": 0.08,
+      "avg_disproving": 0.15
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 2.8,
+      "avg_score": 2.33,
+      "median_score": 3.0,
+      "score_stdev": 1.03,
+      "avg_confidence": 0.385,
+      "quality_distribution": {
+        "insufficient": 280,
+        "weak": 6
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0.03
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 286,
+      "fair_pct": 57.0,
+      "avg_score": 1.94,
+      "median_score": 2.0,
+      "score_stdev": 0.93,
+      "avg_confidence": 0.495,
+      "quality_distribution": {
+        "medium": 70,
+        "insufficient": 130,
+        "weak": 85,
+        "strong": 1
+      },
+      "avg_proving": 0.97,
+      "avg_disproving": 0.22
+    }
+  },
+  "hero_syndrome": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 32.0,
+      "avg_score": 1.09,
+      "median_score": 1,
+      "score_stdev": 0.38,
+      "avg_confidence": 0.476,
+      "quality_distribution": {
+        "insufficient": 198,
+        "weak": 79,
+        "medium": 14
+      },
+      "avg_proving": 0.27,
+      "avg_disproving": 0.7
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 99.7,
+      "avg_score": 1.42,
+      "median_score": 1.0,
+      "score_stdev": 0.81,
+      "avg_confidence": 0.613,
+      "quality_distribution": {
+        "medium": 83,
+        "weak": 201,
+        "strong": 2,
+        "insufficient": 1,
+        "contradictory": 4
+      },
+      "avg_proving": 1.81,
+      "avg_disproving": 2.71
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 100.0,
+      "avg_score": 2.85,
+      "median_score": 3,
+      "score_stdev": 0.43,
+      "avg_confidence": 0.532,
+      "quality_distribution": {
+        "medium": 79,
+        "weak": 160,
+        "insufficient": 52
+      },
+      "avg_proving": 2.65,
+      "avg_disproving": 0.35
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 100.0,
+      "avg_score": 2.91,
+      "median_score": 3.0,
+      "score_stdev": 0.35,
+      "avg_confidence": 0.659,
+      "quality_distribution": {
+        "weak": 216,
+        "medium": 72,
+        "insufficient": 1,
+        "strong": 2
+      },
+      "avg_proving": 4.16,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 99.3,
+      "avg_score": 1.1,
+      "median_score": 1,
+      "score_stdev": 0.35,
+      "avg_confidence": 0.644,
+      "quality_distribution": {
+        "medium": 162,
+        "weak": 116,
+        "strong": 1,
+        "contradictory": 10,
+        "insufficient": 2
+      },
+      "avg_proving": 0.85,
+      "avg_disproving": 3.15
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 74.6,
+      "avg_score": 1.57,
+      "median_score": 1,
+      "score_stdev": 0.88,
+      "avg_confidence": 0.419,
+      "quality_distribution": {
+        "weak": 193,
+        "insufficient": 80,
+        "medium": 18
+      },
+      "avg_proving": 0.48,
+      "avg_disproving": 1.04
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 291,
+      "fair_pct": 100.0,
+      "avg_score": 1.61,
+      "median_score": 1,
+      "score_stdev": 0.87,
+      "avg_confidence": 0.677,
+      "quality_distribution": {
+        "medium": 153,
+        "weak": 135,
+        "strong": 3
+      },
+      "avg_proving": 3.13,
+      "avg_disproving": 0.25
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 291,
+      "fair_pct": 63.2,
+      "avg_score": 2.47,
+      "median_score": 3,
+      "score_stdev": 0.83,
+      "avg_confidence": 0.397,
+      "quality_distribution": {
+        "insufficient": 172,
+        "weak": 119
+      },
+      "avg_proving": 0.96,
+      "avg_disproving": 0.39
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 291,
+      "fair_pct": 80.1,
+      "avg_score": 2.5,
+      "median_score": 3,
+      "score_stdev": 0.8,
+      "avg_confidence": 0.366,
+      "quality_distribution": {
+        "insufficient": 170,
+        "weak": 121
+      },
+      "avg_proving": 1.13,
+      "avg_disproving": 0.51
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 291,
+      "fair_pct": 93.8,
+      "avg_score": 2.45,
+      "median_score": 3.0,
+      "score_stdev": 0.71,
+      "avg_confidence": 0.387,
+      "quality_distribution": {
+        "insufficient": 89,
+        "weak": 202
+      },
+      "avg_proving": 1.36,
+      "avg_disproving": 0.66
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 291,
+      "fair_pct": 72.5,
+      "avg_score": 1.04,
+      "median_score": 1,
+      "score_stdev": 0.29,
+      "avg_confidence": 0.446,
+      "quality_distribution": {
+        "weak": 187,
+        "insufficient": 104
+      },
+      "avg_proving": 0.1,
+      "avg_disproving": 1.31
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 291,
+      "fair_pct": 32.3,
+      "avg_score": 2,
+      "median_score": 2.0,
+      "score_stdev": 1.04,
+      "avg_confidence": 0.264,
+      "quality_distribution": {
+        "insufficient": 277,
+        "weak": 14
+      },
+      "avg_proving": 0.32,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 291,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 291
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 55.0,
+      "avg_score": 1.36,
+      "median_score": 1.0,
+      "score_stdev": 0.66,
+      "avg_confidence": 0.361,
+      "quality_distribution": {
+        "insufficient": 190,
+        "weak": 84,
+        "medium": 16,
+        "contradictory": 1
+      },
+      "avg_proving": 0.41,
+      "avg_disproving": 0.6
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 29.6,
+      "avg_score": 2.4,
+      "median_score": 3,
+      "score_stdev": 0.88,
+      "avg_confidence": 0.485,
+      "quality_distribution": {
+        "medium": 57,
+        "insufficient": 206,
+        "weak": 28
+      },
+      "avg_proving": 0.45,
+      "avg_disproving": 0.12
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 41.9,
+      "avg_score": 2.82,
+      "median_score": 3,
+      "score_stdev": 0.56,
+      "avg_confidence": 0.325,
+      "quality_distribution": {
+        "insufficient": 230,
+        "weak": 61
+      },
+      "avg_proving": 0.6,
+      "avg_disproving": 0.25
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 2.7,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.406,
+      "quality_distribution": {
+        "insufficient": 283,
+        "weak": 8
+      },
+      "avg_proving": 0.05,
+      "avg_disproving": 0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 44.7,
+      "avg_score": 2.15,
+      "median_score": 3.0,
+      "score_stdev": 0.99,
+      "avg_confidence": 0.556,
+      "quality_distribution": {
+        "weak": 121,
+        "insufficient": 165,
+        "medium": 5
+      },
+      "avg_proving": 0.89,
+      "avg_disproving": 0.02
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 38.5,
+      "avg_score": 2.07,
+      "median_score": 2.0,
+      "score_stdev": 0.61,
+      "avg_confidence": 0.576,
+      "quality_distribution": {
+        "insufficient": 179,
+        "medium": 86,
+        "weak": 26
+      },
+      "avg_proving": 0.78,
+      "avg_disproving": 0.06
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 54.3,
+      "avg_score": 1.41,
+      "median_score": 1.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.536,
+      "quality_distribution": {
+        "weak": 72,
+        "insufficient": 133,
+        "medium": 84,
+        "strong": 2
+      },
+      "avg_proving": 0.56,
+      "avg_disproving": 0.87
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 22.7,
+      "avg_score": 1.17,
+      "median_score": 1.0,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.501,
+      "quality_distribution": {
+        "medium": 56,
+        "insufficient": 225,
+        "weak": 10
+      },
+      "avg_proving": 0.24,
+      "avg_disproving": 0.42
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 0.7,
+      "avg_score": 2,
+      "median_score": 2.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.27,
+      "quality_distribution": {
+        "insufficient": 289,
+        "weak": 2
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.01
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 46.7,
+      "avg_score": 2.73,
+      "median_score": 3.0,
+      "score_stdev": 0.63,
+      "avg_confidence": 0.436,
+      "quality_distribution": {
+        "medium": 53,
+        "insufficient": 163,
+        "weak": 75
+      },
+      "avg_proving": 1.0,
+      "avg_disproving": 0.33
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 291,
+      "fair_pct": 25.1,
+      "avg_score": 1.18,
+      "median_score": 1,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.549,
+      "quality_distribution": {
+        "medium": 60,
+        "insufficient": 218,
+        "weak": 11,
+        "strong": 2
+      },
+      "avg_proving": 0.11,
+      "avg_disproving": 0.45
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 291
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 31.6,
+      "avg_score": 1.52,
+      "median_score": 1,
+      "score_stdev": 0.78,
+      "avg_confidence": 0.336,
+      "quality_distribution": {
+        "weak": 78,
+        "insufficient": 202,
+        "medium": 11
+      },
+      "avg_proving": 0.21,
+      "avg_disproving": 0.2
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 291
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 2.1,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.313,
+      "quality_distribution": {
+        "insufficient": 286,
+        "weak": 4,
+        "medium": 1
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0.02
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 4.5,
+      "avg_score": 1.7,
+      "median_score": 1.0,
+      "score_stdev": 0.95,
+      "avg_confidence": 0.37,
+      "quality_distribution": {
+        "insufficient": 281,
+        "weak": 9,
+        "medium": 1
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0.05
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 1.0,
+      "avg_score": 1,
+      "median_score": 1,
+      "score_stdev": 0,
+      "avg_confidence": 0.293,
+      "quality_distribution": {
+        "insufficient": 290,
+        "weak": 1
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.01
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 291,
+      "fair_pct": 33.0,
+      "avg_score": 1.67,
+      "median_score": 2.0,
+      "score_stdev": 0.52,
+      "avg_confidence": 0.338,
+      "quality_distribution": {
+        "weak": 81,
+        "insufficient": 197,
+        "medium": 12,
+        "strong": 1
+      },
+      "avg_proving": 0.25,
+      "avg_disproving": 0.09
+    }
+  },
+  "political_player": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 46.5,
+      "avg_score": 1.24,
+      "median_score": 1.0,
+      "score_stdev": 0.61,
+      "avg_confidence": 0.537,
+      "quality_distribution": {
+        "insufficient": 159,
+        "medium": 70,
+        "weak": 68
+      },
+      "avg_proving": 0.53,
+      "avg_disproving": 0.9
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 99.7,
+      "avg_score": 2.74,
+      "median_score": 3.0,
+      "score_stdev": 0.57,
+      "avg_confidence": 0.65,
+      "quality_distribution": {
+        "medium": 152,
+        "weak": 141,
+        "contradictory": 2,
+        "insufficient": 1,
+        "strong": 1
+      },
+      "avg_proving": 3.97,
+      "avg_disproving": 1.1
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 82.8,
+      "avg_score": 2.88,
+      "median_score": 3.0,
+      "score_stdev": 0.4,
+      "avg_confidence": 0.559,
+      "quality_distribution": {
+        "insufficient": 51,
+        "weak": 161,
+        "medium": 85
+      },
+      "avg_proving": 2.58,
+      "avg_disproving": 0.01
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 99.0,
+      "avg_score": 1.24,
+      "median_score": 1,
+      "score_stdev": 0.45,
+      "avg_confidence": 0.643,
+      "quality_distribution": {
+        "weak": 219,
+        "medium": 72,
+        "insufficient": 4,
+        "strong": 2
+      },
+      "avg_proving": 1.18,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 99.3,
+      "avg_score": 3.2,
+      "median_score": 3.0,
+      "score_stdev": 0.68,
+      "avg_confidence": 0.726,
+      "quality_distribution": {
+        "strong": 83,
+        "contradictory": 51,
+        "medium": 149,
+        "insufficient": 2,
+        "weak": 9,
+        "repeated": 3
+      },
+      "avg_proving": 4.2,
+      "avg_disproving": 1.43
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 91.6,
+      "avg_score": 2.52,
+      "median_score": 3.0,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.477,
+      "quality_distribution": {
+        "medium": 114,
+        "weak": 142,
+        "insufficient": 41
+      },
+      "avg_proving": 1.72,
+      "avg_disproving": 0.7
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 297,
+      "fair_pct": 100.0,
+      "avg_score": 2.77,
+      "median_score": 3,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.701,
+      "quality_distribution": {
+        "medium": 264,
+        "strong": 9,
+        "weak": 24
+      },
+      "avg_proving": 5.01,
+      "avg_disproving": 0.53
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 297,
+      "fair_pct": 62.3,
+      "avg_score": 2.95,
+      "median_score": 3,
+      "score_stdev": 0.3,
+      "avg_confidence": 0.52,
+      "quality_distribution": {
+        "insufficient": 126,
+        "weak": 171
+      },
+      "avg_proving": 1.43,
+      "avg_disproving": 0.03
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 297,
+      "fair_pct": 62.6,
+      "avg_score": 1.63,
+      "median_score": 1.0,
+      "score_stdev": 0.9,
+      "avg_confidence": 0.39,
+      "quality_distribution": {
+        "insufficient": 185,
+        "weak": 112
+      },
+      "avg_proving": 0.74,
+      "avg_disproving": 0.01
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 297,
+      "fair_pct": 74.4,
+      "avg_score": 1.48,
+      "median_score": 1,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.314,
+      "quality_distribution": {
+        "insufficient": 202,
+        "weak": 95
+      },
+      "avg_proving": 0.81,
+      "avg_disproving": 0.01
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 297,
+      "fair_pct": 67.0,
+      "avg_score": 2.99,
+      "median_score": 3,
+      "score_stdev": 0.14,
+      "avg_confidence": 0.477,
+      "quality_distribution": {
+        "weak": 199,
+        "insufficient": 98
+      },
+      "avg_proving": 1.54,
+      "avg_disproving": 0.01
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 297,
+      "fair_pct": 24.9,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0,
+      "avg_confidence": 0.242,
+      "quality_distribution": {
+        "insufficient": 296,
+        "weak": 1
+      },
+      "avg_proving": 0.25,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 297,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 297
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 73.4,
+      "avg_score": 2.87,
+      "median_score": 3.0,
+      "score_stdev": 0.48,
+      "avg_confidence": 0.451,
+      "quality_distribution": {
+        "insufficient": 139,
+        "medium": 71,
+        "weak": 85,
+        "strong": 2
+      },
+      "avg_proving": 1.47,
+      "avg_disproving": 0.03
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 67.3,
+      "avg_score": 2.29,
+      "median_score": 2.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.36,
+      "quality_distribution": {
+        "weak": 141,
+        "medium": 59,
+        "insufficient": 97
+      },
+      "avg_proving": 0.88,
+      "avg_disproving": 0.65
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 5.4,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.423,
+      "quality_distribution": {
+        "insufficient": 281,
+        "weak": 16
+      },
+      "avg_proving": 0.11,
+      "avg_disproving": 0.0
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 3.7,
+      "avg_score": 2.9,
+      "median_score": 3.0,
+      "score_stdev": 0.32,
+      "avg_confidence": 0.387,
+      "quality_distribution": {
+        "insufficient": 287,
+        "weak": 10
+      },
+      "avg_proving": 0.07,
+      "avg_disproving": 0.01
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 64.0,
+      "avg_score": 2.08,
+      "median_score": 3,
+      "score_stdev": 0.98,
+      "avg_confidence": 0.387,
+      "quality_distribution": {
+        "weak": 122,
+        "insufficient": 166,
+        "medium": 9
+      },
+      "avg_proving": 0.7,
+      "avg_disproving": 0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 55.9,
+      "avg_score": 2.61,
+      "median_score": 3.0,
+      "score_stdev": 0.72,
+      "avg_confidence": 0.541,
+      "quality_distribution": {
+        "insufficient": 131,
+        "weak": 69,
+        "medium": 92,
+        "strong": 5
+      },
+      "avg_proving": 1.26,
+      "avg_disproving": 0.07
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 76.1,
+      "avg_score": 2.06,
+      "median_score": 2.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.605,
+      "quality_distribution": {
+        "medium": 199,
+        "insufficient": 71,
+        "weak": 19,
+        "strong": 8
+      },
+      "avg_proving": 1.75,
+      "avg_disproving": 0.21
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 11.4,
+      "avg_score": 2.76,
+      "median_score": 3.0,
+      "score_stdev": 0.65,
+      "avg_confidence": 0.585,
+      "quality_distribution": {
+        "insufficient": 263,
+        "weak": 13,
+        "medium": 21
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.09
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 2.0,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.45,
+      "quality_distribution": {
+        "insufficient": 291,
+        "weak": 6
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 31.6,
+      "avg_score": 2.95,
+      "median_score": 3,
+      "score_stdev": 0.27,
+      "avg_confidence": 0.424,
+      "quality_distribution": {
+        "insufficient": 206,
+        "weak": 85,
+        "medium": 6
+      },
+      "avg_proving": 0.64,
+      "avg_disproving": 0.05
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 297,
+      "fair_pct": 27.6,
+      "avg_score": 4.17,
+      "median_score": 5.0,
+      "score_stdev": 1.09,
+      "avg_confidence": 0.846,
+      "quality_distribution": {
+        "strong": 50,
+        "insufficient": 215,
+        "medium": 30,
+        "weak": 2
+      },
+      "avg_proving": 1.15,
+      "avg_disproving": 0.01
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 1.0,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "insufficient": 294,
+        "weak": 3
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 48.5,
+      "avg_score": 1.04,
+      "median_score": 1.0,
+      "score_stdev": 0.24,
+      "avg_confidence": 0.544,
+      "quality_distribution": {
+        "medium": 61,
+        "insufficient": 157,
+        "weak": 79
+      },
+      "avg_proving": 0.21,
+      "avg_disproving": 0.22
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 297
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 18.2,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.45,
+      "quality_distribution": {
+        "weak": 53,
+        "insufficient": 243,
+        "medium": 1
+      },
+      "avg_proving": 0.0,
+      "avg_disproving": 0
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 6.4,
+      "avg_score": 2.12,
+      "median_score": 2,
+      "score_stdev": 0.86,
+      "avg_confidence": 0.391,
+      "quality_distribution": {
+        "insufficient": 280,
+        "weak": 16,
+        "medium": 1
+      },
+      "avg_proving": 0.09,
+      "avg_disproving": 0.04
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 18.2,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "insufficient": 243,
+        "weak": 54
+      },
+      "avg_proving": 0.36,
+      "avg_disproving": 0
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 297,
+      "fair_pct": 68.0,
+      "avg_score": 2.94,
+      "median_score": 3,
+      "score_stdev": 0.44,
+      "avg_confidence": 0.521,
+      "quality_distribution": {
+        "medium": 64,
+        "weak": 130,
+        "insufficient": 100,
+        "strong": 3
+      },
+      "avg_proving": 1.7,
+      "avg_disproving": 0.18
+    }
+  },
+  "servant_leader": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 50.5,
+      "avg_score": 1.85,
+      "median_score": 1.0,
+      "score_stdev": 0.97,
+      "avg_confidence": 0.514,
+      "quality_distribution": {
+        "insufficient": 149,
+        "weak": 142,
+        "medium": 10
+      },
+      "avg_proving": 0.56,
+      "avg_disproving": 0.98
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 100.0,
+      "avg_score": 2.3,
+      "median_score": 2.0,
+      "score_stdev": 0.63,
+      "avg_confidence": 0.621,
+      "quality_distribution": {
+        "weak": 100,
+        "medium": 83,
+        "contradictory": 117,
+        "strong": 1
+      },
+      "avg_proving": 4.05,
+      "avg_disproving": 2.39
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 100.0,
+      "avg_score": 2.94,
+      "median_score": 3,
+      "score_stdev": 0.28,
+      "avg_confidence": 0.663,
+      "quality_distribution": {
+        "weak": 218,
+        "medium": 83
+      },
+      "avg_proving": 3.78,
+      "avg_disproving": 0.01
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 100.0,
+      "avg_score": 1.57,
+      "median_score": 2.0,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.637,
+      "quality_distribution": {
+        "weak": 277,
+        "medium": 23,
+        "insufficient": 1
+      },
+      "avg_proving": 2.48,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 100.0,
+      "avg_score": 3.32,
+      "median_score": 3.0,
+      "score_stdev": 0.61,
+      "avg_confidence": 0.744,
+      "quality_distribution": {
+        "strong": 69,
+        "medium": 156,
+        "contradictory": 51,
+        "weak": 25
+      },
+      "avg_proving": 4.33,
+      "avg_disproving": 1.3
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 89.0,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.15,
+      "avg_confidence": 0.528,
+      "quality_distribution": {
+        "medium": 122,
+        "weak": 140,
+        "insufficient": 38,
+        "strong": 1
+      },
+      "avg_proving": 2.35,
+      "avg_disproving": 0.03
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 301,
+      "fair_pct": 100.0,
+      "avg_score": 2.03,
+      "median_score": 2,
+      "score_stdev": 0.91,
+      "avg_confidence": 0.655,
+      "quality_distribution": {
+        "medium": 273,
+        "weak": 28
+      },
+      "avg_proving": 4.12,
+      "avg_disproving": 1.59
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 301,
+      "fair_pct": 81.4,
+      "avg_score": 1.13,
+      "median_score": 1.0,
+      "score_stdev": 0.44,
+      "avg_confidence": 0.354,
+      "quality_distribution": {
+        "insufficient": 131,
+        "weak": 170
+      },
+      "avg_proving": 0.78,
+      "avg_disproving": 0.56
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 301,
+      "fair_pct": 80.7,
+      "avg_score": 1.5,
+      "median_score": 1,
+      "score_stdev": 0.86,
+      "avg_confidence": 0.418,
+      "quality_distribution": {
+        "insufficient": 82,
+        "weak": 219
+      },
+      "avg_proving": 0.93,
+      "avg_disproving": 0.56
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 301,
+      "fair_pct": 96.7,
+      "avg_score": 1.04,
+      "median_score": 1,
+      "score_stdev": 0.28,
+      "avg_confidence": 0.401,
+      "quality_distribution": {
+        "insufficient": 88,
+        "weak": 213
+      },
+      "avg_proving": 0.41,
+      "avg_disproving": 0.02
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 301,
+      "fair_pct": 92.7,
+      "avg_score": 2.98,
+      "median_score": 3.0,
+      "score_stdev": 0.21,
+      "avg_confidence": 0.505,
+      "quality_distribution": {
+        "weak": 274,
+        "insufficient": 27
+      },
+      "avg_proving": 2.22,
+      "avg_disproving": 0.03
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 301,
+      "fair_pct": 48.8,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.388,
+      "quality_distribution": {
+        "insufficient": 165,
+        "weak": 136
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 301,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 301
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 37.5,
+      "avg_score": 2.22,
+      "median_score": 2,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.352,
+      "quality_distribution": {
+        "insufficient": 198,
+        "weak": 86,
+        "medium": 17
+      },
+      "avg_proving": 0.5,
+      "avg_disproving": 0.2
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 46.5,
+      "avg_score": 2.88,
+      "median_score": 3,
+      "score_stdev": 0.37,
+      "avg_confidence": 0.524,
+      "quality_distribution": {
+        "medium": 55,
+        "weak": 82,
+        "insufficient": 164
+      },
+      "avg_proving": 1.04,
+      "avg_disproving": 0.0
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 20.9,
+      "avg_score": 1.67,
+      "median_score": 1.0,
+      "score_stdev": 1.03,
+      "avg_confidence": 0.257,
+      "quality_distribution": {
+        "insufficient": 295,
+        "weak": 6
+      },
+      "avg_proving": 0.05,
+      "avg_disproving": 0.2
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 2.0,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.425,
+      "quality_distribution": {
+        "insufficient": 295,
+        "weak": 6
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 59.8,
+      "avg_score": 2.79,
+      "median_score": 3.0,
+      "score_stdev": 0.56,
+      "avg_confidence": 0.317,
+      "quality_distribution": {
+        "insufficient": 229,
+        "weak": 71,
+        "medium": 1
+      },
+      "avg_proving": 0.79,
+      "avg_disproving": 0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 57.8,
+      "avg_score": 2.31,
+      "median_score": 3.0,
+      "score_stdev": 0.97,
+      "avg_confidence": 0.477,
+      "quality_distribution": {
+        "weak": 128,
+        "insufficient": 127,
+        "medium": 43,
+        "strong": 3
+      },
+      "avg_proving": 1.07,
+      "avg_disproving": 0.22
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 67.1,
+      "avg_score": 2.63,
+      "median_score": 3,
+      "score_stdev": 0.59,
+      "avg_confidence": 0.602,
+      "quality_distribution": {
+        "medium": 183,
+        "insufficient": 99,
+        "weak": 16,
+        "strong": 2,
+        "contradictory": 1
+      },
+      "avg_proving": 1.94,
+      "avg_disproving": 0.24
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 21.3,
+      "avg_score": 2.97,
+      "median_score": 3.0,
+      "score_stdev": 0.25,
+      "avg_confidence": 0.438,
+      "quality_distribution": {
+        "insufficient": 237,
+        "weak": 56,
+        "medium": 8
+      },
+      "avg_proving": 0.46,
+      "avg_disproving": 0.19
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 301
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 27.6,
+      "avg_score": 2.98,
+      "median_score": 3,
+      "score_stdev": 0.15,
+      "avg_confidence": 0.532,
+      "quality_distribution": {
+        "insufficient": 218,
+        "medium": 54,
+        "weak": 29
+      },
+      "avg_proving": 0.59,
+      "avg_disproving": 0.18
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 301,
+      "fair_pct": 22.3,
+      "avg_score": 1.25,
+      "median_score": 1,
+      "score_stdev": 0.66,
+      "avg_confidence": 0.547,
+      "quality_distribution": {
+        "insufficient": 234,
+        "medium": 55,
+        "weak": 11,
+        "strong": 1
+      },
+      "avg_proving": 0.1,
+      "avg_disproving": 0.37
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 1.0,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "insufficient": 298,
+        "weak": 3
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 44.9,
+      "avg_score": 1.56,
+      "median_score": 2,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.47,
+      "quality_distribution": {
+        "insufficient": 168,
+        "medium": 54,
+        "weak": 79
+      },
+      "avg_proving": 0.29,
+      "avg_disproving": 0.22
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 301
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 0.7,
+      "avg_score": 1.5,
+      "median_score": 1.5,
+      "score_stdev": 0.71,
+      "avg_confidence": 0.33,
+      "quality_distribution": {
+        "insufficient": 299,
+        "weak": 2
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 4.3,
+      "avg_score": 2.33,
+      "median_score": 2.5,
+      "score_stdev": 0.78,
+      "avg_confidence": 0.365,
+      "quality_distribution": {
+        "insufficient": 289,
+        "weak": 11,
+        "medium": 1
+      },
+      "avg_proving": 0.06,
+      "avg_disproving": 0
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 0.7,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.525,
+      "quality_distribution": {
+        "insufficient": 299,
+        "weak": 2
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 301,
+      "fair_pct": 46.2,
+      "avg_score": 2.91,
+      "median_score": 3,
+      "score_stdev": 0.32,
+      "avg_confidence": 0.445,
+      "quality_distribution": {
+        "weak": 129,
+        "insufficient": 164,
+        "medium": 8
+      },
+      "avg_proving": 0.89,
+      "avg_disproving": 0.01
+    }
+  },
+  "perfectionist": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 31.9,
+      "avg_score": 2.77,
+      "median_score": 3,
+      "score_stdev": 0.61,
+      "avg_confidence": 0.453,
+      "quality_distribution": {
+        "insufficient": 203,
+        "weak": 77,
+        "medium": 18
+      },
+      "avg_proving": 0.63,
+      "avg_disproving": 0.34
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 100.0,
+      "avg_score": 2.69,
+      "median_score": 3.0,
+      "score_stdev": 0.57,
+      "avg_confidence": 0.641,
+      "quality_distribution": {
+        "medium": 150,
+        "weak": 135,
+        "strong": 5,
+        "contradictory": 8
+      },
+      "avg_proving": 3.64,
+      "avg_disproving": 1.15
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 99.7,
+      "avg_score": 2.72,
+      "median_score": 3.0,
+      "score_stdev": 0.5,
+      "avg_confidence": 0.565,
+      "quality_distribution": {
+        "weak": 163,
+        "medium": 129,
+        "insufficient": 6
+      },
+      "avg_proving": 2.69,
+      "avg_disproving": 0.43
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 100.0,
+      "avg_score": 1.52,
+      "median_score": 1,
+      "score_stdev": 0.57,
+      "avg_confidence": 0.661,
+      "quality_distribution": {
+        "weak": 165,
+        "medium": 132,
+        "insufficient": 1
+      },
+      "avg_proving": 2.1,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 99.3,
+      "avg_score": 4.21,
+      "median_score": 4.0,
+      "score_stdev": 0.8,
+      "avg_confidence": 0.837,
+      "quality_distribution": {
+        "strong": 183,
+        "repeated": 59,
+        "weak": 10,
+        "medium": 44,
+        "insufficient": 2
+      },
+      "avg_proving": 5.85,
+      "avg_disproving": 0.5
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 87.2,
+      "avg_score": 2.37,
+      "median_score": 3,
+      "score_stdev": 0.8,
+      "avg_confidence": 0.528,
+      "quality_distribution": {
+        "weak": 83,
+        "medium": 174,
+        "insufficient": 41
+      },
+      "avg_proving": 1.59,
+      "avg_disproving": 0.56
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 298,
+      "fair_pct": 100.0,
+      "avg_score": 2.77,
+      "median_score": 3.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.713,
+      "quality_distribution": {
+        "medium": 257,
+        "strong": 8,
+        "weak": 33
+      },
+      "avg_proving": 4.93,
+      "avg_disproving": 0.82
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 60.1,
+      "avg_score": 2.45,
+      "median_score": 3,
+      "score_stdev": 0.85,
+      "avg_confidence": 0.338,
+      "quality_distribution": {
+        "insufficient": 203,
+        "weak": 95
+      },
+      "avg_proving": 0.61,
+      "avg_disproving": 0.42
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 64.1,
+      "avg_score": 1.75,
+      "median_score": 1.0,
+      "score_stdev": 0.96,
+      "avg_confidence": 0.472,
+      "quality_distribution": {
+        "insufficient": 134,
+        "weak": 164
+      },
+      "avg_proving": 0.79,
+      "avg_disproving": 0.02
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 77.5,
+      "avg_score": 1.05,
+      "median_score": 1.0,
+      "score_stdev": 0.32,
+      "avg_confidence": 0.401,
+      "quality_distribution": {
+        "insufficient": 98,
+        "weak": 200
+      },
+      "avg_proving": 0.52,
+      "avg_disproving": 0.18
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 53.0,
+      "avg_score": 2.98,
+      "median_score": 3,
+      "score_stdev": 0.21,
+      "avg_confidence": 0.351,
+      "quality_distribution": {
+        "insufficient": 205,
+        "weak": 93
+      },
+      "avg_proving": 0.86,
+      "avg_disproving": 0.24
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 27.2,
+      "avg_score": 1.29,
+      "median_score": 1,
+      "score_stdev": 0.71,
+      "avg_confidence": 0.364,
+      "quality_distribution": {
+        "insufficient": 235,
+        "weak": 63
+      },
+      "avg_proving": 0.12,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 298,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 298
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 89.6,
+      "avg_score": 2.67,
+      "median_score": 3.0,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.466,
+      "quality_distribution": {
+        "weak": 186,
+        "medium": 76,
+        "insufficient": 36
+      },
+      "avg_proving": 1.74,
+      "avg_disproving": 0.27
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 64.1,
+      "avg_score": 2.1,
+      "median_score": 2.0,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.349,
+      "quality_distribution": {
+        "weak": 182,
+        "insufficient": 108,
+        "medium": 8
+      },
+      "avg_proving": 0.73,
+      "avg_disproving": 0.36
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 38.9,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.389,
+      "quality_distribution": {
+        "weak": 106,
+        "insufficient": 192
+      },
+      "avg_proving": 0.75,
+      "avg_disproving": 0.02
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 4.4,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.453,
+      "quality_distribution": {
+        "insufficient": 286,
+        "weak": 10,
+        "medium": 2
+      },
+      "avg_proving": 0.09,
+      "avg_disproving": 0.0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 47.0,
+      "avg_score": 2.01,
+      "median_score": 2,
+      "score_stdev": 0.99,
+      "avg_confidence": 0.403,
+      "quality_distribution": {
+        "weak": 120,
+        "insufficient": 171,
+        "medium": 7
+      },
+      "avg_proving": 0.5,
+      "avg_disproving": 0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 74.5,
+      "avg_score": 3.15,
+      "median_score": 3.0,
+      "score_stdev": 1.2,
+      "avg_confidence": 0.642,
+      "quality_distribution": {
+        "medium": 148,
+        "insufficient": 76,
+        "strong": 57,
+        "weak": 17
+      },
+      "avg_proving": 2.14,
+      "avg_disproving": 0.21
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 55.4,
+      "avg_score": 3.28,
+      "median_score": 3.0,
+      "score_stdev": 1.33,
+      "avg_confidence": 0.644,
+      "quality_distribution": {
+        "medium": 97,
+        "insufficient": 133,
+        "strong": 55,
+        "weak": 12,
+        "contradictory": 1
+      },
+      "avg_proving": 1.49,
+      "avg_disproving": 0.29
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 26.8,
+      "avg_score": 2.9,
+      "median_score": 3.0,
+      "score_stdev": 0.44,
+      "avg_confidence": 0.661,
+      "quality_distribution": {
+        "medium": 71,
+        "insufficient": 218,
+        "weak": 9
+      },
+      "avg_proving": 0.95,
+      "avg_disproving": 0.05
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 2.0,
+      "avg_score": 2.83,
+      "median_score": 3.0,
+      "score_stdev": 0.41,
+      "avg_confidence": 0.42,
+      "quality_distribution": {
+        "insufficient": 292,
+        "weak": 6
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0.0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 47.7,
+      "avg_score": 2.53,
+      "median_score": 3,
+      "score_stdev": 0.54,
+      "avg_confidence": 0.376,
+      "quality_distribution": {
+        "weak": 125,
+        "insufficient": 163,
+        "medium": 10
+      },
+      "avg_proving": 0.75,
+      "avg_disproving": 0.24
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 298,
+      "fair_pct": 9.1,
+      "avg_score": 2.56,
+      "median_score": 3,
+      "score_stdev": 0.93,
+      "avg_confidence": 0.547,
+      "quality_distribution": {
+        "insufficient": 271,
+        "medium": 15,
+        "weak": 11,
+        "strong": 1
+      },
+      "avg_proving": 0.17,
+      "avg_disproving": 0.06
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 1.7,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.4,
+      "quality_distribution": {
+        "insufficient": 293,
+        "weak": 5
+      },
+      "avg_proving": 0.03,
+      "avg_disproving": 0
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 54.4,
+      "avg_score": 1.1,
+      "median_score": 1.0,
+      "score_stdev": 0.34,
+      "avg_confidence": 0.437,
+      "quality_distribution": {
+        "weak": 146,
+        "insufficient": 136,
+        "medium": 16
+      },
+      "avg_proving": 0.27,
+      "avg_disproving": 0.24
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 298
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 3.0,
+      "avg_score": 1.29,
+      "median_score": 1,
+      "score_stdev": 0.49,
+      "avg_confidence": 0.35,
+      "quality_distribution": {
+        "insufficient": 291,
+        "weak": 6,
+        "medium": 1
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.02
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 25.2,
+      "avg_score": 1.4,
+      "median_score": 1.0,
+      "score_stdev": 0.78,
+      "avg_confidence": 0.407,
+      "quality_distribution": {
+        "insufficient": 226,
+        "weak": 69,
+        "medium": 3
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.18
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 2.0,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0,
+      "avg_confidence": 0.267,
+      "quality_distribution": {
+        "insufficient": 297,
+        "weak": 1
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.01
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 298,
+      "fair_pct": 51.7,
+      "avg_score": 2.79,
+      "median_score": 3.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.522,
+      "quality_distribution": {
+        "medium": 63,
+        "insufficient": 148,
+        "weak": 87
+      },
+      "avg_proving": 1.14,
+      "avg_disproving": 0.02
+    }
+  },
+  "opportunist": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 15.7,
+      "avg_score": 2.31,
+      "median_score": 3,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.538,
+      "quality_distribution": {
+        "insufficient": 263,
+        "weak": 34,
+        "medium": 15
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.22
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 100.0,
+      "avg_score": 1.22,
+      "median_score": 1,
+      "score_stdev": 0.55,
+      "avg_confidence": 0.521,
+      "quality_distribution": {
+        "medium": 102,
+        "weak": 194,
+        "contradictory": 13,
+        "strong": 3
+      },
+      "avg_proving": 1.86,
+      "avg_disproving": 1.7
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 99.0,
+      "avg_score": 2.18,
+      "median_score": 3.0,
+      "score_stdev": 0.94,
+      "avg_confidence": 0.505,
+      "quality_distribution": {
+        "weak": 274,
+        "medium": 32,
+        "insufficient": 6
+      },
+      "avg_proving": 1.9,
+      "avg_disproving": 0.23
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 99.4,
+      "avg_score": 2.06,
+      "median_score": 2,
+      "score_stdev": 0.85,
+      "avg_confidence": 0.643,
+      "quality_distribution": {
+        "medium": 86,
+        "weak": 222,
+        "insufficient": 3,
+        "strong": 1
+      },
+      "avg_proving": 2.34,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 100.0,
+      "avg_score": 2.98,
+      "median_score": 3.0,
+      "score_stdev": 0.61,
+      "avg_confidence": 0.675,
+      "quality_distribution": {
+        "medium": 266,
+        "weak": 18,
+        "strong": 23,
+        "contradictory": 4,
+        "repeated": 1
+      },
+      "avg_proving": 3.41,
+      "avg_disproving": 0.54
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 57.1,
+      "avg_score": 2.84,
+      "median_score": 3,
+      "score_stdev": 0.6,
+      "avg_confidence": 0.478,
+      "quality_distribution": {
+        "insufficient": 149,
+        "weak": 86,
+        "medium": 74,
+        "strong": 3
+      },
+      "avg_proving": 1.08,
+      "avg_disproving": 0.35
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 312,
+      "fair_pct": 100.0,
+      "avg_score": 2.65,
+      "median_score": 3.0,
+      "score_stdev": 0.58,
+      "avg_confidence": 0.666,
+      "quality_distribution": {
+        "weak": 182,
+        "medium": 124,
+        "strong": 6
+      },
+      "avg_proving": 4.26,
+      "avg_disproving": 0.39
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 312,
+      "fair_pct": 59.6,
+      "avg_score": 2.48,
+      "median_score": 3,
+      "score_stdev": 0.8,
+      "avg_confidence": 0.321,
+      "quality_distribution": {
+        "insufficient": 249,
+        "weak": 63
+      },
+      "avg_proving": 0.78,
+      "avg_disproving": 0.16
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 312,
+      "fair_pct": 45.8,
+      "avg_score": 1.73,
+      "median_score": 1,
+      "score_stdev": 0.95,
+      "avg_confidence": 0.356,
+      "quality_distribution": {
+        "insufficient": 239,
+        "weak": 73
+      },
+      "avg_proving": 0.46,
+      "avg_disproving": 0.11
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 312,
+      "fair_pct": 92.6,
+      "avg_score": 2.19,
+      "median_score": 3.0,
+      "score_stdev": 0.96,
+      "avg_confidence": 0.41,
+      "quality_distribution": {
+        "weak": 218,
+        "insufficient": 94
+      },
+      "avg_proving": 1.31,
+      "avg_disproving": 0.21
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 312,
+      "fair_pct": 69.6,
+      "avg_score": 2.89,
+      "median_score": 3,
+      "score_stdev": 0.46,
+      "avg_confidence": 0.321,
+      "quality_distribution": {
+        "insufficient": 221,
+        "weak": 91
+      },
+      "avg_proving": 0.98,
+      "avg_disproving": 0.43
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 312,
+      "fair_pct": 11.9,
+      "avg_score": 2.44,
+      "median_score": 3.0,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.318,
+      "quality_distribution": {
+        "insufficient": 294,
+        "weak": 18
+      },
+      "avg_proving": 0.14,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 312,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 312
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 41.3,
+      "avg_score": 2.67,
+      "median_score": 3.0,
+      "score_stdev": 0.7,
+      "avg_confidence": 0.426,
+      "quality_distribution": {
+        "weak": 98,
+        "insufficient": 190,
+        "medium": 23,
+        "strong": 1
+      },
+      "avg_proving": 0.76,
+      "avg_disproving": 0.1
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 47.8,
+      "avg_score": 2.42,
+      "median_score": 2,
+      "score_stdev": 0.62,
+      "avg_confidence": 0.384,
+      "quality_distribution": {
+        "insufficient": 163,
+        "weak": 135,
+        "medium": 13,
+        "strong": 1
+      },
+      "avg_proving": 0.72,
+      "avg_disproving": 0.25
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 39.4,
+      "avg_score": 2.92,
+      "median_score": 3,
+      "score_stdev": 0.37,
+      "avg_confidence": 0.324,
+      "quality_distribution": {
+        "weak": 65,
+        "insufficient": 247
+      },
+      "avg_proving": 0.59,
+      "avg_disproving": 0.04
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 3.8,
+      "avg_score": 3,
+      "median_score": 3.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.438,
+      "quality_distribution": {
+        "insufficient": 300,
+        "medium": 1,
+        "weak": 11
+      },
+      "avg_proving": 0.08,
+      "avg_disproving": 0.0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 61.9,
+      "avg_score": 1.42,
+      "median_score": 1,
+      "score_stdev": 0.75,
+      "avg_confidence": 0.348,
+      "quality_distribution": {
+        "weak": 77,
+        "insufficient": 227,
+        "medium": 8
+      },
+      "avg_proving": 0.65,
+      "avg_disproving": 0.0
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 42.3,
+      "avg_score": 2.79,
+      "median_score": 3.0,
+      "score_stdev": 0.81,
+      "avg_confidence": 0.58,
+      "quality_distribution": {
+        "insufficient": 180,
+        "medium": 103,
+        "weak": 21,
+        "strong": 8
+      },
+      "avg_proving": 0.97,
+      "avg_disproving": 0.06
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 71.8,
+      "avg_score": 2.23,
+      "median_score": 3.0,
+      "score_stdev": 0.97,
+      "avg_confidence": 0.538,
+      "quality_distribution": {
+        "weak": 74,
+        "insufficient": 88,
+        "medium": 144,
+        "strong": 6
+      },
+      "avg_proving": 1.29,
+      "avg_disproving": 0.14
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 11.5,
+      "avg_score": 2.61,
+      "median_score": 3.0,
+      "score_stdev": 0.73,
+      "avg_confidence": 0.584,
+      "quality_distribution": {
+        "insufficient": 276,
+        "weak": 13,
+        "medium": 23
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.09
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 1.3,
+      "avg_score": 2.75,
+      "median_score": 3.0,
+      "score_stdev": 0.5,
+      "avg_confidence": 0.405,
+      "quality_distribution": {
+        "insufficient": 308,
+        "weak": 4
+      },
+      "avg_proving": 0.02,
+      "avg_disproving": 0.0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 16.3,
+      "avg_score": 2.76,
+      "median_score": 3,
+      "score_stdev": 0.62,
+      "avg_confidence": 0.444,
+      "quality_distribution": {
+        "insufficient": 271,
+        "medium": 9,
+        "weak": 32
+      },
+      "avg_proving": 0.3,
+      "avg_disproving": 0.09
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 312,
+      "fair_pct": 25.0,
+      "avg_score": 2.9,
+      "median_score": 3.0,
+      "score_stdev": 0.52,
+      "avg_confidence": 0.66,
+      "quality_distribution": {
+        "medium": 70,
+        "insufficient": 234,
+        "weak": 7,
+        "strong": 1
+      },
+      "avg_proving": 0.69,
+      "avg_disproving": 0.03
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 3.2,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.389,
+      "quality_distribution": {
+        "insufficient": 305,
+        "weak": 7
+      },
+      "avg_proving": 0.06,
+      "avg_disproving": 0.01
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 32.7,
+      "avg_score": 1.24,
+      "median_score": 1.0,
+      "score_stdev": 0.51,
+      "avg_confidence": 0.487,
+      "quality_distribution": {
+        "medium": 63,
+        "insufficient": 212,
+        "weak": 36,
+        "strong": 1
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.05
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 312
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 3.5,
+      "avg_score": 1.22,
+      "median_score": 1,
+      "score_stdev": 0.44,
+      "avg_confidence": 0.33,
+      "quality_distribution": {
+        "insufficient": 303,
+        "weak": 9
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.02
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 9.3,
+      "avg_score": 2.26,
+      "median_score": 3,
+      "score_stdev": 0.87,
+      "avg_confidence": 0.336,
+      "quality_distribution": {
+        "insufficient": 293,
+        "weak": 17,
+        "medium": 2
+      },
+      "avg_proving": 0.11,
+      "avg_disproving": 0.05
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 17.3,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.402,
+      "quality_distribution": {
+        "weak": 53,
+        "insufficient": 259
+      },
+      "avg_proving": 0.35,
+      "avg_disproving": 0
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 312,
+      "fair_pct": 17.6,
+      "avg_score": 2.4,
+      "median_score": 3.0,
+      "score_stdev": 0.72,
+      "avg_confidence": 0.463,
+      "quality_distribution": {
+        "insufficient": 260,
+        "weak": 30,
+        "medium": 22
+      },
+      "avg_proving": 0.3,
+      "avg_disproving": 0.03
+    }
+  },
+  "consensus_seeker": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 16.8,
+      "avg_score": 2.04,
+      "median_score": 3,
+      "score_stdev": 1.0,
+      "avg_confidence": 0.509,
+      "quality_distribution": {
+        "insufficient": 263,
+        "medium": 16,
+        "weak": 37
+      },
+      "avg_proving": 0.28,
+      "avg_disproving": 0.23
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 99.7,
+      "avg_score": 1.73,
+      "median_score": 1,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.595,
+      "quality_distribution": {
+        "weak": 209,
+        "contradictory": 58,
+        "medium": 45,
+        "insufficient": 1,
+        "strong": 3
+      },
+      "avg_proving": 2.65,
+      "avg_disproving": 1.75
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 99.7,
+      "avg_score": 2.22,
+      "median_score": 3,
+      "score_stdev": 0.94,
+      "avg_confidence": 0.509,
+      "quality_distribution": {
+        "weak": 277,
+        "medium": 36,
+        "insufficient": 3
+      },
+      "avg_proving": 2.3,
+      "avg_disproving": 0.25
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 100.0,
+      "avg_score": 1.8,
+      "median_score": 2,
+      "score_stdev": 0.85,
+      "avg_confidence": 0.653,
+      "quality_distribution": {
+        "weak": 232,
+        "medium": 79,
+        "insufficient": 3,
+        "strong": 2
+      },
+      "avg_proving": 2.52,
+      "avg_disproving": 0
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 99.1,
+      "avg_score": 2.46,
+      "median_score": 3.0,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.655,
+      "quality_distribution": {
+        "weak": 130,
+        "medium": 163,
+        "contradictory": 5,
+        "strong": 13,
+        "insufficient": 3,
+        "repeated": 2
+      },
+      "avg_proving": 3.22,
+      "avg_disproving": 0.88
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 70.6,
+      "avg_score": 2.36,
+      "median_score": 3,
+      "score_stdev": 0.91,
+      "avg_confidence": 0.46,
+      "quality_distribution": {
+        "insufficient": 109,
+        "medium": 67,
+        "weak": 140
+      },
+      "avg_proving": 0.99,
+      "avg_disproving": 0.31
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "n_players": 316,
+      "fair_pct": 99.7,
+      "avg_score": 2.32,
+      "median_score": 3.0,
+      "score_stdev": 0.81,
+      "avg_confidence": 0.679,
+      "quality_distribution": {
+        "medium": 211,
+        "weak": 98,
+        "strong": 5,
+        "contradictory": 1,
+        "insufficient": 1
+      },
+      "avg_proving": 3.96,
+      "avg_disproving": 0.77
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "n_players": 316,
+      "fair_pct": 79.4,
+      "avg_score": 2.26,
+      "median_score": 3.0,
+      "score_stdev": 0.95,
+      "avg_confidence": 0.319,
+      "quality_distribution": {
+        "insufficient": 230,
+        "weak": 86
+      },
+      "avg_proving": 0.83,
+      "avg_disproving": 0.34
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "n_players": 316,
+      "fair_pct": 47.8,
+      "avg_score": 1.73,
+      "median_score": 1,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.412,
+      "quality_distribution": {
+        "insufficient": 181,
+        "weak": 135
+      },
+      "avg_proving": 0.64,
+      "avg_disproving": 0.12
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "n_players": 316,
+      "fair_pct": 91.8,
+      "avg_score": 1.5,
+      "median_score": 1,
+      "score_stdev": 0.86,
+      "avg_confidence": 0.412,
+      "quality_distribution": {
+        "weak": 267,
+        "insufficient": 49
+      },
+      "avg_proving": 1.07,
+      "avg_disproving": 0.21
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "n_players": 316,
+      "fair_pct": 72.8,
+      "avg_score": 2.86,
+      "median_score": 3,
+      "score_stdev": 0.52,
+      "avg_confidence": 0.32,
+      "quality_distribution": {
+        "insufficient": 219,
+        "weak": 97
+      },
+      "avg_proving": 1.02,
+      "avg_disproving": 0.44
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "n_players": 316,
+      "fair_pct": 14.2,
+      "avg_score": 1.92,
+      "median_score": 1.0,
+      "score_stdev": 1.02,
+      "avg_confidence": 0.325,
+      "quality_distribution": {
+        "insufficient": 292,
+        "weak": 24
+      },
+      "avg_proving": 0.14,
+      "avg_disproving": 0
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "n_players": 316,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 316
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 36.7,
+      "avg_score": 2.21,
+      "median_score": 2,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.363,
+      "quality_distribution": {
+        "insufficient": 255,
+        "weak": 37,
+        "medium": 23,
+        "strong": 1
+      },
+      "avg_proving": 0.35,
+      "avg_disproving": 0.07
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 43.0,
+      "avg_score": 2.45,
+      "median_score": 3,
+      "score_stdev": 0.59,
+      "avg_confidence": 0.477,
+      "quality_distribution": {
+        "insufficient": 181,
+        "weak": 73,
+        "medium": 62
+      },
+      "avg_proving": 0.83,
+      "avg_disproving": 0.06
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 21.2,
+      "avg_score": 3,
+      "median_score": 3,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.371,
+      "quality_distribution": {
+        "insufficient": 261,
+        "weak": 55
+      },
+      "avg_proving": 0.38,
+      "avg_disproving": 0.01
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 17.7,
+      "avg_score": 2.98,
+      "median_score": 3.0,
+      "score_stdev": 0.13,
+      "avg_confidence": 0.455,
+      "quality_distribution": {
+        "weak": 54,
+        "insufficient": 260,
+        "medium": 2
+      },
+      "avg_proving": 0.36,
+      "avg_disproving": 0.0
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 44.3,
+      "avg_score": 2.8,
+      "median_score": 3.0,
+      "score_stdev": 0.53,
+      "avg_confidence": 0.383,
+      "quality_distribution": {
+        "insufficient": 234,
+        "medium": 52,
+        "weak": 30
+      },
+      "avg_proving": 0.84,
+      "avg_disproving": 0.16
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 55.7,
+      "avg_score": 2.45,
+      "median_score": 3.0,
+      "score_stdev": 0.67,
+      "avg_confidence": 0.52,
+      "quality_distribution": {
+        "insufficient": 140,
+        "medium": 93,
+        "weak": 82,
+        "strong": 1
+      },
+      "avg_proving": 1.16,
+      "avg_disproving": 0.2
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 84.5,
+      "avg_score": 2.82,
+      "median_score": 3,
+      "score_stdev": 0.56,
+      "avg_confidence": 0.576,
+      "quality_distribution": {
+        "medium": 196,
+        "weak": 67,
+        "insufficient": 49,
+        "strong": 4
+      },
+      "avg_proving": 2.04,
+      "avg_disproving": 0.28
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 22.8,
+      "avg_score": 1.36,
+      "median_score": 1.0,
+      "score_stdev": 0.76,
+      "avg_confidence": 0.55,
+      "quality_distribution": {
+        "medium": 59,
+        "insufficient": 244,
+        "weak": 13
+      },
+      "avg_proving": 0.3,
+      "avg_disproving": 0.38
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 0.6,
+      "avg_score": 2.5,
+      "median_score": 2.5,
+      "score_stdev": 0.71,
+      "avg_confidence": 0.36,
+      "quality_distribution": {
+        "insufficient": 314,
+        "weak": 2
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.0
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 29.7,
+      "avg_score": 1.8,
+      "median_score": 1.0,
+      "score_stdev": 0.94,
+      "avg_confidence": 0.435,
+      "quality_distribution": {
+        "insufficient": 226,
+        "weak": 87,
+        "medium": 3
+      },
+      "avg_proving": 0.27,
+      "avg_disproving": 0.36
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "n_players": 316,
+      "fair_pct": 6.6,
+      "avg_score": 2.38,
+      "median_score": 3,
+      "score_stdev": 0.92,
+      "avg_confidence": 0.58,
+      "quality_distribution": {
+        "insufficient": 295,
+        "medium": 15,
+        "strong": 1,
+        "weak": 5
+      },
+      "avg_proving": 0.13,
+      "avg_disproving": 0.04
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 0.9,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0.24,
+      "quality_distribution": {
+        "insufficient": 316
+      },
+      "avg_proving": 0.01,
+      "avg_disproving": 0.01
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 47.2,
+      "avg_score": 1.1,
+      "median_score": 1,
+      "score_stdev": 0.35,
+      "avg_confidence": 0.45,
+      "quality_distribution": {
+        "weak": 133,
+        "insufficient": 169,
+        "medium": 14
+      },
+      "avg_proving": 0.09,
+      "avg_disproving": 0.06
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 0.0,
+      "avg_score": null,
+      "median_score": null,
+      "score_stdev": 0,
+      "avg_confidence": 0,
+      "quality_distribution": {
+        "insufficient": 316
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 0.9,
+      "avg_score": 1,
+      "median_score": 1.0,
+      "score_stdev": 0.0,
+      "avg_confidence": 0.38,
+      "quality_distribution": {
+        "insufficient": 314,
+        "weak": 2
+      },
+      "avg_proving": 0,
+      "avg_disproving": 0.0
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 21.2,
+      "avg_score": 1.94,
+      "median_score": 2.0,
+      "score_stdev": 0.36,
+      "avg_confidence": 0.289,
+      "quality_distribution": {
+        "weak": 61,
+        "insufficient": 254,
+        "medium": 1
+      },
+      "avg_proving": 0.22,
+      "avg_disproving": 0.19
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 2.5,
+      "avg_score": 2.67,
+      "median_score": 3.0,
+      "score_stdev": 0.82,
+      "avg_confidence": 0.374,
+      "quality_distribution": {
+        "insufficient": 310,
+        "weak": 6
+      },
+      "avg_proving": 0.04,
+      "avg_disproving": 0.01
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "n_players": 316,
+      "fair_pct": 44.3,
+      "avg_score": 2.17,
+      "median_score": 2.0,
+      "score_stdev": 0.49,
+      "avg_confidence": 0.304,
+      "quality_distribution": {
+        "insufficient": 230,
+        "weak": 75,
+        "medium": 11
+      },
+      "avg_proving": 0.37,
+      "avg_disproving": 0.17
+    }
+  }
+}

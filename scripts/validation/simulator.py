@@ -24,7 +24,16 @@ from . import config
 from .cards_loader import Card, load_all_cards, group_cards_by_level_category
 from .game_state import GameRoom, Player, GameTurn
 from .behavior_tracker import BehaviorTracker
-from .strategy_agents import get_strategy
+from .strategy_agents import get_strategy as get_optimizer_strategy
+from .psychological_archetypes import get_archetype as get_psych_strategy
+
+
+def get_strategy(name: str):
+    """Resolve strategy from either optimizer or psychological archetype registry."""
+    try:
+        return get_optimizer_strategy(name)
+    except ValueError:
+        return get_psych_strategy(name)
 
 
 @dataclass
