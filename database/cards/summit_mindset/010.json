@@ -88,6 +88,11 @@
         "coaching": 1,
         "collaboration": 1,
         "risk_taking": 1
+      },
+      "lra_tags": {
+        "R3_S3": "proving",
+        "PtP_M5": "proving",
+        "R2_M1": "proving"
       }
     },
     "B": {
@@ -144,6 +149,12 @@
         "empathy": 2,
         "collaboration": 1,
         "decisiveness": -1
+      },
+      "lra_tags": {
+        "PtP_M5": "proving",
+        "R2_M1": "proving",
+        "R3_S3": "disproving",
+        "PtP_M4": "proving"
       }
     }
   }

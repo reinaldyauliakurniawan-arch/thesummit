@@ -43,6 +43,11 @@
       "behavior_tags": {
         "empathy": 2,
         "adaptability": 1
+      },
+      "lra_tags": {
+        "R2_S4": "disproving",
+        "PtP_M5": "proving",
+        "R2_S5": "proving"
       }
     },
     "B": {
@@ -99,6 +104,12 @@
         "decisiveness": 1,
         "control": 2,
         "empathy": -1
+      },
+      "lra_tags": {
+        "R2_S4": "proving",
+        "R2_M1": "proving",
+        "PtP_S2": "proving",
+        "PtP_M5": "disproving"
       }
     }
   }

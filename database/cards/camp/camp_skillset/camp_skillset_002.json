@@ -52,7 +52,13 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S8": "proving",
+        "R2_M2": "proving",
+        "R2_S3": "proving",
+        "PtP_S1": "proving"
+      }
     },
     "B": {
       "label": "Assign reviewer tetap per modul",
@@ -86,7 +92,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S5": "proving",
+        "R2_S3": "proving",
+        "R2_S8": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -98,6 +109,19 @@
     "B": {
       "adaptability": 1,
       "control": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S8": "proving",
+      "R2_M2": "proving",
+      "R2_S3": "proving",
+      "PtP_S1": "proving"
+    },
+    "B": {
+      "R2_S5": "proving",
+      "R2_S3": "proving",
+      "R2_S8": "disproving"
     }
   }
 }

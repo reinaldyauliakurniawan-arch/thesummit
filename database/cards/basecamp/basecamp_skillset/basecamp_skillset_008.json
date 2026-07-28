@@ -52,7 +52,12 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M2": "proving",
+        "PtP_S1": "proving",
+        "R1_S2": "proving"
+      }
     },
     "B": {
       "label": "Kerja lembur, coba penuhi deadline",
@@ -100,7 +105,12 @@
             "trigger_after_rounds": 3
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M2": "disproving",
+        "PtP_S1": "disproving",
+        "PtP_M4": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -112,6 +122,18 @@
     "B": {
       "control": 1,
       "adaptability": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_M2": "proving",
+      "PtP_S1": "proving",
+      "R1_S2": "proving"
+    },
+    "B": {
+      "PtP_M2": "disproving",
+      "PtP_S1": "disproving",
+      "PtP_M4": "proving"
     }
   }
 }

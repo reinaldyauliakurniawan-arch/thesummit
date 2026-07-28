@@ -66,7 +66,14 @@
             "target_ref": "all_players"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_M2": "proving",
+        "R2_S9": "proving",
+        "PtP_M1": "disproving",
+        "R2_S5": "disproving",
+        "PtP_M5": "disproving"
+      }
     },
     "B": {
       "label": "Tolak dan taruh posisimu di garis",
@@ -126,7 +133,15 @@
             }
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M1": "proving",
+        "PtP_S2": "proving",
+        "R2_S4": "proving",
+        "R2_S5": "proving",
+        "PtP_M5": "proving",
+        "R3_M2": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -138,6 +153,23 @@
     "B": {
       "collaboration": 2,
       "empathy": 2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_M2": "proving",
+      "R2_S9": "proving",
+      "PtP_M1": "disproving",
+      "R2_S5": "disproving",
+      "PtP_M5": "disproving"
+    },
+    "B": {
+      "PtP_M1": "proving",
+      "PtP_S2": "proving",
+      "R2_S4": "proving",
+      "R2_S5": "proving",
+      "PtP_M5": "proving",
+      "R3_M2": "disproving"
     }
   }
 }

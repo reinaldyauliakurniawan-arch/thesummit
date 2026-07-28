@@ -59,7 +59,13 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S1": "proving",
+        "R2_S3": "proving",
+        "R2_S8": "proving",
+        "PtP_S1": "proving"
+      }
     },
     "B": {
       "label": "OKR standar semua tim",
@@ -93,7 +99,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S1": "proving",
+        "R2_S3": "proving",
+        "R2_S8": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -105,6 +116,19 @@
     "B": {
       "control": 2,
       "empathy": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_S1": "proving",
+      "R2_S3": "proving",
+      "R2_S8": "proving",
+      "PtP_S1": "proving"
+    },
+    "B": {
+      "R3_S1": "proving",
+      "R2_S3": "proving",
+      "R2_S8": "disproving"
     }
   }
 }

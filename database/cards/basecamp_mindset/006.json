@@ -44,6 +44,11 @@
       "behavior_tags": {
         "risk_taking": 1,
         "decisiveness": 1
+      },
+      "lra_tags": {
+        "R1_M1": "proving",
+        "R1_M2": "proving",
+        "PtP_M3": "proving"
       }
     },
     "B": {
@@ -68,6 +73,10 @@
       ],
       "behavior_tags": {
         "adaptability": 2
+      },
+      "lra_tags": {
+        "PtP_M3": "proving",
+        "R1_M1": "disproving"
       }
     }
   },

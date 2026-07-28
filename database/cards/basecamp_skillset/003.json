@@ -35,6 +35,10 @@
       "behavior_tags": {
         "control": 1,
         "adaptability": 1
+      },
+      "lra_tags": {
+        "R1_S2": "disproving",
+        "R1_S3": "proving"
       }
     },
     "B": {
@@ -77,6 +81,11 @@
       "behavior_tags": {
         "collaboration": 1,
         "empathy": 1
+      },
+      "lra_tags": {
+        "R1_S2": "proving",
+        "PtP_S2": "proving",
+        "PtP_M4": "proving"
       }
     }
   }

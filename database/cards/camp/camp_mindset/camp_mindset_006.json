@@ -61,7 +61,13 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S6": "proving",
+        "R2_M1": "proving",
+        "R2_S8": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Rotasi tugas agar semua dapat tantangan",
@@ -95,7 +101,11 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S8": "proving",
+        "PtP_M5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -107,6 +117,18 @@
     "B": {
       "adaptability": 1,
       "control": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S6": "proving",
+      "R2_M1": "proving",
+      "R2_S8": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R2_S8": "proving",
+      "PtP_M5": "disproving"
     }
   }
 }

@@ -83,6 +83,11 @@
         "collaboration": 2,
         "empathy": 1,
         "decisiveness": 1
+      },
+      "lra_tags": {
+        "R2_S4": "proving",
+        "R2_S5": "proving",
+        "PtP_S2": "proving"
       }
     },
     "B": {
@@ -116,6 +121,11 @@
       "behavior_tags": {
         "adaptability": 2,
         "risk_taking": 1
+      },
+      "lra_tags": {
+        "R2_S5": "disproving",
+        "R2_S4": "disproving",
+        "R3_S5": "disproving"
       }
     }
   }

@@ -60,7 +60,14 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_M1": "proving",
+        "R3_S3": "proving",
+        "R2_S6": "proving",
+        "R2_S4": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Ambil alih performance management langsung",
@@ -102,7 +109,13 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_M1": "disproving",
+        "R3_S3": "disproving",
+        "R2_M1": "disproving",
+        "R2_S6": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -114,6 +127,21 @@
     "B": {
       "control": 2,
       "coaching": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_M1": "proving",
+      "R3_S3": "proving",
+      "R2_S6": "proving",
+      "R2_S4": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R3_M1": "disproving",
+      "R3_S3": "disproving",
+      "R2_M1": "disproving",
+      "R2_S6": "disproving"
     }
   }
 }

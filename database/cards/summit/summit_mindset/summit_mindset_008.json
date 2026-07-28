@@ -54,7 +54,14 @@
             "resolve_by_round": 4
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S3": "proving",
+        "R3_M1": "proving",
+        "R2_S4": "proving",
+        "R2_S6": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Angkat di forum leadership — public example",
@@ -96,7 +103,14 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_M1": "proving",
+        "PtP_S2": "proving",
+        "R2_S4": "proving",
+        "R2_S5": "disproving",
+        "PtP_M5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -108,6 +122,22 @@
     "B": {
       "decisiveness": 2,
       "empathy": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_S3": "proving",
+      "R3_M1": "proving",
+      "R2_S4": "proving",
+      "R2_S6": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R3_M1": "proving",
+      "PtP_S2": "proving",
+      "R2_S4": "proving",
+      "R2_S5": "disproving",
+      "PtP_M5": "disproving"
     }
   }
 }

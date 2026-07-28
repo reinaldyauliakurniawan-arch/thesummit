@@ -13,15 +13,17 @@ use Illuminate\Support\Facades\Log;
 /**
  * ReflectionEngine — Generates leadership profiles from structured behavior data.
  *
- * Consumes the structured profile from BehaviorTracker (which includes confidence scores).
- * This engine is responsible ONLY for:
- * 1. Building the decision timeline
- * 2. Finding missed opportunities
- * 3. Detecting key turning points
- * 4. Generating coaching recommendations
- * 5. Persisting the LeadershipProfile
+ * LRA REDESIGN: Every insight now cites gameplay evidence.
+ * Instead of saying "You are collaborative," it says:
+ * "Based on these decisions, here is the evidence we observed..."
  *
- * Narrative generation is a separate concern — the UI layer handles display formatting.
+ * Every insight must reference specific card decisions.
+ * Every recommendation must cite the evidence that supports it.
+ * Generic personality descriptions are AVOIDED.
+ *
+ * This engine produces two layers:
+ * 1. LRA Assessment — per-item evidence with confidence scores (defensible)
+ * 2. Dimension Profile — legacy 7-dimension analysis (supplementary)
  */
 class ReflectionEngine
 {
@@ -34,6 +36,7 @@ class ReflectionEngine
 
     /**
      * Generate a full leadership profile for a player after game ends.
+     * Now includes LRA assessment with evidence citations.
      */
     public function generateProfile(GameResult $result): LeadershipProfile
     {
@@ -43,6 +46,9 @@ class ReflectionEngine
 
         // Get the formal behavior profile with confidence scores
         $behaviorProfile = $this->behaviorTracker->getBehaviorProfile($player);
+
+        // Get the LRA assessment with evidence citations
+        $lraAssessment = $this->behaviorTracker->getLRAAssessment($player);
 
         $decisionTimeline = $this->buildDecisionTimeline($turns);
         $missedOpportunities = $this->findMissedOpportunities($player, $turns);
@@ -55,8 +61,11 @@ class ReflectionEngine
         $profileData['key_turning_point'] = $keyTurningPoint;
         $profileData['coaching_recommendations'] = $coachingRecommendations;
 
-        // Build human-readable style description from the structured data
-        $styleDescription = $this->describeStyleFromProfile($behaviorProfile);
+        // Build evidence-cited narrative (NOT personality label)
+        $styleDescription = $this->describeEvidenceFromLRA($lraAssessment);
+
+        // Generate the full LRA narrative for facilitators
+        $lraNarrative = $this->generateLRANarrative($lraAssessment);
 
         // Extract strength and blind spot names for backward-compatible storage
         $strengthNames = array_column($behaviorProfile['strengths'] ?? [], 'dimension');
@@ -74,63 +83,106 @@ class ReflectionEngine
             'coaching_recommendations'  => $coachingRecommendations,
             'behavior_scores'           => $this->extractScoresForStorage($behaviorProfile),
             'confidence_data'           => $this->extractConfidenceForStorage($behaviorProfile),
+            'lra_assessment'             => $lraAssessment,
+            'lra_narrative'              => $lraNarrative,
         ]);
     }
 
     /**
-     * Describe leadership style based on the formal profile — distinguishing
-     * "strong pattern" from "early signal" per the user's requirement.
+     * Describe leadership style based on LRA evidence — NOT personality labels.
+     * Cites specific decisions and evidence patterns.
      */
-    protected function describeStyleFromProfile(array $profile): string
+    protected function describeEvidenceFromLRA(array $lraAssessment): string
     {
-        $style = $profile['style'] ?? [];
-        $primary = $style['primary'] ?? 'emerging';
-        $confidence = $style['confidence'] ?? 0;
-        $secondary = $style['secondary'] ?? null;
-
-        // Map structured styles to narrative descriptions WITH confidence context
-        $descriptions = [
-            'risk_taking'    => 'Visionary Leader — berani mengambil risiko besar demi tujuan jangka panjang.',
-            'collaboration'  => 'Collaborative Leader — mengutamakan kerja tim dan keputusan kolektif.',
-            'empathy'        => 'Empathetic Leader — memperhatikan perasaan dan kebutuhan tim.',
-            'decisiveness'   => 'Decisive Leader — membuat keputusan cepat dan tegas.',
-            'coaching'       => 'Developer Leader — aktif mengembangkan kemampuan tim.',
-            'control'        => 'Commanding Leader — mengontrol situasi dengan tangan kuat.',
-            'adaptability'   => 'Adaptive Leader — fleksibel dan berubah sesuai situasi.',
-        ];
-
-        if ($primary === 'insufficient_data') {
-            return 'Data Belum Cukup — gaya kepemimpinanmu masih berkembang. Terus bermain untuk mengungkap lebih banyak.';
+        // Find defensible items with strongest evidence
+        $defensible = [];
+        foreach ($lraAssessment as $code => $item) {
+            if ($item['defensible'] && $item['suggested_score'] !== null && $item['suggested_score'] !== 'mixed') {
+                $defensible[$code] = $item;
+            }
         }
 
-        if ($primary === 'emerging') {
-            return 'Emerging Leader — pola kepemimpinanmu mulai terlihat tapi belum cukup konsisten. Terus bermain dan refleksikan.';
+        if (empty($defensible)) {
+            return 'Data Belum Cukup — belum cukup bukti konsisten untuk menarik kesimpulan leadership. Main lagi untuk menghasilkan lebih banyak evidence.';
         }
 
-        $baseDescription = $descriptions[$primary] ?? "Leader dengan gaya {$primary}.";
+        // Sort by confidence (highest first)
+        uasort($defensible, fn($a, $b) => ($b['confidence'] ?? 0) <=> ($a['confidence'] ?? 0));
 
-        // Append confidence qualifier
-        if ($confidence >= 0.75) {
-            $baseDescription .= ' Pola ini sudah sangat konsisten — strong pattern.';
-        } elseif ($confidence >= 0.5) {
-            $baseDescription .= ' Pola ini cukup jelas tapi masih bisa berkembang — established signal.';
-        } elseif ($confidence >= 0.25) {
-            $baseDescription .= ' Arah sudah terlihat tapi data masih terbatas — early signal.';
-        } else {
-            $baseDescription .= ' Belum cukup data untuk mengkonfirmasi pola ini — speculative.';
+        // Build evidence-cited narrative
+        $narrative = 'Berdasarkan keputusan yang diambil selama permainan: ';
+
+        $items = [];
+        foreach (array_slice($defensible, 0, 5) as $code => $item) {
+            $score = $item['suggested_score'];
+            $label = $item['label'];
+            $proving = $item['proving_count'];
+            $total = $item['evidence_count'];
+            $quality = $item['quality_level'];
+
+            if ($score >= 4) {
+                $items[] = ""{$label}" menunjukkan pola kuat ({$proving}/{$total} bukti, quality: {$quality})";
+            } elseif ($score >= 3) {
+                $items[] = ""{$label}" menunjukkan pola yang konsisten ({$proving}/{$total} bukti, quality: {$quality})";
+            } elseif ($score >= 2) {
+                $items[] = ""{$label}" menunjukkan area yang perlu pengembangan ({$proving}/{$total} bukti mendukung, quality: {$quality})";
+            } else {
+                $items[] = ""{$label}" menunjukkan kebutuhan intervensi aktif ({$proving}/{$total} bukti mendukung, quality: {$quality})";
+            }
         }
 
-        // Add secondary style if present
-        if ($secondary && isset($descriptions[$secondary])) {
-            $baseDescription .= " Gaya sekunder: {$secondary}.";
+        $narrative .= implode('. ', $items) . '.';
+
+        // Add contradictory items note
+        $contradictory = [];
+        foreach ($lraAssessment as $code => $item) {
+            if ($item['quality_level'] === 'contradictory') {
+                $contradictory[] = $item['label'];
+            }
+        }
+        if (!empty($contradictory)) {
+            $narrative .= ' Perilaku yang konteks-dependent terdeteksi pada: ' . implode(', ', $contradictory) . '. Ini menunjukkan kemampuan adaptasi, bukan inkonsistensi.';
         }
 
-        // Add tension notes
-        if (!empty($style['tensions'])) {
-            $baseDescription .= ' Tensi terdeteksi: ' . implode(', ', $style['tensions']) . '.';
+        return $narrative;
+    }
+
+    /**
+     * Generate a full LRA narrative for facilitators.
+     * This is the evidence document a facilitator uses to defend every conclusion.
+     */
+    protected function generateLRANarrative(array $lraAssessment): string
+    {
+        $lines = [];
+        $lines[] = '=== LEADERSHIP ROLE ASSESSMENT — EVIDENCE REPORT ===';
+        $lines[] = '';
+
+        // Group by tier
+        $tiers = ['PtP' => 'Permission to Play', 'R1' => 'Individual Contributor', 'R2' => 'Leading Others', 'R3' => 'Leading Leaders'];
+
+        foreach ($tiers as $tierCode => $tierLabel) {
+            $tierItems = array_filter($lraAssessment, fn($item) => ($item['tier'] ?? '') === $tierCode);
+            if (empty($tierItems)) continue;
+
+            $lines[] = "--- {$tierLabel} ---";
+
+            foreach ($tierItems as $code => $item) {
+                $score = $item['suggested_score'];
+                $quality = $item['quality_level'];
+
+                if ($score === 'mixed') {
+                    $lines[] = "{$item['label']}: KONTRADIKTIF ({$item['proving_count']} mendukung, {$item['disproving_count']} bertentangan)";
+                } elseif ($score === null) {
+                    $lines[] = "{$item['label']}: INSUFFICIENT EVIDENCE ({$item['evidence_count']} observasi)";
+                } else {
+                    $lines[] = "{$item['label']}: Score {$score}/5 ({$item['proving_count']}/{$item['evidence_count']} mendukung, quality: {$quality})";
+                }
+                $lines[] = "  Evidence: {$item['facilitator_explanation']}";
+                $lines[] = '';
+            }
         }
 
-        return $baseDescription;
+        return implode("\n", $lines);
     }
 
     /**

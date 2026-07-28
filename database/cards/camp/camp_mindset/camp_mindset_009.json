@@ -66,7 +66,13 @@
             "trigger_after_rounds": 4
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S9": "proving",
+        "PtP_S2": "proving",
+        "R2_M1": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Terima dan motivasi tim",
@@ -107,7 +113,13 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_M1": "disproving",
+        "R2_S9": "disproving",
+        "PtP_S2": "disproving",
+        "PtP_M5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -119,6 +131,20 @@
     "B": {
       "control": 1,
       "empathy": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S9": "proving",
+      "PtP_S2": "proving",
+      "R2_M1": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R2_M1": "disproving",
+      "R2_S9": "disproving",
+      "PtP_S2": "disproving",
+      "PtP_M5": "disproving"
     }
   }
 }

@@ -52,6 +52,11 @@
         "decisiveness": 1,
         "collaboration": 1,
         "control": 1
+      },
+      "lra_tags": {
+        "R2_S1": "proving",
+        "R2_S5": "proving",
+        "R2_S9": "proving"
       }
     },
     "B": {
@@ -101,6 +106,11 @@
         "adaptability": 1,
         "collaboration": 1,
         "control": -1
+      },
+      "lra_tags": {
+        "R2_S1": "disproving",
+        "R2_S9": "disproving",
+        "R2_S5": "disproving"
       }
     }
   }

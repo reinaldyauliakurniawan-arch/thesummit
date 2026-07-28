@@ -60,7 +60,13 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S6": "proving",
+        "R2_S8": "proving",
+        "R2_M1": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Berikan akses dokumen, self-service learning",
@@ -94,7 +100,12 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S8": "proving",
+        "R2_S6": "disproving",
+        "R2_S5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -106,6 +117,19 @@
     "B": {
       "adaptability": 1,
       "empathy": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S6": "proving",
+      "R2_S8": "proving",
+      "R2_M1": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R2_S8": "proving",
+      "R2_S6": "disproving",
+      "R2_S5": "disproving"
     }
   }
 }

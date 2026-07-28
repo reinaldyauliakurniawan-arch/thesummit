@@ -66,7 +66,13 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S3": "proving",
+        "R2_S2": "proving",
+        "PtP_S2": "proving",
+        "PtP_M1": "disproving"
+      }
     },
     "B": {
       "label": "Pilih yang paling siap diam-diam — keep promise",
@@ -122,7 +128,14 @@
             "trigger_after_rounds": 3
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M1": "proving",
+        "R3_S3": "disproving",
+        "R2_S2": "disproving",
+        "R2_S5": "disproving",
+        "R3_S5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -134,6 +147,21 @@
     "B": {
       "control": 2,
       "collaboration": -2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_S3": "proving",
+      "R2_S2": "proving",
+      "PtP_S2": "proving",
+      "PtP_M1": "disproving"
+    },
+    "B": {
+      "PtP_M1": "proving",
+      "R3_S3": "disproving",
+      "R2_S2": "disproving",
+      "R2_S5": "disproving",
+      "R3_S5": "disproving"
     }
   }
 }

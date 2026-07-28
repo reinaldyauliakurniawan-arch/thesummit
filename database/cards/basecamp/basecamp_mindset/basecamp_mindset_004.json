@@ -45,7 +45,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M4": "proving",
+        "R1_M4": "proving",
+        "R1_S1": "proving"
+      }
     },
     "B": {
       "label": "Cari mentor untuk bimbingan",
@@ -80,7 +85,12 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M2": "proving",
+        "PtP_M3": "proving",
+        "PtP_M5": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -92,6 +102,18 @@
     "B": {
       "collaboration": 2,
       "empathy": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_M4": "proving",
+      "R1_M4": "proving",
+      "R1_S1": "proving"
+    },
+    "B": {
+      "PtP_M2": "proving",
+      "PtP_M3": "proving",
+      "PtP_M5": "proving"
     }
   }
 }

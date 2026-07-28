@@ -63,7 +63,12 @@
             }
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R1_M1": "proving",
+        "R1_M2": "proving",
+        "PtP_M3": "proving"
+      }
     },
     "B": {
       "label": "Belajar skill baru di waktu luang",
@@ -90,7 +95,11 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M3": "proving",
+        "R1_M1": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -102,6 +111,17 @@
     "B": {
       "adaptability": 1,
       "coaching": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R1_M1": "proving",
+      "R1_M2": "proving",
+      "PtP_M3": "proving"
+    },
+    "B": {
+      "PtP_M3": "proving",
+      "R1_M1": "disproving"
     }
   }
 }

@@ -59,7 +59,13 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_M2": "proving",
+        "R2_S8": "proving",
+        "PtP_S1": "proving",
+        "R3_S2": "proving"
+      }
     },
     "B": {
       "label": "KPI baru mengukur output nyata",
@@ -107,7 +113,12 @@
             "trigger_after_rounds": 6
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S3": "proving",
+        "R2_M2": "proving",
+        "R2_S8": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -119,6 +130,19 @@
     "B": {
       "control": 1,
       "adaptability": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_M2": "proving",
+      "R2_S8": "proving",
+      "PtP_S1": "proving",
+      "R3_S2": "proving"
+    },
+    "B": {
+      "R2_S3": "proving",
+      "R2_M2": "proving",
+      "R2_S8": "disproving"
     }
   }
 }

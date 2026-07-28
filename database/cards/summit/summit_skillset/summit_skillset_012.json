@@ -72,7 +72,13 @@
             }
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M1": "proving",
+        "PtP_S2": "proving",
+        "R2_S4": "proving",
+        "R2_S9": "proving"
+      }
     },
     "B": {
       "label": "Diam — buat fix diam-diam dalam sistem",
@@ -131,7 +137,13 @@
             }
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M1": "disproving",
+        "PtP_M5": "disproving",
+        "R2_S4": "disproving",
+        "R2_S9": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -143,6 +155,20 @@
     "B": {
       "control": 1,
       "empathy": -2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_M1": "proving",
+      "PtP_S2": "proving",
+      "R2_S4": "proving",
+      "R2_S9": "proving"
+    },
+    "B": {
+      "PtP_M1": "disproving",
+      "PtP_M5": "disproving",
+      "R2_S4": "disproving",
+      "R2_S9": "disproving"
     }
   }
 }

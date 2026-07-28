@@ -52,7 +52,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_S2": "proving",
+        "R2_S5": "proving",
+        "R3_S5": "proving"
+      }
     },
     "B": {
       "label": "Pilih yang benar, dukung di meeting",
@@ -94,7 +99,12 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_S2": "proving",
+        "R2_S4": "proving",
+        "R2_S5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -106,6 +116,18 @@
     "B": {
       "decisiveness": 2,
       "empathy": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_S2": "proving",
+      "R2_S5": "proving",
+      "R3_S5": "proving"
+    },
+    "B": {
+      "PtP_S2": "proving",
+      "R2_S4": "proving",
+      "R2_S5": "disproving"
     }
   }
 }

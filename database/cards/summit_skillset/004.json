@@ -76,6 +76,12 @@
         "adaptability": 1,
         "empathy": 1,
         "collaboration": 1
+      },
+      "lra_tags": {
+        "PtP_M2": "proving",
+        "R2_S9": "proving",
+        "R2_S3": "proving",
+        "PtP_M5": "proving"
       }
     },
     "B": {
@@ -140,6 +146,12 @@
         "control": 2,
         "adaptability": -1,
         "empathy": -1
+      },
+      "lra_tags": {
+        "PtP_M2": "disproving",
+        "R2_S9": "disproving",
+        "R2_S3": "disproving",
+        "PtP_M5": "disproving"
       }
     }
   }

@@ -52,7 +52,12 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R1_S2": "proving",
+        "PtP_S2": "proving",
+        "PtP_M4": "proving"
+      }
     },
     "B": {
       "label": "Lembur selesaikan semua tiga",
@@ -100,7 +105,12 @@
             "trigger_after_rounds": 2
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M4": "proving",
+        "R1_S1": "disproving",
+        "R1_S2": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -112,6 +122,18 @@
     "B": {
       "risk_taking": 1,
       "control": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R1_S2": "proving",
+      "PtP_S2": "proving",
+      "PtP_M4": "proving"
+    },
+    "B": {
+      "PtP_M4": "proving",
+      "R1_S1": "disproving",
+      "R1_S2": "disproving"
     }
   }
 }

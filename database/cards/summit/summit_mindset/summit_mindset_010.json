@@ -74,7 +74,12 @@
             "trigger_after_rounds": 3
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S3": "proving",
+        "PtP_M5": "proving",
+        "R2_M1": "proving"
+      }
     },
     "B": {
       "label": "Tolak tawaran — tetap bersama tim",
@@ -116,7 +121,13 @@
             "target_ref": "other_players"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M5": "proving",
+        "R2_M1": "proving",
+        "R3_S3": "disproving",
+        "PtP_M4": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -128,6 +139,19 @@
     "B": {
       "collaboration": 2,
       "empathy": 2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_S3": "proving",
+      "PtP_M5": "proving",
+      "R2_M1": "proving"
+    },
+    "B": {
+      "PtP_M5": "proving",
+      "R2_M1": "proving",
+      "R3_S3": "disproving",
+      "PtP_M4": "proving"
     }
   }
 }

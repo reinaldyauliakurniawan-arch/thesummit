@@ -84,6 +84,12 @@
         "collaboration": 1,
         "coaching": 1,
         "empathy": 1
+      },
+      "lra_tags": {
+        "R3_S1": "proving",
+        "R2_S3": "proving",
+        "R2_S8": "proving",
+        "PtP_S1": "proving"
       }
     },
     "B": {
@@ -117,6 +123,11 @@
       "behavior_tags": {
         "decisiveness": 1,
         "control": 2
+      },
+      "lra_tags": {
+        "R3_S1": "proving",
+        "R2_S3": "proving",
+        "R2_S8": "disproving"
       }
     }
   }

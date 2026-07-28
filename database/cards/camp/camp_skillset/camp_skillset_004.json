@@ -75,7 +75,13 @@
             "trigger_after_rounds": 8
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S2": "proving",
+        "R2_S6": "proving",
+        "PtP_M5": "proving",
+        "PtP_M3": "proving"
+      }
     },
     "B": {
       "label": "Hire pengalaman, minimalkan risiko",
@@ -109,7 +115,13 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S2": "proving",
+        "R2_S3": "proving",
+        "R2_S6": "disproving",
+        "R3_S3": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -121,6 +133,20 @@
     "B": {
       "decisiveness": 1,
       "coaching": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S2": "proving",
+      "R2_S6": "proving",
+      "PtP_M5": "proving",
+      "PtP_M3": "proving"
+    },
+    "B": {
+      "R2_S2": "proving",
+      "R2_S3": "proving",
+      "R2_S6": "disproving",
+      "R3_S3": "disproving"
     }
   }
 }

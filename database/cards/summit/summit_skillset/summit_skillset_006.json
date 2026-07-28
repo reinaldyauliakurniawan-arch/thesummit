@@ -59,7 +59,13 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S5": "proving",
+        "R2_S4": "proving",
+        "R2_S5": "proving",
+        "PtP_S1": "proving"
+      }
     },
     "B": {
       "label": "Putuskan arsitektur, larang perdebatan",
@@ -109,7 +115,13 @@
             "target_ref": "other_players"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_S5": "disproving",
+        "R2_S4": "proving",
+        "R2_S5": "disproving",
+        "R3_S2": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -121,6 +133,20 @@
     "B": {
       "control": 2,
       "collaboration": -2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_S5": "proving",
+      "R2_S4": "proving",
+      "R2_S5": "proving",
+      "PtP_S1": "proving"
+    },
+    "B": {
+      "R3_S5": "disproving",
+      "R2_S4": "proving",
+      "R2_S5": "disproving",
+      "R3_S2": "disproving"
     }
   }
 }

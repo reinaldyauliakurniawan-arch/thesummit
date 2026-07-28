@@ -52,7 +52,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M2": "proving",
+        "PtP_M5": "proving",
+        "PtP_S2": "disproving"
+      }
     },
     "B": {
       "label": "Diskusikan balik sekarang",
@@ -86,7 +91,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M2": "disproving",
+        "PtP_S2": "proving",
+        "PtP_M5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -98,6 +108,18 @@
     "B": {
       "decisiveness": 2,
       "control": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_M2": "proving",
+      "PtP_M5": "proving",
+      "PtP_S2": "disproving"
+    },
+    "B": {
+      "PtP_M2": "disproving",
+      "PtP_S2": "proving",
+      "PtP_M5": "disproving"
     }
   }
 }

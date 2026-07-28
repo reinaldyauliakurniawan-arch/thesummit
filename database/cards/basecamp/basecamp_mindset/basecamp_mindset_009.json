@@ -52,7 +52,11 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_S2": "proving",
+        "PtP_M2": "disproving"
+      }
     },
     "B": {
       "label": "Terima keputusan, fokus ke depan",
@@ -86,7 +90,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M4": "proving",
+        "PtP_M3": "proving",
+        "PtP_M2": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -98,6 +107,17 @@
     "B": {
       "adaptability": 2,
       "collaboration": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_S2": "proving",
+      "PtP_M2": "disproving"
+    },
+    "B": {
+      "PtP_M4": "proving",
+      "PtP_M3": "proving",
+      "PtP_M2": "proving"
     }
   }
 }

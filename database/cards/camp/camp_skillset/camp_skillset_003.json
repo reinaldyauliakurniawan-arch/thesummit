@@ -52,7 +52,12 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S8": "proving",
+        "R2_S3": "proving",
+        "R2_M2": "proving"
+      }
     },
     "B": {
       "label": "Kurangi meeting, ganti async update",
@@ -86,7 +91,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S8": "proving",
+        "R2_S3": "proving",
+        "PtP_M4": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -98,6 +108,18 @@
     "B": {
       "adaptability": 2,
       "collaboration": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S8": "proving",
+      "R2_S3": "proving",
+      "R2_M2": "proving"
+    },
+    "B": {
+      "R2_S8": "proving",
+      "R2_S3": "proving",
+      "PtP_M4": "proving"
     }
   }
 }

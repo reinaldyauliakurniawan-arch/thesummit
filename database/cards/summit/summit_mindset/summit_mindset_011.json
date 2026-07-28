@@ -79,7 +79,14 @@
             }
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_M1": "proving",
+        "R2_S6": "proving",
+        "R3_S3": "proving",
+        "R2_S4": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Eskalasi ke HR — transparan dan tegas",
@@ -135,7 +142,15 @@
             "trigger_after_rounds": 2
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R3_M1": "proving",
+        "PtP_S2": "proving",
+        "R2_S4": "proving",
+        "R3_S3": "disproving",
+        "R2_S5": "disproving",
+        "PtP_M5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -147,6 +162,23 @@
     "B": {
       "decisiveness": 2,
       "empathy": -2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R3_M1": "proving",
+      "R2_S6": "proving",
+      "R3_S3": "proving",
+      "R2_S4": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R3_M1": "proving",
+      "PtP_S2": "proving",
+      "R2_S4": "proving",
+      "R3_S3": "disproving",
+      "R2_S5": "disproving",
+      "PtP_M5": "disproving"
     }
   }
 }

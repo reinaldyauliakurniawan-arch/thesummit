@@ -53,6 +53,11 @@
         "empathy": 2,
         "adaptability": 1,
         "collaboration": 1
+      },
+      "lra_tags": {
+        "PtP_M2": "proving",
+        "PtP_M3": "proving",
+        "R3_M2": "disproving"
       }
     },
     "B": {
@@ -87,6 +92,10 @@
         "decisiveness": 1,
         "control": 2,
         "adaptability": -1
+      },
+      "lra_tags": {
+        "PtP_M2": "disproving",
+        "PtP_S2": "proving"
       }
     }
   }

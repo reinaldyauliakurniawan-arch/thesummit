@@ -43,6 +43,11 @@
       "behavior_tags": {
         "decisiveness": 2,
         "control": 1
+      },
+      "lra_tags": {
+        "PtP_M3": "proving",
+        "R1_M1": "proving",
+        "R2_S7": "disproving"
       }
     },
     "B": {
@@ -84,6 +89,10 @@
       "behavior_tags": {
         "adaptability": 1,
         "collaboration": 1
+      },
+      "lra_tags": {
+        "R1_S1": "proving",
+        "R2_S7": "proving"
       }
     }
   }

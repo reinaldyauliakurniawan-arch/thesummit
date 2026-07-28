@@ -84,6 +84,11 @@
         "adaptability": 2,
         "coaching": 1,
         "collaboration": 1
+      },
+      "lra_tags": {
+        "R3_S3": "proving",
+        "PtP_S1": "proving",
+        "PtP_M4": "proving"
       }
     },
     "B": {
@@ -117,6 +122,11 @@
       "behavior_tags": {
         "decisiveness": 2,
         "control": 2
+      },
+      "lra_tags": {
+        "R3_S3": "disproving",
+        "R2_S3": "proving",
+        "R2_S8": "disproving"
       }
     }
   }

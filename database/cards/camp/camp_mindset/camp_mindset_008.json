@@ -59,7 +59,12 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S4": "proving",
+        "R2_S5": "proving",
+        "PtP_S2": "proving"
+      }
     },
     "B": {
       "label": "Biarkan mereka selesaikan sendiri",
@@ -105,7 +110,12 @@
             }
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S5": "disproving",
+        "R2_S4": "disproving",
+        "R3_S5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -117,6 +127,18 @@
     "B": {
       "risk_taking": 2,
       "control": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S4": "proving",
+      "R2_S5": "proving",
+      "PtP_S2": "proving"
+    },
+    "B": {
+      "R2_S5": "disproving",
+      "R2_S4": "disproving",
+      "R3_S5": "disproving"
     }
   }
 }

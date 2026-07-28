@@ -20,6 +20,8 @@ class LeadershipProfile extends Model
         'key_turning_point',
         'coaching_recommendations',
         'behavior_scores',
+        'lra_assessment',
+        'lra_narrative',
     ];
 
     protected function casts(): array
@@ -29,6 +31,7 @@ class LeadershipProfile extends Model
             'blind_spots'       => 'array',
             'decision_timeline' => 'array',
             'behavior_scores'   => 'array',
+            'lra_assessment'     => 'array',
         ];
     }
 

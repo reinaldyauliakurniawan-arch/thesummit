@@ -68,7 +68,13 @@
             "trigger_after_rounds": 4
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M1": "proving",
+        "R3_M1": "proving",
+        "R2_S4": "proving",
+        "R2_M2": "proving"
+      }
     },
     "B": {
       "label": "Biarkan karena hasil penting organisasi",
@@ -124,7 +130,13 @@
             "trigger_after_rounds": 3
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M1": "disproving",
+        "R3_M1": "disproving",
+        "R2_S5": "disproving",
+        "PtP_M5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -136,6 +148,20 @@
     "B": {
       "control": 2,
       "collaboration": -2
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_M1": "proving",
+      "R3_M1": "proving",
+      "R2_S4": "proving",
+      "R2_M2": "proving"
+    },
+    "B": {
+      "PtP_M1": "disproving",
+      "R3_M1": "disproving",
+      "R2_S5": "disproving",
+      "PtP_M5": "disproving"
     }
   }
 }

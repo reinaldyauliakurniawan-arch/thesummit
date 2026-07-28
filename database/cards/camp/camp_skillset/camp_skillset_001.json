@@ -60,7 +60,12 @@
             "target_ref": "other_players"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S1": "proving",
+        "R2_S5": "proving",
+        "PtP_M5": "proving"
+      }
     },
     "B": {
       "label": "Assign berdasarkan keahlian — efisiensi dulu",
@@ -102,7 +107,12 @@
             "target_ref": "random_other"
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R2_S1": "proving",
+        "R2_S3": "proving",
+        "R2_S5": "disproving"
+      }
     }
   },
   "conditional_effects": [],
@@ -114,6 +124,18 @@
     "B": {
       "control": 1,
       "collaboration": -1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R2_S1": "proving",
+      "R2_S5": "proving",
+      "PtP_M5": "proving"
+    },
+    "B": {
+      "R2_S1": "proving",
+      "R2_S3": "proving",
+      "R2_S5": "disproving"
     }
   }
 }

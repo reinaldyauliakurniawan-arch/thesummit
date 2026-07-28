@@ -45,7 +45,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_S2": "proving",
+        "R1_S1": "proving",
+        "R2_S9": "proving"
+      }
     },
     "B": {
       "label": "Visualisasi ringkas, Q&A interaktif",
@@ -79,7 +84,12 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "PtP_M2": "proving",
+        "PtP_S2": "disproving",
+        "R2_S5": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -91,6 +101,18 @@
     "B": {
       "adaptability": 1,
       "risk_taking": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "PtP_S2": "proving",
+      "R1_S1": "proving",
+      "R2_S9": "proving"
+    },
+    "B": {
+      "PtP_M2": "proving",
+      "PtP_S2": "disproving",
+      "R2_S5": "proving"
     }
   }
 }

@@ -38,7 +38,11 @@
             "delta": -1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R1_S2": "disproving",
+        "R1_S3": "proving"
+      }
     },
     "B": {
       "label": "Telepon langsung atau ajak meeting",
@@ -72,7 +76,12 @@
             "delta": 1
           }
         }
-      ]
+      ],
+      "lra_tags": {
+        "R1_S2": "proving",
+        "PtP_S2": "proving",
+        "PtP_M4": "proving"
+      }
     }
   },
   "conditional_effects": [],
@@ -84,6 +93,17 @@
     "B": {
       "decisiveness": 2,
       "risk_taking": 1
+    }
+  },
+  "lra_tags": {
+    "A": {
+      "R1_S2": "disproving",
+      "R1_S3": "proving"
+    },
+    "B": {
+      "R1_S2": "proving",
+      "PtP_S2": "proving",
+      "PtP_M4": "proving"
     }
   }
 }

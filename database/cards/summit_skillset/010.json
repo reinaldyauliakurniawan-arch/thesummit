@@ -109,6 +109,13 @@
         "empathy": 2,
         "coaching": 1,
         "adaptability": 1
+      },
+      "lra_tags": {
+        "R3_S5": "proving",
+        "R2_S5": "proving",
+        "R2_S9": "proving",
+        "PtP_M5": "proving",
+        "PtP_M2": "proving"
       }
     },
     "B": {
@@ -188,6 +195,12 @@
         "control": 2,
         "collaboration": -2,
         "empathy": -2
+      },
+      "lra_tags": {
+        "R3_S5": "disproving",
+        "R2_S5": "disproving",
+        "R3_S2": "disproving",
+        "PtP_M5": "disproving"
       }
     }
   }

@@ -76,6 +76,12 @@
         "coaching": 2,
         "collaboration": 1,
         "empathy": 1
+      },
+      "lra_tags": {
+        "R2_S6": "proving",
+        "R2_M1": "proving",
+        "R2_S8": "proving",
+        "PtP_M5": "proving"
       }
     },
     "B": {
@@ -109,6 +115,10 @@
       "behavior_tags": {
         "adaptability": 1,
         "decisiveness": 1
+      },
+      "lra_tags": {
+        "R2_S8": "proving",
+        "PtP_M5": "disproving"
       }
     }
   }

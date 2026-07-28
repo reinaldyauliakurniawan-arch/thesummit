@@ -6,6 +6,7 @@ use App\Models\GamePlayer;
 use App\Models\GameTurn;
 use App\Models\PlayerBehavior;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Config;
 
 /**
  * BehaviorTracker — Evidence-driven leadership behavior inference.
@@ -14,14 +15,17 @@ use Illuminate\Support\Facades\Log;
  * Every leadership conclusion must reference accumulated observable evidence events.
  * No structural inference from stat deltas (removed — that was the "garbage in" problem).
  *
- * TASK 7 SIMPLIFY: Removed all logic that exists only because it was technically interesting.
- * Only analytics directly supported by observable evidence survive.
- * If evidence is weak, returns "Insufficient evidence."
+ * LRA INTEGRATION: Now also tracks evidence against the Leadership Role Assessment (LRA).
+ * Each card option can declare which LRA items it provides evidence for via `lra_tags`.
+ * The tracker records LRA-item-level evidence alongside dimension-level evidence.
+ * LRA assessment results are defensible: a facilitator can ask "why?" and get
+ * concrete card-level evidence for any conclusion.
  *
  * Evidence sources (in order of reliability):
  * 1. Explicit tags from card JSON (card author declared behavior_tags)
- * 2. Observable game events (promise kept/broken, cross-player effects applied, etc.)
- * 3. Minimal pattern detection (only same-option repetition — very reliable)
+ * 2. LRA tags from card JSON (card author declared lra_tags for assessment mapping)
+ * 3. Observable game events (promise kept/broken, cross-player effects applied, etc.)
+ * 4. Minimal pattern detection (only same-option repetition — very reliable)
  */
 class BehaviorTracker
 {
@@ -102,6 +106,18 @@ class BehaviorTracker
             if (!$existing) {
                 $contextModifier = $this->computeContextModifier($player, $isKrisis, $turn);
                 $this->recordEvidence($player, $turn, $signal['dimension'], $signal['polarity'], $signal['magnitude'], 'pattern', $contextModifier, $signal['reason']);
+            }
+        }
+
+        // ── Source LRA: Leadership Role Assessment evidence tracking ──
+        $lraTags = $cardData['lra_tags'][$option] ?? [];
+        foreach ($lraTags as $lraItem => $signal) {
+            if ($signal === 'proving' || $signal === 'disproving') {
+                $contextType = $this->getLRAContextType($player, $isKrisis);
+                $contextWeight = Config::get("summit.lra.context_weights.{$contextType}", 1.0);
+                $evidenceDescription = $this->describeLRAEvidence($lraItem, $signal, $option, $cardData['card_narrative'] ?? '');
+
+                $this->recordLRAEvidence($player, $turn, $lraItem, $signal, $contextType, $contextWeight, $evidenceDescription);
             }
         }
 
@@ -938,5 +954,317 @@ class BehaviorTracker
         $modifier *= $turnFactor;
 
         return round($modifier, 2);
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // LRA EVIDENCE TRACKING
+    // ═══════════════════════════════════════════════════════════════
+
+    /**
+     * Get the LRA context type string for evidence quality weighting.
+     */
+    private function getLRAContextType(GamePlayer $player, bool $isKrisis): string
+    {
+        $level = $player->current_level ?? 'basecamp';
+        $crisisPrefix = $isKrisis ? 'crisis' : 'neutral';
+        return "{$crisisPrefix}_{$level}";
+    }
+
+    /**
+     * Generate human-readable LRA evidence description.
+     */
+    private function describeLRAEvidence(string $lraItem, string $signal, string $option, string $narrative): string
+    {
+        $itemConfig = Config::get("summit.lra.items.{$lraItem}");
+        $label = $itemConfig['label'] ?? $lraItem;
+
+        if ($signal === 'proving') {
+            return "Option {$option}: Mendukung indikator \"{$label}\"";
+        }
+        return "Option {$option}: Bertentangan dengan indikator \"{$label}\"";
+    }
+
+    /**
+     * Record LRA-item-level evidence.
+     * Stores as a PlayerBehavior with lra_item and lra_signal populated.
+     * The behavior_type is set to the LRA item code for querying.
+     */
+    private function recordLRAEvidence(
+        GamePlayer $player,
+        GameTurn $turn,
+        string $lraItem,
+        string $signal,
+        string $contextType,
+        float $contextWeight,
+        string $description,
+    ): void {
+        $existing = PlayerBehavior::where('game_player_id', $player->id)
+            ->where('game_turn_id', $turn->id)
+            ->where('lra_item', $lraItem)
+            ->exists();
+
+        if ($existing) return;
+
+        PlayerBehavior::create([
+            'game_player_id'   => $player->id,
+            'game_turn_id'     => $turn->id,
+            'behavior_type'    => "lra_{$lraItem}",
+            'score'            => $signal === 'proving' ? 1 : -1,
+            'evidence'         => $description,
+            'source'           => 'lra_tag',
+            'context_modifier' => round($contextWeight, 2),
+            'lra_item'         => $lraItem,
+            'lra_signal'       => $signal,
+        ]);
+    }
+
+    /**
+     * Generate a complete LRA assessment for a player.
+     * Returns per-item evidence with confidence scores, quality levels,
+     * and suggested assessment scores — all defensible with concrete evidence.
+     *
+     * This is the method the ReflectionEngine calls to produce evidence-cited insights.
+     *
+     * @return array LRA assessment results for all 31 items
+     */
+    public function getLRAAssessment(GamePlayer $player): array
+    {
+        $lraItems = Config::get('summit.lra.items', []);
+        $minConfidence = Config::get('summit.lra.min_confidence_for_assessment', 0.50);
+        $insufficientLabel = Config::get('summit.lra.insufficient_label', 'Insufficient evidence');
+
+        $results = [];
+
+        foreach ($lraItems as $itemCode => $itemConfig) {
+            $evidence = PlayerBehavior::where('game_player_id', $player->id)
+                ->where('lra_item', $itemCode)
+                ->with('turn.card')
+                ->orderBy('created_at')
+                ->get();
+
+            $itemResult = $this->assessLRAItem($itemCode, $evidence);
+            $results[$itemCode] = $itemResult;
+        }
+
+        return $results;
+    }
+
+    /**
+     * Assess a single LRA item from accumulated evidence.
+     * Returns: observations, confidence, quality_level, suggested_score,
+     * defensible (bool), and facilitator_explanation.
+     */
+    private function assessLRAItem(string $itemCode, $evidence): array
+    {
+        $minConfidence = Config::get('summit.lra.min_confidence_for_assessment', 0.50);
+        $minObsMedium = Config::get('summit.lra.min_observations_for_medium', 3);
+        $minObsStrong = Config::get('summit.lra.min_observations_for_strong', 5);
+        $minContexts = Config::get('summit.lra.min_context_types_for_medium', 2);
+        $itemConfig = Config::get("summit.lra.items.{$itemCode}", []);
+        $insufficientLabel = Config::get('summit.lra.insufficient_label', 'Insufficient evidence');
+
+        $count = $evidence->count();
+
+        // Insufficient: fewer than 2 observations
+        if ($count < 2) {
+            return [
+                'label'         => $itemConfig['label'] ?? $itemCode,
+                'tier'          => $itemConfig['tier'] ?? 'PtP',
+                'category'      => $itemConfig['category'] ?? 'MINDSET',
+                'description'   => $itemConfig['description'] ?? '',
+                'observations'  => $this->formatObservations($evidence),
+                'evidence_count' => $count,
+                'proving_count'  => 0,
+                'disproving_count' => 0,
+                'context_types'  => [],
+                'positive_pct'  => 0,
+                'confidence'     => 0,
+                'quality_level'  => 'insufficient',
+                'suggested_score' => null,
+                'defensible'      => false,
+                'facilitator_explanation' => "Insufficient evidence for {$itemConfig['label'] ?? $itemCode}. Only {$count} observation(s) — need at least 2.",
+            ];
+        }
+
+        // Count proving vs disproving
+        $proving = $evidence->where('lra_signal', 'proving')->count();
+        $disproving = $evidence->where('lra_signal', 'disproving')->count();
+        $positivePct = $proving / $count;
+
+        // Collect context types
+        $contextTypes = [];
+        $totalWeight = 0;
+        $provingWeight = 0;
+        $directionChanges = 0;
+        $lastSignal = null;
+
+        foreach ($evidence as $i => $ep) {
+            $ctx = $ep->context_modifier ?? 1.0;
+            $totalWeight += $ctx;
+            if ($ep->lra_signal === 'proving') {
+                $provingWeight += $ctx;
+            }
+            // Track context types
+            $turn = $ep->turn;
+            $level = 'basecamp';
+            $isKrisis = false;
+            if ($turn) {
+                $card = $turn->card;
+                if ($card) {
+                    $level = $card->level ?? 'basecamp';
+                    $isKrisis = $card->isKrisis();
+                }
+            }
+            $ctxType = ($isKrisis ? 'crisis_' : 'neutral_') . $level;
+            $contextTypes[$ctxType] = true;
+
+            // Track direction changes
+            if ($lastSignal !== null && $ep->lra_signal !== $lastSignal) {
+                $directionChanges++;
+            }
+            $lastSignal = $ep->lra_signal;
+        }
+
+        $contextCount = count($contextTypes);
+
+        // Compute confidence
+        $rawConfidence = $count >= $minObsStrong ? 0.85 : ($count >= $minObsMedium ? 0.65 : 0.40);
+        $contextBonus = $contextCount >= 3 ? 0.10 : ($contextCount >= 2 ? 0.05 : 0);
+        $stability = $count > 1 ? 1.0 - ($directionChanges / ($count - 1)) : 1.0;
+        $finalConfidence = min(1.0, $rawConfidence + $contextBonus) * (0.6 + 0.4 * $stability);
+
+        // Determine quality level
+        $qualityLevel = 'insufficient';
+        if ($finalConfidence >= 0.90 && $count >= 7 && $contextCount >= 3) {
+            $qualityLevel = 'repeated';
+        } elseif ($finalConfidence >= 0.75 && $count >= 5 && $contextCount >= 3) {
+            $qualityLevel = 'strong';
+        } elseif ($finalConfidence >= 0.50 && $count >= 3 && $contextCount >= 2) {
+            $qualityLevel = 'medium';
+        } elseif ($finalConfidence >= 0.25 && $count >= 2) {
+            $qualityLevel = 'weak';
+        }
+
+        // Check for contradictory evidence
+        $isContradictory = ($proving >= 3 && $disproving >= 3);
+
+        // Map to suggested score
+        $suggestedScore = null;
+        if ($isContradictory) {
+            $suggestedScore = 'mixed';
+        } elseif ($qualityLevel !== 'insufficient') {
+            $suggestedScore = $this->mapEvidenceToScore($positivePct, $qualityLevel);
+        }
+
+        // Generate facilitator explanation
+        $explanation = $this->generateFacilitatorExplanation(
+            $itemConfig['label'] ?? $itemCode,
+            $proving, $disproving, $count, $contextCount,
+            $qualityLevel, $positivePct, $isContradictory,
+            $evidence
+        );
+
+        return [
+            'label'              => $itemConfig['label'] ?? $itemCode,
+            'tier'               => $itemConfig['tier'] ?? 'PtP',
+            'category'           => $itemConfig['category'] ?? 'MINDSET',
+            'description'         => $itemConfig['description'] ?? '',
+            'observations'        => $this->formatObservations($evidence),
+            'evidence_count'       => $count,
+            'proving_count'        => $proving,
+            'disproving_count'     => $disproving,
+            'context_types'        => array_keys($contextTypes),
+            'positive_pct'        => round($positivePct, 2),
+            'confidence'           => round($finalConfidence, 2),
+            'quality_level'        => $isContradictory ? 'contradictory' : $qualityLevel,
+            'suggested_score'      => $suggestedScore,
+            'defensible'           => $finalConfidence >= $minConfidence && !$isContradictory,
+            'facilitator_explanation' => $explanation,
+        ];
+    }
+
+    /**
+     * Map evidence pattern to a 1-5 assessment score.
+     */
+    private function mapEvidenceToScore(float $positivePct, string $quality): ?int
+    {
+        if ($positivePct >= 0.80 && $quality === 'strong') return 5;
+        if ($positivePct >= 0.70 && in_array($quality, ['strong', 'repeated'])) return 4;
+        if ($positivePct >= 0.60 && $quality !== 'insufficient') return 3;
+        if ($positivePct >= 0.40 && $quality !== 'insufficient') return 2;
+        return 1;
+    }
+
+    /**
+     * Generate a facilitator-friendly explanation citing concrete evidence.
+     * This is what a facilitator reads when asked "Why did you conclude this?"
+     */
+    private function generateFacilitatorExplanation(
+        string $label,
+        int $proving,
+        int $disproving,
+        int $total,
+        int $contextCount,
+        string $quality,
+        float $positivePct,
+        bool $isContradictory,
+        $evidence
+    ): string {
+        $obsTexts = [];
+        foreach ($evidence as $ep) {
+            $turn = $ep->turn;
+            $card = $turn ? $turn->card : null;
+            $cardId = $card ? $card->card_id : '?';
+            $turnNum = $turn ? ($turn->turn_index ?? '?') : '?';
+            $signal = $ep->lra_signal === 'proving' ? '✓' : '✗';
+            $obsTexts[] = "{$signal} Turn {$turnNum} ({$cardId})";
+        }
+
+        $evidenceList = implode(', ', $obsTexts);
+
+        if ($isContradictory) {
+            return "Evidence for \"{$label}\" is contradictory ({$proving} supporting, {$disproving} contradicting across {$total} observations). Behavior appears context-dependent. Cannot assign a single score. Evidence: {$evidenceList}.";
+        }
+
+        if ($quality === 'insufficient') {
+            return "Insufficient evidence for \"{$label}\" — only {$total} observation(s) across {$contextCount} context type(s). Evidence: {$evidenceList}.";
+        }
+
+        $direction = $positivePct >= 0.5 ? 'positive' : 'negative';
+        $pctText = round($positivePct * 100) . '%';
+
+        return "Evidence for \"{$label}\": {$proving} of {$total} observations support ({$pctText}) across {$contextCount} context type(s). Quality: {$quality}. Direction: {$direction}. Evidence: {$evidenceList}.";
+    }
+
+    /**
+     * Format observations as an array of citation-ready strings.
+     */
+    private function formatObservations($evidence): array
+    {
+        $formatted = [];
+        foreach ($evidence as $ep) {
+            $turn = $ep->turn;
+            $card = $turn ? $turn->card : null;
+            $formatted[] = [
+                'turn'        => $turn ? ($turn->turn_index ?? null) : null,
+                'card'        => $card ? $card->card_id : null,
+                'card_title'  => $card ? ($card->title ?? null) : null,
+                'option'      => $turn ? $turn->chosen_option : null,
+                'signal'      => $ep->lra_signal,
+                'context_type' => $this->guessContextType($turn, $card),
+                'description' => $ep->evidence,
+            ];
+        }
+        return $formatted;
+    }
+
+    /**
+     * Guess the LRA context type from a turn and its card.
+     */
+    private function guessContextType($turn, $card): string
+    {
+        $level = $card ? ($card->level ?? 'basecamp') : 'basecamp';
+        $isKrisis = $card ? $card->isKrisis() : false;
+        return ($isKrisis ? 'crisis_' : 'neutral_') . $level;
     }
 }

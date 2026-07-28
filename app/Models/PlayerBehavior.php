@@ -19,6 +19,8 @@ class PlayerBehavior extends Model
         'evidence',
         'source',
         'context_modifier',
+        'lra_item',
+        'lra_signal',
     ];
 
     protected function casts(): array
@@ -28,6 +30,23 @@ class PlayerBehavior extends Model
             'context_modifier' => 'float',
             'created_at' => 'datetime',
         ];
+    }
+
+    // ─── Scopes ──────────────────────────────────────────
+
+    public function scopeForLRAItem($query, string $lraItem)
+    {
+        return $query->where('lra_item', $lraItem);
+    }
+
+    public function scopeProving($query)
+    {
+        return $query->where('lra_signal', 'proving');
+    }
+
+    public function scopeDisproving($query)
+    {
+        return $query->where('lra_signal', 'disproving');
     }
 
     // ─── Relationships ──────────────────────────────────────────

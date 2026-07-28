@@ -85,6 +85,12 @@
         "collaboration": 1,
         "decisiveness": 1,
         "risk_taking": 1
+      },
+      "lra_tags": {
+        "R3_S3": "proving",
+        "R2_S2": "proving",
+        "R2_S6": "proving",
+        "PtP_M5": "proving"
       }
     },
     "B": {
@@ -140,6 +146,11 @@
       "behavior_tags": {
         "adaptability": 1,
         "control": 1
+      },
+      "lra_tags": {
+        "R3_S3": "disproving",
+        "R2_S2": "disproving",
+        "R3_M2": "proving"
       }
     }
   }
