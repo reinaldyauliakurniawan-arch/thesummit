@@ -150,12 +150,30 @@ class ReflectionEngine
     /**
      * Generate a full LRA narrative for facilitators.
      * This is the evidence document a facilitator uses to defend every conclusion.
+     *
+     * TASK 1+3+4: Now includes opportunity counts, missed opportunities,
+     * and fairness status for every item.
      */
     protected function generateLRANarrative(array $lraAssessment): string
     {
         $lines = [];
         $lines[] = '=== LEADERSHIP ROLE ASSESSMENT — EVIDENCE REPORT ===';
         $lines[] = '';
+
+        // Include opportunity summary if available
+        $oppSummary = $lraAssessment['_opportunity_summary'] ?? null;
+        if ($oppSummary) {
+            $lines[] = '-- ASSESSMENT FAIRNESS SUMMARY --';
+            $lines[] = sprintf(
+                'Total items: %d | Assessable: %d | No opportunity: %d | Insufficient opportunity: %d | Limited card coverage: %d',
+                $oppSummary['total_items'],
+                $oppSummary['items_assessable'],
+                $oppSummary['items_no_opportunity'],
+                $oppSummary['items_insufficient_opportunity'],
+                $oppSummary['items_limited_coverage']
+            );
+            $lines[] = '';
+        }
 
         // Group by tier
         $tiers = ['PtP' => 'Permission to Play', 'R1' => 'Individual Contributor', 'R2' => 'Leading Others', 'R3' => 'Leading Leaders'];
@@ -169,13 +187,20 @@ class ReflectionEngine
             foreach ($tierItems as $code => $item) {
                 $score = $item['suggested_score'];
                 $quality = $item['quality_level'];
+                $fairness = $item['fairness_status'] ?? 'unknown';
+                $opps = $item['opportunities_presented'] ?? '?';
+                $missed = $item['missed_proving_count'] ?? 0;
 
                 if ($score === 'mixed') {
-                    $lines[] = "{$item['label']}: KONTRADIKTIF ({$item['proving_count']} mendukung, {$item['disproving_count']} bertentangan)";
+                    $lines[] = "{$item['label']}: KONTRADIKTIF ({$item['proving_count']} mendukung, {$item['disproving_count']} bertentangan, {$opps} opportunities)";
                 } elseif ($score === null) {
-                    $lines[] = "{$item['label']}: INSUFFICIENT EVIDENCE ({$item['evidence_count']} observasi)";
+                    $fairnessLabel = $fairness === 'no_opportunity'
+                        ? 'NO OPPORTUNITY'
+                        : ($fairness === 'insufficient_opportunity' ? 'INSUFFICIENT OPPORTUNITY' : 'INSUFFICIENT EVIDENCE');
+                    $lines[] = "{$item['label']}: {$fairnessLabel} ({$opps} opportunity, {$item['evidence_count']} observasi)";
                 } else {
-                    $lines[] = "{$item['label']}: Score {$score}/5 ({$item['proving_count']}/{$item['evidence_count']} mendukung, quality: {$quality})";
+                    $missedText = $missed > 0 ? ", {$missed} missed proving" : '';
+                    $lines[] = "{$item['label']}: Score {$score}/5 ({$item['proving_count']}/{$item['evidence_count']} mendukung, quality: {$quality}, {$opps} opportunities{$missedText})";
                 }
                 $lines[] = "  Evidence: {$item['facilitator_explanation']}";
                 $lines[] = '';
@@ -208,6 +233,7 @@ class ReflectionEngine
 
     /**
      * Find missed opportunities based on unchosen options.
+     * TASK 3: Now includes LRA-specific missed opportunities.
      */
     protected function findMissedOpportunities(GamePlayer $player, $turns): string
     {
@@ -219,12 +245,32 @@ class ReflectionEngine
             $chosen = strtolower($turn->chosen_option);
             $other = $chosen === 'a' ? 'b' : 'a';
 
+            // Check reputation opportunity
             $chosenRep = $card->{"opsi_{$chosen}_reputation"} ?? 0;
             $otherRep = $card->{"opsi_{$other}_reputation"} ?? 0;
 
             if ($otherRep > $chosenRep + 2) {
                 $turnNum = $turns->search($turn) + 1;
                 $missed[] = "Turn {$turnNum}: Kamu melewatkan kesempatan meningkatkan reputasi tim";
+            }
+
+            // TASK 3: Check for missed LRA proving opportunities
+            $missedLRA = PlayerBehavior::where('game_player_id', $player->id)
+                ->where('game_turn_id', $turn->id)
+                ->where('source', 'missed_opportunity')
+                ->where('lra_signal', 'missed_proving')
+                ->count();
+
+            if ($missedLRA > 0) {
+                $turnNum = $turns->search($turn) + 1;
+                $missedLraItems = PlayerBehavior::where('game_player_id', $player->id)
+                    ->where('game_turn_id', $turn->id)
+                    ->where('source', 'missed_opportunity')
+                    ->where('lra_signal', 'missed_proving')
+                    ->pluck('lra_item')
+                    ->map(fn($code) => Config::get("summit.lra.items.{$code}.label", $code))
+                    ->join(', ');
+                $missed[] = "Turn {$turnNum}: Kamu melewatkan kesempatan mendemonstrasikan: {$missedLraItems}";
             }
         }
 

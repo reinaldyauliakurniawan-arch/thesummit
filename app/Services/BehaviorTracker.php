@@ -110,6 +110,7 @@ class BehaviorTracker
         }
 
         // ── Source LRA: Leadership Role Assessment evidence tracking ──
+        // Record evidence for the CHOSEN option's LRA tags
         $lraTags = $cardData['lra_tags'][$option] ?? [];
         foreach ($lraTags as $lraItem => $signal) {
             if ($signal === 'proving' || $signal === 'disproving') {
@@ -120,6 +121,18 @@ class BehaviorTracker
                 $this->recordLRAEvidence($player, $turn, $lraItem, $signal, $contextType, $contextWeight, $evidenceDescription);
             }
         }
+
+        // ── TASK 3: MISSED OPPORTUNITY TRACKING ──
+        // Track LRA tags on the UNCHOSEN option as missed opportunities.
+        // If option B had "proving" for PtP_M1 but player chose option A,
+        // that is evidence of a missed opportunity to demonstrate PtP_M1.
+        $this->trackMissedOpportunities($player, $turn, $option, $cardData);
+
+        // ── TASK 1: OPPORTUNITY TRACKING ──
+        // Record every LRA item this card presents (across ALL options)
+        // as an "opportunity" — regardless of which option was chosen.
+        // This enables fairness checking: did the player have enough chances?
+        $this->trackLRAOpportunities($player, $turn, $cardData);
 
         return $evidence;
     }
@@ -960,6 +973,138 @@ class BehaviorTracker
     // LRA EVIDENCE TRACKING
     // ═══════════════════════════════════════════════════════════════
 
+    // ═══════════════════════════════════════════════════════════════
+    // TASK 3: MISSED OPPORTUNITY TRACKING
+    // ═══════════════════════════════════════════════════════════════
+
+    /**
+     * Track LRA tags on the UNCHOSEN option as missed opportunities.
+     *
+     * When a card offers two options and the player chooses A,
+     * any LRA tags on option B represent opportunities the player passed up.
+     * This is evidence. Choosing not to delegate IS evidence about delegation.
+     * Choosing not to give feedback IS evidence about communication.
+     *
+     * Recorded as PlayerBehavior with source='missed_opportunity'.
+     * These records participate in the same evidence pipeline as chosen behaviors.
+     */
+    private function trackMissedOpportunities(
+        GamePlayer $player,
+        GameTurn $turn,
+        string $chosenOption,
+        array $cardData
+    ): void {
+        $allLraTags = $cardData['lra_tags'] ?? [];
+        $chosenOption = strtoupper($chosenOption);
+        $otherOptions = ['A', 'B'];
+
+        foreach ($otherOptions as $opt) {
+            if ($opt === $chosenOption) continue;
+
+            $otherTags = $allLraTags[$opt] ?? [];
+            foreach ($otherTags as $lraItem => $signal) {
+                if ($signal !== 'proving' && $signal !== 'disproving') continue;
+
+                // Check if this LRA item was ALSO on the chosen option
+                // If so, it's not a "missed" opportunity — the player did encounter it
+                $chosenTags = $allLraTags[$chosenOption] ?? [];
+                if (isset($chosenTags[$lraItem])) continue;
+
+                $contextType = $this->getLRAContextType($player, $cardData['is_krisis'] ?? false);
+
+                // The missed signal is the INVERSE of what the unchosen option offered
+                $missedSignal = ($signal === 'proving')
+                    ? 'missed_proving'
+                    : 'missed_disproving';
+
+                $itemConfig = Config::get("summit.lra.items.{$lraItem}", []);
+                $label = $itemConfig['label'] ?? $lraItem;
+                $description = sprintf(
+                    'Peluang terlewat: Option %s mendukung "%s" (%s) tapi pemain memilih Option %s',
+                    $opt, $label, $signal, $chosenOption
+                );
+
+                // Prevent duplicate per turn
+                $existing = PlayerBehavior::where('game_player_id', $player->id)
+                    ->where('game_turn_id', $turn->id)
+                    ->where('lra_item', $lraItem)
+                    ->where('source', 'missed_opportunity')
+                    ->exists();
+
+                if (!$existing) {
+                    PlayerBehavior::create([
+                        'game_player_id'   => $player->id,
+                        'game_turn_id'     => $turn->id,
+                        'behavior_type'    => "lra_{$lraItem}",
+                        'score'            => ($signal === 'proving') ? -1 : 1,
+                        'evidence'         => $description,
+                        'source'           => 'missed_opportunity',
+                        'context_modifier' => Config::get("summit.lra.context_weights.{$contextType}", 1.0),
+                        'lra_item'         => $lraItem,
+                        'lra_signal'       => $missedSignal,
+                    ]);
+                }
+            }
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // TASK 1: OPPORTUNITY TRACKING
+    // ═══════════════════════════════════════════════════════════════
+
+    /**
+     * Record every LRA item this card presents as an "opportunity".
+     *
+     * An opportunity exists whenever ANY option on the card tags an LRA item.
+     * The player may or may not choose the option that demonstrates the competency.
+     * This count enables the fairness check in TASK 4:
+     *   - If opportunities < min_opportunities → "Not enough evidence"
+     *   - If opportunities >= min_opportunities → scoring is fair game
+     *
+     * Stored as PlayerBehavior with source='opportunity'.
+     */
+    private function trackLRAOpportunities(
+        GamePlayer $player,
+        GameTurn $turn,
+        array $cardData
+    ): void {
+        $allLraTags = $cardData['lra_tags'] ?? [];
+        $seenItems = [];
+
+        foreach (['A', 'B'] as $opt) {
+            $tags = $allLraTags[$opt] ?? [];
+            foreach ($tags as $lraItem => $signal) {
+                if (isset($seenItems[$lraItem])) continue;
+                $seenItems[$lraItem] = true;
+
+                $contextType = $this->getLRAContextType($player, $cardData['is_krisis'] ?? false);
+
+                $existing = PlayerBehavior::where('game_player_id', $player->id)
+                    ->where('game_turn_id', $turn->id)
+                    ->where('lra_item', $lraItem)
+                    ->where('source', 'opportunity')
+                    ->exists();
+
+                if (!$existing) {
+                    PlayerBehavior::create([
+                        'game_player_id'   => $player->id,
+                        'game_turn_id'     => $turn->id,
+                        'behavior_type'    => "lra_{$lraItem}",
+                        'score'            => 0,  // Neutral — opportunity, not behavior
+                        'evidence'         => sprintf(
+                            'Opportunity: kartu menampilkan kompetensi "%s" pada Option %s (%s)',
+                            $lraItem, $opt, $signal
+                        ),
+                        'source'           => 'opportunity',
+                        'context_modifier' => 0,  // No weight — this is a counter, not evidence
+                        'lra_item'         => $lraItem,
+                        'lra_signal'       => 'opportunity',
+                    ]);
+                }
+            }
+        }
+    }
+
     /**
      * Get the LRA context type string for evidence quality weighting.
      */
@@ -1023,6 +1168,13 @@ class BehaviorTracker
      * Returns per-item evidence with confidence scores, quality levels,
      * and suggested assessment scores — all defensible with concrete evidence.
      *
+     * TASK 4: Now includes opportunity fairness check.
+     * A competency cannot be scored unless:
+     *   1. Sufficient opportunities existed (cards drawn that tagged this item)
+     *   2. Sufficient evidence exists (player chose tagged options)
+     *   3. Confidence exceeds threshold
+     * Otherwise: return "Not enough evidence" instead of a low score.
+     *
      * This is the method the ReflectionEngine calls to produce evidence-cited insights.
      *
      * @return array LRA assessment results for all 31 items
@@ -1035,26 +1187,140 @@ class BehaviorTracker
 
         $results = [];
 
+        // TASK 2: Build coverage metadata for the assessment session
+        $coverageReport = $this->buildCoverageReport($player);
+
         foreach ($lraItems as $itemCode => $itemConfig) {
+            // Gather ONLY behavioral evidence (not opportunity records)
             $evidence = PlayerBehavior::where('game_player_id', $player->id)
                 ->where('lra_item', $itemCode)
+                ->whereIn('source', ['lra_tag', 'missed_opportunity'])
                 ->with('turn.card')
                 ->orderBy('created_at')
                 ->get();
 
-            $itemResult = $this->assessLRAItem($itemCode, $evidence);
+            // TASK 1: Count total opportunities for this item
+            $opportunityCount = PlayerBehavior::where('game_player_id', $player->id)
+                ->where('lra_item', $itemCode)
+                ->where('source', 'opportunity')
+                ->count();
+
+            $itemResult = $this->assessLRAItem($itemCode, $evidence, $opportunityCount);
             $results[$itemCode] = $itemResult;
         }
 
+        // Attach coverage report to results
+        $results['_coverage_report'] = $coverageReport;
+        $results['_opportunity_summary'] = $this->buildOpportunitySummary($player);
+
         return $results;
+    }
+
+    /**
+     * Build a coverage report for the entire assessment session.
+     * TASK 2: Coverage Validation — shows which items had sufficient
+     * opportunity coverage and which did not.
+     */
+    public function buildCoverageReport(GamePlayer $player): array
+    {
+        $lraItems = Config::get('summit.lra.items', []);
+        $report = [];
+
+        foreach ($lraItems as $itemCode => $itemConfig) {
+            $opportunityCount = PlayerBehavior::where('game_player_id', $player->id)
+                ->where('lra_item', $itemCode)
+                ->where('source', 'opportunity')
+                ->count();
+
+            $oppModel = Config::get("summit.lra.opportunity_model.{$itemCode}", []);
+            $minOpp = $oppModel['min_opportunities'] ?? 2;
+            $limited = $oppModel['limited_coverage'] ?? false;
+
+            $report[$itemCode] = [
+                'opportunities_presented' => $opportunityCount,
+                'min_required' => $minOpp,
+                'fairness_status' => $opportunityCount >= $minOpp
+                    ? 'fair' 
+                    : ($opportunityCount === 0 ? 'no_opportunity' : 'insufficient_opportunity'),
+                'limited_coverage' => $limited,
+            ];
+        }
+
+        return $report;
+    }
+
+    /**
+     * Build an opportunity summary for facilitator review.
+     * Shows total opportunities, utilized, and missed per item.
+     */
+    public function buildOpportunitySummary(GamePlayer $player): array
+    {
+        $lraItems = Config::get('summit.lra.items', []);
+        $summary = [
+            'total_items' => count($lraItems),
+            'items_assessable' => 0,
+            'items_no_opportunity' => 0,
+            'items_insufficient_opportunity' => 0,
+            'items_limited_coverage' => 0,
+            'items_assessed' => 0,
+            'per_item' => [],
+        ];
+
+        foreach ($lraItems as $itemCode => $itemConfig) {
+            $opportunities = PlayerBehavior::where('game_player_id', $player->id)
+                ->where('lra_item', $itemCode)
+                ->where('source', 'opportunity')
+                ->count();
+
+            $behavioralEvidence = PlayerBehavior::where('game_player_id', $player->id)
+                ->where('lra_item', $itemCode)
+                ->whereIn('source', ['lra_tag', 'missed_opportunity'])
+                ->count();
+
+            $oppModel = Config::get("summit.lra.opportunity_model.{$itemCode}", []);
+            $minOpp = $oppModel['min_opportunities'] ?? 2;
+            $limited = $oppModel['limited_coverage'] ?? false;
+
+            $entry = [
+                'label' => $itemConfig['label'] ?? $itemCode,
+                'tier' => $itemConfig['tier'] ?? 'PtP',
+                'opportunities_presented' => $opportunities,
+                'evidence_collected' => $behavioralEvidence,
+                'min_required' => $minOpp,
+                'fairness_status' => $opportunities >= $minOpp
+                    ? 'fair'
+                    : ($opportunities === 0 ? 'no_opportunity' : 'insufficient_opportunity'),
+            ];
+            $summary['per_item'][$itemCode] = $entry;
+
+            if ($opportunities === 0) {
+                $summary['items_no_opportunity']++;
+            } elseif ($opportunities < $minOpp) {
+                $summary['items_insufficient_opportunity']++;
+            } else {
+                $summary['items_assessable']++;
+            }
+            if ($limited) {
+                $summary['items_limited_coverage']++;
+            }
+        }
+
+        return $summary;
     }
 
     /**
      * Assess a single LRA item from accumulated evidence.
      * Returns: observations, confidence, quality_level, suggested_score,
      * defensible (bool), and facilitator_explanation.
+     *
+     * TASK 4: Now includes opportunity fairness check.
+     * A competency cannot be scored unless sufficient opportunities existed.
+     *
+     * @param string $itemCode LRA item code (e.g., 'PtP_M1')
+     * @param \Illuminate\Database\Eloquent\Collection $evidence Behavioral evidence records
+     * @param int $opportunityCount Total opportunities (cards that tagged this item)
      */
-    private function assessLRAItem(string $itemCode, $evidence): array
+    private function assessLRAItem(string $itemCode, $evidence, int $opportunityCount = 0): array
     {
         $minConfidence = Config::get('summit.lra.min_confidence_for_assessment', 0.50);
         $minObsMedium = Config::get('summit.lra.min_observations_for_medium', 3);
@@ -1062,27 +1328,113 @@ class BehaviorTracker
         $minContexts = Config::get('summit.lra.min_context_types_for_medium', 2);
         $itemConfig = Config::get("summit.lra.items.{$itemCode}", []);
         $insufficientLabel = Config::get('summit.lra.insufficient_label', 'Insufficient evidence');
+        $oppModel = Config::get("summit.lra.opportunity_model.{$itemCode}", []);
+        $minOpportunities = $oppModel['min_opportunities'] ?? 2;
+        $limitedCoverage = $oppModel['limited_coverage'] ?? false;
+
+        // ═══════════════════════════════════════════════════════════
+        // TASK 4: ASSESSMENT FAIRNESS — Opportunity Check
+        // ═══════════════════════════════════════════════════════════
+        // If the player did not encounter enough cards that test this competency,
+        // we CANNOT assign a score — regardless of evidence quality.
+        // Return "Not enough evidence" instead of a low score.
+        if ($opportunityCount < $minOpportunities) {
+            $reason = $opportunityCount === 0
+                ? "No card drawn tested this competency."
+                : "Only {$opportunityCount} opportunity(ies) encountered — need at least {$minOpportunities}.";
+
+            $label = $itemConfig['label'] ?? $itemCode;
+            return [
+                'label'                  => $label,
+                'tier'                   => $itemConfig['tier'] ?? 'PtP',
+                'category'               => $itemConfig['category'] ?? 'MINDSET',
+                'description'            => $itemConfig['description'] ?? '',
+                'observations'           => $this->formatObservations($evidence),
+                'evidence_count'          => $evidence->count(),
+                'opportunities_presented' => $opportunityCount,
+                'min_opportunities'       => $minOpportunities,
+                'proving_count'           => 0,
+                'disproving_count'        => 0,
+                'missed_proving_count'    => 0,
+                'missed_disproving_count' => 0,
+                'context_types'           => [],
+                'positive_pct'           => 0,
+                'confidence'              => 0,
+                'quality_level'           => 'insufficient',
+                'suggested_score'         => null,
+                'defensible'              => false,
+                'fairness_status'         => $opportunityCount === 0 ? 'no_opportunity' : 'insufficient_opportunity',
+                'limited_coverage'        => $limitedCoverage,
+                'facilitator_explanation'  => "{$insufficientLabel} for \"{$label}\". {$reason} Cannot assign a score — insufficient opportunity to demonstrate this competency.",
+            ];
+        }
 
         $count = $evidence->count();
 
-        // Insufficient: fewer than 2 observations
+        // ═══════════════════════════════════════════════════════════
+        // TASK 3: Count missed opportunities separately
+        // ═══════════════════════════════════════════════════════════
+        $missedProving = 0;
+        $missedDisproving = 0;
+        $behavioralEvidence = []; // Only lra_tag source, not missed
+        foreach ($evidence as $ep) {
+            if ($ep->source === 'missed_opportunity') {
+                if (str_contains($ep->lra_signal ?? '', 'missed_proving')) {
+                    $missedProving++;
+                } elseif (str_contains($ep->lra_signal ?? '', 'missed_disproving')) {
+                    $missedDisproving++;
+                }
+            } else {
+                $behavioralEvidence[] = $ep;
+            }
+        }
+
+        // Build the effective evidence: chosen behavior + missed opportunities
+        // A missed proving opportunity counts as weak negative evidence
+        // A missed disproving opportunity counts as weak positive evidence (player avoided the bad choice)
+        $effectiveProving = 0;
+        $effectiveDisproving = 0;
+
+        foreach ($evidence as $ep) {
+            if ($ep->source === 'lra_tag') {
+                if ($ep->lra_signal === 'proving') $effectiveProving++;
+                if ($ep->lra_signal === 'disproving') $effectiveDisproving++;
+            } elseif ($ep->source === 'missed_opportunity') {
+                // Missed proving = player didn't take the opportunity → weak negative
+                if (str_contains($ep->lra_signal ?? '', 'missed_proving')) {
+                    $effectiveDisproving += 0.5; // Half weight — it's indirect
+                }
+                // Missed disproving = player avoided the bad path → weak positive
+                if (str_contains($ep->lra_signal ?? '', 'missed_disproving')) {
+                    $effectiveProving += 0.5;
+                }
+            }
+        }
+
+        // Insufficient behavioral evidence: fewer than 2 observations
         if ($count < 2) {
             return [
-                'label'         => $itemConfig['label'] ?? $itemCode,
-                'tier'          => $itemConfig['tier'] ?? 'PtP',
-                'category'      => $itemConfig['category'] ?? 'MINDSET',
-                'description'   => $itemConfig['description'] ?? '',
-                'observations'  => $this->formatObservations($evidence),
-                'evidence_count' => $count,
-                'proving_count'  => 0,
-                'disproving_count' => 0,
-                'context_types'  => [],
-                'positive_pct'  => 0,
-                'confidence'     => 0,
-                'quality_level'  => 'insufficient',
-                'suggested_score' => null,
-                'defensible'      => false,
-                'facilitator_explanation' => "Insufficient evidence for {$itemConfig['label'] ?? $itemCode}. Only {$count} observation(s) — need at least 2.",
+                'label'                  => $itemConfig['label'] ?? $itemCode,
+                'tier'                   => $itemConfig['tier'] ?? 'PtP',
+                'category'               => $itemConfig['category'] ?? 'MINDSET',
+                'description'            => $itemConfig['description'] ?? '',
+                'observations'           => $this->formatObservations($evidence),
+                'evidence_count'          => $count,
+                'opportunities_presented' => $opportunityCount,
+                'min_opportunities'       => $minOpportunities,
+                'proving_count'           => 0,
+                'disproving_count'        => 0,
+                'missed_proving_count'    => $missedProving,
+                'missed_disproving_count' => $missedDisproving,
+                'context_types'           => [],
+                'positive_pct'           => 0,
+                'confidence'              => 0,
+                'quality_level'           => 'insufficient',
+                'suggested_score'         => null,
+                'defensible'              => false,
+                'fairness_status'         => 'insufficient_evidence',
+                'limited_coverage'        => $limitedCoverage,
+                'facilitator_explanation'  => "{$insufficientLabel} for \"{$itemConfig['label'] ?? $itemCode}\". Opportunities existed ({$opportunityCount} card(s) tested this) but only {$count} observation(s) recorded. Need at least 2.",
             ];
         }
 
@@ -1156,30 +1508,39 @@ class BehaviorTracker
             $suggestedScore = $this->mapEvidenceToScore($positivePct, $qualityLevel);
         }
 
-        // Generate facilitator explanation
+        // Generate facilitator explanation (now includes opportunity + missed data)
         $explanation = $this->generateFacilitatorExplanation(
             $itemConfig['label'] ?? $itemCode,
             $proving, $disproving, $count, $contextCount,
             $qualityLevel, $positivePct, $isContradictory,
-            $evidence
+            $evidence,
+            $opportunityCount, $missedProving, $missedDisproving
         );
 
         return [
-            'label'              => $itemConfig['label'] ?? $itemCode,
-            'tier'               => $itemConfig['tier'] ?? 'PtP',
-            'category'           => $itemConfig['category'] ?? 'MINDSET',
-            'description'         => $itemConfig['description'] ?? '',
-            'observations'        => $this->formatObservations($evidence),
-            'evidence_count'       => $count,
-            'proving_count'        => $proving,
-            'disproving_count'     => $disproving,
-            'context_types'        => array_keys($contextTypes),
-            'positive_pct'        => round($positivePct, 2),
-            'confidence'           => round($finalConfidence, 2),
-            'quality_level'        => $isContradictory ? 'contradictory' : $qualityLevel,
-            'suggested_score'      => $suggestedScore,
-            'defensible'           => $finalConfidence >= $minConfidence && !$isContradictory,
-            'facilitator_explanation' => $explanation,
+            'label'                    => $itemConfig['label'] ?? $itemCode,
+            'tier'                     => $itemConfig['tier'] ?? 'PtP',
+            'category'                 => $itemConfig['category'] ?? 'MINDSET',
+            'description'              => $itemConfig['description'] ?? '',
+            'observations'             => $this->formatObservations($evidence),
+            'evidence_count'            => $count,
+            'opportunities_presented'  => $opportunityCount,
+            'min_opportunities'         => $minOpportunities,
+            'proving_count'            => $proving,
+            'disproving_count'         => $disproving,
+            'missed_proving_count'      => $missedProving,
+            'missed_disproving_count'   => $missedDisproving,
+            'effective_proving'         => round($effectiveProving, 1),
+            'effective_disproving'      => round($effectiveDisproving, 1),
+            'context_types'             => array_keys($contextTypes),
+            'positive_pct'             => round($positivePct, 2),
+            'confidence'                => round($finalConfidence, 2),
+            'quality_level'             => $isContradictory ? 'contradictory' : $qualityLevel,
+            'suggested_score'           => $suggestedScore,
+            'defensible'                => $finalConfidence >= $minConfidence && !$isContradictory,
+            'fairness_status'           => 'fair',
+            'limited_coverage'          => $limitedCoverage,
+            'facilitator_explanation'    => $explanation,
         ];
     }
 
@@ -1208,7 +1569,10 @@ class BehaviorTracker
         string $quality,
         float $positivePct,
         bool $isContradictory,
-        $evidence
+        $evidence,
+        int $opportunityCount = 0,
+        int $missedProving = 0,
+        int $missedDisproving = 0
     ): string {
         $obsTexts = [];
         foreach ($evidence as $ep) {
@@ -1216,24 +1580,43 @@ class BehaviorTracker
             $card = $turn ? $turn->card : null;
             $cardId = $card ? $card->card_id : '?';
             $turnNum = $turn ? ($turn->turn_index ?? '?') : '?';
-            $signal = $ep->lra_signal === 'proving' ? '✓' : '✗';
-            $obsTexts[] = "{$signal} Turn {$turnNum} ({$cardId})";
+
+            // Different markers for different evidence types
+            if ($ep->source === 'missed_opportunity') {
+                if (str_contains($ep->lra_signal ?? '', 'missed_proving')) {
+                    $signal = '⊘'; // Missed proving
+                } else {
+                    $signal = '⊘'; // Missed disproving
+                }
+                $obsTexts[] = "{$signal} Turn {$turnNum} ({$cardId}) [missed]";
+            } else {
+                $signal = $ep->lra_signal === 'proving' ? '✓' : '✗';
+                $obsTexts[] = "{$signal} Turn {$turnNum} ({$cardId})";
+            }
         }
 
         $evidenceList = implode(', ', $obsTexts);
 
+        // Build opportunity context
+        $oppContext = $opportunityCount > 0
+            ? " Opportunities presented: {$opportunityCount}."
+            : '';
+        $missedContext = $missedProving > 0
+            ? " Missed proving opportunities: {$missedProving}."
+            : '';
+
         if ($isContradictory) {
-            return "Evidence for \"{$label}\" is contradictory ({$proving} supporting, {$disproving} contradicting across {$total} observations). Behavior appears context-dependent. Cannot assign a single score. Evidence: {$evidenceList}.";
+            return "Evidence for \"{$label}\" is contradictory ({$proving} supporting, {$disproving} contradicting across {$total} observations). Behavior appears context-dependent. Cannot assign a single score.{$oppContext}{$missedContext} Evidence: {$evidenceList}.";
         }
 
         if ($quality === 'insufficient') {
-            return "Insufficient evidence for \"{$label}\" — only {$total} observation(s) across {$contextCount} context type(s). Evidence: {$evidenceList}.";
+            return "Insufficient evidence for \"{$label}\" — only {$total} observation(s) across {$contextCount} context type(s).{$oppContext} Evidence: {$evidenceList}.";
         }
 
         $direction = $positivePct >= 0.5 ? 'positive' : 'negative';
         $pctText = round($positivePct * 100) . '%';
 
-        return "Evidence for \"{$label}\": {$proving} of {$total} observations support ({$pctText}) across {$contextCount} context type(s). Quality: {$quality}. Direction: {$direction}. Evidence: {$evidenceList}.";
+        return "Evidence for \"{$label}\": {$proving} of {$total} observations support ({$pctText}) across {$contextCount} context type(s). Quality: {$quality}. Direction: {$direction}.{$oppContext}{$missedContext} Evidence: {$evidenceList}.";
     }
 
     /**

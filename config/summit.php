@@ -122,6 +122,59 @@ return [
         'min_confidence_for_assessment' => 0.50,
         'insufficient_label' => 'Insufficient evidence',
 
+        // ── EVIDENCE VALIDITY: Opportunity Model ──
+        // TASK 1: For every assessment item, define the minimum number of gameplay
+        // opportunities (cards drawn that tag this item on ANY option) required
+        // before a score can be assigned. Without sufficient opportunities,
+        // the player receives "Not enough evidence" — NOT a low score.
+        //
+        // 'cards_tagging' = how many unique cards tag this item (across all options)
+        // 'expected_per_game' = expected opportunities in a 20-turn game
+        // 'min_opportunities' = minimum card encounters before scoring is fair
+        // 'limited_coverage' = true if expected < 1.5 (card pool needs enrichment)
+        //
+        // Formula: expected_per_game ≈ sum over levels of (turns_in_level * cards_in_level_tagging_item / total_cards_in_level)
+        'opportunity_model' => [
+            // ── Permission to Play ──
+            'PtP_M1' => ['cards_tagging' => 19, 'expected_per_game' => 5.6, 'min_opportunities' => 3],
+            'PtP_M2' => ['cards_tagging' => 24, 'expected_per_game' => 6.5, 'min_opportunities' => 3],
+            'PtP_M3' => ['cards_tagging' => 11, 'expected_per_game' => 3.0, 'min_opportunities' => 2],
+            'PtP_M4' => ['cards_tagging' => 12, 'expected_per_game' => 3.3, 'min_opportunities' => 2],
+            'PtP_M5' => ['cards_tagging' => 45, 'expected_per_game' => 11.5, 'min_opportunities' => 3],
+            'PtP_S1' => ['cards_tagging' => 15, 'expected_per_game' => 4.2, 'min_opportunities' => 2],
+            'PtP_S2' => ['cards_tagging' => 24, 'expected_per_game' => 6.5, 'min_opportunities' => 3],
+
+            // ── Role 1: Individual Contributor ──
+            'R1_M1'  => ['cards_tagging' =>  6, 'expected_per_game' => 2.1, 'min_opportunities' => 2],
+            'R1_M2'  => ['cards_tagging' =>  5, 'expected_per_game' => 1.75, 'min_opportunities' => 2],
+            'R1_S1'  => ['cards_tagging' =>  4, 'expected_per_game' => 1.4, 'min_opportunities' => 2],
+            'R1_S2'  => ['cards_tagging' =>  5, 'expected_per_game' => 1.75, 'min_opportunities' => 2],
+            'R1_S3'  => ['cards_tagging' =>  2, 'expected_per_game' => 0.7, 'min_opportunities' => 2, 'limited_coverage' => true],
+            'R1_S4'  => ['cards_tagging' =>  2, 'expected_per_game' => 0.7, 'min_opportunities' => 2, 'limited_coverage' => true],
+
+            // ── Role 2: Leading Others ──
+            'R2_M1'  => ['cards_tagging' => 17, 'expected_per_game' => 4.2, 'min_opportunities' => 2],
+            'R2_M2'  => ['cards_tagging' => 13, 'expected_per_game' => 3.2, 'min_opportunities' => 2],
+            'R2_S1'  => ['cards_tagging' =>  7, 'expected_per_game' => 2.0, 'min_opportunities' => 2],
+            'R2_S2'  => ['cards_tagging' =>  8, 'expected_per_game' => 2.3, 'min_opportunities' => 2],
+            'R2_S3'  => ['cards_tagging' => 13, 'expected_per_game' => 3.2, 'min_opportunities' => 2],
+            'R2_S4'  => ['cards_tagging' => 23, 'expected_per_game' => 5.9, 'min_opportunities' => 3],
+            'R2_S5'  => ['cards_tagging' => 29, 'expected_per_game' => 7.2, 'min_opportunities' => 3],
+            'R2_S6'  => ['cards_tagging' => 21, 'expected_per_game' => 5.5, 'min_opportunities' => 3],
+            'R2_S7'  => ['cards_tagging' =>  4, 'expected_per_game' => 1.0, 'min_opportunities' => 2, 'limited_coverage' => true],
+            'R2_S8'  => ['cards_tagging' => 18, 'expected_per_game' => 4.8, 'min_opportunities' => 2],
+            'R2_S9'  => ['cards_tagging' => 20, 'expected_per_game' => 5.2, 'min_opportunities' => 3],
+
+            // ── Role 3: Leading Leaders ──
+            'R3_M1'  => ['cards_tagging' => 10, 'expected_per_game' => 2.5, 'min_opportunities' => 2],
+            'R3_M2'  => ['cards_tagging' => 12, 'expected_per_game' => 3.0, 'min_opportunities' => 2],
+            'R3_S1'  => ['cards_tagging' =>  2, 'expected_per_game' => 0.5, 'min_opportunities' => 2, 'limited_coverage' => true],
+            'R3_S2'  => ['cards_tagging' =>  4, 'expected_per_game' => 1.0, 'min_opportunities' => 2, 'limited_coverage' => true],
+            'R3_S3'  => ['cards_tagging' => 15, 'expected_per_game' => 3.75, 'min_opportunities' => 2],
+            'R3_S4'  => ['cards_tagging' =>  7, 'expected_per_game' => 1.75, 'min_opportunities' => 2],
+            'R3_S5'  => ['cards_tagging' => 17, 'expected_per_game' => 4.25, 'min_opportunities' => 2],
+        ],
+
         // Context weights for evidence quality
         'context_weights' => [
             'neutral_basecamp' => 0.8,
