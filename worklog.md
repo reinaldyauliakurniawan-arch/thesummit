@@ -118,3 +118,54 @@ Stage Summary:
 - 6 evidence-driven findings with concrete recommendations
 - Facilitator playtesting CLI tool ready for human testing
 - All artifacts pushed to GitHub
+
+---
+Task ID: meta-validation-1
+Agent: Super Z (main)
+Task: Meta-validation — 5-task framework for validating the validation itself
+
+Work Log:
+- Created psychological_archetypes.py: 10 realistic player archetypes replacing optimizer profiles
+  - Each archetype uses biases, stress responses, inconsistency rates, Gaussian noise
+  - Archetypes: conflict_avoider, people_pleaser, micromanager, controller, hero_syndrome,
+    political_player, servant_leader, perfectionist, opportunist, consensus_seeker
+- Created meta_validation.py: Root cause categorization + adversarial testing + discrimination analysis + hypothesis framework
+- Created run_meta_validation.py: Main runner integrating all 5 tasks
+- Updated simulator.py: Support both optimizer and psychological archetype registries
+- Ran 500 archetype games + 200 adversarial games + 1254 discrimination comparisons
+
+TASK 1 Results — Root Cause Categorization:
+- 15 findings classified: 8 simulation artifacts, 3 progression defects, 2 content deficits, 2 model defects
+- Only 7/15 actionable (non-artifact)
+- Critical: R1_S4 (content deficit), R3_S1 (content deficit), R3_M1/R3_S4 (progression defect)
+
+TASK 2 Results — Archetype Fingerprints:
+- 10 archetypes produce distinct gameplay patterns:
+  - Perfectionist: score 54.0, TT 26.0 (highest — safe/consistent play)
+  - Hero syndrome: score 36.2, TT 5.7 (lowest — risk-seeking backfires)
+  - Controller: score 51.0, TT 8.4 (high score, low TT — stat-focused)
+  - Servant leader: score 49.2, TT 25.1 (balanced, team-first)
+- Perfectionist gets PtP_M5 at 4.2 (people pleaser at 3.1) — interesting crossover
+- People pleaser gets Coaching (R2_S6) at 3.0 as expected
+
+TASK 3 Results — Adversarial Testing:
+- 0/5 exploits successful — assessment is robust against gaming attempts
+- Proving farmers get only 0.54 high-score instances/player
+- Random players get only 0.08 accidental high scores/player
+- Diversity hackers get Strategist badge only 6.5% of time
+
+TASK 4 Results — Discriminative Power:
+- 14.4% problem rate (180/1254 comparisons show similar scores for different archetypes)
+- Controller has most problems (12 items), opportunist fewest (5 items)
+- Many "similar" scores are on PtP items (basecamp level — limited discrimination possible)
+
+TASK 5 Results — Hypothesis Framework:
+- H-001: Reduce tt_bonus_cap 15→10 (high confidence)
+- H-002: Recalibrate expected_per_game from empirical data (high confidence)
+- H-003: Add cards for 2 under-covered items (medium confidence, depends on H-002)
+
+Stage Summary:
+- Commit 04a1ef4: Meta-validation complete
+- Report: docs/meta-validation-report.md (549 lines)
+- Data: scripts/validation/reports/archetype_fingerprints.json
+- All pushed to GitHub
