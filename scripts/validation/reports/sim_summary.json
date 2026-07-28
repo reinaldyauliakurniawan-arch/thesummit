@@ -1,0 +1,4284 @@
+{
+  "meta": {
+    "games_played": 1000,
+    "players_per_game": 3,
+    "total_player_games": 3000,
+    "elapsed_seconds": 6.27,
+    "base_seed": 42,
+    "strategies_tested": [
+      "random",
+      "greedy_score",
+      "greedy_tt",
+      "greedy_mp",
+      "greedy_sp",
+      "altruist",
+      "individualist",
+      "risk_seeker",
+      "risk_averse",
+      "balanced",
+      "diversity_seeker",
+      "adaptive",
+      "proving_seeker",
+      "disproving_seeker"
+    ]
+  },
+  "game_outcomes": {
+    "final_round_triggered_pct": 73.8,
+    "rounds_per_game": {
+      "mean": 17.7,
+      "median": 18.0,
+      "min": 11,
+      "max": 20,
+      "stdev": 2.13
+    }
+  },
+  "badge_distribution": {
+    "the_catalyst": 886,
+    "the_strategist": 459,
+    "the_carrier": 1655
+  },
+  "final_level_distribution": {
+    "camp": 797,
+    "summit": 1838,
+    "basecamp": 365
+  },
+  "score_distribution": {
+    "mean": 45.0,
+    "median": 55.0,
+    "min": 12.0,
+    "max": 55,
+    "stdev": 13.34,
+    "pct_at_max": 51.9
+  },
+  "strategy_stats": {
+    "random": {
+      "games_played": 187,
+      "win_rate": 19.25,
+      "badges": {
+        "the_catalyst": 74,
+        "the_strategist": 60,
+        "the_carrier": 53
+      },
+      "final_levels": {
+        "camp": 77,
+        "summit": 79,
+        "basecamp": 31
+      },
+      "score": {
+        "mean": 39.65,
+        "median": 40.5,
+        "min": 15.0,
+        "max": 55,
+        "stdev": 12.16
+      },
+      "tt": {
+        "mean": 6.94,
+        "median": 6,
+        "min": 0,
+        "max": 26
+      },
+      "mp": {
+        "mean": 14.3
+      },
+      "sp": {
+        "mean": 21.08
+      },
+      "turns_played": {
+        "mean": 18.41
+      },
+      "cross_effects_given": {
+        "mean": 4.17,
+        "max": 9
+      },
+      "summit_rate": 42.25
+    },
+    "greedy_score": {
+      "games_played": 236,
+      "win_rate": 58.9,
+      "badges": {
+        "the_carrier": 210,
+        "the_catalyst": 25,
+        "the_strategist": 1
+      },
+      "final_levels": {
+        "summit": 210,
+        "camp": 26
+      },
+      "score": {
+        "mean": 53.88,
+        "median": 55.0,
+        "min": 43.5,
+        "max": 55,
+        "stdev": 3.16
+      },
+      "tt": {
+        "mean": 21.39,
+        "median": 22.0,
+        "min": 9,
+        "max": 36
+      },
+      "mp": {
+        "mean": 17.04
+      },
+      "sp": {
+        "mean": 17.84
+      },
+      "turns_played": {
+        "mean": 18.17
+      },
+      "cross_effects_given": {
+        "mean": 6.18,
+        "max": 11
+      },
+      "summit_rate": 88.98
+    },
+    "greedy_tt": {
+      "games_played": 200,
+      "win_rate": 44.0,
+      "badges": {
+        "the_carrier": 129,
+        "the_catalyst": 63,
+        "the_strategist": 8
+      },
+      "final_levels": {
+        "summit": 129,
+        "camp": 69,
+        "basecamp": 2
+      },
+      "score": {
+        "mean": 51.34,
+        "median": 55.0,
+        "min": 35,
+        "max": 55,
+        "stdev": 5.04
+      },
+      "tt": {
+        "mean": 24.32,
+        "median": 23.5,
+        "min": 14,
+        "max": 46
+      },
+      "mp": {
+        "mean": 17.2
+      },
+      "sp": {
+        "mean": 14.49
+      },
+      "turns_played": {
+        "mean": 18.81
+      },
+      "cross_effects_given": {
+        "mean": 7.0,
+        "max": 12
+      },
+      "summit_rate": 64.5
+    },
+    "greedy_mp": {
+      "games_played": 205,
+      "win_rate": 15.61,
+      "badges": {
+        "the_carrier": 135,
+        "the_strategist": 37,
+        "the_catalyst": 33
+      },
+      "final_levels": {
+        "summit": 164,
+        "camp": 39,
+        "basecamp": 2
+      },
+      "score": {
+        "mean": 51.34,
+        "median": 55,
+        "min": 34.5,
+        "max": 55,
+        "stdev": 5.14
+      },
+      "tt": {
+        "mean": 11.43,
+        "median": 11,
+        "min": 3,
+        "max": 21
+      },
+      "mp": {
+        "mean": 27.44
+      },
+      "sp": {
+        "mean": 14.68
+      },
+      "turns_played": {
+        "mean": 18.73
+      },
+      "cross_effects_given": {
+        "mean": 4.18,
+        "max": 8
+      },
+      "summit_rate": 80.0
+    },
+    "greedy_sp": {
+      "games_played": 220,
+      "win_rate": 3.64,
+      "badges": {
+        "the_catalyst": 149,
+        "the_strategist": 71
+      },
+      "final_levels": {
+        "basecamp": 220
+      },
+      "score": {
+        "mean": 17.25,
+        "median": 17.0,
+        "min": 12.0,
+        "max": 30.5,
+        "stdev": 2.6
+      },
+      "tt": {
+        "mean": 0.91,
+        "median": 0.0,
+        "min": 0,
+        "max": 9
+      },
+      "mp": {
+        "mean": 1.65
+      },
+      "sp": {
+        "mean": 30.54
+      },
+      "turns_played": {
+        "mean": 19.12
+      },
+      "cross_effects_given": {
+        "mean": 2.42,
+        "max": 3
+      },
+      "summit_rate": 0.0
+    },
+    "altruist": {
+      "games_played": 214,
+      "win_rate": 52.34,
+      "badges": {
+        "the_carrier": 159,
+        "the_catalyst": 54,
+        "the_strategist": 1
+      },
+      "final_levels": {
+        "summit": 159,
+        "camp": 55
+      },
+      "score": {
+        "mean": 52.43,
+        "median": 55.0,
+        "min": 45,
+        "max": 55,
+        "stdev": 4.38
+      },
+      "tt": {
+        "mean": 24.7,
+        "median": 24.0,
+        "min": 14,
+        "max": 39
+      },
+      "mp": {
+        "mean": 17.52
+      },
+      "sp": {
+        "mean": 15.13
+      },
+      "turns_played": {
+        "mean": 18.82
+      },
+      "cross_effects_given": {
+        "mean": 7.47,
+        "max": 13
+      },
+      "summit_rate": 74.3
+    },
+    "individualist": {
+      "games_played": 213,
+      "win_rate": 9.39,
+      "badges": {
+        "the_catalyst": 102,
+        "the_strategist": 103,
+        "the_carrier": 8
+      },
+      "final_levels": {
+        "camp": 147,
+        "summit": 60,
+        "basecamp": 6
+      },
+      "score": {
+        "mean": 34.97,
+        "median": 32.5,
+        "min": 16.5,
+        "max": 54,
+        "stdev": 7.66
+      },
+      "tt": {
+        "mean": 3.34,
+        "median": 3,
+        "min": 0,
+        "max": 11
+      },
+      "mp": {
+        "mean": 16.79
+      },
+      "sp": {
+        "mean": 27.66
+      },
+      "turns_played": {
+        "mean": 18.85
+      },
+      "cross_effects_given": {
+        "mean": 2.23,
+        "max": 5
+      },
+      "summit_rate": 28.17
+    },
+    "risk_seeker": {
+      "games_played": 224,
+      "win_rate": 5.8,
+      "badges": {
+        "the_catalyst": 154,
+        "the_strategist": 66,
+        "the_carrier": 4
+      },
+      "final_levels": {
+        "camp": 109,
+        "basecamp": 95,
+        "summit": 20
+      },
+      "score": {
+        "mean": 24.66,
+        "median": 25.0,
+        "min": 13.0,
+        "max": 53.5,
+        "stdev": 8.61
+      },
+      "tt": {
+        "mean": 1.62,
+        "median": 1.0,
+        "min": 0,
+        "max": 18
+      },
+      "mp": {
+        "mean": 12.16
+      },
+      "sp": {
+        "mean": 27.68
+      },
+      "turns_played": {
+        "mean": 18.97
+      },
+      "cross_effects_given": {
+        "mean": 2.25,
+        "max": 7
+      },
+      "summit_rate": 8.93
+    },
+    "risk_averse": {
+      "games_played": 212,
+      "win_rate": 39.62,
+      "badges": {
+        "the_carrier": 151,
+        "the_catalyst": 53,
+        "the_strategist": 8
+      },
+      "final_levels": {
+        "summit": 151,
+        "camp": 60,
+        "basecamp": 1
+      },
+      "score": {
+        "mean": 52.07,
+        "median": 55.0,
+        "min": 35,
+        "max": 55,
+        "stdev": 4.67
+      },
+      "tt": {
+        "mean": 21.27,
+        "median": 21.0,
+        "min": 9,
+        "max": 33
+      },
+      "mp": {
+        "mean": 16.57
+      },
+      "sp": {
+        "mean": 14.71
+      },
+      "turns_played": {
+        "mean": 18.86
+      },
+      "cross_effects_given": {
+        "mean": 6.75,
+        "max": 12
+      },
+      "summit_rate": 71.23
+    },
+    "balanced": {
+      "games_played": 205,
+      "win_rate": 52.68,
+      "badges": {
+        "the_carrier": 191,
+        "the_strategist": 6,
+        "the_catalyst": 8
+      },
+      "final_levels": {
+        "summit": 194,
+        "basecamp": 1,
+        "camp": 10
+      },
+      "score": {
+        "mean": 54.24,
+        "median": 55,
+        "min": 35,
+        "max": 55,
+        "stdev": 2.65
+      },
+      "tt": {
+        "mean": 17.09,
+        "median": 16,
+        "min": 6,
+        "max": 38
+      },
+      "mp": {
+        "mean": 17.45
+      },
+      "sp": {
+        "mean": 20.23
+      },
+      "turns_played": {
+        "mean": 17.64
+      },
+      "cross_effects_given": {
+        "mean": 4.85,
+        "max": 9
+      },
+      "summit_rate": 94.63
+    },
+    "diversity_seeker": {
+      "games_played": 241,
+      "win_rate": 45.23,
+      "badges": {
+        "the_carrier": 195,
+        "the_catalyst": 37,
+        "the_strategist": 9
+      },
+      "final_levels": {
+        "summit": 200,
+        "camp": 40,
+        "basecamp": 1
+      },
+      "score": {
+        "mean": 52.56,
+        "median": 55,
+        "min": 23.0,
+        "max": 55,
+        "stdev": 5.62
+      },
+      "tt": {
+        "mean": 19.89,
+        "median": 21,
+        "min": 0,
+        "max": 40
+      },
+      "mp": {
+        "mean": 16.5
+      },
+      "sp": {
+        "mean": 17.32
+      },
+      "turns_played": {
+        "mean": 18.37
+      },
+      "cross_effects_given": {
+        "mean": 6.11,
+        "max": 11
+      },
+      "summit_rate": 82.99
+    },
+    "adaptive": {
+      "games_played": 206,
+      "win_rate": 57.77,
+      "badges": {
+        "the_carrier": 197,
+        "the_catalyst": 7,
+        "the_strategist": 2
+      },
+      "final_levels": {
+        "summit": 197,
+        "camp": 9
+      },
+      "score": {
+        "mean": 54.56,
+        "median": 55.0,
+        "min": 43.5,
+        "max": 55,
+        "stdev": 2.09
+      },
+      "tt": {
+        "mean": 21.26,
+        "median": 21.0,
+        "min": 9,
+        "max": 42
+      },
+      "mp": {
+        "mean": 17.17
+      },
+      "sp": {
+        "mean": 17.95
+      },
+      "turns_played": {
+        "mean": 18.34
+      },
+      "cross_effects_given": {
+        "mean": 6.39,
+        "max": 10
+      },
+      "summit_rate": 95.63
+    },
+    "proving_seeker": {
+      "games_played": 224,
+      "win_rate": 53.12,
+      "badges": {
+        "the_carrier": 205,
+        "the_catalyst": 17,
+        "the_strategist": 2
+      },
+      "final_levels": {
+        "summit": 205,
+        "camp": 19
+      },
+      "score": {
+        "mean": 54.07,
+        "median": 55.0,
+        "min": 39.0,
+        "max": 55,
+        "stdev": 3.01
+      },
+      "tt": {
+        "mean": 19.79,
+        "median": 19.0,
+        "min": 6,
+        "max": 40
+      },
+      "mp": {
+        "mean": 19.28
+      },
+      "sp": {
+        "mean": 17.38
+      },
+      "turns_played": {
+        "mean": 18.12
+      },
+      "cross_effects_given": {
+        "mean": 6.98,
+        "max": 13
+      },
+      "summit_rate": 91.52
+    },
+    "disproving_seeker": {
+      "games_played": 213,
+      "win_rate": 6.1,
+      "badges": {
+        "the_catalyst": 110,
+        "the_strategist": 85,
+        "the_carrier": 18
+      },
+      "final_levels": {
+        "camp": 137,
+        "summit": 70,
+        "basecamp": 6
+      },
+      "score": {
+        "mean": 37.09,
+        "median": 35.5,
+        "min": 17.5,
+        "max": 55,
+        "stdev": 8.21
+      },
+      "tt": {
+        "mean": 4.72,
+        "median": 4,
+        "min": 0,
+        "max": 17
+      },
+      "mp": {
+        "mean": 12.06
+      },
+      "sp": {
+        "mean": 24.34
+      },
+      "turns_played": {
+        "mean": 19.12
+      },
+      "cross_effects_given": {
+        "mean": 2.32,
+        "max": 6
+      },
+      "summit_rate": 32.86
+    }
+  },
+  "item_opportunity_stats": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "tier": "PtP",
+      "expected_per_game": 5.6,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 2.403,
+      "actual_median": 2.0,
+      "actual_stdev": 0.939,
+      "actual_min": 0,
+      "actual_max": 6,
+      "pct_zero_opp": 2.33,
+      "pct_below_min": 50.83,
+      "n": 3000
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "tier": "PtP",
+      "expected_per_game": 6.5,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 6.236,
+      "actual_median": 6.0,
+      "actual_stdev": 1.478,
+      "actual_min": 1,
+      "actual_max": 10,
+      "pct_zero_opp": 0.0,
+      "pct_below_min": 0.53,
+      "n": 3000
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "tier": "PtP",
+      "expected_per_game": 3.0,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 4.488,
+      "actual_median": 5.0,
+      "actual_stdev": 1.237,
+      "actual_min": 1,
+      "actual_max": 8,
+      "pct_zero_opp": 0.0,
+      "pct_below_min": 0.63,
+      "n": 3000
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "tier": "PtP",
+      "expected_per_game": 3.3,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 5.605,
+      "actual_median": 6.0,
+      "actual_stdev": 1.573,
+      "actual_min": 0,
+      "actual_max": 9,
+      "pct_zero_opp": 0.07,
+      "pct_below_min": 0.47,
+      "n": 3000
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "tier": "PtP",
+      "expected_per_game": 11.5,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 6.096,
+      "actual_median": 6.0,
+      "actual_stdev": 1.666,
+      "actual_min": 2,
+      "actual_max": 12,
+      "pct_zero_opp": 0.0,
+      "pct_below_min": 0.73,
+      "n": 3000
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "tier": "PtP",
+      "expected_per_game": 4.2,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 2.047,
+      "actual_median": 2.0,
+      "actual_stdev": 0.946,
+      "actual_min": 0,
+      "actual_max": 6,
+      "pct_zero_opp": 3.8,
+      "pct_below_min": 26.07,
+      "n": 3000
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "tier": "PtP",
+      "expected_per_game": 6.5,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 7.714,
+      "actual_median": 8.0,
+      "actual_stdev": 1.735,
+      "actual_min": 2,
+      "actual_max": 12,
+      "pct_zero_opp": 0.0,
+      "pct_below_min": 0.07,
+      "n": 3000
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "tier": "R1",
+      "expected_per_game": 2.1,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 2.671,
+      "actual_median": 3.0,
+      "actual_stdev": 1.005,
+      "actual_min": 0,
+      "actual_max": 4,
+      "pct_zero_opp": 1.5,
+      "pct_below_min": 12.67,
+      "n": 3000
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "tier": "R1",
+      "expected_per_game": 1.75,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 2.7,
+      "actual_median": 3.0,
+      "actual_stdev": 1.006,
+      "actual_min": 0,
+      "actual_max": 4,
+      "pct_zero_opp": 1.57,
+      "pct_below_min": 12.07,
+      "n": 3000
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "tier": "R1",
+      "expected_per_game": 1.4,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 2.627,
+      "actual_median": 3.0,
+      "actual_stdev": 1.007,
+      "actual_min": 0,
+      "actual_max": 4,
+      "pct_zero_opp": 1.6,
+      "pct_below_min": 13.63,
+      "n": 3000
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "tier": "R1",
+      "expected_per_game": 1.75,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 1.878,
+      "actual_median": 2.0,
+      "actual_stdev": 0.894,
+      "actual_min": 0,
+      "actual_max": 3,
+      "pct_zero_opp": 6.83,
+      "pct_below_min": 33.17,
+      "n": 3000
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "tier": "R1",
+      "expected_per_game": 0.7,
+      "min_opportunities": 2,
+      "limited_coverage": true,
+      "actual_mean": 1.291,
+      "actual_median": 1.0,
+      "actual_stdev": 0.682,
+      "actual_min": 0,
+      "actual_max": 2,
+      "pct_zero_opp": 12.9,
+      "pct_below_min": 57.97,
+      "n": 3000
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "tier": "R1",
+      "expected_per_game": 0.7,
+      "min_opportunities": 2,
+      "limited_coverage": true,
+      "actual_mean": 0.631,
+      "actual_median": 1.0,
+      "actual_stdev": 0.483,
+      "actual_min": 0,
+      "actual_max": 1,
+      "pct_zero_opp": 36.9,
+      "pct_below_min": 100.0,
+      "n": 3000
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "tier": "R2",
+      "expected_per_game": 4.2,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 2.295,
+      "actual_median": 2.0,
+      "actual_stdev": 1.352,
+      "actual_min": 0,
+      "actual_max": 7,
+      "pct_zero_opp": 5.27,
+      "pct_below_min": 33.2,
+      "n": 3000
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "tier": "R2",
+      "expected_per_game": 3.2,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 1.535,
+      "actual_median": 1.0,
+      "actual_stdev": 0.968,
+      "actual_min": 0,
+      "actual_max": 6,
+      "pct_zero_opp": 11.13,
+      "pct_below_min": 54.67,
+      "n": 3000
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "tier": "R2",
+      "expected_per_game": 2.0,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 0.786,
+      "actual_median": 1.0,
+      "actual_stdev": 0.855,
+      "actual_min": 0,
+      "actual_max": 4,
+      "pct_zero_opp": 44.9,
+      "pct_below_min": 80.6,
+      "n": 3000
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "tier": "R2",
+      "expected_per_game": 2.3,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 0.526,
+      "actual_median": 0.0,
+      "actual_stdev": 0.696,
+      "actual_min": 0,
+      "actual_max": 4,
+      "pct_zero_opp": 58.3,
+      "pct_below_min": 89.87,
+      "n": 3000
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "tier": "R2",
+      "expected_per_game": 3.2,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 1.276,
+      "actual_median": 1.0,
+      "actual_stdev": 1.108,
+      "actual_min": 0,
+      "actual_max": 5,
+      "pct_zero_opp": 29.0,
+      "pct_below_min": 61.23,
+      "n": 3000
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "tier": "R2",
+      "expected_per_game": 5.9,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 3.357,
+      "actual_median": 3.0,
+      "actual_stdev": 1.254,
+      "actual_min": 0,
+      "actual_max": 8,
+      "pct_zero_opp": 0.63,
+      "pct_below_min": 22.63,
+      "n": 3000
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "tier": "R2",
+      "expected_per_game": 7.2,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 3.663,
+      "actual_median": 4.0,
+      "actual_stdev": 1.6,
+      "actual_min": 0,
+      "actual_max": 10,
+      "pct_zero_opp": 0.53,
+      "pct_below_min": 27.97,
+      "n": 3000
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "tier": "R2",
+      "expected_per_game": 5.5,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 1.639,
+      "actual_median": 2.0,
+      "actual_stdev": 1.314,
+      "actual_min": 0,
+      "actual_max": 7,
+      "pct_zero_opp": 24.53,
+      "pct_below_min": 74.7,
+      "n": 3000
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "tier": "R2",
+      "expected_per_game": 1.0,
+      "min_opportunities": 2,
+      "limited_coverage": true,
+      "actual_mean": 0.733,
+      "actual_median": 1.0,
+      "actual_stdev": 0.54,
+      "actual_min": 0,
+      "actual_max": 2,
+      "pct_zero_opp": 31.5,
+      "pct_below_min": 95.2,
+      "n": 3000
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "tier": "R2",
+      "expected_per_game": 4.8,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 1.465,
+      "actual_median": 1.0,
+      "actual_stdev": 1.198,
+      "actual_min": 0,
+      "actual_max": 6,
+      "pct_zero_opp": 25.97,
+      "pct_below_min": 53.67,
+      "n": 3000
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "tier": "R2",
+      "expected_per_game": 5.2,
+      "min_opportunities": 3,
+      "limited_coverage": false,
+      "actual_mean": 1.909,
+      "actual_median": 2.0,
+      "actual_stdev": 1.141,
+      "actual_min": 0,
+      "actual_max": 7,
+      "pct_zero_opp": 6.63,
+      "pct_below_min": 71.97,
+      "n": 3000
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "tier": "R3",
+      "expected_per_game": 2.5,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 0.304,
+      "actual_median": 0.0,
+      "actual_stdev": 0.564,
+      "actual_min": 0,
+      "actual_max": 3,
+      "pct_zero_opp": 74.73,
+      "pct_below_min": 95.1,
+      "n": 3000
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "tier": "R3",
+      "expected_per_game": 3.0,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 1.65,
+      "actual_median": 1.0,
+      "actual_stdev": 1.026,
+      "actual_min": 0,
+      "actual_max": 6,
+      "pct_zero_opp": 9.07,
+      "pct_below_min": 51.23,
+      "n": 3000
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "tier": "R3",
+      "expected_per_game": 0.5,
+      "min_opportunities": 2,
+      "limited_coverage": true,
+      "actual_mean": 0.075,
+      "actual_median": 0.0,
+      "actual_stdev": 0.263,
+      "actual_min": 0,
+      "actual_max": 1,
+      "pct_zero_opp": 92.53,
+      "pct_below_min": 100.0,
+      "n": 3000
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "tier": "R3",
+      "expected_per_game": 1.0,
+      "min_opportunities": 2,
+      "limited_coverage": true,
+      "actual_mean": 0.436,
+      "actual_median": 0.0,
+      "actual_stdev": 0.623,
+      "actual_min": 0,
+      "actual_max": 3,
+      "pct_zero_opp": 63.07,
+      "pct_below_min": 93.7,
+      "n": 3000
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "tier": "R3",
+      "expected_per_game": 3.75,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 0.702,
+      "actual_median": 0.0,
+      "actual_stdev": 0.872,
+      "actual_min": 0,
+      "actual_max": 4,
+      "pct_zero_opp": 52.33,
+      "pct_below_min": 82.07,
+      "n": 3000
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "tier": "R3",
+      "expected_per_game": 1.75,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 0.283,
+      "actual_median": 0.0,
+      "actual_stdev": 0.559,
+      "actual_min": 0,
+      "actual_max": 3,
+      "pct_zero_opp": 76.87,
+      "pct_below_min": 95.13,
+      "n": 3000
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "tier": "R3",
+      "expected_per_game": 4.25,
+      "min_opportunities": 2,
+      "limited_coverage": false,
+      "actual_mean": 1.785,
+      "actual_median": 2.0,
+      "actual_stdev": 1.155,
+      "actual_min": 0,
+      "actual_max": 7,
+      "pct_zero_opp": 8.83,
+      "pct_below_min": 48.07,
+      "n": 3000
+    }
+  },
+  "item_assessment_stats": {
+    "PtP_M1": {
+      "label": "Integritas di Bawah Tekanan",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 1455,
+        "fair": 1475,
+        "no_opportunity": 70
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 48.5,
+        "fair": 49.17,
+        "no_opportunity": 2.33
+      },
+      "confidence_when_defensible": {
+        "mean": 0.575,
+        "median": 0.56,
+        "n": 1099
+      },
+      "evidence_count": {
+        "mean": 2.4,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.01,
+        "max": 1
+      }
+    },
+    "PtP_M2": {
+      "label": "Ego Rendah & Terbuka Input",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2984,
+        "insufficient_opportunity": 16
+      },
+      "fairness_status_pct": {
+        "fair": 99.47,
+        "insufficient_opportunity": 0.53
+      },
+      "confidence_when_defensible": {
+        "mean": 0.638,
+        "median": 0.63,
+        "n": 2609
+      },
+      "evidence_count": {
+        "mean": 6.24,
+        "median": 6.0
+      },
+      "missed_proving": {
+        "mean": 0.814,
+        "max": 4
+      }
+    },
+    "PtP_M3": {
+      "label": "Belajar Terus",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2981,
+        "insufficient_opportunity": 19
+      },
+      "fairness_status_pct": {
+        "fair": 99.37,
+        "insufficient_opportunity": 0.63
+      },
+      "confidence_when_defensible": {
+        "mean": 0.653,
+        "median": 0.65,
+        "n": 2195
+      },
+      "evidence_count": {
+        "mean": 4.49,
+        "median": 5.0
+      },
+      "missed_proving": {
+        "mean": 1.172,
+        "max": 4
+      }
+    },
+    "PtP_M4": {
+      "label": "Get Things Done",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2986,
+        "insufficient_opportunity": 12,
+        "no_opportunity": 2
+      },
+      "fairness_status_pct": {
+        "fair": 99.53,
+        "insufficient_opportunity": 0.4,
+        "no_opportunity": 0.07
+      },
+      "confidence_when_defensible": {
+        "mean": 0.671,
+        "median": 0.68,
+        "n": 2694
+      },
+      "evidence_count": {
+        "mean": 5.61,
+        "median": 6.0
+      },
+      "missed_proving": {
+        "mean": 2.62,
+        "max": 7
+      }
+    },
+    "PtP_M5": {
+      "label": "Peduli Orang Lain",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2978,
+        "insufficient_opportunity": 22
+      },
+      "fairness_status_pct": {
+        "fair": 99.27,
+        "insufficient_opportunity": 0.73
+      },
+      "confidence_when_defensible": {
+        "mean": 0.736,
+        "median": 0.72,
+        "n": 2830
+      },
+      "evidence_count": {
+        "mean": 6.1,
+        "median": 6.0
+      },
+      "missed_proving": {
+        "mean": 0.839,
+        "max": 5
+      }
+    },
+    "PtP_S1": {
+      "label": "Root Cause Analysis",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 668,
+        "fair": 2218,
+        "no_opportunity": 114
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 22.27,
+        "fair": 73.93,
+        "no_opportunity": 3.8
+      },
+      "confidence_when_defensible": {
+        "mean": 0.667,
+        "median": 0.7,
+        "n": 681
+      },
+      "evidence_count": {
+        "mean": 2.05,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.153,
+        "max": 3
+      }
+    },
+    "PtP_S2": {
+      "label": "Komunikasi Asertif",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2998,
+        "insufficient_opportunity": 2
+      },
+      "fairness_status_pct": {
+        "fair": 99.93,
+        "insufficient_opportunity": 0.07
+      },
+      "confidence_when_defensible": {
+        "mean": 0.688,
+        "median": 0.68,
+        "n": 2958
+      },
+      "evidence_count": {
+        "mean": 7.71,
+        "median": 8.0
+      },
+      "missed_proving": {
+        "mean": 2.791,
+        "max": 8
+      }
+    },
+    "R1_M1": {
+      "label": "Benchmark Pursuit",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2620,
+        "insufficient_opportunity": 335,
+        "no_opportunity": 45
+      },
+      "fairness_status_pct": {
+        "fair": 87.33,
+        "insufficient_opportunity": 11.17,
+        "no_opportunity": 1.5
+      },
+      "confidence_when_defensible": {
+        "mean": 0.542,
+        "median": 0.52,
+        "n": 714
+      },
+      "evidence_count": {
+        "mean": 2.67,
+        "median": 3.0
+      },
+      "missed_proving": {
+        "mean": 0.586,
+        "max": 2
+      }
+    },
+    "R1_M2": {
+      "label": "Target Ownership",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 315,
+        "fair": 2638,
+        "no_opportunity": 47
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 10.5,
+        "fair": 87.93,
+        "no_opportunity": 1.57
+      },
+      "confidence_when_defensible": {
+        "mean": 0.556,
+        "median": 0.52,
+        "n": 818
+      },
+      "evidence_count": {
+        "mean": 2.7,
+        "median": 3.0
+      },
+      "missed_proving": {
+        "mean": 1.199,
+        "max": 3
+      }
+    },
+    "R1_S1": {
+      "label": "Consistent Delivery",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2591,
+        "insufficient_opportunity": 361,
+        "no_opportunity": 48
+      },
+      "fairness_status_pct": {
+        "fair": 86.37,
+        "insufficient_opportunity": 12.03,
+        "no_opportunity": 1.6
+      },
+      "confidence_when_defensible": {
+        "mean": 0.537,
+        "median": 0.52,
+        "n": 496
+      },
+      "evidence_count": {
+        "mean": 2.63,
+        "median": 3.0
+      },
+      "missed_proving": {
+        "mean": 0.954,
+        "max": 3
+      }
+    },
+    "R1_S2": {
+      "label": "Proactive Reporting",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2005,
+        "insufficient_opportunity": 790,
+        "no_opportunity": 205
+      },
+      "fairness_status_pct": {
+        "fair": 66.83,
+        "insufficient_opportunity": 26.33,
+        "no_opportunity": 6.83
+      },
+      "confidence_when_defensible": {
+        "mean": 0.581,
+        "median": 0.52,
+        "n": 612
+      },
+      "evidence_count": {
+        "mean": 1.88,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.204,
+        "max": 1
+      }
+    },
+    "R1_S3": {
+      "label": "Follow Systems",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 1352,
+        "fair": 1261,
+        "no_opportunity": 387
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 45.07,
+        "fair": 42.03,
+        "no_opportunity": 12.9
+      },
+      "confidence_when_defensible": {
+        "mean": 0,
+        "median": 0,
+        "n": 0
+      },
+      "evidence_count": {
+        "mean": 1.29,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0.371,
+        "max": 2
+      }
+    },
+    "R1_S4": {
+      "label": "Personal Work System",
+      "n": 3000,
+      "fairness_status_counts": {
+        "no_opportunity": 1107,
+        "insufficient_opportunity": 1893
+      },
+      "fairness_status_pct": {
+        "no_opportunity": 36.9,
+        "insufficient_opportunity": 63.1
+      },
+      "confidence_when_defensible": {
+        "mean": 0,
+        "median": 0,
+        "n": 0
+      },
+      "evidence_count": {
+        "mean": 0.63,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0,
+        "max": 0
+      }
+    },
+    "R2_M1": {
+      "label": "Success Through Team",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2004,
+        "insufficient_opportunity": 838,
+        "no_opportunity": 158
+      },
+      "fairness_status_pct": {
+        "fair": 66.8,
+        "insufficient_opportunity": 27.93,
+        "no_opportunity": 5.27
+      },
+      "confidence_when_defensible": {
+        "mean": 0.621,
+        "median": 0.6,
+        "n": 844
+      },
+      "evidence_count": {
+        "mean": 2.29,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.259,
+        "max": 3
+      }
+    },
+    "R2_M2": {
+      "label": "Value Managerial Work",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 1306,
+        "fair": 1360,
+        "no_opportunity": 334
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 43.53,
+        "fair": 45.33,
+        "no_opportunity": 11.13
+      },
+      "confidence_when_defensible": {
+        "mean": 0.616,
+        "median": 0.6,
+        "n": 327
+      },
+      "evidence_count": {
+        "mean": 1.54,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0.317,
+        "max": 3
+      }
+    },
+    "R2_S1": {
+      "label": "Job Design & Delegation",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 1071,
+        "no_opportunity": 1347,
+        "fair": 582
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 35.7,
+        "no_opportunity": 44.9,
+        "fair": 19.4
+      },
+      "confidence_when_defensible": {
+        "mean": 0.562,
+        "median": 0.52,
+        "n": 47
+      },
+      "evidence_count": {
+        "mean": 0.79,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0.057,
+        "max": 1
+      }
+    },
+    "R2_S2": {
+      "label": "Selecting/Deselecting",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 304,
+        "insufficient_opportunity": 947,
+        "no_opportunity": 1749
+      },
+      "fairness_status_pct": {
+        "fair": 10.13,
+        "insufficient_opportunity": 31.57,
+        "no_opportunity": 58.3
+      },
+      "confidence_when_defensible": {
+        "mean": 0.687,
+        "median": 0.7,
+        "n": 22
+      },
+      "evidence_count": {
+        "mean": 0.53,
+        "median": 0.0
+      },
+      "missed_proving": {
+        "mean": 0,
+        "max": 0
+      }
+    },
+    "R2_S3": {
+      "label": "Performance Monitoring",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 1163,
+        "insufficient_opportunity": 967,
+        "no_opportunity": 870
+      },
+      "fairness_status_pct": {
+        "fair": 38.77,
+        "insufficient_opportunity": 32.23,
+        "no_opportunity": 29.0
+      },
+      "confidence_when_defensible": {
+        "mean": 0.61,
+        "median": 0.61,
+        "n": 326
+      },
+      "evidence_count": {
+        "mean": 1.28,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0.336,
+        "max": 3
+      }
+    },
+    "R2_S4": {
+      "label": "Tough Conversations",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2321,
+        "insufficient_opportunity": 660,
+        "no_opportunity": 19
+      },
+      "fairness_status_pct": {
+        "fair": 77.37,
+        "insufficient_opportunity": 22.0,
+        "no_opportunity": 0.63
+      },
+      "confidence_when_defensible": {
+        "mean": 0.628,
+        "median": 0.61,
+        "n": 1862
+      },
+      "evidence_count": {
+        "mean": 3.36,
+        "median": 3.0
+      },
+      "missed_proving": {
+        "mean": 0.952,
+        "max": 4
+      }
+    },
+    "R2_S5": {
+      "label": "Team Engagement",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 2161,
+        "insufficient_opportunity": 823,
+        "no_opportunity": 16
+      },
+      "fairness_status_pct": {
+        "fair": 72.03,
+        "insufficient_opportunity": 27.43,
+        "no_opportunity": 0.53
+      },
+      "confidence_when_defensible": {
+        "mean": 0.643,
+        "median": 0.63,
+        "n": 1691
+      },
+      "evidence_count": {
+        "mean": 3.66,
+        "median": 4.0
+      },
+      "missed_proving": {
+        "mean": 0.516,
+        "max": 4
+      }
+    },
+    "R2_S6": {
+      "label": "Coaching",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 759,
+        "insufficient_opportunity": 1505,
+        "no_opportunity": 736
+      },
+      "fairness_status_pct": {
+        "fair": 25.3,
+        "insufficient_opportunity": 50.17,
+        "no_opportunity": 24.53
+      },
+      "confidence_when_defensible": {
+        "mean": 0.638,
+        "median": 0.65,
+        "n": 594
+      },
+      "evidence_count": {
+        "mean": 1.64,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.096,
+        "max": 3
+      }
+    },
+    "R2_S7": {
+      "label": "Basic Budgeting",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 1911,
+        "no_opportunity": 945,
+        "fair": 144
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 63.7,
+        "no_opportunity": 31.5,
+        "fair": 4.8
+      },
+      "confidence_when_defensible": {
+        "mean": 0,
+        "median": 0,
+        "n": 0
+      },
+      "evidence_count": {
+        "mean": 0.73,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0,
+        "max": 0
+      }
+    },
+    "R2_S8": {
+      "label": "Team Workflow/SOP",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 1390,
+        "no_opportunity": 779,
+        "insufficient_opportunity": 831
+      },
+      "fairness_status_pct": {
+        "fair": 46.33,
+        "no_opportunity": 25.97,
+        "insufficient_opportunity": 27.7
+      },
+      "confidence_when_defensible": {
+        "mean": 0.61,
+        "median": 0.61,
+        "n": 458
+      },
+      "evidence_count": {
+        "mean": 1.46,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0.012,
+        "max": 1
+      }
+    },
+    "R2_S9": {
+      "label": "Upward/Cross Communication",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 841,
+        "insufficient_opportunity": 1960,
+        "no_opportunity": 199
+      },
+      "fairness_status_pct": {
+        "fair": 28.03,
+        "insufficient_opportunity": 65.33,
+        "no_opportunity": 6.63
+      },
+      "confidence_when_defensible": {
+        "mean": 0.624,
+        "median": 0.6,
+        "n": 624
+      },
+      "evidence_count": {
+        "mean": 1.91,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.185,
+        "max": 3
+      }
+    },
+    "R3_M1": {
+      "label": "Assess Leadership Quality",
+      "n": 3000,
+      "fairness_status_counts": {
+        "no_opportunity": 2242,
+        "insufficient_opportunity": 611,
+        "fair": 147
+      },
+      "fairness_status_pct": {
+        "no_opportunity": 74.73,
+        "insufficient_opportunity": 20.37,
+        "fair": 4.9
+      },
+      "confidence_when_defensible": {
+        "mean": 0.628,
+        "median": 0.65,
+        "n": 6
+      },
+      "evidence_count": {
+        "mean": 0.3,
+        "median": 0.0
+      },
+      "missed_proving": {
+        "mean": 0,
+        "max": 0
+      }
+    },
+    "R3_M2": {
+      "label": "Decisive Under Uncertainty",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 1265,
+        "fair": 1463,
+        "no_opportunity": 272
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 42.17,
+        "fair": 48.77,
+        "no_opportunity": 9.07
+      },
+      "confidence_when_defensible": {
+        "mean": 0.612,
+        "median": 0.57,
+        "n": 313
+      },
+      "evidence_count": {
+        "mean": 1.65,
+        "median": 1.0
+      },
+      "missed_proving": {
+        "mean": 0.58,
+        "max": 5
+      }
+    },
+    "R3_S1": {
+      "label": "Assessing Leadership",
+      "n": 3000,
+      "fairness_status_counts": {
+        "no_opportunity": 2776,
+        "insufficient_opportunity": 224
+      },
+      "fairness_status_pct": {
+        "no_opportunity": 92.53,
+        "insufficient_opportunity": 7.47
+      },
+      "confidence_when_defensible": {
+        "mean": 0,
+        "median": 0,
+        "n": 0
+      },
+      "evidence_count": {
+        "mean": 0.07,
+        "median": 0.0
+      },
+      "missed_proving": {
+        "mean": 0,
+        "max": 0
+      }
+    },
+    "R3_S2": {
+      "label": "Organizational Design",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 919,
+        "no_opportunity": 1892,
+        "fair": 189
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 30.63,
+        "no_opportunity": 63.07,
+        "fair": 6.3
+      },
+      "confidence_when_defensible": {
+        "mean": 0.552,
+        "median": 0.56,
+        "n": 5
+      },
+      "evidence_count": {
+        "mean": 0.44,
+        "median": 0.0
+      },
+      "missed_proving": {
+        "mean": 0.007,
+        "max": 1
+      }
+    },
+    "R3_S3": {
+      "label": "Developing Leaders",
+      "n": 3000,
+      "fairness_status_counts": {
+        "insufficient_opportunity": 892,
+        "no_opportunity": 1570,
+        "fair": 538
+      },
+      "fairness_status_pct": {
+        "insufficient_opportunity": 29.73,
+        "no_opportunity": 52.33,
+        "fair": 17.93
+      },
+      "confidence_when_defensible": {
+        "mean": 0.589,
+        "median": 0.56,
+        "n": 90
+      },
+      "evidence_count": {
+        "mean": 0.7,
+        "median": 0.0
+      },
+      "missed_proving": {
+        "mean": 0.019,
+        "max": 1
+      }
+    },
+    "R3_S4": {
+      "label": "Strategy Translation",
+      "n": 3000,
+      "fairness_status_counts": {
+        "no_opportunity": 2306,
+        "insufficient_opportunity": 548,
+        "fair": 146
+      },
+      "fairness_status_pct": {
+        "no_opportunity": 76.87,
+        "insufficient_opportunity": 18.27,
+        "fair": 4.87
+      },
+      "confidence_when_defensible": {
+        "mean": 0.601,
+        "median": 0.65,
+        "n": 8
+      },
+      "evidence_count": {
+        "mean": 0.28,
+        "median": 0.0
+      },
+      "missed_proving": {
+        "mean": 0.004,
+        "max": 1
+      }
+    },
+    "R3_S5": {
+      "label": "Cross-Org Leadership",
+      "n": 3000,
+      "fairness_status_counts": {
+        "fair": 1558,
+        "insufficient_opportunity": 1177,
+        "no_opportunity": 265
+      },
+      "fairness_status_pct": {
+        "fair": 51.93,
+        "insufficient_opportunity": 39.23,
+        "no_opportunity": 8.83
+      },
+      "confidence_when_defensible": {
+        "mean": 0.626,
+        "median": 0.6,
+        "n": 506
+      },
+      "evidence_count": {
+        "mean": 1.78,
+        "median": 2.0
+      },
+      "missed_proving": {
+        "mean": 0.369,
+        "max": 4
+      }
+    }
+  },
+  "item_score_distribution": {
+    "PtP_M2": {
+      "1": 1308,
+      "mixed": 155,
+      "2": 807,
+      "3": 681,
+      "4": 20,
+      "5": 13
+    },
+    "PtP_M3": {
+      "2": 685,
+      "3": 1836,
+      "1": 377
+    },
+    "PtP_M4": {
+      "1": 674,
+      "2": 1052,
+      "3": 1237,
+      "5": 3,
+      "4": 4
+    },
+    "PtP_M5": {
+      "2": 342,
+      "1": 893,
+      "3": 1037,
+      "4": 234,
+      "5": 423,
+      "mixed": 49
+    },
+    "PtP_S2": {
+      "3": 1110,
+      "1": 522,
+      "2": 1286,
+      "5": 30,
+      "4": 49,
+      "mixed": 1
+    },
+    "R1_M1": {
+      "3": 646,
+      "1": 1003,
+      "2": 286
+    },
+    "R1_S1": {
+      "2": 318,
+      "3": 467,
+      "1": 1113
+    },
+    "R1_S2": {
+      "3": 1103,
+      "1": 509
+    },
+    "R2_M1": {
+      "2": 335,
+      "1": 583,
+      "3": 907,
+      "5": 24,
+      "mixed": 2
+    },
+    "R2_S3": {
+      "3": 568,
+      "2": 170,
+      "1": 220
+    },
+    "R2_S4": {
+      "2": 332,
+      "1": 594,
+      "3": 1263,
+      "4": 2,
+      "5": 130
+    },
+    "R2_S5": {
+      "1": 993,
+      "3": 693,
+      "2": 402,
+      "5": 64,
+      "mixed": 6,
+      "4": 3
+    },
+    "R2_S6": {
+      "3": 530,
+      "1": 196,
+      "2": 33
+    },
+    "R2_S8": {
+      "3": 794,
+      "1": 219,
+      "2": 198,
+      "mixed": 1
+    },
+    "R2_S9": {
+      "3": 468,
+      "1": 285,
+      "5": 21,
+      "2": 67
+    },
+    "R3_S5": {
+      "3": 709,
+      "2": 304,
+      "1": 438,
+      "5": 18
+    },
+    "PtP_M1": {
+      "1": 718,
+      "2": 135,
+      "3": 617,
+      "5": 4,
+      "mixed": 1
+    },
+    "R1_M2": {
+      "2": 104,
+      "3": 738,
+      "1": 1253
+    },
+    "R3_M2": {
+      "2": 393,
+      "3": 292,
+      "1": 689,
+      "5": 1
+    },
+    "PtP_S1": {
+      "1": 773,
+      "3": 1158,
+      "2": 136,
+      "5": 17
+    },
+    "R1_S3": {
+      "1": 354,
+      "3": 502
+    },
+    "R2_M2": {
+      "1": 381,
+      "3": 587,
+      "2": 317,
+      "5": 5
+    },
+    "R2_S2": {
+      "3": 246,
+      "2": 8,
+      "1": 3
+    },
+    "R3_S3": {
+      "2": 97,
+      "1": 108,
+      "3": 213
+    },
+    "R2_S1": {
+      "3": 214,
+      "1": 79,
+      "2": 10
+    },
+    "R3_S2": {
+      "2": 31,
+      "1": 122
+    },
+    "R3_S4": {
+      "3": 112,
+      "1": 1
+    },
+    "R2_S7": {
+      "3": 75,
+      "2": 69
+    },
+    "R3_M1": {
+      "3": 130,
+      "1": 7
+    }
+  },
+  "item_confidence_stats": {},
+  "strategy_item_opportunity_stats": {
+    "random": {
+      "PtP_M1": {
+        "mean": 2.422,
+        "pct_below_min": 49.73,
+        "n": 187
+      },
+      "PtP_M2": {
+        "mean": 6.246,
+        "pct_below_min": 0.0,
+        "n": 187
+      },
+      "PtP_M3": {
+        "mean": 4.497,
+        "pct_below_min": 2.14,
+        "n": 187
+      },
+      "PtP_M4": {
+        "mean": 5.503,
+        "pct_below_min": 1.6,
+        "n": 187
+      },
+      "PtP_M5": {
+        "mean": 5.802,
+        "pct_below_min": 1.07,
+        "n": 187
+      },
+      "PtP_S1": {
+        "mean": 2.005,
+        "pct_below_min": 25.67,
+        "n": 187
+      },
+      "PtP_S2": {
+        "mean": 7.845,
+        "pct_below_min": 0.0,
+        "n": 187
+      },
+      "R1_M1": {
+        "mean": 2.642,
+        "pct_below_min": 17.11,
+        "n": 187
+      },
+      "R1_M2": {
+        "mean": 2.749,
+        "pct_below_min": 10.7,
+        "n": 187
+      },
+      "R1_S1": {
+        "mean": 2.631,
+        "pct_below_min": 12.83,
+        "n": 187
+      },
+      "R1_S2": {
+        "mean": 1.872,
+        "pct_below_min": 35.29,
+        "n": 187
+      },
+      "R1_S3": {
+        "mean": 1.326,
+        "pct_below_min": 55.61,
+        "n": 187
+      },
+      "R1_S4": {
+        "mean": 0.626,
+        "pct_below_min": 100.0,
+        "n": 187
+      },
+      "R2_M1": {
+        "mean": 2.257,
+        "pct_below_min": 41.18,
+        "n": 187
+      },
+      "R2_M2": {
+        "mean": 1.497,
+        "pct_below_min": 60.96,
+        "n": 187
+      },
+      "R2_S1": {
+        "mean": 0.759,
+        "pct_below_min": 80.21,
+        "n": 187
+      },
+      "R2_S2": {
+        "mean": 0.508,
+        "pct_below_min": 89.3,
+        "n": 187
+      },
+      "R2_S3": {
+        "mean": 1.16,
+        "pct_below_min": 64.71,
+        "n": 187
+      },
+      "R2_S4": {
+        "mean": 3.299,
+        "pct_below_min": 26.74,
+        "n": 187
+      },
+      "R2_S5": {
+        "mean": 3.631,
+        "pct_below_min": 31.02,
+        "n": 187
+      },
+      "R2_S6": {
+        "mean": 1.401,
+        "pct_below_min": 77.54,
+        "n": 187
+      },
+      "R2_S7": {
+        "mean": 0.722,
+        "pct_below_min": 97.86,
+        "n": 187
+      },
+      "R2_S8": {
+        "mean": 1.358,
+        "pct_below_min": 59.36,
+        "n": 187
+      },
+      "R2_S9": {
+        "mean": 1.845,
+        "pct_below_min": 70.59,
+        "n": 187
+      },
+      "R3_M1": {
+        "mean": 0.235,
+        "pct_below_min": 95.72,
+        "n": 187
+      },
+      "R3_M2": {
+        "mean": 1.668,
+        "pct_below_min": 56.15,
+        "n": 187
+      },
+      "R3_S1": {
+        "mean": 0.075,
+        "pct_below_min": 100.0,
+        "n": 187
+      },
+      "R3_S2": {
+        "mean": 0.439,
+        "pct_below_min": 94.65,
+        "n": 187
+      },
+      "R3_S3": {
+        "mean": 0.551,
+        "pct_below_min": 88.77,
+        "n": 187
+      },
+      "R3_S4": {
+        "mean": 0.203,
+        "pct_below_min": 95.72,
+        "n": 187
+      },
+      "R3_S5": {
+        "mean": 1.567,
+        "pct_below_min": 57.22,
+        "n": 187
+      }
+    },
+    "greedy_score": {
+      "PtP_M1": {
+        "mean": 2.356,
+        "pct_below_min": 54.66,
+        "n": 236
+      },
+      "PtP_M2": {
+        "mean": 5.945,
+        "pct_below_min": 0.42,
+        "n": 236
+      },
+      "PtP_M3": {
+        "mean": 4.114,
+        "pct_below_min": 0.0,
+        "n": 236
+      },
+      "PtP_M4": {
+        "mean": 5.102,
+        "pct_below_min": 0.42,
+        "n": 236
+      },
+      "PtP_M5": {
+        "mean": 6.275,
+        "pct_below_min": 0.85,
+        "n": 236
+      },
+      "PtP_S1": {
+        "mean": 2.047,
+        "pct_below_min": 30.51,
+        "n": 236
+      },
+      "PtP_S2": {
+        "mean": 7.161,
+        "pct_below_min": 0.0,
+        "n": 236
+      },
+      "R1_M1": {
+        "mean": 2.496,
+        "pct_below_min": 14.83,
+        "n": 236
+      },
+      "R1_M2": {
+        "mean": 2.53,
+        "pct_below_min": 12.71,
+        "n": 236
+      },
+      "R1_S1": {
+        "mean": 2.347,
+        "pct_below_min": 19.92,
+        "n": 236
+      },
+      "R1_S2": {
+        "mean": 1.602,
+        "pct_below_min": 45.34,
+        "n": 236
+      },
+      "R1_S3": {
+        "mean": 1.182,
+        "pct_below_min": 66.1,
+        "n": 236
+      },
+      "R1_S4": {
+        "mean": 0.521,
+        "pct_below_min": 100.0,
+        "n": 236
+      },
+      "R2_M1": {
+        "mean": 2.398,
+        "pct_below_min": 23.73,
+        "n": 236
+      },
+      "R2_M2": {
+        "mean": 1.593,
+        "pct_below_min": 50.42,
+        "n": 236
+      },
+      "R2_S1": {
+        "mean": 0.839,
+        "pct_below_min": 80.51,
+        "n": 236
+      },
+      "R2_S2": {
+        "mean": 0.636,
+        "pct_below_min": 89.83,
+        "n": 236
+      },
+      "R2_S3": {
+        "mean": 1.479,
+        "pct_below_min": 53.81,
+        "n": 236
+      },
+      "R2_S4": {
+        "mean": 3.339,
+        "pct_below_min": 27.54,
+        "n": 236
+      },
+      "R2_S5": {
+        "mean": 3.873,
+        "pct_below_min": 16.53,
+        "n": 236
+      },
+      "R2_S6": {
+        "mean": 1.992,
+        "pct_below_min": 67.8,
+        "n": 236
+      },
+      "R2_S7": {
+        "mean": 0.737,
+        "pct_below_min": 90.68,
+        "n": 236
+      },
+      "R2_S8": {
+        "mean": 1.61,
+        "pct_below_min": 49.15,
+        "n": 236
+      },
+      "R2_S9": {
+        "mean": 2.25,
+        "pct_below_min": 66.53,
+        "n": 236
+      },
+      "R3_M1": {
+        "mean": 0.508,
+        "pct_below_min": 91.95,
+        "n": 236
+      },
+      "R3_M2": {
+        "mean": 1.792,
+        "pct_below_min": 42.8,
+        "n": 236
+      },
+      "R3_S1": {
+        "mean": 0.144,
+        "pct_below_min": 100.0,
+        "n": 236
+      },
+      "R3_S2": {
+        "mean": 0.568,
+        "pct_below_min": 90.25,
+        "n": 236
+      },
+      "R3_S3": {
+        "mean": 1.076,
+        "pct_below_min": 67.37,
+        "n": 236
+      },
+      "R3_S4": {
+        "mean": 0.466,
+        "pct_below_min": 92.8,
+        "n": 236
+      },
+      "R3_S5": {
+        "mean": 2.131,
+        "pct_below_min": 33.9,
+        "n": 236
+      }
+    },
+    "greedy_tt": {
+      "PtP_M1": {
+        "mean": 2.45,
+        "pct_below_min": 52.5,
+        "n": 200
+      },
+      "PtP_M2": {
+        "mean": 6.275,
+        "pct_below_min": 0.0,
+        "n": 200
+      },
+      "PtP_M3": {
+        "mean": 4.53,
+        "pct_below_min": 0.5,
+        "n": 200
+      },
+      "PtP_M4": {
+        "mean": 5.67,
+        "pct_below_min": 0.0,
+        "n": 200
+      },
+      "PtP_M5": {
+        "mean": 6.265,
+        "pct_below_min": 0.0,
+        "n": 200
+      },
+      "PtP_S1": {
+        "mean": 1.98,
+        "pct_below_min": 29.0,
+        "n": 200
+      },
+      "PtP_S2": {
+        "mean": 7.915,
+        "pct_below_min": 0.0,
+        "n": 200
+      },
+      "R1_M1": {
+        "mean": 2.685,
+        "pct_below_min": 9.5,
+        "n": 200
+      },
+      "R1_M2": {
+        "mean": 2.675,
+        "pct_below_min": 9.0,
+        "n": 200
+      },
+      "R1_S1": {
+        "mean": 2.705,
+        "pct_below_min": 9.0,
+        "n": 200
+      },
+      "R1_S2": {
+        "mean": 1.95,
+        "pct_below_min": 26.0,
+        "n": 200
+      },
+      "R1_S3": {
+        "mean": 1.315,
+        "pct_below_min": 57.0,
+        "n": 200
+      },
+      "R1_S4": {
+        "mean": 0.645,
+        "pct_below_min": 100.0,
+        "n": 200
+      },
+      "R2_M1": {
+        "mean": 2.455,
+        "pct_below_min": 21.0,
+        "n": 200
+      },
+      "R2_M2": {
+        "mean": 1.505,
+        "pct_below_min": 53.0,
+        "n": 200
+      },
+      "R2_S1": {
+        "mean": 0.845,
+        "pct_below_min": 78.0,
+        "n": 200
+      },
+      "R2_S2": {
+        "mean": 0.505,
+        "pct_below_min": 91.5,
+        "n": 200
+      },
+      "R2_S3": {
+        "mean": 1.325,
+        "pct_below_min": 60.5,
+        "n": 200
+      },
+      "R2_S4": {
+        "mean": 3.52,
+        "pct_below_min": 23.0,
+        "n": 200
+      },
+      "R2_S5": {
+        "mean": 3.69,
+        "pct_below_min": 23.5,
+        "n": 200
+      },
+      "R2_S6": {
+        "mean": 1.625,
+        "pct_below_min": 78.5,
+        "n": 200
+      },
+      "R2_S7": {
+        "mean": 0.73,
+        "pct_below_min": 96.0,
+        "n": 200
+      },
+      "R2_S8": {
+        "mean": 1.42,
+        "pct_below_min": 51.0,
+        "n": 200
+      },
+      "R2_S9": {
+        "mean": 1.85,
+        "pct_below_min": 74.5,
+        "n": 200
+      },
+      "R3_M1": {
+        "mean": 0.225,
+        "pct_below_min": 96.5,
+        "n": 200
+      },
+      "R3_M2": {
+        "mean": 1.63,
+        "pct_below_min": 49.5,
+        "n": 200
+      },
+      "R3_S1": {
+        "mean": 0.04,
+        "pct_below_min": 100.0,
+        "n": 200
+      },
+      "R3_S2": {
+        "mean": 0.415,
+        "pct_below_min": 96.0,
+        "n": 200
+      },
+      "R3_S3": {
+        "mean": 0.545,
+        "pct_below_min": 89.5,
+        "n": 200
+      },
+      "R3_S4": {
+        "mean": 0.245,
+        "pct_below_min": 95.5,
+        "n": 200
+      },
+      "R3_S5": {
+        "mean": 1.65,
+        "pct_below_min": 49.0,
+        "n": 200
+      }
+    },
+    "greedy_mp": {
+      "PtP_M1": {
+        "mean": 2.4,
+        "pct_below_min": 53.66,
+        "n": 205
+      },
+      "PtP_M2": {
+        "mean": 6.244,
+        "pct_below_min": 0.0,
+        "n": 205
+      },
+      "PtP_M3": {
+        "mean": 4.42,
+        "pct_below_min": 0.98,
+        "n": 205
+      },
+      "PtP_M4": {
+        "mean": 5.556,
+        "pct_below_min": 0.0,
+        "n": 205
+      },
+      "PtP_M5": {
+        "mean": 6.132,
+        "pct_below_min": 0.98,
+        "n": 205
+      },
+      "PtP_S1": {
+        "mean": 2.112,
+        "pct_below_min": 20.49,
+        "n": 205
+      },
+      "PtP_S2": {
+        "mean": 7.8,
+        "pct_below_min": 0.0,
+        "n": 205
+      },
+      "R1_M1": {
+        "mean": 2.58,
+        "pct_below_min": 13.17,
+        "n": 205
+      },
+      "R1_M2": {
+        "mean": 2.639,
+        "pct_below_min": 13.17,
+        "n": 205
+      },
+      "R1_S1": {
+        "mean": 2.629,
+        "pct_below_min": 11.71,
+        "n": 205
+      },
+      "R1_S2": {
+        "mean": 1.932,
+        "pct_below_min": 27.32,
+        "n": 205
+      },
+      "R1_S3": {
+        "mean": 1.337,
+        "pct_below_min": 57.56,
+        "n": 205
+      },
+      "R1_S4": {
+        "mean": 0.737,
+        "pct_below_min": 100.0,
+        "n": 205
+      },
+      "R2_M1": {
+        "mean": 2.293,
+        "pct_below_min": 26.83,
+        "n": 205
+      },
+      "R2_M2": {
+        "mean": 1.678,
+        "pct_below_min": 46.34,
+        "n": 205
+      },
+      "R2_S1": {
+        "mean": 0.756,
+        "pct_below_min": 83.41,
+        "n": 205
+      },
+      "R2_S2": {
+        "mean": 0.541,
+        "pct_below_min": 90.24,
+        "n": 205
+      },
+      "R2_S3": {
+        "mean": 1.259,
+        "pct_below_min": 62.93,
+        "n": 205
+      },
+      "R2_S4": {
+        "mean": 3.415,
+        "pct_below_min": 23.9,
+        "n": 205
+      },
+      "R2_S5": {
+        "mean": 3.673,
+        "pct_below_min": 18.54,
+        "n": 205
+      },
+      "R2_S6": {
+        "mean": 1.873,
+        "pct_below_min": 71.22,
+        "n": 205
+      },
+      "R2_S7": {
+        "mean": 0.732,
+        "pct_below_min": 94.15,
+        "n": 205
+      },
+      "R2_S8": {
+        "mean": 1.498,
+        "pct_below_min": 51.22,
+        "n": 205
+      },
+      "R2_S9": {
+        "mean": 1.917,
+        "pct_below_min": 70.73,
+        "n": 205
+      },
+      "R3_M1": {
+        "mean": 0.371,
+        "pct_below_min": 93.17,
+        "n": 205
+      },
+      "R3_M2": {
+        "mean": 1.644,
+        "pct_below_min": 47.8,
+        "n": 205
+      },
+      "R3_S1": {
+        "mean": 0.068,
+        "pct_below_min": 100.0,
+        "n": 205
+      },
+      "R3_S2": {
+        "mean": 0.395,
+        "pct_below_min": 95.61,
+        "n": 205
+      },
+      "R3_S3": {
+        "mean": 0.776,
+        "pct_below_min": 80.49,
+        "n": 205
+      },
+      "R3_S4": {
+        "mean": 0.337,
+        "pct_below_min": 95.12,
+        "n": 205
+      },
+      "R3_S5": {
+        "mean": 1.82,
+        "pct_below_min": 38.54,
+        "n": 205
+      }
+    },
+    "greedy_sp": {
+      "PtP_M1": {
+        "mean": 2.864,
+        "pct_below_min": 12.27,
+        "n": 220
+      },
+      "PtP_M2": {
+        "mean": 7.718,
+        "pct_below_min": 0.0,
+        "n": 220
+      },
+      "PtP_M3": {
+        "mean": 5.755,
+        "pct_below_min": 0.0,
+        "n": 220
+      },
+      "PtP_M4": {
+        "mean": 7.618,
+        "pct_below_min": 0.0,
+        "n": 220
+      },
+      "PtP_M5": {
+        "mean": 4.818,
+        "pct_below_min": 0.91,
+        "n": 220
+      },
+      "PtP_S1": {
+        "mean": 1.9,
+        "pct_below_min": 9.55,
+        "n": 220
+      },
+      "PtP_S2": {
+        "mean": 9.545,
+        "pct_below_min": 0.0,
+        "n": 220
+      },
+      "R1_M1": {
+        "mean": 3.809,
+        "pct_below_min": 0.45,
+        "n": 220
+      },
+      "R1_M2": {
+        "mean": 3.85,
+        "pct_below_min": 0.45,
+        "n": 220
+      },
+      "R1_S1": {
+        "mean": 3.777,
+        "pct_below_min": 0.0,
+        "n": 220
+      },
+      "R1_S2": {
+        "mean": 2.8,
+        "pct_below_min": 3.18,
+        "n": 220
+      },
+      "R1_S3": {
+        "mean": 1.873,
+        "pct_below_min": 12.27,
+        "n": 220
+      },
+      "R1_S4": {
+        "mean": 0.95,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_M1": {
+        "mean": 0.973,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_M2": {
+        "mean": 0.95,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S1": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S2": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S3": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S4": {
+        "mean": 2.873,
+        "pct_below_min": 10.91,
+        "n": 220
+      },
+      "R2_S5": {
+        "mean": 1.895,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S6": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S7": {
+        "mean": 0.945,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S8": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R2_S9": {
+        "mean": 0.945,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_M1": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_M2": {
+        "mean": 0.977,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_S1": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_S2": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_S3": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_S4": {
+        "mean": 0,
+        "pct_below_min": 100.0,
+        "n": 220
+      },
+      "R3_S5": {
+        "mean": 0.95,
+        "pct_below_min": 100.0,
+        "n": 220
+      }
+    },
+    "altruist": {
+      "PtP_M1": {
+        "mean": 2.276,
+        "pct_below_min": 58.41,
+        "n": 214
+      },
+      "PtP_M2": {
+        "mean": 6.22,
+        "pct_below_min": 0.0,
+        "n": 214
+      },
+      "PtP_M3": {
+        "mean": 4.542,
+        "pct_below_min": 0.0,
+        "n": 214
+      },
+      "PtP_M4": {
+        "mean": 5.617,
+        "pct_below_min": 0.0,
+        "n": 214
+      },
+      "PtP_M5": {
+        "mean": 6.257,
+        "pct_below_min": 0.93,
+        "n": 214
+      },
+      "PtP_S1": {
+        "mean": 2.192,
+        "pct_below_min": 25.7,
+        "n": 214
+      },
+      "PtP_S2": {
+        "mean": 7.804,
+        "pct_below_min": 0.0,
+        "n": 214
+      },
+      "R1_M1": {
+        "mean": 2.678,
+        "pct_below_min": 9.35,
+        "n": 214
+      },
+      "R1_M2": {
+        "mean": 2.682,
+        "pct_below_min": 8.88,
+        "n": 214
+      },
+      "R1_S1": {
+        "mean": 2.621,
+        "pct_below_min": 9.81,
+        "n": 214
+      },
+      "R1_S2": {
+        "mean": 1.86,
+        "pct_below_min": 32.71,
+        "n": 214
+      },
+      "R1_S3": {
+        "mean": 1.294,
+        "pct_below_min": 59.35,
+        "n": 214
+      },
+      "R1_S4": {
+        "mean": 0.64,
+        "pct_below_min": 100.0,
+        "n": 214
+      },
+      "R2_M1": {
+        "mean": 2.481,
+        "pct_below_min": 21.03,
+        "n": 214
+      },
+      "R2_M2": {
+        "mean": 1.561,
+        "pct_below_min": 53.74,
+        "n": 214
+      },
+      "R2_S1": {
+        "mean": 0.836,
+        "pct_below_min": 81.78,
+        "n": 214
+      },
+      "R2_S2": {
+        "mean": 0.519,
+        "pct_below_min": 92.06,
+        "n": 214
+      },
+      "R2_S3": {
+        "mean": 1.327,
+        "pct_below_min": 60.75,
+        "n": 214
+      },
+      "R2_S4": {
+        "mean": 3.491,
+        "pct_below_min": 19.63,
+        "n": 214
+      },
+      "R2_S5": {
+        "mean": 4.042,
+        "pct_below_min": 12.62,
+        "n": 214
+      },
+      "R2_S6": {
+        "mean": 1.687,
+        "pct_below_min": 79.91,
+        "n": 214
+      },
+      "R2_S7": {
+        "mean": 0.673,
+        "pct_below_min": 97.2,
+        "n": 214
+      },
+      "R2_S8": {
+        "mean": 1.565,
+        "pct_below_min": 50.93,
+        "n": 214
+      },
+      "R2_S9": {
+        "mean": 1.935,
+        "pct_below_min": 69.16,
+        "n": 214
+      },
+      "R3_M1": {
+        "mean": 0.336,
+        "pct_below_min": 95.79,
+        "n": 214
+      },
+      "R3_M2": {
+        "mean": 1.664,
+        "pct_below_min": 45.33,
+        "n": 214
+      },
+      "R3_S1": {
+        "mean": 0.093,
+        "pct_below_min": 100.0,
+        "n": 214
+      },
+      "R3_S2": {
+        "mean": 0.472,
+        "pct_below_min": 91.59,
+        "n": 214
+      },
+      "R3_S3": {
+        "mean": 0.752,
+        "pct_below_min": 78.04,
+        "n": 214
+      },
+      "R3_S4": {
+        "mean": 0.243,
+        "pct_below_min": 97.66,
+        "n": 214
+      },
+      "R3_S5": {
+        "mean": 1.818,
+        "pct_below_min": 43.46,
+        "n": 214
+      }
+    },
+    "individualist": {
+      "PtP_M1": {
+        "mean": 2.244,
+        "pct_below_min": 56.81,
+        "n": 213
+      },
+      "PtP_M2": {
+        "mean": 5.671,
+        "pct_below_min": 3.29,
+        "n": 213
+      },
+      "PtP_M3": {
+        "mean": 4.385,
+        "pct_below_min": 0.47,
+        "n": 213
+      },
+      "PtP_M4": {
+        "mean": 5.164,
+        "pct_below_min": 1.41,
+        "n": 213
+      },
+      "PtP_M5": {
+        "mean": 6.54,
+        "pct_below_min": 0.47,
+        "n": 213
+      },
+      "PtP_S1": {
+        "mean": 1.925,
+        "pct_below_min": 35.68,
+        "n": 213
+      },
+      "PtP_S2": {
+        "mean": 7.577,
+        "pct_below_min": 0.0,
+        "n": 213
+      },
+      "R1_M1": {
+        "mean": 2.479,
+        "pct_below_min": 14.55,
+        "n": 213
+      },
+      "R1_M2": {
+        "mean": 2.577,
+        "pct_below_min": 16.43,
+        "n": 213
+      },
+      "R1_S1": {
+        "mean": 2.39,
+        "pct_below_min": 20.19,
+        "n": 213
+      },
+      "R1_S2": {
+        "mean": 1.629,
+        "pct_below_min": 44.13,
+        "n": 213
+      },
+      "R1_S3": {
+        "mean": 1.183,
+        "pct_below_min": 65.73,
+        "n": 213
+      },
+      "R1_S4": {
+        "mean": 0.559,
+        "pct_below_min": 100.0,
+        "n": 213
+      },
+      "R2_M1": {
+        "mean": 2.756,
+        "pct_below_min": 23.0,
+        "n": 213
+      },
+      "R2_M2": {
+        "mean": 1.746,
+        "pct_below_min": 43.66,
+        "n": 213
+      },
+      "R2_S1": {
+        "mean": 1.333,
+        "pct_below_min": 57.28,
+        "n": 213
+      },
+      "R2_S2": {
+        "mean": 0.624,
+        "pct_below_min": 84.98,
+        "n": 213
+      },
+      "R2_S3": {
+        "mean": 1.826,
+        "pct_below_min": 45.54,
+        "n": 213
+      },
+      "R2_S4": {
+        "mean": 3.643,
+        "pct_below_min": 18.31,
+        "n": 213
+      },
+      "R2_S5": {
+        "mean": 4.221,
+        "pct_below_min": 20.19,
+        "n": 213
+      },
+      "R2_S6": {
+        "mean": 1.948,
+        "pct_below_min": 65.26,
+        "n": 213
+      },
+      "R2_S7": {
+        "mean": 0.601,
+        "pct_below_min": 97.65,
+        "n": 213
+      },
+      "R2_S8": {
+        "mean": 1.967,
+        "pct_below_min": 40.85,
+        "n": 213
+      },
+      "R2_S9": {
+        "mean": 2.009,
+        "pct_below_min": 70.89,
+        "n": 213
+      },
+      "R3_M1": {
+        "mean": 0.122,
+        "pct_below_min": 98.12,
+        "n": 213
+      },
+      "R3_M2": {
+        "mean": 1.69,
+        "pct_below_min": 47.89,
+        "n": 213
+      },
+      "R3_S1": {
+        "mean": 0.014,
+        "pct_below_min": 100.0,
+        "n": 213
+      },
+      "R3_S2": {
+        "mean": 0.408,
+        "pct_below_min": 95.77,
+        "n": 213
+      },
+      "R3_S3": {
+        "mean": 0.488,
+        "pct_below_min": 92.49,
+        "n": 213
+      },
+      "R3_S4": {
+        "mean": 0.08,
+        "pct_below_min": 99.53,
+        "n": 213
+      },
+      "R3_S5": {
+        "mean": 1.638,
+        "pct_below_min": 51.64,
+        "n": 213
+      }
+    },
+    "risk_seeker": {
+      "PtP_M1": {
+        "mean": 2.371,
+        "pct_below_min": 43.75,
+        "n": 224
+      },
+      "PtP_M2": {
+        "mean": 6.719,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "PtP_M3": {
+        "mean": 5.054,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "PtP_M4": {
+        "mean": 6.348,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "PtP_M5": {
+        "mean": 5.634,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "PtP_S1": {
+        "mean": 1.978,
+        "pct_below_min": 18.75,
+        "n": 224
+      },
+      "PtP_S2": {
+        "mean": 8.531,
+        "pct_below_min": 0.0,
+        "n": 224
+      },
+      "R1_M1": {
+        "mean": 3.071,
+        "pct_below_min": 11.16,
+        "n": 224
+      },
+      "R1_M2": {
+        "mean": 3.116,
+        "pct_below_min": 8.48,
+        "n": 224
+      },
+      "R1_S1": {
+        "mean": 3.027,
+        "pct_below_min": 8.93,
+        "n": 224
+      },
+      "R1_S2": {
+        "mean": 2.214,
+        "pct_below_min": 22.77,
+        "n": 224
+      },
+      "R1_S3": {
+        "mean": 1.513,
+        "pct_below_min": 38.84,
+        "n": 224
+      },
+      "R1_S4": {
+        "mean": 0.768,
+        "pct_below_min": 100.0,
+        "n": 224
+      },
+      "R2_M1": {
+        "mean": 1.969,
+        "pct_below_min": 56.7,
+        "n": 224
+      },
+      "R2_M2": {
+        "mean": 1.348,
+        "pct_below_min": 67.86,
+        "n": 224
+      },
+      "R2_S1": {
+        "mean": 0.701,
+        "pct_below_min": 78.57,
+        "n": 224
+      },
+      "R2_S2": {
+        "mean": 0.317,
+        "pct_below_min": 94.2,
+        "n": 224
+      },
+      "R2_S3": {
+        "mean": 0.786,
+        "pct_below_min": 78.12,
+        "n": 224
+      },
+      "R2_S4": {
+        "mean": 3.299,
+        "pct_below_min": 17.86,
+        "n": 224
+      },
+      "R2_S5": {
+        "mean": 3.277,
+        "pct_below_min": 54.91,
+        "n": 224
+      },
+      "R2_S6": {
+        "mean": 0.978,
+        "pct_below_min": 83.93,
+        "n": 224
+      },
+      "R2_S7": {
+        "mean": 0.754,
+        "pct_below_min": 99.55,
+        "n": 224
+      },
+      "R2_S8": {
+        "mean": 1.045,
+        "pct_below_min": 71.43,
+        "n": 224
+      },
+      "R2_S9": {
+        "mean": 1.576,
+        "pct_below_min": 81.7,
+        "n": 224
+      },
+      "R3_M1": {
+        "mean": 0.036,
+        "pct_below_min": 99.11,
+        "n": 224
+      },
+      "R3_M2": {
+        "mean": 1.5,
+        "pct_below_min": 64.73,
+        "n": 224
+      },
+      "R3_S1": {
+        "mean": 0.013,
+        "pct_below_min": 100.0,
+        "n": 224
+      },
+      "R3_S2": {
+        "mean": 0.214,
+        "pct_below_min": 96.43,
+        "n": 224
+      },
+      "R3_S3": {
+        "mean": 0.196,
+        "pct_below_min": 97.32,
+        "n": 224
+      },
+      "R3_S4": {
+        "mean": 0.036,
+        "pct_below_min": 99.55,
+        "n": 224
+      },
+      "R3_S5": {
+        "mean": 1.344,
+        "pct_below_min": 73.66,
+        "n": 224
+      }
+    },
+    "risk_averse": {
+      "PtP_M1": {
+        "mean": 2.458,
+        "pct_below_min": 53.3,
+        "n": 212
+      },
+      "PtP_M2": {
+        "mean": 6.132,
+        "pct_below_min": 0.0,
+        "n": 212
+      },
+      "PtP_M3": {
+        "mean": 4.646,
+        "pct_below_min": 0.0,
+        "n": 212
+      },
+      "PtP_M4": {
+        "mean": 5.802,
+        "pct_below_min": 0.0,
+        "n": 212
+      },
+      "PtP_M5": {
+        "mean": 6.264,
+        "pct_below_min": 0.47,
+        "n": 212
+      },
+      "PtP_S1": {
+        "mean": 2.047,
+        "pct_below_min": 26.42,
+        "n": 212
+      },
+      "PtP_S2": {
+        "mean": 7.877,
+        "pct_below_min": 0.0,
+        "n": 212
+      },
+      "R1_M1": {
+        "mean": 2.679,
+        "pct_below_min": 9.43,
+        "n": 212
+      },
+      "R1_M2": {
+        "mean": 2.623,
+        "pct_below_min": 9.91,
+        "n": 212
+      },
+      "R1_S1": {
+        "mean": 2.637,
+        "pct_below_min": 10.38,
+        "n": 212
+      },
+      "R1_S2": {
+        "mean": 2,
+        "pct_below_min": 27.36,
+        "n": 212
+      },
+      "R1_S3": {
+        "mean": 1.321,
+        "pct_below_min": 58.96,
+        "n": 212
+      },
+      "R1_S4": {
+        "mean": 0.585,
+        "pct_below_min": 100.0,
+        "n": 212
+      },
+      "R2_M1": {
+        "mean": 2.458,
+        "pct_below_min": 21.23,
+        "n": 212
+      },
+      "R2_M2": {
+        "mean": 1.453,
+        "pct_below_min": 57.55,
+        "n": 212
+      },
+      "R2_S1": {
+        "mean": 0.939,
+        "pct_below_min": 75.0,
+        "n": 212
+      },
+      "R2_S2": {
+        "mean": 0.604,
+        "pct_below_min": 90.57,
+        "n": 212
+      },
+      "R2_S3": {
+        "mean": 1.373,
+        "pct_below_min": 59.91,
+        "n": 212
+      },
+      "R2_S4": {
+        "mean": 3.448,
+        "pct_below_min": 21.7,
+        "n": 212
+      },
+      "R2_S5": {
+        "mean": 3.736,
+        "pct_below_min": 21.7,
+        "n": 212
+      },
+      "R2_S6": {
+        "mean": 1.712,
+        "pct_below_min": 79.25,
+        "n": 212
+      },
+      "R2_S7": {
+        "mean": 0.741,
+        "pct_below_min": 93.87,
+        "n": 212
+      },
+      "R2_S8": {
+        "mean": 1.651,
+        "pct_below_min": 42.92,
+        "n": 212
+      },
+      "R2_S9": {
+        "mean": 1.882,
+        "pct_below_min": 73.58,
+        "n": 212
+      },
+      "R3_M1": {
+        "mean": 0.208,
+        "pct_below_min": 97.64,
+        "n": 212
+      },
+      "R3_M2": {
+        "mean": 1.575,
+        "pct_below_min": 50.47,
+        "n": 212
+      },
+      "R3_S1": {
+        "mean": 0.061,
+        "pct_below_min": 100.0,
+        "n": 212
+      },
+      "R3_S2": {
+        "mean": 0.415,
+        "pct_below_min": 95.75,
+        "n": 212
+      },
+      "R3_S3": {
+        "mean": 0.66,
+        "pct_below_min": 84.91,
+        "n": 212
+      },
+      "R3_S4": {
+        "mean": 0.17,
+        "pct_below_min": 98.58,
+        "n": 212
+      },
+      "R3_S5": {
+        "mean": 1.764,
+        "pct_below_min": 44.34,
+        "n": 212
+      }
+    },
+    "balanced": {
+      "PtP_M1": {
+        "mean": 2.224,
+        "pct_below_min": 59.02,
+        "n": 205
+      },
+      "PtP_M2": {
+        "mean": 5.741,
+        "pct_below_min": 0.0,
+        "n": 205
+      },
+      "PtP_M3": {
+        "mean": 3.693,
+        "pct_below_min": 1.95,
+        "n": 205
+      },
+      "PtP_M4": {
+        "mean": 4.654,
+        "pct_below_min": 1.46,
+        "n": 205
+      },
+      "PtP_M5": {
+        "mean": 6.259,
+        "pct_below_min": 1.95,
+        "n": 205
+      },
+      "PtP_S1": {
+        "mean": 2.102,
+        "pct_below_min": 32.2,
+        "n": 205
+      },
+      "PtP_S2": {
+        "mean": 6.566,
+        "pct_below_min": 0.0,
+        "n": 205
+      },
+      "R1_M1": {
+        "mean": 2.185,
+        "pct_below_min": 20.98,
+        "n": 205
+      },
+      "R1_M2": {
+        "mean": 2.21,
+        "pct_below_min": 20.49,
+        "n": 205
+      },
+      "R1_S1": {
+        "mean": 2.205,
+        "pct_below_min": 23.41,
+        "n": 205
+      },
+      "R1_S2": {
+        "mean": 1.541,
+        "pct_below_min": 44.39,
+        "n": 205
+      },
+      "R1_S3": {
+        "mean": 1.005,
+        "pct_below_min": 74.63,
+        "n": 205
+      },
+      "R1_S4": {
+        "mean": 0.459,
+        "pct_below_min": 100.0,
+        "n": 205
+      },
+      "R2_M1": {
+        "mean": 2.341,
+        "pct_below_min": 30.24,
+        "n": 205
+      },
+      "R2_M2": {
+        "mean": 1.639,
+        "pct_below_min": 46.34,
+        "n": 205
+      },
+      "R2_S1": {
+        "mean": 0.776,
+        "pct_below_min": 83.9,
+        "n": 205
+      },
+      "R2_S2": {
+        "mean": 0.698,
+        "pct_below_min": 84.88,
+        "n": 205
+      },
+      "R2_S3": {
+        "mean": 1.541,
+        "pct_below_min": 52.2,
+        "n": 205
+      },
+      "R2_S4": {
+        "mean": 3.249,
+        "pct_below_min": 28.29,
+        "n": 205
+      },
+      "R2_S5": {
+        "mean": 4.073,
+        "pct_below_min": 12.2,
+        "n": 205
+      },
+      "R2_S6": {
+        "mean": 2.283,
+        "pct_below_min": 59.02,
+        "n": 205
+      },
+      "R2_S7": {
+        "mean": 0.688,
+        "pct_below_min": 91.71,
+        "n": 205
+      },
+      "R2_S8": {
+        "mean": 1.727,
+        "pct_below_min": 44.88,
+        "n": 205
+      },
+      "R2_S9": {
+        "mean": 2.249,
+        "pct_below_min": 59.02,
+        "n": 205
+      },
+      "R3_M1": {
+        "mean": 0.541,
+        "pct_below_min": 90.73,
+        "n": 205
+      },
+      "R3_M2": {
+        "mean": 1.912,
+        "pct_below_min": 35.12,
+        "n": 205
+      },
+      "R3_S1": {
+        "mean": 0.122,
+        "pct_below_min": 100.0,
+        "n": 205
+      },
+      "R3_S2": {
+        "mean": 0.654,
+        "pct_below_min": 87.32,
+        "n": 205
+      },
+      "R3_S3": {
+        "mean": 1.146,
+        "pct_below_min": 68.29,
+        "n": 205
+      },
+      "R3_S4": {
+        "mean": 0.644,
+        "pct_below_min": 87.32,
+        "n": 205
+      },
+      "R3_S5": {
+        "mean": 2.337,
+        "pct_below_min": 26.83,
+        "n": 205
+      }
+    },
+    "diversity_seeker": {
+      "PtP_M1": {
+        "mean": 2.44,
+        "pct_below_min": 55.6,
+        "n": 241
+      },
+      "PtP_M2": {
+        "mean": 6.183,
+        "pct_below_min": 0.41,
+        "n": 241
+      },
+      "PtP_M3": {
+        "mean": 4.266,
+        "pct_below_min": 0.0,
+        "n": 241
+      },
+      "PtP_M4": {
+        "mean": 5.432,
+        "pct_below_min": 0.0,
+        "n": 241
+      },
+      "PtP_M5": {
+        "mean": 6.257,
+        "pct_below_min": 0.0,
+        "n": 241
+      },
+      "PtP_S1": {
+        "mean": 2.112,
+        "pct_below_min": 29.88,
+        "n": 241
+      },
+      "PtP_S2": {
+        "mean": 7.162,
+        "pct_below_min": 0.0,
+        "n": 241
+      },
+      "R1_M1": {
+        "mean": 2.49,
+        "pct_below_min": 12.03,
+        "n": 241
+      },
+      "R1_M2": {
+        "mean": 2.481,
+        "pct_below_min": 15.77,
+        "n": 241
+      },
+      "R1_S1": {
+        "mean": 2.527,
+        "pct_below_min": 14.11,
+        "n": 241
+      },
+      "R1_S2": {
+        "mean": 1.772,
+        "pct_below_min": 36.1,
+        "n": 241
+      },
+      "R1_S3": {
+        "mean": 1.158,
+        "pct_below_min": 69.29,
+        "n": 241
+      },
+      "R1_S4": {
+        "mean": 0.585,
+        "pct_below_min": 100.0,
+        "n": 241
+      },
+      "R2_M1": {
+        "mean": 2.436,
+        "pct_below_min": 24.07,
+        "n": 241
+      },
+      "R2_M2": {
+        "mean": 1.668,
+        "pct_below_min": 46.06,
+        "n": 241
+      },
+      "R2_S1": {
+        "mean": 0.797,
+        "pct_below_min": 83.4,
+        "n": 241
+      },
+      "R2_S2": {
+        "mean": 0.602,
+        "pct_below_min": 89.21,
+        "n": 241
+      },
+      "R2_S3": {
+        "mean": 1.39,
+        "pct_below_min": 54.36,
+        "n": 241
+      },
+      "R2_S4": {
+        "mean": 3.34,
+        "pct_below_min": 25.31,
+        "n": 241
+      },
+      "R2_S5": {
+        "mean": 3.685,
+        "pct_below_min": 21.58,
+        "n": 241
+      },
+      "R2_S6": {
+        "mean": 1.921,
+        "pct_below_min": 71.37,
+        "n": 241
+      },
+      "R2_S7": {
+        "mean": 0.747,
+        "pct_below_min": 93.36,
+        "n": 241
+      },
+      "R2_S8": {
+        "mean": 1.651,
+        "pct_below_min": 45.64,
+        "n": 241
+      },
+      "R2_S9": {
+        "mean": 2.191,
+        "pct_below_min": 63.49,
+        "n": 241
+      },
+      "R3_M1": {
+        "mean": 0.44,
+        "pct_below_min": 92.12,
+        "n": 241
+      },
+      "R3_M2": {
+        "mean": 1.759,
+        "pct_below_min": 41.91,
+        "n": 241
+      },
+      "R3_S1": {
+        "mean": 0.112,
+        "pct_below_min": 100.0,
+        "n": 241
+      },
+      "R3_S2": {
+        "mean": 0.49,
+        "pct_below_min": 92.53,
+        "n": 241
+      },
+      "R3_S3": {
+        "mean": 0.921,
+        "pct_below_min": 75.52,
+        "n": 241
+      },
+      "R3_S4": {
+        "mean": 0.427,
+        "pct_below_min": 91.29,
+        "n": 241
+      },
+      "R3_S5": {
+        "mean": 1.942,
+        "pct_below_min": 39.42,
+        "n": 241
+      }
+    },
+    "adaptive": {
+      "PtP_M1": {
+        "mean": 2.476,
+        "pct_below_min": 52.43,
+        "n": 206
+      },
+      "PtP_M2": {
+        "mean": 6.165,
+        "pct_below_min": 0.49,
+        "n": 206
+      },
+      "PtP_M3": {
+        "mean": 3.869,
+        "pct_below_min": 1.94,
+        "n": 206
+      },
+      "PtP_M4": {
+        "mean": 5.044,
+        "pct_below_min": 0.97,
+        "n": 206
+      },
+      "PtP_M5": {
+        "mean": 6.359,
+        "pct_below_min": 0.0,
+        "n": 206
+      },
+      "PtP_S1": {
+        "mean": 2.252,
+        "pct_below_min": 23.3,
+        "n": 206
+      },
+      "PtP_S2": {
+        "mean": 7.058,
+        "pct_below_min": 0.49,
+        "n": 206
+      },
+      "R1_M1": {
+        "mean": 2.325,
+        "pct_below_min": 19.42,
+        "n": 206
+      },
+      "R1_M2": {
+        "mean": 2.427,
+        "pct_below_min": 13.11,
+        "n": 206
+      },
+      "R1_S1": {
+        "mean": 2.248,
+        "pct_below_min": 20.87,
+        "n": 206
+      },
+      "R1_S2": {
+        "mean": 1.714,
+        "pct_below_min": 38.83,
+        "n": 206
+      },
+      "R1_S3": {
+        "mean": 1.097,
+        "pct_below_min": 70.39,
+        "n": 206
+      },
+      "R1_S4": {
+        "mean": 0.583,
+        "pct_below_min": 100.0,
+        "n": 206
+      },
+      "R2_M1": {
+        "mean": 2.398,
+        "pct_below_min": 23.79,
+        "n": 206
+      },
+      "R2_M2": {
+        "mean": 1.699,
+        "pct_below_min": 41.75,
+        "n": 206
+      },
+      "R2_S1": {
+        "mean": 0.718,
+        "pct_below_min": 86.41,
+        "n": 206
+      },
+      "R2_S2": {
+        "mean": 0.558,
+        "pct_below_min": 89.32,
+        "n": 206
+      },
+      "R2_S3": {
+        "mean": 1.393,
+        "pct_below_min": 54.37,
+        "n": 206
+      },
+      "R2_S4": {
+        "mean": 3.369,
+        "pct_below_min": 24.27,
+        "n": 206
+      },
+      "R2_S5": {
+        "mean": 3.859,
+        "pct_below_min": 17.96,
+        "n": 206
+      },
+      "R2_S6": {
+        "mean": 2.029,
+        "pct_below_min": 66.5,
+        "n": 206
+      },
+      "R2_S7": {
+        "mean": 0.723,
+        "pct_below_min": 90.78,
+        "n": 206
+      },
+      "R2_S8": {
+        "mean": 1.66,
+        "pct_below_min": 46.6,
+        "n": 206
+      },
+      "R2_S9": {
+        "mean": 2.18,
+        "pct_below_min": 64.56,
+        "n": 206
+      },
+      "R3_M1": {
+        "mean": 0.646,
+        "pct_below_min": 87.38,
+        "n": 206
+      },
+      "R3_M2": {
+        "mean": 1.995,
+        "pct_below_min": 36.41,
+        "n": 206
+      },
+      "R3_S1": {
+        "mean": 0.141,
+        "pct_below_min": 100.0,
+        "n": 206
+      },
+      "R3_S2": {
+        "mean": 0.723,
+        "pct_below_min": 86.89,
+        "n": 206
+      },
+      "R3_S3": {
+        "mean": 1.102,
+        "pct_below_min": 67.48,
+        "n": 206
+      },
+      "R3_S4": {
+        "mean": 0.573,
+        "pct_below_min": 86.89,
+        "n": 206
+      },
+      "R3_S5": {
+        "mean": 2.345,
+        "pct_below_min": 27.18,
+        "n": 206
+      }
+    },
+    "proving_seeker": {
+      "PtP_M1": {
+        "mean": 2.33,
+        "pct_below_min": 57.59,
+        "n": 224
+      },
+      "PtP_M2": {
+        "mean": 6.004,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "PtP_M3": {
+        "mean": 4.214,
+        "pct_below_min": 0.89,
+        "n": 224
+      },
+      "PtP_M4": {
+        "mean": 5.134,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "PtP_M5": {
+        "mean": 6.174,
+        "pct_below_min": 2.23,
+        "n": 224
+      },
+      "PtP_S1": {
+        "mean": 2.045,
+        "pct_below_min": 28.57,
+        "n": 224
+      },
+      "PtP_S2": {
+        "mean": 7.219,
+        "pct_below_min": 0.45,
+        "n": 224
+      },
+      "R1_M1": {
+        "mean": 2.455,
+        "pct_below_min": 16.96,
+        "n": 224
+      },
+      "R1_M2": {
+        "mean": 2.554,
+        "pct_below_min": 14.29,
+        "n": 224
+      },
+      "R1_S1": {
+        "mean": 2.451,
+        "pct_below_min": 12.5,
+        "n": 224
+      },
+      "R1_S2": {
+        "mean": 1.661,
+        "pct_below_min": 42.41,
+        "n": 224
+      },
+      "R1_S3": {
+        "mean": 1.196,
+        "pct_below_min": 66.07,
+        "n": 224
+      },
+      "R1_S4": {
+        "mean": 0.545,
+        "pct_below_min": 100.0,
+        "n": 224
+      },
+      "R2_M1": {
+        "mean": 2.379,
+        "pct_below_min": 23.66,
+        "n": 224
+      },
+      "R2_M2": {
+        "mean": 1.598,
+        "pct_below_min": 48.21,
+        "n": 224
+      },
+      "R2_S1": {
+        "mean": 0.746,
+        "pct_below_min": 83.04,
+        "n": 224
+      },
+      "R2_S2": {
+        "mean": 0.679,
+        "pct_below_min": 86.16,
+        "n": 224
+      },
+      "R2_S3": {
+        "mean": 1.518,
+        "pct_below_min": 52.23,
+        "n": 224
+      },
+      "R2_S4": {
+        "mean": 3.259,
+        "pct_below_min": 29.02,
+        "n": 224
+      },
+      "R2_S5": {
+        "mean": 3.808,
+        "pct_below_min": 18.3,
+        "n": 224
+      },
+      "R2_S6": {
+        "mean": 1.942,
+        "pct_below_min": 68.3,
+        "n": 224
+      },
+      "R2_S7": {
+        "mean": 0.772,
+        "pct_below_min": 92.86,
+        "n": 224
+      },
+      "R2_S8": {
+        "mean": 1.737,
+        "pct_below_min": 45.09,
+        "n": 224
+      },
+      "R2_S9": {
+        "mean": 2.076,
+        "pct_below_min": 65.18,
+        "n": 224
+      },
+      "R3_M1": {
+        "mean": 0.464,
+        "pct_below_min": 93.3,
+        "n": 224
+      },
+      "R3_M2": {
+        "mean": 1.817,
+        "pct_below_min": 44.2,
+        "n": 224
+      },
+      "R3_S1": {
+        "mean": 0.103,
+        "pct_below_min": 100.0,
+        "n": 224
+      },
+      "R3_S2": {
+        "mean": 0.571,
+        "pct_below_min": 91.96,
+        "n": 224
+      },
+      "R3_S3": {
+        "mean": 1.085,
+        "pct_below_min": 68.3,
+        "n": 224
+      },
+      "R3_S4": {
+        "mean": 0.424,
+        "pct_below_min": 94.2,
+        "n": 224
+      },
+      "R3_S5": {
+        "mean": 2.04,
+        "pct_below_min": 35.71,
+        "n": 224
+      }
+    },
+    "disproving_seeker": {
+      "PtP_M1": {
+        "mean": 2.329,
+        "pct_below_min": 52.58,
+        "n": 213
+      },
+      "PtP_M2": {
+        "mean": 5.995,
+        "pct_below_min": 1.88,
+        "n": 213
+      },
+      "PtP_M3": {
+        "mean": 4.817,
+        "pct_below_min": 0.0,
+        "n": 213
+      },
+      "PtP_M4": {
+        "mean": 5.761,
+        "pct_below_min": 0.0,
+        "n": 213
+      },
+      "PtP_M5": {
+        "mean": 6.315,
+        "pct_below_min": 0.0,
+        "n": 213
+      },
+      "PtP_S1": {
+        "mean": 1.958,
+        "pct_below_min": 29.11,
+        "n": 213
+      },
+      "PtP_S2": {
+        "mean": 7.962,
+        "pct_below_min": 0.0,
+        "n": 213
+      },
+      "R1_M1": {
+        "mean": 2.784,
+        "pct_below_min": 9.39,
+        "n": 213
+      },
+      "R1_M2": {
+        "mean": 2.657,
+        "pct_below_min": 15.49,
+        "n": 213
+      },
+      "R1_S1": {
+        "mean": 2.559,
+        "pct_below_min": 17.37,
+        "n": 213
+      },
+      "R1_S2": {
+        "mean": 1.737,
+        "pct_below_min": 38.03,
+        "n": 213
+      },
+      "R1_S3": {
+        "mean": 1.272,
+        "pct_below_min": 60.09,
+        "n": 213
+      },
+      "R1_S4": {
+        "mean": 0.634,
+        "pct_below_min": 100.0,
+        "n": 213
+      },
+      "R2_M1": {
+        "mean": 2.573,
+        "pct_below_min": 27.23,
+        "n": 213
+      },
+      "R2_M2": {
+        "mean": 1.568,
+        "pct_below_min": 48.83,
+        "n": 213
+      },
+      "R2_S1": {
+        "mean": 0.977,
+        "pct_below_min": 76.06,
+        "n": 213
+      },
+      "R2_S2": {
+        "mean": 0.582,
+        "pct_below_min": 85.45,
+        "n": 213
+      },
+      "R2_S3": {
+        "mean": 1.512,
+        "pct_below_min": 57.75,
+        "n": 213
+      },
+      "R2_S4": {
+        "mean": 3.488,
+        "pct_below_min": 20.66,
+        "n": 213
+      },
+      "R2_S5": {
+        "mean": 3.878,
+        "pct_below_min": 20.19,
+        "n": 213
+      },
+      "R2_S6": {
+        "mean": 1.568,
+        "pct_below_min": 77.0,
+        "n": 213
+      },
+      "R2_S7": {
+        "mean": 0.681,
+        "pct_below_min": 97.65,
+        "n": 213
+      },
+      "R2_S8": {
+        "mean": 1.634,
+        "pct_below_min": 51.64,
+        "n": 213
+      },
+      "R2_S9": {
+        "mean": 1.803,
+        "pct_below_min": 77.46,
+        "n": 213
+      },
+      "R3_M1": {
+        "mean": 0.103,
+        "pct_below_min": 100.0,
+        "n": 213
+      },
+      "R3_M2": {
+        "mean": 1.493,
+        "pct_below_min": 54.46,
+        "n": 213
+      },
+      "R3_S1": {
+        "mean": 0.052,
+        "pct_below_min": 100.0,
+        "n": 213
+      },
+      "R3_S2": {
+        "mean": 0.357,
+        "pct_below_min": 97.18,
+        "n": 213
+      },
+      "R3_S3": {
+        "mean": 0.493,
+        "pct_below_min": 92.49,
+        "n": 213
+      },
+      "R3_S4": {
+        "mean": 0.103,
+        "pct_below_min": 97.65,
+        "n": 213
+      },
+      "R3_S5": {
+        "mean": 1.624,
+        "pct_below_min": 51.64,
+        "n": 213
+      }
+    }
+  }
+}
