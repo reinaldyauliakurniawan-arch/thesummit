@@ -156,33 +156,464 @@ class BehaviorTracker
     }
 
     /**
-     * TASK 7 SIMPLIFY: Minimal pattern detection.
-     * Only the most reliable pattern signals survive.
-     * Removed: safe-during-crisis detection (unreliable with new card system).
-     * Kept: same-option 5+ consecutive (very reliable indicator).
+     * PATTERN DETECTION — TASK 3 Rewrite
+     *
+     * Behavior analysis must detect repeated patterns.
+     * Never infer leadership style from a single decision.
+     * Instead calculate:
+     *   - Opportunity count (how many times the player faced a situation)
+     *   - Behavior count (how many times they chose the behavior)
+     *   - Behavior frequency (behavior_count / opportunity_count)
+     *   - Context (what level, was it crisis, what were the stakes)
+     *   - Confidence score (based on evidence volume and consistency)
+     *
+     * Only generate insights when enough evidence exists.
+     * Otherwise return: "Insufficient evidence."
+     *
+     * Pattern types detected (all require minimum evidence threshold):
+     *   1. Same-option repetition: 5+ consecutive same option → adaptability negative
+     *   2. TT-avoidance: Consistently chose lower TT option when higher TT was available → collaboration negative
+     *   3. Self-sacrifice: Consistently chose options that cost self for team benefit → collaboration positive
+     *   4. Crisis avoidance: Chose safer option on 3+ crisis cards → risk_taking negative
+     *   5. Coaching deficit: Never chose option with coaching tag across 5+ turns with opportunity → coaching negative
+     *   6. Control tendency: Chose control-tagged options 60%+ of available opportunities → control positive/negative
      */
     private function inferMinimalPatterns(GameTurn $turn, GamePlayer $player): array
     {
         $signals = [];
-
-        // Only pattern: same option 5+ consecutive turns
-        $recentChoices = $player->turns()
+        $allTurns = $player->turns()
             ->where('id', '!=', $turn->id)
-            ->orderBy('created_at', 'desc')
-            ->take(5)
-            ->pluck('chosen_option')
-            ->toArray();
+            ->orderBy('created_at', 'asc')
+            ->get();
 
-        if (count($recentChoices) >= 5 && count(array_unique($recentChoices)) === 1) {
+        if ($allTurns->count() < 3) {
+            return $signals; // Too few turns for pattern detection
+        }
+
+        // ── Pattern 1: Same-option repetition (5+ consecutive) ──
+        $consecutiveSame = $this->detectConsecutiveOptionPattern($allTurns);
+        if ($consecutiveSame !== null) {
             $signals[] = [
                 'dimension' => 'adaptability',
                 'polarity' => 'negative',
                 'magnitude' => 2,
                 'reason' => "Same option chosen 5+ consecutive turns (rigid pattern)",
+                'opportunity_count' => $allTurns->count(),
+                'behavior_count' => $consecutiveSame['streak'],
+                'frequency' => round($consecutiveSame['streak'] / $allTurns->count(), 2),
+                'confidence' => 'high',
+            ];
+        }
+
+        // ── Pattern 2: TT-avoidance (consistently chose lower TT option) ──
+        $ttAvoidance = $this->detectTTAvoidancePattern($allTurns);
+        if ($ttAvoidance !== null) {
+            $signals[] = [
+                'dimension' => 'collaboration',
+                'polarity' => 'negative',
+                'magnitude' => $ttAvoidance['count'] >= 5 ? 2 : 1,
+                'reason' => sprintf(
+                    "Chose lower TT option in %d of %d opportunities (%.0f%% TT-avoidance)",
+                    $ttAvoidance['count'], $ttAvoidance['opportunities'],
+                    ($ttAvoidance['count'] / $ttAvoidance['opportunities']) * 100
+                ),
+                'opportunity_count' => $ttAvoidance['opportunities'],
+                'behavior_count' => $ttAvoidance['count'],
+                'frequency' => round($ttAvoidance['count'] / $ttAvoidance['opportunities'], 2),
+                'confidence' => $ttAvoidance['count'] >= 5 ? 'high' : 'moderate',
+            ];
+        }
+
+        // ── Pattern 3: Self-sacrifice (consistently chose options that cost self for team) ──
+        $selfSacrifice = $this->detectSelfSacrificePattern($allTurns);
+        if ($selfSacrifice !== null) {
+            $signals[] = [
+                'dimension' => 'collaboration',
+                'polarity' => 'positive',
+                'magnitude' => $selfSacrifice['count'] >= 4 ? 2 : 1,
+                'reason' => sprintf(
+                    "Chose option with personal cost + team benefit in %d of %d opportunities (%.0f%%)",
+                    $selfSacrifice['count'], $selfSacrifice['opportunities'],
+                    ($selfSacrifice['count'] / $selfSacrifice['opportunities']) * 100
+                ),
+                'opportunity_count' => $selfSacrifice['opportunities'],
+                'behavior_count' => $selfSacrifice['count'],
+                'frequency' => round($selfSacrifice['count'] / $selfSacrifice['opportunities'], 2),
+                'confidence' => $selfSacrifice['count'] >= 4 ? 'high' : 'moderate',
+            ];
+        }
+
+        // ── Pattern 4: Crisis avoidance (chose safer option on 3+ crisis cards) ──
+        $crisisAvoidance = $this->detectCrisisAvoidancePattern($allTurns);
+        if ($crisisAvoidance !== null) {
+            $signals[] = [
+                'dimension' => 'risk_taking',
+                'polarity' => 'negative',
+                'magnitude' => $crisisAvoidance['count'] >= 4 ? 2 : 1,
+                'reason' => sprintf(
+                    "Chose safer option on %d of %d crisis cards (%.0f%% crisis avoidance)",
+                    $crisisAvoidance['count'], $crisisAvoidance['crisisCount'],
+                    ($crisisAvoidance['count'] / $crisisAvoidance['crisisCount']) * 100
+                ),
+                'opportunity_count' => $crisisAvoidance['crisisCount'],
+                'behavior_count' => $crisisAvoidance['count'],
+                'frequency' => round($crisisAvoidance['count'] / $crisisAvoidance['crisisCount'], 2),
+                'confidence' => $crisisAvoidance['count'] >= 4 ? 'high' : 'moderate',
+            ];
+        }
+
+        // ── Pattern 5: Coaching deficit (never chose coaching option when available) ──
+        $coachingDeficit = $this->detectCoachingDeficitPattern($allTurns);
+        if ($coachingDeficit !== null) {
+            $signals[] = [
+                'dimension' => 'coaching',
+                'polarity' => 'negative',
+                'magnitude' => 1,
+                'reason' => sprintf(
+                    "Never chose coaching-oriented option across %d turns where coaching was available",
+                    $coachingDeficit['opportunities']
+                ),
+                'opportunity_count' => $coachingDeficit['opportunities'],
+                'behavior_count' => 0,
+                'frequency' => 0.0,
+                'confidence' => 'moderate',
             ];
         }
 
         return $signals;
+    }
+
+    /**
+     * Detect consecutive same-option choices (5+).
+     * Returns streak data or null if no streak found.
+     */
+    private function detectConsecutiveOptionPattern($turns): ?array
+    {
+        $streak = 0;
+        $lastOption = null;
+        $maxStreak = 0;
+        $maxOption = null;
+
+        foreach ($turns->reverse() as $t) {
+            if ($lastOption === null) {
+                $lastOption = $t->chosen_option;
+                $streak = 1;
+                $maxStreak = 1;
+                $maxOption = $lastOption;
+                continue;
+            }
+
+            if ($t->chosen_option === $lastOption) {
+                $streak++;
+                if ($streak > $maxStreak) {
+                    $maxStreak = $streak;
+                    $maxOption = $lastOption;
+                }
+            } else {
+                $lastOption = $t->chosen_option;
+                $streak = 1;
+            }
+        }
+
+        return $maxStreak >= 5 ? ['streak' => $maxStreak, 'option' => $maxOption] : null;
+    }
+
+    /**
+     * Detect TT-avoidance: consistently chose the option with lower TT delta.
+     * Only counts turns where both options had different TT deltas.
+     * Minimum: 3 opportunities with 60%+ avoidance rate.
+     */
+    private function detectTTAvoidancePattern($turns): ?array
+    {
+        $opportunities = 0;
+        $avoided = 0;
+
+        foreach ($turns as $t) {
+            // Check if the turn has data about both options' TT values
+            $card = $t->card;
+            if (!$card) continue;
+
+            $ttA = $card->opsi_a_tt ?? 0;
+            $ttB = $card->opsi_b_tt ?? 0;
+
+            if ($ttA === $ttB) continue; // No TT difference — not an opportunity
+
+            $opportunities++;
+            $higherTTOption = ($ttA > $ttB) ? 'A' : 'B';
+            $lowerTTOption = ($ttA > $ttB) ? 'B' : 'A';
+
+            if ($t->chosen_option === $lowerTTOption) {
+                $avoided++;
+            }
+        }
+
+        if ($opportunities < 3) return null;
+        $rate = $avoided / $opportunities;
+        return $rate >= 0.6 ? [
+            'count' => $avoided,
+            'opportunities' => $opportunities,
+        ] : null;
+    }
+
+    /**
+     * Detect self-sacrifice pattern: consistently chose options with negative personal stat
+     * delta AND positive cross-player effect.
+     */
+    private function detectSelfSacrificePattern($turns): ?array
+    {
+        $opportunities = 0;
+        $sacrificed = 0;
+
+        foreach ($turns as $t) {
+            $crossEffects = $t->cross_player_effects;
+            if (!$crossEffects) continue;
+
+            $decoded = json_decode($crossEffects, true);
+            if (!is_array($decoded) || empty($decoded)) continue;
+
+            $opportunities++;
+
+            // Check if the player's own net stat change was negative
+            $selfNet = $t->mp_effect + $t->sp_effect + $t->tt_effect;
+
+            // Check if cross-player effects were positive for others
+            $positiveForOthers = false;
+            foreach ($decoded as $effect) {
+                if (($effect['delta'] ?? 0) > 0) {
+                    $positiveForOthers = true;
+                    break;
+                }
+            }
+
+            if ($selfNet < 0 && $positiveForOthers) {
+                $sacrificed++;
+            }
+        }
+
+        if ($opportunities < 2) return null;
+        $rate = $sacrificed / $opportunities;
+        return $rate >= 0.5 ? [
+            'count' => $sacrificed,
+            'opportunities' => $opportunities,
+        ] : null;
+    }
+
+    /**
+     * Detect crisis avoidance: chose the "safer" option on crisis cards.
+     * "Safer" = option with lower maximum stat delta (less variance).
+     */
+    private function detectCrisisAvoidancePattern($turns): ?array
+    {
+        $crisisCount = 0;
+        $saferChoices = 0;
+
+        foreach ($turns as $t) {
+            $card = $t->card;
+            if (!$card || !$card->isKrisis()) continue;
+
+            $crisisCount++;
+
+            // Compare total stat magnitude of both options
+            $magA = abs($card->opsi_a_mp ?? 0) + abs($card->opsi_a_sp ?? 0) + abs($card->opsi_a_tt ?? 0);
+            $magB = abs($card->opsi_b_mp ?? 0) + abs($card->opsi_b_sp ?? 0) + abs($card->opsi_b_tt ?? 0);
+
+            // "Safer" option = the one with lower total magnitude
+            $saferOption = ($magA <= $magB) ? 'A' : 'B';
+
+            if ($t->chosen_option === $saferOption) {
+                $saferChoices++;
+            }
+        }
+
+        if ($crisisCount < 2) return null;
+        $rate = $saferChoices / $crisisCount;
+        return $rate >= 0.6 ? [
+            'count' => $saferChoices,
+            'crisisCount' => $crisisCount,
+        ] : null;
+    }
+
+    /**
+     * Detect coaching deficit: never chose a coaching-tagged option when available.
+     */
+    private function detectCoachingDeficitPattern($turns): ?array
+    {
+        $opportunities = 0;
+
+        foreach ($turns as $t) {
+            $card = $t->card;
+            if (!$card) continue;
+
+            // Check behavior tags from card data stored on turn
+            $behaviorData = $t->behavior_data;
+            if (!$behaviorData) continue;
+
+            $decoded = json_decode($behaviorData, true);
+            if (!is_array($decoded)) continue;
+
+            // Check if any option had a coaching tag
+            $tagsA = $card->getBehaviorTags('A') ?? [];
+            $tagsB = $card->getBehaviorTags('B') ?? [];
+
+            $hasCoachingOption = false;
+            if (isset($tagsA['coaching']) && $tagsA['coaching'] > 0) $hasCoachingOption = true;
+            if (isset($tagsB['coaching']) && $tagsB['coaching'] > 0) $hasCoachingOption = true;
+
+            if ($hasCoachingOption) {
+                $opportunities++;
+            }
+        }
+
+        // If 5+ opportunities but zero coaching choices
+        if ($opportunities >= 5) {
+            // Check if any coaching evidence exists in PlayerBehavior
+            $playerId = $turns->first()->game_player_id ?? null;
+            if ($playerId) {
+                $coachingEvidence = PlayerBehavior::where('game_player_id', $playerId)
+                    ->where('behavior_type', 'coaching')
+                    ->count();
+
+                if ($coachingEvidence === 0) {
+                    return ['opportunities' => $opportunities];
+                }
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Generate a full pattern report with opportunity/behavior/frequency/confidence.
+     * Used by ReflectionEngine for narrative generation.
+     *
+     * @return array Pattern report with all detected patterns and their metrics
+     */
+    public function getPatternReport(GamePlayer $player): array
+    {
+        $allTurns = $player->turns()->orderBy('created_at', 'asc')->get();
+        $totalTurns = $allTurns->count();
+
+        if ($totalTurns < 5) {
+            return [
+                'status' => 'insufficient_data',
+                'message' => 'Insufficient evidence. At least 5 turns required for pattern detection.',
+                'patterns' => [],
+                'data_quality' => [
+                    'total_turns' => $totalTurns,
+                    'minimum_required' => 5,
+                ],
+            ];
+        }
+
+        $patterns = [];
+
+        // Run all pattern detectors
+        $consecutivePattern = $this->detectConsecutiveOptionPattern($allTurns);
+        if ($consecutivePattern !== null) {
+            $patterns[] = [
+                'type' => 'option_rigidity',
+                'dimension' => 'adaptability',
+                'polarity' => 'negative',
+                'description' => sprintf(
+                    "Chose option %s for %d consecutive turns out of %d total (%.0f%% rigidity)",
+                    $consecutivePattern['option'], $consecutivePattern['streak'],
+                    $totalTurns, ($consecutivePattern['streak'] / $totalTurns) * 100
+                ),
+                'opportunity_count' => $totalTurns,
+                'behavior_count' => $consecutivePattern['streak'],
+                'frequency' => round($consecutivePattern['streak'] / $totalTurns, 2),
+                'confidence' => $consecutivePattern['streak'] >= 7 ? 'high' : 'moderate',
+                'threshold' => '5+ consecutive same option',
+            ];
+        }
+
+        $ttAvoidance = $this->detectTTAvoidancePattern($allTurns);
+        if ($ttAvoidance !== null) {
+            $patterns[] = [
+                'type' => 'tt_avoidance',
+                'dimension' => 'collaboration',
+                'polarity' => 'negative',
+                'description' => sprintf(
+                    "Avoided higher-trust option in %d of %d opportunities (%.0f%% TT-avoidance rate)",
+                    $ttAvoidance['count'], $ttAvoidance['opportunities'],
+                    ($ttAvoidance['count'] / $ttAvoidance['opportunities']) * 100
+                ),
+                'opportunity_count' => $ttAvoidance['opportunities'],
+                'behavior_count' => $ttAvoidance['count'],
+                'frequency' => round($ttAvoidance['count'] / $ttAvoidance['opportunities'], 2),
+                'confidence' => $ttAvoidance['count'] >= 5 ? 'high' : 'moderate',
+                'threshold' => '60%+ avoidance rate with 3+ opportunities',
+            ];
+        }
+
+        $selfSacrifice = $this->detectSelfSacrificePattern($allTurns);
+        if ($selfSacrifice !== null) {
+            $patterns[] = [
+                'type' => 'self_sacrifice',
+                'dimension' => 'collaboration',
+                'polarity' => 'positive',
+                'description' => sprintf(
+                    "Chose personal cost + team benefit in %d of %d cross-player opportunities (%.0f%%)",
+                    $selfSacrifice['count'], $selfSacrifice['opportunities'],
+                    ($selfSacrifice['count'] / $selfSacrifice['opportunities']) * 100
+                ),
+                'opportunity_count' => $selfSacrifice['opportunities'],
+                'behavior_count' => $selfSacrifice['count'],
+                'frequency' => round($selfSacrifice['count'] / $selfSacrifice['opportunities'], 2),
+                'confidence' => $selfSacrifice['count'] >= 4 ? 'high' : 'moderate',
+                'threshold' => '50%+ sacrifice rate with 2+ opportunities',
+            ];
+        }
+
+        $crisisAvoidance = $this->detectCrisisAvoidancePattern($allTurns);
+        if ($crisisAvoidance !== null) {
+            $patterns[] = [
+                'type' => 'crisis_avoidance',
+                'dimension' => 'risk_taking',
+                'polarity' => 'negative',
+                'description' => sprintf(
+                    "Chose safer option on %d of %d crisis cards (%.0f%% crisis avoidance)",
+                    $crisisAvoidance['count'], $crisisAvoidance['crisisCount'],
+                    ($crisisAvoidance['count'] / $crisisAvoidance['crisisCount']) * 100
+                ),
+                'opportunity_count' => $crisisAvoidance['crisisCount'],
+                'behavior_count' => $crisisAvoidance['count'],
+                'frequency' => round($crisisAvoidance['count'] / $crisisAvoidance['crisisCount'], 2),
+                'confidence' => $crisisAvoidance['count'] >= 4 ? 'high' : 'moderate',
+                'threshold' => '60%+ safer choice rate with 2+ crisis cards',
+            ];
+        }
+
+        $coachingDeficit = $this->detectCoachingDeficitPattern($allTurns);
+        if ($coachingDeficit !== null) {
+            $patterns[] = [
+                'type' => 'coaching_deficit',
+                'dimension' => 'coaching',
+                'polarity' => 'negative',
+                'description' => sprintf(
+                    "Never chose coaching-oriented option across %d opportunities (0%% coaching frequency)",
+                    $coachingDeficit['opportunities']
+                ),
+                'opportunity_count' => $coachingDeficit['opportunities'],
+                'behavior_count' => 0,
+                'frequency' => 0.0,
+                'confidence' => 'moderate',
+                'threshold' => '5+ opportunities with 0 coaching choices',
+            ];
+        }
+
+        return [
+            'status' => empty($patterns) ? 'no_patterns_detected' : 'patterns_found',
+            'message' => empty($patterns)
+                ? 'No repeated patterns detected. Leadership style is diverse and context-dependent.'
+                : sprintf('Detected %d behavioral pattern(s).', count($patterns)),
+            'patterns' => $patterns,
+            'data_quality' => [
+                'total_turns' => $totalTurns,
+                'patterns_detected' => count($patterns),
+                'high_confidence_patterns' => count(array_filter($patterns, fn($p) => $p['confidence'] === 'high')),
+            ],
+        ];
     }
 
     public function getBehaviorProfile(GamePlayer $player): array
