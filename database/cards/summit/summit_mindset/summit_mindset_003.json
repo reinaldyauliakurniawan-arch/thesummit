@@ -1,0 +1,120 @@
+{
+  "id": "summit_mindset_003",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "succession",
+      "sacrifice"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Team lead menunjukkan potensi luar biasa dan siap naik level. Tapi jika dipromosikan sekarang, timnya kehilangan momentum dan project kritis bisa terancam. Dia juga mendapat offer dari kompetitor.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Siapkan successor, promosikan 2-3 bulan",
+      "narrative": "Kamu menyiapkan successor dan merencanakan transisi. Ini ideal tapi 2-3 bulan lama — dia bisa menerima offer kompetitor kapan saja.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "create_promise",
+          "params": {
+            "type": "promotion",
+            "description": "Kamu berjanja promosi dalam 3 bulan",
+            "target_ref": "random_other",
+            "resolve_by_round": 6
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Promosikan sekarang, risiko tim",
+      "narrative": "Kamu mempromosikan sekarang agar tidak kehilangan dia. Tim kehilangan momentum tapi kamu dapat orang top di posisi baru.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -2,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -1
+    }
+  }
+}

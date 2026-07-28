@@ -1,0 +1,103 @@
+{
+  "id": "basecamp_mindset_003",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "networking",
+      "self-care"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu diundang networking event setelah jam kerja. Kamu sangat lelah dan punya deadline besok. Tapi di event ada orang yang bisa bantu karirmu secara signifikan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Pergi ke event",
+      "narrative": "Kamu pergi meski lelah. Networking di sini bisa membuka peluang jangka panjang, tapi performamu besok bisa menurun.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": 1
+              },
+              "reason": "New connection led to referral"
+            },
+            "trigger_after_rounds": 5
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Tidak pergi, istirahat",
+      "narrative": "Kamu memilih istirahat dan fokus deliver kualitas tinggi besok. Peluang networking hilang tapi performa terjamin.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "risk_taking": 1,
+      "adaptability": 1
+    },
+    "B": {
+      "decisiveness": 1,
+      "control": 1
+    }
+  }
+}

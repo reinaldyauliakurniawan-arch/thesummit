@@ -1,0 +1,126 @@
+{
+  "id": "summit_skillset_006",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "conflict",
+      "authority"
+    ],
+    "dysfunction_tag": "fear_of_conflict"
+  },
+  "narrative": {
+    "situation": "Dua tim debat terbuka di Slack tentang arsitektur. Debat sudah menyerang personal, produktivitas kedua tim turun 40%. Tim lain mulai ikut terlibat dan memihak. Manajemen mulai memperhatikan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Mediasi, fasilitasi diskusi berbasis data",
+      "narrative": "Kamu memediasi langsung, membawa kedua lead ke ruangan, dan memfasilitasi diskusi berbasis data. Ini menyelesaikan akar masalah tapi memakan waktu dan kedua lead harus mengakui kesalahan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Putuskan arsitektur, larang perdebatan",
+      "narrative": "Kamu menentukan arsitektur yang benar dan melarang perdebatan lebih lanjut. Cepat dan tegas tapi kedua lead merasa tidak dihargai dan perdebatan bisa pindah ke underground.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "hide_information",
+          "params": {
+            "info_id": "slack_war",
+            "content": "Conflict moved underground",
+            "target_ref": "other_players"
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "empathy": 1
+    },
+    "B": {
+      "control": 2,
+      "collaboration": -2
+    }
+  }
+}

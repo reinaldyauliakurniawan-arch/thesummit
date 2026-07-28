@@ -1,0 +1,89 @@
+{
+  "id": "basecamp_skillset_003",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "communication",
+      "persistence"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Email penting yang kamu kirim tidak dibaca penerima. Ini email ke VP yang sibuk dan kamu butuh responsnya sebelum deadline minggu depan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Kirim ulang dengan subject baru",
+      "narrative": "Kamu kirim ulang email dengan subject yang lebih menarik dan ringkasan poin. Ini pendekatanaman tapi tidak ada jaminan dibaca.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Telepon langsung atau ajak meeting",
+      "narrative": "Kamu telepon atau minta meeting singkat. Ini lebih efektif tapi bisa terkesan mendesak dan mengganggu jadwal VP.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 1,
+      "decisiveness": -1
+    },
+    "B": {
+      "decisiveness": 2,
+      "risk_taking": 1
+    }
+  }
+}

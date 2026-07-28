@@ -1,0 +1,124 @@
+{
+  "id": "summit_skillset_009",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "bureaucracy",
+      "focus"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "3 dari 5 tim menghabiskan 30% waktu untuk internal politics — meeting tidak produktif, reporting berlebihan, silo communication. Budaya ini sudah mengakar selama bertahun-tahun.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Bureaucracy audit — eliminasi non-value activities",
+      "narrative": "Kamu melakukan audit menyeluruh dan mengeliminasi aktivitas yang tidak memberikan value ke customer. Ini membebaskan waktu tapi banyak orang kehilangan 'power' yang mereka miliki dari proses-proses tersebut.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "KPI baru mengukur output nyata",
+      "narrative": "Kamu menetapkan KPI baru yang mengukur output nyata ke customer. Ini mengubah insentif tanpa menghapus proses yang ada, tapi bisa memakan waktu lama untuk melihat dampak.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "tt",
+                "delta": 1
+              },
+              "reason": "New KPIs gradually changed behavior"
+            },
+            "trigger_after_rounds": 6
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "control": -1
+    },
+    "B": {
+      "control": 1,
+      "adaptability": 1
+    }
+  }
+}

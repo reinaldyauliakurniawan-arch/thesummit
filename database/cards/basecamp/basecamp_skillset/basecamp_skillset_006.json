@@ -1,0 +1,111 @@
+{
+  "id": "basecamp_skillset_006",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "investment",
+      "growth"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Ada peluang sertifikasi profesional yang relevan. Butuh 2 bulan persiapan intensif dan biaya. Kamu bisa belajar lebih cepat di proyek nyata, tapi tanpa sertifikat formal karirmu bisa stagnan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Ambil sertifikasi",
+      "narrative": "Kamu invest waktu dan biaya untuk sertifikasi. 2 bulan fokus persiapan berarti kamu kurang kontribusi di tim selama itu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Tunda, fokus proyek kerja",
+      "narrative": "Kamu tunda sertifikasi dan fokus pengembangan skill melalui proyek kerja saat ini. Lebih praktis tapi tanpa formal recognition.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": -1,
+      "risk_taking": 1
+    },
+    "B": {
+      "collaboration": 1,
+      "adaptability": 1
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "id": "basecamp_mindset_006",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "growth",
+      "initiative"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu sudah 3 bulan di comfort zone. Setiap hari terasa rutin tanpa tantangan. Tapi ada risiko: jika kamu terlalu banyak mengambil risiko baru dan gagal, reputasimu bisa tercoreng.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Ajukan proyek improvement baru",
+      "narrative": "Kamu mengusulkan proyek baru ke atasan. Ini menunjukkan initiative tapi kalau gagal, semua orang tahu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "conditional_trigger",
+          "params": {
+            "condition": {
+              "stat": "mp",
+              "operator": ">=",
+              "value": 10
+            },
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": 2
+              },
+              "reason": "Improvement project succeeded"
+            }
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Belajar skill baru di waktu luang",
+      "narrative": "Kamu diam-diam belajar skill baru tanpa ada yang tahu. Kalau berhasil, kamu punya keunggulan. Kalau tidak, tidak ada yang mengevaluasi.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "risk_taking": 2,
+      "adaptability": 1
+    },
+    "B": {
+      "adaptability": 1,
+      "coaching": -1
+    }
+  }
+}

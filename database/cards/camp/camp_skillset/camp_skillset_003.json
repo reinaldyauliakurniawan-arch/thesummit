@@ -1,0 +1,103 @@
+{
+  "id": "camp_skillset_003",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "efficiency",
+      "communication"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Meeting tim sering molor dan tidak produktif. Agenda ada tapi sering deviasi. Waktu tim terbuang dan beberapa anggota mulai skip meeting.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Timeboxing ketat dan parking lot",
+      "narrative": "Kamu menerapkan timeboxing ketat dan parking lot untuk topik yang melenceng. Ini disiplin tapi bisa membunuh kreativitas dan diskusi penting yang muncul spontan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Kurangi meeting, ganti async update",
+      "narrative": "Kamu kurangi frekuensi meeting dan ganti dengan async update via dokumentasi. Ini menghormati waktu tapi bisa kehilangan spontan collaboration.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "control": 2,
+      "adaptability": -1
+    },
+    "B": {
+      "adaptability": 2,
+      "collaboration": 1
+    }
+  }
+}

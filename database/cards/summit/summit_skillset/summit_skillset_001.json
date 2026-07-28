@@ -1,0 +1,110 @@
+{
+  "id": "summit_skillset_001",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "measurement",
+      "fairness"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu perlu mengukur efektivitas 5 tim dengan KPI, konteks, dan challenge yang sangat berbeda-beda. Satu framework untuk semua bisa tidak adil. Framework berbeda untuk setiap tim bisa memakan waktu berbulan-bulan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Framework dengan leading dan lagging indicators",
+      "narrative": "Kamu membuat framework yang mengukur leading indicators (proses) dan lagging indicators (hasil) dengan bobot yang disepakati. Ini lebih adil tapi implementasinya kompleks.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "OKR standar semua tim",
+      "narrative": "Kamu menggunakan OKR standar untuk semua tim dengan customization minimal. Cepat dan konsisten tapi tim dengan konteks unik merasa tidak diperlakukan adil.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "control": 2,
+      "empathy": -1
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "id": "camp_mindset_006",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "development",
+      "equity"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Tim mencapai target kuartal tapi 80% kontribusi dari 2-3 orang top performer. Anggota lain tidak berkembang dan mulai lose motivation. Top performer mulai kelelahan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Program mentoring — top performer jadi mentor",
+      "narrative": "Kamu buat program mentoring di mana top performer membimbing yang lain. Ini mengembangkan tim tapi top performer mendapat beban tambahan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "resources",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Rotasi tugas agar semua dapat tantangan",
+      "narrative": "Kamu rotasi tugas agar setiap orang mendapat tantangan baru. Ini lebih adil tapi efisiensi menurun dan top performer merasa tidak dihargai.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "adaptability": 1,
+      "control": -1
+    }
+  }
+}

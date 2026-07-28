@@ -1,0 +1,141 @@
+{
+  "id": "summit_mindset_009",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "values",
+      "performance"
+    ],
+    "dysfunction_tag": "inattention_to_results"
+  },
+  "narrative": {
+    "situation": "Tim terbaikmu mencapai semua KPI tapi dengan cara yang merusak: hoarding resource, tidak berbagi informasi, dan menjelekan tim lain. Tim lain mulai toxic juga karena merasa harus mengikuti pola yang sama untuk survive.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Tegaskan cara tidak sesuai budaya",
+      "narrative": "Kamu mengapresiasi hasil tapi menegaskan bahwa caranya tidak sesuai budaya. Ini melindungi budaya organisasi tapi performa tim terbaik bisa menurun karena merasa dihambat.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "affect_team",
+              "params": {
+                "stat": "sp",
+                "delta": -1,
+                "target_ref": "all_players"
+              },
+              "reason": "Top team's performance dropped after values enforcement"
+            },
+            "trigger_after_rounds": 4
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Biarkan karena hasil penting organisasi",
+      "narrative": "Kamu membiarkan karena hasilnya penting untuk organisasi secara keseluruhan. Short-term semua baik tapi budaya merosot dan tim lain mulai melakukan hal yang sama.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "all_players"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": -2
+              },
+              "reason": "Toxic culture spread — other teams也开始 hoarding"
+            },
+            "trigger_after_rounds": 3
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 1,
+      "control": -1
+    },
+    "B": {
+      "control": 2,
+      "collaboration": -2
+    }
+  }
+}

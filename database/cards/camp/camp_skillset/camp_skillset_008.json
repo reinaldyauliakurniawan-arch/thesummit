@@ -1,0 +1,118 @@
+{
+  "id": "camp_skillset_008",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "architecture",
+      "authority"
+    ],
+    "dysfunction_tag": "fear_of_conflict"
+  },
+  "narrative": {
+    "situation": "Dua subtim membuat keputusan teknis bertentangan untuk modul yang saling terhubung. Integrasi minggu depan. Kedua lead keras kepala dan masing-masing yakin arsitekturnya yang benar.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Fasilitasi diskusi teknis, cari hybrid",
+      "narrative": "Kamu memfasilitasi diskusi teknis dan membantu mereka menemukan arsitektur hybrid. Solusi terbaik tapi membutuhkan kompromi dari kedua pihak dan waktu tambahan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Putuskan sendiri arsitektur terbaik",
+      "narrative": "Kamu menentukan arsitektur yang paling baik berdasarkan penilaianmu dan meminta kedua pihak mengikutinya. Keputusan cepat tapi kedua lead merasa tidak dihargai.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "adaptability": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "collaboration": -1
+    }
+  }
+}

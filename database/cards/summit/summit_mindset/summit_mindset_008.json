@@ -1,0 +1,113 @@
+{
+  "id": "summit_mindset_008",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "credit",
+      "accountability"
+    ],
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Team lead sering mengambil credit untuk kerja timnya saat presentasi ke direksi. Timnya resah dan mulai berkurang semangat. Lead ini performanya bagus dan direksi menyukainya.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Bicara privat, bantu perbaiki",
+      "narrative": "Kamu bicara privat dan menunjukkan data dampaknya pada tim. Ini membangun hubungan tapi jika dia tidak berubah, kamu harus eskalasi — dan dia bisa merasa kamu mengkhianati kepercayaan privatnya.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "create_promise",
+          "params": {
+            "type": "accountability",
+            "description": "Kamu berjanja memberi kesempatan untuk memperbaiki",
+            "target_ref": "random_other",
+            "resolve_by_round": 4
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Angkat di forum leadership — public example",
+      "narrative": "Kamu mengangkat isu ini di forum leadership sebagai contoh budaya yang harus dihindari. Ini mengirim pesan tegas tapi lead merasa dipermalukan dan hubungan kalian rusak.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -2,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "coaching": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -1
+    }
+  }
+}

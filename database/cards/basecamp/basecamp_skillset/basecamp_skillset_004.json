@@ -1,0 +1,103 @@
+{
+  "id": "basecamp_skillset_004",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "documentation",
+      "standards"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Dokumentasi teknis yang ada berantakan dan tidak konsisten. Kamu diminta memperbaikinya. Tim butuh dokumentasi yang bisa diandalkan tapi tidak ada waktu khusus untuk ini.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Tulis ulang dari awal",
+      "narrative": "Kamu tulis ulang seluruh dokumentasi dari awal dengan template baru. Hasilnya rapi tapi memakan waktu 2 minggu penuh yang bisa untuk proyek.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Perbaiki bagian kritis, buat guideline",
+      "narrative": "Kamu hanya perbaiki bagian paling kritis dan buat guideline untuk ke depannya. Ini lebih praktis tapi dokumentasi tetap tidak sempurna.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "control": 2,
+      "coaching": -1
+    },
+    "B": {
+      "adaptability": 2,
+      "collaboration": 1
+    }
+  }
+}

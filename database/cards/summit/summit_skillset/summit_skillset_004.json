@@ -1,0 +1,116 @@
+{
+  "id": "summit_skillset_004",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "transparency",
+      "framing"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Presentasi kinerja divisi ke board. Data campuran — peningkatan signifikan di beberapa area, penurunan di area lain. Board tidak suka kejutan negatif.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Transparan, fokus pembelajaran",
+      "narrative": "Kamu mempresentasi secara transparan dengan fokus pada pembelajaran dan rencana aksi. Ini membangun trust tapi board mungkin tidak impressed dan melihatmu sebagai 'pemimpin yang hasilnya turun'.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Highlight berhasil, minimalkan yang menurun",
+      "narrative": "Kamu memprioritaskan area yang berhasil dan meminimalkan area menurun dengan framing konteks. Board terkesan tapi ini tidak jujur dan board bisa kecewa saat menemukan kebenaran.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "reputation_change",
+              "params": {
+                "delta": -2,
+                "reason": "Board discovered hidden declines"
+              },
+              "trigger_after_rounds": 3
+            }
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "empathy": 1
+    },
+    "B": {
+      "control": 1,
+      "empathy": -1
+    }
+  }
+}

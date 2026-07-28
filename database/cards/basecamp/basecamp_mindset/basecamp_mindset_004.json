@@ -1,0 +1,97 @@
+{
+  "id": "basecamp_mindset_004",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "growth",
+      "vulnerability"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu menyadari bahwa selama ini sering menghindari tugas yang kelihatannya terlalu sulit. Sekarang ada satu tugas besar dengan deadline 2 minggu yang semua orang hindari.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Pecah jadi milestone kecil",
+      "narrative": "Kamu memecah tugas besar jadi langkah-langkah kecil dan mulai dari yang paling kamu kuasai. Ini terasa aman tapi mungkin tidak cukup ambisius.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Cari mentor untuk bimbingan",
+      "narrative": "Kamu mencari mentor berpengalaman. Ini membutuhkan kerendahan hati untuk mengakui kamu butuh bantuan, tapi bisa mempercepat progress signifikan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "create_debt",
+          "params": {
+            "type": "knowledge_debt",
+            "description": "Kamu berhutang bimbingan pada mentor",
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "risk_taking": -1
+    },
+    "B": {
+      "collaboration": 2,
+      "empathy": 1
+    }
+  }
+}

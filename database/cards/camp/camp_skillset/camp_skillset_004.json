@@ -1,0 +1,126 @@
+{
+  "id": "camp_skillset_004",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "hiring",
+      "development"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Budget terbatas untuk hire 1 anggota. Pasar kerja kompetitif. Kandidat A: pengalaman 5 tahun tapi sudah stagnan. Kandidat B: fresh graduate dengan growth mindset luar biasa tapi butuh 6 bulan onboarding.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Hire growth mindset, invest onboarding",
+      "narrative": "Kamu hire kandidat B dan berinvestasi dalam onboarding intensif. Jangka panjang lebih baik tapi tim harus menanggung beban onboarding selama 6 bulan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "affect_team",
+              "params": {
+                "stat": "sp",
+                "delta": 2,
+                "target_ref": "all_players"
+              },
+              "reason": "New hire became top contributor after onboarding"
+            },
+            "trigger_after_rounds": 8
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Hire pengalaman, minimalkan risiko",
+      "narrative": "Kamu hire kandidat A yang sudah berpengalaman. Bisa langsung contribute tapi mungkin tidak berkembang dan membawa habit buruk dari perusahaan sebelumnya.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "adaptability": 1
+    },
+    "B": {
+      "decisiveness": 1,
+      "coaching": -1
+    }
+  }
+}

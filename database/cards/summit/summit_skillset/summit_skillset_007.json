@@ -1,0 +1,118 @@
+{
+  "id": "summit_skillset_007",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "crisis",
+      "leadership"
+    ],
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "CEO mengumumkan pivot besar di all-hands. Para lead tidak di-brief sebelumnya dan kaget. Tim bingung dan mulai panic. Semua menunggu arahanmu sebagai penstabil.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Kumpulkan lead, breakdown implikasi pivot",
+      "narrative": "Kamu segera mengumpulkan para lead, breakdown implikasi pivot, dan membuat rencana transisi 30 hari. Ini menstabilkan situasi tapi kamu juga kaget dan harus memproses sendiri sambil memimpin.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Akui juga baru tahu, minta tim bersabar",
+      "narrative": "Kamu jujur mengatakan ke tim bahwa kamu juga baru tahu dan meminta mereka bersabar. Ini autentik tapi tim kehilangan confidence dan manajemen bisa menilaimu sebagai leader yang tidak connect.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "empathy": 2,
+      "decisiveness": -1
+    }
+  }
+}

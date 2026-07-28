@@ -1,0 +1,103 @@
+{
+  "id": "basecamp_mindset_002",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "feedback",
+      "self-awareness"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Rekan senior memberikan feedback tajam tentang presentasimu di depan tim. Sebagian evaluasinya tidak adil dan terasa menyerang secara personal, tapi ada poin yang benar dan penting.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Terima feedback, tanya detail",
+      "narrative": "Kamu menahan reaksi defensif dan meminta contoh spesifik dari feedbacknya. Ini memalukan di depan tim tapi menunjukkan kedewasaan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Diskusikan balik sekarang",
+      "narrative": "Kamu menjelaskan konteks yang tidak dia lihat sambil mengakui poin yang valid. Ini menegaskan posisimu tapi bisa terlihat defensif.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 1,
+      "adaptability": 2
+    },
+    "B": {
+      "decisiveness": 2,
+      "control": -1
+    }
+  }
+}

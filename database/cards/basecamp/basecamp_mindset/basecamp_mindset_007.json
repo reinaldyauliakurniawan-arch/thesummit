@@ -1,0 +1,113 @@
+{
+  "id": "basecamp_mindset_007",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "integrity",
+      "loyalty"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Kamu menemukan kesalahan besar dalam laporan yang sudah dikirim ke klien oleh rekanmu. Rekanmu itu teman dekatmu — dia sedang dalam evaluasi kinerja minggu ini. Menyebutkan error ini bisa menghancurkan evaluasinya.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Bicara privat, minta dia melapor",
+      "narrative": "Kamu bicara privat dengan rekanmu dan meminta dia yang melapor. Ini melindungi hubungan tapi mempertaruhkan integritas perusahaan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "create_promise",
+          "params": {
+            "type": "honesty",
+            "description": "Kamu berjanji pada rekanmu untuk mendukungnya",
+            "target_ref": "random_other",
+            "resolve_by_round": 5
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": -2
+              },
+              "reason": "Klien eventually discovered the error was hidden"
+            },
+            "trigger_after_rounds": 4
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Langsung lapor ke atasan",
+      "narrative": "Kamu langsung lapor ke atasan dengan bukti. Rekanmu akan marah dan evaluasinya hancur, tapi perusahaan terlindungi.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -2,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -1
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "camp_mindset_009",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "advocacy",
+      "motivation"
+    ],
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Target tim dinaikkan 50% tanpa penambahan resource. Reaksi tim beragam — frustasi, pasrah, marah. Kamu harus memutuskan sebagai lead: perjuangkan tim ke manajemen atau terima dan motivasi.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Perjuangkan tim ke manajemen",
+      "narrative": "Kamu menyampaikan keberatan ke manajemen bersama data konkret dan meminta revisi target. Tim merasa dilindungi tapi manajemen mungkin menilaimu sebagai 'anti-change'.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": 2
+              },
+              "reason": "Management respected your data-driven advocacy"
+            },
+            "trigger_after_rounds": 4
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Terima dan motivasi tim",
+      "narrative": "Kamu menerima target baru dan memotivasi tim dengan framing positif. Ini menunjukkan adaptabilitas tapi tim bisa merasa tidak dibela.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "decisiveness": 1
+    },
+    "B": {
+      "control": 1,
+      "empathy": -1
+    }
+  }
+}

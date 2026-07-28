@@ -1,0 +1,104 @@
+{
+  "id": "basecamp_mindset_005",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "credit",
+      "integrity"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Atasanmu memuji hasil kerjamu di depan tim. Ada bagian penting yang dibantu rekanmu yang tidak disebutkan. Rekanmu itu ada di ruangan dan mendengar pujian itu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Sebutkan kontribusi rekanmu sekarang",
+      "narrative": "Kamu langsung memotong pujian atasan dan menjelaskan ini kerja tim. Rekanmu terbantu tapi atasan mungkin merasa kamu 'tidak bisa terima pujian'.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": 1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Terima pujian, bicara privat nanti",
+      "narrative": "Kamu menerima pujian di depan umum dan berencana menyampaikan kontribusi rekanmu secara privat. Ini terlihat profesional tapi rekanmu mungkin merasa tidak dihargai.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              },
+              "reason": "Rekanmu merasa tidak dihargai"
+            },
+            "trigger_after_rounds": 2
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "decisiveness": 1,
+      "control": -1
+    }
+  }
+}

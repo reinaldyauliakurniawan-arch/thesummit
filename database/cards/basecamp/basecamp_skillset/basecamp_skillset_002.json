@@ -1,0 +1,104 @@
+{
+  "id": "basecamp_skillset_002",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "learning",
+      "efficiency"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu perlu menguasai tools baru. Ada 2 opsi: training resmi 3 hari (terstruktur tapi menghabiskan waktu kerja) atau belajar mandiri seminggu dari resource online (lebih lambat tapi bisa langsung praktik di proyek).",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Training resmi 3 hari",
+      "narrative": "Kamu ikut training resmi. Terstruktur dan ada sertifikat, tapi 3 hari tidak produktif dan tim harus menanggung bebanmu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Belajar mandiri seminggu",
+      "narrative": "Kamu belajar mandiri dari online resources. Lebih lambat dan tanpa sertifikat, tapi tidak mengganggu tim dan langsung praktik di proyek nyata.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 1,
+      "control": 1
+    },
+    "B": {
+      "adaptability": 1,
+      "collaboration": 1
+    }
+  }
+}

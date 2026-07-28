@@ -1,0 +1,119 @@
+{
+  "id": "summit_mindset_007",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "budget",
+      "participation"
+    ],
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Board minta pemotongan budget 30%. Para lead sudah commit plan tahunan berdasarkan budget sekarang. Kamu harus mengkomunikasikan pemotongan dan memutuskan siapa yang terdampak paling berat.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Libatkan lead dalam reprioritization",
+      "narrative": "Kamu melibatkan para lead dalam reprioritization dan memberikan mereka otoritas untuk menentukan apa yang dipotong. Ini memberdayakan tapi prosesnya bisa lambat dan lead bisa saling lempar beban.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Tentukan sendiri pemotongan berdasarkan data",
+      "narrative": "Kamu menentukan sendiri pemotongan per tim berdasarkan data objektif. Keputusan cepat dan 'fair' secara data, tapi lead merasa tidak dilibatkan dan ada yang marah.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "coaching": 1
+    },
+    "B": {
+      "control": 2,
+      "collaboration": -2
+    }
+  }
+}

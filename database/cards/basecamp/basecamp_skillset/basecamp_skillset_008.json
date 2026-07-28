@@ -1,0 +1,117 @@
+{
+  "id": "basecamp_skillset_008",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "accountability",
+      "planning"
+    ],
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Cara kamu estimasi waktu proyek selalu meleset. Sekarang ada 2 proyek dengan deadline dekat dan estimasi kamu tidak realistis. Tim mulai mempertanyakan kemampuanmu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Akui kesalahan, revisi timeline",
+      "narrative": "Kamu mengakui pattern kesalahan dan mengusulkan revisi timeline realistis ke stakeholder. Ini memalukan tapi menunjukkan accountability.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Kerja lembur, coba penuhi deadline",
+      "narrative": "Kamu kerja lembur ekstra dan coba penuhi deadline asli tanpa memberitahu siapapun. Ini menjaga image tapi menambah risiko burnout dan tidak menyelesaakan root cause.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "mp",
+                "delta": -1
+              },
+              "reason": "Pattern continues — estimation still off next project"
+            },
+            "trigger_after_rounds": 3
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "control": 1,
+      "adaptability": -1
+    }
+  }
+}

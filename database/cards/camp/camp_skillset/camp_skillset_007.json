@@ -1,0 +1,104 @@
+{
+  "id": "camp_skillset_007",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "accountability",
+      "blame"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Bug kritis di produksi tepat saat tim merayakan milestone. Bug berasal dari kode yang di-review oleh senior tim. Tim senior bersikeras bahwa proses review sudah cukup ketat.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Fix bug, blameless post-mortem",
+      "narrative": "Kamu fokus fix bug dulu, lalu jalankan blameless post-mortem. Tim fokus pada solusi bukan menyalahkan, tapi senior yang review merasa tidak di-justice.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Cari siapa salah, beri konsekuensi",
+      "narrative": "Kamu menuntut akuntabilitas: cari siapa yang salah dan pastikan ada konsekuensi. Ini mencegah terulang tapi menciptakan budaya takut dan tim berhenti mengambil risiko.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "control": 2,
+      "empathy": -2
+    }
+  }
+}

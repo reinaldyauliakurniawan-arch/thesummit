@@ -1,0 +1,133 @@
+{
+  "id": "summit_mindset_010",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "sacrifice",
+      "loyalty"
+    ],
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Kamu ditawari posisi impian — memimpin divisi baru yang lebih besar, gaji 2x lipat, report langsung ke CEO. Tapi tim yang kamu bangun 2 tahun sedang dalam momen paling kritis — merger dengan divisi lain dan mereka sangat butuh arahanmu. Jika kamu pergi sekarang, merger bisa gagal.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Terima tawaran — pastikan succession plan",
+      "narrative": "Kamu menerima tawaran tapi memastikan succession plan kuat dan tetap support dari jarak. Karirmu melesat tapi tim kehilangan pemimpin mereka di momen terpenting.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -2,
+            "target_ref": "other_players"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "mp",
+                "delta": -1
+              },
+              "reason": "Team struggled without you during critical merger"
+            },
+            "trigger_after_rounds": 3
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Tolak tawaran — tetap bersama tim",
+      "narrative": "Kamu menolak tawaran karena komitmenmu kepada tim saat ini. Mereka sangat terinspirasi tapi kesempatan ini mungkin tidak datang lagi dan karirmu stagnan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": 2,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "risk_taking": 2,
+      "empathy": -1
+    },
+    "B": {
+      "collaboration": 2,
+      "empathy": 2
+    }
+  }
+}

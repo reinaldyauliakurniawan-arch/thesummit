@@ -1,0 +1,113 @@
+{
+  "id": "basecamp_mindset_001",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "clarity",
+      "planning"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu mendapat proyek baru dengan deadline ketat. Kamu antusias tapi khawatir tidak bisa deliver tepat waktu. Atasanmu mengatakan 'aku percaya kamu bisa handle ini sendiri' — tapi kamu tahu scope-nya masih ambigu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": {
+    "type": "reveal_after_choice",
+    "content": "Atasan sebenarnya sudah dapat complain dari klien tentang scope yang tidak jelas di proyek sebelumnya."
+  },
+  "choices": {
+    "A": {
+      "label": "Klarifikasi scope dulu",
+      "narrative": "Kamu meminta 30 menit meeting dengan atasan untuk klarifikasi. Ini membuang waktu awal tapi mengurangi risiko salah arah.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "mp",
+                "delta": 1
+              },
+              "reason": "Scope clarification reduced rework"
+            },
+            "trigger_after_rounds": 3
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Langsung eksekusi",
+      "narrative": "Kamu langsung mulai kerja dan beradaptasi seiring jalan. Kamu percaya pada kemampuanmu untuk menavigasi ambiguity.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": -1
+              },
+              "reason": "Client complained about scope mismatch"
+            },
+            "trigger_after_rounds": 4
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 1,
+      "adaptability": 1
+    },
+    "B": {
+      "risk_taking": 1,
+      "decisiveness": 1
+    }
+  }
+}

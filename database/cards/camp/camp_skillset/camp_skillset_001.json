@@ -1,0 +1,119 @@
+{
+  "id": "camp_skillset_001",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "fairness",
+      "efficiency"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Sprint planning: ada tugas penting tapi sangat membosankan (maintenance legacy code) dan tugas menarik tapi impact rendah (POC teknologi baru). Kamu harus distribute ke tim.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Rotasi tugas membosankan secara adil",
+      "narrative": "Kamu membuat sistem rotasi jadi semua anggota bergantian handle tugas membosankan. Ini adil tapi mengorbankan efisiensi karena tidak semua orang sama-sama efisien di tugas itu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Assign berdasarkan keahlian — efisiensi dulu",
+      "narrative": "Kamu assign berdasarkan keahlian masing-masing untuk efisiensi terbaik. Orang yang paling capable handle tugas membosankan. Efisien tapi tidak adil.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "empathy": 1
+    },
+    "B": {
+      "control": 1,
+      "collaboration": -1
+    }
+  }
+}

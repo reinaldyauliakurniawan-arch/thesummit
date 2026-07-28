@@ -1,0 +1,113 @@
+{
+  "id": "camp_mindset_002",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "leadership",
+      "friendship"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu baru dipromosikan jadi lead. Teman baikmu yang dulu selevel sekarang jadi bawahmu. Dia mulai pasif-agresif dan menolak beberapa arahanmu di depan tim. Hubungan kalian yang selalu hangat mulai memburuk.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Pertahankan hubungan, diskusi privat",
+      "narrative": "Kamu mengajaknya bicara privat dan mencoba menjaga hubungan seperti dulu. Ini melembutkan ketegangan tapi tim lain bisa merasa kamu tidak tegas sebagai leader.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "create_promise",
+          "params": {
+            "type": "support",
+            "description": "Kamu berjanji mendukung perkembangannya",
+            "target_ref": "random_other",
+            "resolve_by_round": 6
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Tetapkan ekspektasi jelas sebagai leader",
+      "narrative": "Kamu menetapkan ekspektasi baru dengan tegas dan profesional. Hubungan kalian berubah permanen — dari teman ke atasan-bawahan. Tapi tim mendapat kejelasan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -1
+    }
+  }
+}

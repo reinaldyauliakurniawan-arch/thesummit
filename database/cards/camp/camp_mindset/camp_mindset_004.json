@@ -1,0 +1,104 @@
+{
+  "id": "camp_mindset_004",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "fairness",
+      "development"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Harus memutuskan siapa presentasi ke direksi. Ada 2 kandidat sama-sama kompeten: satu paling siap tapi sudah sering presentasi, satu belum pernah tapi berpotensi bagus dan sangat ingin kesempatan ini.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Pilih yang belum pernah — beri kesempatan",
+      "narrative": "Kamu memberikan kesempatan pada yang belum pernah. Ini mengembangkan talenta tapi risikonya lebih tinggi dan yang lebih berpengalaman mungkin kecewa.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": 2,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Pilih yang paling siap — aman untuk tim",
+      "narrative": "Kamu memilih yang paling siap demi keamanan hasil. Ini aman tapi yang lain merasa tidak ada ruang berkembang di bawah kepemimpinanmu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "empathy": 1
+    },
+    "B": {
+      "decisiveness": 1,
+      "coaching": -1
+    }
+  }
+}

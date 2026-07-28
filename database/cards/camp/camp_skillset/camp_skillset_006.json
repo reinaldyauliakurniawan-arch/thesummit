@@ -1,0 +1,111 @@
+{
+  "id": "camp_skillset_006",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "onboarding",
+      "knowledge"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Onboarding anggota baru memakan waktu terlalu lama. Proses yang ada tidak efektif — anggota baru bingung dan butuh 3 bulan untuk productive, padahal seharusnya 1 bulan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Assign buddy + 30-day learning plan",
+      "narrative": "Kamu assign buddy untuk setiap anggota baru dan buat learning plan terstruktur 30 hari. Ini memakan waktu develop tapi hasilnya bisa permanen.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Berikan akses dokumen, self-service learning",
+      "narrative": "Kamu berikan akses ke semua dokumentasi dan biarkan mereka belajar mandiri. Ini minimal effort tapi anggota baru merasa ditinggal sendiri.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "adaptability": 1,
+      "empathy": -1
+    }
+  }
+}

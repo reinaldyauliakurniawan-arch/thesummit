@@ -1,0 +1,119 @@
+{
+  "id": "summit_mindset_012",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "systemic",
+      "courage"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Kamu menemukan bahwa praktik yang selama ini dianggap 'normal' ternyata melanggar etik perusahaan. Masalahnya: hampir semua lead melakukannya, termasuk dirimu sendiri secara tidak sadar. Melaporkan berarti mengekspos semua orang termasuk dirimu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Audit semua tim, perbaiki sistemik",
+      "narrative": "Kamu memulai audit menyeluruh dan memperbaiki sistem secara terbuka. Ini menunjukkan leadership tapi semua lead terkena dampak dan bisa merasa kamu melempar mereka di bawah bus.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "all_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Perbaiki diam-diam ke depan",
+      "narrative": "Kamu memperbaiki praktik secara diam-diam ke depan tanpa audit formal. Ini menghindari gejolak tapi masalah mungkin terus terjadi tanpa kamu ketahui.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "hide_information",
+          "params": {
+            "info_id": "ethical_violation",
+            "content": "Kamu tahu tentang pelanggaran tapi tidak ekspos",
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "control": 1,
+      "collaboration": -1
+    }
+  }
+}

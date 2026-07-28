@@ -1,0 +1,117 @@
+{
+  "id": "basecamp_skillset_005",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "prioritization",
+      "quality"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu harus selesaikan 3 tugas dengan deadline Jumat. Hari Rabu dan estimasi realistis cuma bisa selesaikan 2 dengan kualitas tinggi.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Negosiasi deadline satu tugas",
+      "narrative": "Kamu negosiasi deadline salah satu tugas dengan stakeholder. Ini menunjukkan maturity dan menjaga kualitas tapi stakeholder mungkin merasa kamu 'tidak bisa diandalkan'.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Lembur selesaikan semua tiga",
+      "narrative": "Kamu kerja lembur selesaikan ketiganya. Kualitas bisa tidak merata tapi semua selesai tepat waktu. Kamu kelelahan dan bisa burnout.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "mp",
+                "delta": -1
+              },
+              "reason": "Burnout from overwork"
+            },
+            "trigger_after_rounds": 2
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 1,
+      "adaptability": 1
+    },
+    "B": {
+      "risk_taking": 1,
+      "control": 1
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "id": "summit_skillset_002",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "budget",
+      "prioritization"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Budget pelatihan terbatas. 5 team lead mengajukan program berbeda. Total permintaan 3x lipat budget. Semua program bernilai tapi tidak semua bisa didanai.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Pooled budget, prioritas bersama",
+      "narrative": "Kamu membuat pooled learning budget dan meminta lead memprioritaskan bersama. Ini membangun kolaborasi tapi prosesnya bisa menjadi arena politik di mana lead saling melemahkan proposal lain.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Alokasi proporsional berdasarkan data",
+      "narrative": "Kamu mengalokasi berdasarkan data objektif — ukuran tim, kebutuhan yang terbukti, ROI estimasi. Cepat dan 'fair' secara data tapi lead yang proposalnya ditolak merasa tidak didengarkan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "coaching": 1
+    },
+    "B": {
+      "decisiveness": 1,
+      "empathy": -1
+    }
+  }
+}

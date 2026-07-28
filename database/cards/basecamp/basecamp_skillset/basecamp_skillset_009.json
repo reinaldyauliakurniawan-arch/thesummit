@@ -1,0 +1,111 @@
+{
+  "id": "basecamp_skillset_009",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "mediation",
+      "courage"
+    ],
+    "dysfunction_tag": "fear_of_conflict"
+  },
+  "narrative": {
+    "situation": "Dua rekan kerja konflik tentang pendekatan teknis. Masing-masing minta kamu mendukung mereka di meeting besok. Kamu tahu salah satu benar dan satu salah tapi tidak ingin menghancurkan hubungan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Fasilitasi, temukan titik temu",
+      "narrative": "Kamu memfasilitasi diskusi dan membantu mereka temukan solusi hybrid. Ini memakan waktu tapi mempertahankan hubungan kedua pihak.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Pilih yang benar, dukung di meeting",
+      "narrative": "Kamu memilih pendekatan yang kamu yakini benar dan mendukungnya di meeting. Keputusan lebih cepat tapi rekan yang tidak didukung merasa dikhianati.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -1
+    }
+  }
+}

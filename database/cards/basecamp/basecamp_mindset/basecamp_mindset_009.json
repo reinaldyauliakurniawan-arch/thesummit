@@ -1,0 +1,103 @@
+{
+  "id": "basecamp_mindset_009",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "resilience",
+      "advocacy"
+    ],
+    "dysfunction_tag": "inattention_to_results"
+  },
+  "narrative": {
+    "situation": "Proyekmu dibatalkan tiba-tiba oleh manajemen tanpa penjelasan. 3 bulan kerja keras lenyap. Tim memandangmu untuk reaksi.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Minta penjelasan ke manajemen",
+      "narrative": "Kamu meminta meeting dengan manajemen untuk memahami alasan. Ini menunjukkan accountability tapi bisa terlihat sebagai 'protes' atau 'tidak menerima keputusan'.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Terima keputusan, fokus ke depan",
+      "narrative": "Kamu menerima keputusan tanpa pertanyaan dan langsung fokus ke tugas berikutnya. Tim terinspirasi oleh resilience-mu tapi mungkin ada pelajaran berharga yang terlewat.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 1,
+      "control": -1
+    },
+    "B": {
+      "adaptability": 2,
+      "collaboration": 1
+    }
+  }
+}

@@ -1,0 +1,140 @@
+{
+  "id": "summit_skillset_003",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "adoption",
+      "change"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Organisasi mau adopsi framework baru. Para lead punya skeptisisme berbeda — ada yang excited, ada yang menolak karena pernah burn oleh framework sebelumnya.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Pilot di 1-2 tim, buktikan hasilnya",
+      "narrative": "Kamu menjalankan pilot di 1-2 tim paling terbuka dan membuktikan hasilnya sebelum scale. Ini mengurangi resistensi tapi lebih lambat dan tim yang tidak terpilih pilot merasa ditinggal.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "random_other"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": 2
+              },
+              "reason": "Pilot results convinced skeptics"
+            },
+            "trigger_after_rounds": 5
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Rollout sekaligus semua tim",
+      "narrative": "Kamu rollout sekaligus ke semua tim dengan training intensif dan monitoring ketat. Cepat dan consistent tapi resistensi lebih besar dan ada risiko rollout gagal massal.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "risk_taking": 1
+    },
+    "B": {
+      "control": 2,
+      "collaboration": -1
+    }
+  }
+}

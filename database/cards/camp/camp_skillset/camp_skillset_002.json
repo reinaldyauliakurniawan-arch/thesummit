@@ -1,0 +1,103 @@
+{
+  "id": "camp_skillset_002",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "quality",
+      "process"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Bug production meningkat karena standar code review tidak konsisten — kadang ketat, kadang formalitas. Tim tidak bisa konsisten karena review-nya bergantung mood reviewer.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Buat checklist wajib code review",
+      "narrative": "Kamu membuat checklist yang harus diisi setiap review. Ini standarisasi proses tapi memperlambat velocity tim dan beberapa anggota merasa dikontrol.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Assign reviewer tetap per modul",
+      "narrative": "Kamu assign reviewer tetap per modul yang paling paham konteksnya. Ini lebih efisien tapi menciptakan silo dan dependency pada individu tertentu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "control": 2,
+      "adaptability": -1
+    },
+    "B": {
+      "adaptability": 1,
+      "control": -1
+    }
+  }
+}

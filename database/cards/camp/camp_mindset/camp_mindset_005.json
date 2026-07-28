@@ -1,0 +1,111 @@
+{
+  "id": "camp_mindset_005",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "coaching",
+      "teamwork"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Anggota tim sangat berbakat tapi sulit menerima masukan dan cenderung bekerja sendiri. Kontribusinya signifikan tapi sikapnya mengganggu koordinasi tim. Tim mulai frustrasi.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Cari proyek yang butuh keahliannya tapi wajib kolaborasi",
+      "narrative": "Kamu merancang proyek yang mengharuskan kolaborasi. Ini memanfaatkan bakatnya tapi mengambil waktu dari tugas prioritas.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Feedback langsung tentang kolaborasi",
+      "narrative": "Kamu memberikan feedback langsung dan tegas tentang pentingnya kolaborasi. Ini cepat tapi dia bisa merasa tidak dihargai dan performanya menurun.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "adaptability": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -1
+    }
+  }
+}

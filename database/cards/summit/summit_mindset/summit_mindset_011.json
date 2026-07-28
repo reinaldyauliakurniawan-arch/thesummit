@@ -1,0 +1,152 @@
+{
+  "id": "summit_mindset_011",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "betrayal",
+      "trust"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Kamu menemukan bahwa team lead yang paling kamu percaya — orang yang kamu bimbing sejak junior — telah diam-diam menyabotase kerja tim lain untuk membuat timnya terlihat lebih baik di depan manajemen. Dia adalah orang yang merekomendasikanmu untuk posisi sekarang.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Konfrontasi privat, beri kesempatan perbaiki",
+      "narrative": "Kamu mengkonfrontasinya secara privat dan memberi kesempatan untuk memperbaiki tanpa eskalasi. Ini melindungi hubungan tapi jika dia berulang, kamu bertanggung jawab karena sudah tahu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "create_promise",
+          "params": {
+            "type": "trust",
+            "description": "Kamu memberikan kesempatan terakhir",
+            "target_ref": "random_other",
+            "resolve_by_round": 3
+          }
+        },
+        {
+          "primitive": "hide_information",
+          "params": {
+            "info_id": "sabotage",
+            "content": "Kamu tahu tentang sabotase tapi menyimpannya",
+            "target_ref": "other_players"
+          }
+        },
+        {
+          "primitive": "conditional_trigger",
+          "params": {
+            "condition": {
+              "stat": "tt",
+              "operator": "<=",
+              "value": 4
+            },
+            "event": {
+              "primitive": "reputation_change",
+              "params": {
+                "delta": -2,
+                "reason": "Sabotage continued"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Eskalasi ke HR — transparan dan tegas",
+      "narrative": "Kamu melaporkan ke HR dengan bukti lengkap. Ini melindungi organisasi tapi hubungan dengan orang yang kamu bimbing hancur total dan dia bisa balik menuduhmu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -2,
+            "target_ref": "random_other"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "reputation",
+                "delta": -1
+              },
+              "reason": "People question why you didn't handle it privately first"
+            },
+            "trigger_after_rounds": 2
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "empathy": 2,
+      "collaboration": 1
+    },
+    "B": {
+      "decisiveness": 2,
+      "empathy": -2
+    }
+  }
+}

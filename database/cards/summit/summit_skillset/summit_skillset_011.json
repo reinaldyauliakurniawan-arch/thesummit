@@ -1,0 +1,143 @@
+{
+  "id": "summit_skillset_011",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "promise",
+      "sacrifice"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Kamu berjanji pada tim bahwa tidak akan ada PHK selama merger. Tapi sekarang, 3 bulan setelah merger, board meminta kamu PHK 20% workforce — termasuk beberapa anggota tim yang sudah loyal bertahun-tahun. Jika kamu menolak, board akan PHK kamu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Penuhi permintaan board — pecah janji",
+      "narrative": "Kamu melakukan PHK 20% sesuai permintaan board. Kamu selamat tapi harus menghadapi mata anggota tim yang kamu khianati. Mereka tidak akan pernah percaya lagi pada janja manapun.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -4
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "break_promise",
+          "params": {
+            "reason": "Board mandated layoffs — promise was made in good faith but circumstances changed"
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": -2,
+            "target_ref": "all_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Tolak dan taruh posisimu di garis",
+      "narrative": "Kamu menolak dan mempertaruhkan posisimu sendiri. Ini menunjukkan integritas luar biasa dan tim sangat terinspirasi, tapi kamu bisa kehilangan pekerjaan — dan siapa yang akan melindungi mereka setelah kamu pergi?",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": 2,
+            "target_ref": "all_players"
+          }
+        },
+        {
+          "primitive": "conditional_trigger",
+          "params": {
+            "condition": {
+              "stat": "reputation",
+              "operator": "<=",
+              "value": -5
+            },
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "tt",
+                "delta": -3
+              },
+              "reason": "You were fired — team lost their protector"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "control": 2,
+      "empathy": -2
+    },
+    "B": {
+      "collaboration": 2,
+      "empathy": 2
+    }
+  }
+}

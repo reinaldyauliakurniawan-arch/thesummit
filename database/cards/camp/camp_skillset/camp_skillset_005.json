@@ -1,0 +1,111 @@
+{
+  "id": "camp_skillset_005",
+  "version": "1.0",
+  "level": "camp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "negotiation",
+      "adaptability"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Klien meminta perubahan spesifikasi signifikan di tengah sprint. Tim sudah commit pada plan awal dan menghargai predictability. Tapi klien adalah revenue utama divisi.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Negosiasi masukkan ke sprint berikutnya",
+      "narrative": "Kamu menegosiasikan dengan klien untuk memasukkan perubahan ke sprint berikutnya. Ini menjaga predictability tapi klien mungkin merasa kamu tidak responsif.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Terima perubahan, rescope sprint",
+      "narrative": "Kamu menerima perubahan dan rescope sprint. Klien senang tapi tim harus re-plan dan beberapa work yang sudah done mungkin useless.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "mp",
+            "delta": -1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 1,
+      "adaptability": 1
+    },
+    "B": {
+      "control": 1,
+      "collaboration": -1
+    }
+  }
+}

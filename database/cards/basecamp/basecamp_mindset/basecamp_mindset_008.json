@@ -1,0 +1,117 @@
+{
+  "id": "basecamp_mindset_008",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "ethics",
+      "courage"
+    ],
+    "dysfunction_tag": "lack_of_commitment"
+  },
+  "narrative": {
+    "situation": "Atasan memintamu melakukan sesuatu yang bertentangan dengan nilai-nilaimu. Bukan ilegal, tapi terasa tidak etis. Menolak bisa merusak hubungan dengan atasan yang mengontrol karirmu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Tolak dan tawarkan alternatif",
+      "narrative": "Kamu menolak dengan sopan dan menawarkan jalan lain yang tetap memenuhi tujuan bisnis. Ini menunjukkan integritas tapi atasan mungkin merasa kamu 'sulit diarahkan'.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Ikuti arahan atasan",
+      "narrative": "Kamu mengikuti arahan karena atasan tahu lebih banyak tentang konteks bisnis. Kamu merasa tidak nyaman tapi karirmu aman.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "mp",
+                "delta": -1
+              },
+              "reason": "Guilt from unethical decision eating at you"
+            },
+            "trigger_after_rounds": 3
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 2,
+      "adaptability": 1
+    },
+    "B": {
+      "control": 1,
+      "empathy": -1
+    }
+  }
+}

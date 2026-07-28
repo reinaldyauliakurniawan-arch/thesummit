@@ -1,0 +1,103 @@
+{
+  "id": "camp_mindset_003",
+  "version": "1.0",
+  "level": "camp",
+  "category": "mindset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "feedback",
+      "vulnerability"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Dalam retrospective, beberapa anggota memberikan feedback negatif tentang cara kamu memimpin meeting. Feedbacknya menyakitkan tapi tidak salah — kamu memang terlalu mendominasi. Semua tim menunggu reaksimu.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Terima, komit perbaikan spesifik",
+      "narrative": "Kamu menerima feedback secara terbuka dan berkomitmen pada perubahan spesifik yang bisa diukur. Ini memalukan tapi menunjukkan vulnerability yang membangun trust.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Jelaskan konteks di balik keputusanmu",
+      "narrative": "Kamu menjelaskan alasan di balik pendekatanmu — tekanan deadline, kompleksitas topik. Ini valid tapi tim bisa merasa kamu defensif dan tidak mendengarkan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "adaptability": 2,
+      "empathy": 1
+    },
+    "B": {
+      "control": 1,
+      "adaptability": -1
+    }
+  }
+}

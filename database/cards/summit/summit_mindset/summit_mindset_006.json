@@ -1,0 +1,118 @@
+{
+  "id": "summit_mindset_006",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "courage",
+      "silence"
+    ],
+    "dysfunction_tag": "fear_of_conflict"
+  },
+  "narrative": {
+    "situation": "Dalam meeting leadership, ada keputusan kontroversial yang harus dibuat sekarang. Semua lead diam — mereka menunggu arahanmu. Beberapa dari mereka punya opini kuat tapi tidak berani bicara karena takut konsekuensi politik.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Paksa diskusi — minta pendapat semua",
+      "narrative": "Kamu memaksa setiap lead menyatakan pendapatnya sebelum kamu memberikan pandangan. Ini membutuhkan waktu dan beberapa lead tidak nyaman, tapi keputusan lebih baik dan mereka merasa dilibatkan.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "other_players"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Ambil keputusan sendiri, jelaskan reasoning",
+      "narrative": "Kamu mengambil keputusan sendiri berdasarkan penilaianmu. Cepat dan tegas, tapi lead merasa tidak dilibatkan dan tidak belajar dari proses.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "collaboration": 2
+    },
+    "B": {
+      "decisiveness": 2,
+      "coaching": -1
+    }
+  }
+}

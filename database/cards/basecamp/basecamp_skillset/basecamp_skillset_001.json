@@ -1,0 +1,96 @@
+{
+  "id": "basecamp_skillset_001",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "netral",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "communication",
+      "audience"
+    ],
+    "dysfunction_tag": null
+  },
+  "narrative": {
+    "situation": "Kamu diminta presentasi progress proyek ke stakeholders. Waktu 10 menit, materi sangat banyak. Salah approach bisa membuat stakeholder kehilangan kepercayaan atau bosan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "3 poin kunci dengan data kuat",
+      "narrative": "Kamu fokus pada 3 poin kunci dengan data yang kuat dan meyakinkan. Beberapa detail penting terlewat tapi pesan utama sampai.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Visualisasi ringkas, Q&A interaktif",
+      "narrative": "Kamu buat visualisasi singkat dan biarkan audiens bertanya. Ini lebih interaktif tapi berisiko pertanyaan yang tidak bisa kamu jawab.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 2,
+      "control": 1
+    },
+    "B": {
+      "adaptability": 1,
+      "risk_taking": 1
+    }
+  }
+}

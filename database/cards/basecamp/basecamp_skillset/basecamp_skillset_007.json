@@ -1,0 +1,104 @@
+{
+  "id": "basecamp_skillset_007",
+  "version": "1.0",
+  "level": "basecamp",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "crisis",
+      "delegation"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Sistem downtime di jam sibuk. Kamu tidak tahu penyebabnya dan klien sudah komplain. Tim menunggu arahanmu. Kamu bisa investigasi sendiri atau delegasikan.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Kumpulkan tim, delegasikan investigasi",
+      "narrative": "Kamu mengumpulkan tim, menugaskan investigasi ke anggota yang paling paham, dan koordinasi komunikasi ke klien. Tim merasa dilibatkan tapi respons mungkin lebih lambat.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Ambil alih investigasi sendiri",
+      "narrative": "Kamu ambil alih investigasi sendiri sambil minta tim tangani komunikasi. Respon mungkin lebih cepat tapi tim tidak belajar dan tergantung padamu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "collaboration": 2,
+      "coaching": 1
+    },
+    "B": {
+      "control": 2,
+      "coaching": -1
+    }
+  }
+}

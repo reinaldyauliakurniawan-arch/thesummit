@@ -1,0 +1,119 @@
+{
+  "id": "summit_skillset_008",
+  "version": "1.0",
+  "level": "summit",
+  "category": "skillset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "toughness",
+      "coaching"
+    ],
+    "dysfunction_tag": "avoidance_of_accountability"
+  },
+  "narrative": {
+    "situation": "Team lead membiarkan anggota underperform tanpa intervensi karena tidak mau terlihat kejam. Performa tim menurun dan anggota lain mulai resah karena beban mereka meningkat.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Coaching intensif tentang PM tulus tapi tegas",
+      "narrative": "Kamu memberi coaching intensif tentang performance management yang tulus tapi tegas. Ini membangun kapabilitasnya tapi memakan waktu dan anggota underperform mungkin tetap di-toleransi terlalu lama.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": 1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Ambil alih performance management langsung",
+      "narrative": "Kamu mengambil alih proses performance management langsung untuk anggota underperform. Ini menyelesaikan masalah cepat tapi lead merasa dilewati dan tidak berkembang sebagai pemimpin.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "sp",
+            "delta": -1,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "coaching": 2,
+      "empathy": 1
+    },
+    "B": {
+      "control": 2,
+      "coaching": -1
+    }
+  }
+}

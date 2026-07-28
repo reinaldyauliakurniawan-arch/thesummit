@@ -1,0 +1,139 @@
+{
+  "id": "summit_mindset_005",
+  "version": "1.0",
+  "level": "summit",
+  "category": "mindset",
+  "type": "krisis",
+  "metadata": {
+    "author": "system",
+    "created": "2026-07-28",
+    "tags": [
+      "competition",
+      "transparency"
+    ],
+    "dysfunction_tag": "absence_of_trust"
+  },
+  "narrative": {
+    "situation": "Dua team lead bersaing untuk posisi kosong. Persaingan sudah merusak kolaborasi dan menimbulkan politik internal. Tim di bawah mereka mulai memihak. Kamu sudah berjanji pada salah satunya sebelumnya bahwa 'kamu pantas mendapatkannya'.",
+    "outcome_hint_a": "",
+    "outcome_hint_b": ""
+  },
+  "hidden_info": null,
+  "choices": {
+    "A": {
+      "label": "Proses seleksi transparan — pecah janji",
+      "narrative": "Kamu membuat proses seleksi transparan dan objektif. Ini adil tapi kamu memecah janji pada salah satu lead. Dia merasa dikhianati.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": 2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "break_promise",
+          "params": {
+            "reason": "Fair selection process required breaking earlier promise"
+          }
+        },
+        {
+          "primitive": "affect_player",
+          "params": {
+            "stat": "tt",
+            "delta": -2,
+            "target_ref": "random_other"
+          }
+        }
+      ]
+    },
+    "B": {
+      "label": "Pilih yang paling siap diam-diam — keep promise",
+      "narrative": "Kamu memilih yang paling siap secara diam-diam untuk menghormati janji dan menghindari gejolak. Lead yang kalah merasa proses tidak adil dan tim kehilangan trust padamu.",
+      "effects": [
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": 1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "tt",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "affect_team",
+          "params": {
+            "stat": "tt",
+            "delta": -1,
+            "target_ref": "all_players"
+          }
+        },
+        {
+          "primitive": "schedule_event",
+          "params": {
+            "event": {
+              "primitive": "modify_stat",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              },
+              "reason": "Lead who lost spreads resentment"
+            },
+            "trigger_after_rounds": 3
+          }
+        }
+      ]
+    }
+  },
+  "conditional_effects": [],
+  "behavior_tags": {
+    "A": {
+      "decisiveness": 2,
+      "adaptability": 1
+    },
+    "B": {
+      "control": 2,
+      "collaboration": -2
+    }
+  }
+}
