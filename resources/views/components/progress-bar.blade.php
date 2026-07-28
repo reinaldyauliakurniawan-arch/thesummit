@@ -1,4 +1,4 @@
-@props(['level'=>'basecamp','mp'=>0,'sp'=>0,'tt'=>0,'showThresholds'=>false,'playerName'=>'','compact'=>false])
+@props(['level'=>'basecamp','mp'=>0,'sp'=>0,'tt'=>0,'showThresholds'=>false,'playerName'=>'','compact'=>false,'reputation'=>0,'resources'=>0])
 @php
 $levels=['basecamp','camp','summit'];$ci=array_search($level,$levels);
 $mpPct=$level==='summit'?min(100,($mp/15)*100):min(100,($mp/12)*100);
@@ -14,5 +14,8 @@ if($level==='basecamp'){$nt=config('summit.thresholds.to_camp');$nl='Camp';}else
 <div class="mb-2"><div class="flex justify-between text-xs mb-0.5"><span class="text-mountain-300">MP</span><span class="text-mountain-200 font-mono">{{ $mp }}</span></div><div class="w-full h-2 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-basecamp-400 rounded-full transition-all duration-500" style="width:{{ $mpPct }}%"></div></div></div>
 <div class="mb-2"><div class="flex justify-between text-xs mb-0.5"><span class="text-mountain-300">SP</span><span class="text-mountain-200 font-mono">{{ $sp }}</span></div><div class="w-full h-2 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-camp-400 rounded-full transition-all duration-500" style="width:{{ $spPct }}%"></div></div></div>
 <x-rope-meter :tt="$tt" :compact="$compact" />
+@if($reputation != 0)
+<div class="mt-1"><span class="text-xs {{ $reputation >= 0 ? 'text-summit-300' : 'text-crisis-400' }}">Reputasi: {{ $reputation >= 0 ? '+' : '' }}{{ $reputation }}</span></div>
+@endif
 @if($showThresholds && $nt)<div class="mt-2 text-xs text-mountain-400 border-t border-mountain-700 pt-2">Naik ke {{ $nl }}: MP {{$nt['mp']}} | SP {{$nt['sp']}} @if($nt['tt']>0)| TT {{$nt['tt']}} @endif</div>@endif
 </div>

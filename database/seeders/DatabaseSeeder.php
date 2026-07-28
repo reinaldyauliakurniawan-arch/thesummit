@@ -10,6 +10,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             ExpeditionCardSeeder::class,
+            V2CardEnhancementSeeder::class,
         ]);
     }
 }

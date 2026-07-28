@@ -10,15 +10,35 @@ use App\Models\GamePlayer;
 use App\Models\ExpeditionCard;
 use App\Models\GameTurn;
 use App\Models\GameResult;
+use App\Models\LeadershipProfile;
+use App\Models\RealWorldChallenge;
+use App\Notifications\TurnNotification;
+use App\Notifications\GameFinishedNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class GameService
 {
+    protected ConsequenceEngine $consequenceEngine;
+    protected CrossPlayerEngine $crossPlayerEngine;
+    protected BehaviorTracker $behaviorTracker;
+    protected SocialEngine $socialEngine;
+    protected ReflectionEngine $reflectionEngine;
+    protected ChallengeGenerator $challengeGenerator;
+
+    public function __construct()
+    {
+        $this->consequenceEngine = app(ConsequenceEngine::class);
+        $this->crossPlayerEngine = app(CrossPlayerEngine::class);
+        $this->behaviorTracker = app(BehaviorTracker::class);
+        $this->socialEngine = app(SocialEngine::class);
+        $this->reflectionEngine = app(ReflectionEngine::class);
+        $this->challengeGenerator = app(ChallengeGenerator::class);
+    }
+
     /**
      * Draw an expedition card for the player.
      * Tries 3 strategies: (1) unplayed cards, (2) all except last 2, (3) full pool reset.
-     * Throws only if no cards exist at all for the level+category combination.
      */
     public function drawCard(GamePlayer $player, int $turnNumber): ExpeditionCard
     {
@@ -39,7 +59,7 @@ class GameService
             return $pool->inRandomOrder()->firstOrFail();
         }
 
-        // Strategy 2: Exclude only the last 2 played cards (PRD 9.7 reset)
+        // Strategy 2: Exclude only the last 2 played cards
         $pool = ExpeditionCard::where('level', $level)
             ->where('kategori', $category)
             ->when(!empty($lastTwoIds), function ($query) use ($lastTwoIds) {
@@ -50,7 +70,7 @@ class GameService
             return $pool->inRandomOrder()->firstOrFail();
         }
 
-        // Strategy 3: Full pool reset — no exclusions (PRD 9.7)
+        // Strategy 3: Full pool reset
         $card = ExpeditionCard::where('level', $level)
             ->where('kategori', $category)
             ->inRandomOrder()
@@ -60,14 +80,13 @@ class GameService
             return $card;
         }
 
-        // Should never happen with proper seeder data (60 cards, 7+ per combo)
         Log::error("drawCard: No cards for level={$level}, category={$category}. Run seeder.");
         throw new \RuntimeException("Tidak ada kartu untuk {$level}/{$category}. Jalankan seeder.");
     }
 
     /**
      * Apply the chosen option's effects to the player's stats.
-     * Returns the effects array for display.
+     * Now includes reputation, resources, flexibility, and hidden info.
      */
     public function applyCardEffects(GamePlayer $player, ExpeditionCard $card, string $option): array
     {
@@ -75,10 +94,19 @@ class GameService
         $effects['mp'] = $effects['mp'] ?? 0;
         $effects['sp'] = $effects['sp'] ?? 0;
         $effects['tt'] = $effects['tt'] ?? 0;
+        $effects['reputation'] = $effects['reputation'] ?? 0;
+        $effects['resources'] = $effects['resources'] ?? 0;
+        $effects['flexibility'] = $effects['flexibility'] ?? 0;
 
+        // Apply core stats (floored at 0)
         $player->mp = max(0, $player->mp + $effects['mp']);
         $player->sp = max(0, $player->sp + $effects['sp']);
         $player->tt = max(0, $player->tt + $effects['tt']);
+
+        // Apply new v2 stats (no floor for reputation/flexibility)
+        $player->reputation = $player->reputation + $effects['reputation'];
+        $player->resources = max(0, $player->resources + $effects['resources']);
+        $player->flexibility = $player->flexibility + $effects['flexibility'];
         $player->save();
 
         return $effects;
@@ -110,15 +138,14 @@ class GameService
         }
 
         return [
-            'roll'          => $roll,
-            'tt_delta'      => $ttDelta,
-            'dysfunction'   => $dysfunction,
+            'roll'        => $roll,
+            'tt_delta'    => $ttDelta,
+            'dysfunction' => $dysfunction,
         ];
     }
 
     /**
      * Check if the player meets the Rope Bridge threshold for the next level.
-     * Returns 'success' (auto-advances), 'fail', or null (already at summit).
      */
     public function checkRopeBridge(GamePlayer $player): ?string
     {
@@ -141,7 +168,7 @@ class GameService
     }
 
     /**
-     * Check if the player has reached the final win condition (summit + threshold).
+     * Check if the player has reached the final win condition.
      */
     public function checkFinalWin(GamePlayer $player): bool
     {
@@ -151,7 +178,6 @@ class GameService
 
     /**
      * Set the room into Final Round status if conditions are met.
-     * Returns true if final round was just triggered by this call.
      */
     protected function triggerFinalRoundIfNeeded(GameRoom $room, GamePlayer $player): bool
     {
@@ -172,7 +198,8 @@ class GameService
 
     /**
      * Process a player's turn: draw card, apply effects, roll risk die (krisis),
-     * record turn, check final round trigger, and advance to next player.
+     * record turn, create consequences, apply cross-player effects, track behaviors,
+     * check final round trigger, and advance to next player.
      */
     public function processTurn(GamePlayer $player, string $chosenOption, ?ExpeditionCard $card = null): array
     {
@@ -184,12 +211,21 @@ class GameService
                 $card = $this->drawCard($player, $turnNumber);
             }
 
-            // Apply chosen option effects
+            // ── V2: Process pending consequences BEFORE the turn ──
+            $triggeredConsequences = $this->consequenceEngine->processPendingConsequences($room);
+
+            // ── V2: Check expired promises ──
+            $this->socialEngine->checkExpiredPromises($room, $turnNumber);
+
+            // Apply chosen option effects (including v2 stats)
             $effects = $this->applyCardEffects($player, $card, $chosenOption);
             $mpEffect = $effects['mp'];
             $spEffect = $effects['sp'];
             $ttEffect = $effects['tt'];
             $extraEffect = $effects['extra'];
+            $repEffect = $effects['reputation'];
+            $resEffect = $effects['resources'];
+            $flexEffect = $effects['flexibility'];
 
             // Roll Risk Die for krisis cards
             $riskDieResult = null;
@@ -206,21 +242,74 @@ class GameService
                 }
 
                 $dysfunction = $riskResult['dysfunction'];
+
+                // ── V2: Shared penalty on dysfunction trigger ──
+                if ($dysfunction) {
+                    $this->crossPlayerEngine->applySharedPenalty($room, $player, $riskResult['tt_delta']);
+                }
             }
 
-            // Record the turn
-            GameTurn::create([
-                'game_room_id'           => $room->id,
-                'game_player_id'         => $player->id,
-                'expedition_card_id'     => $card->id,
-                'chosen_option'          => $chosenOption,
-                'risk_die_result'        => $riskDieResult,
-                'mp_effect'              => $mpEffect,
-                'sp_effect'              => $spEffect,
-                        'tt_effect'              => $ttEffect,
-                'extra_effect_applied'   => $extraEffect,
-                'dysfunction_triggered'  => $dysfunction,
+            // ── V2: Create delayed/conditional consequences ──
+            $delayedEffects = $card->getDelayedEffects($chosenOption);
+            $conditionalEffects = $card->getConditionalEffects($chosenOption);
+
+            // Record the turn first (we need the turn ID for consequences)
+            $turn = GameTurn::create([
+                'game_room_id'          => $room->id,
+                'game_player_id'        => $player->id,
+                'expedition_card_id'    => $card->id,
+                'chosen_option'         => $chosenOption,
+                'risk_die_result'       => $riskDieResult,
+                'mp_effect'             => $mpEffect,
+                'sp_effect'             => $spEffect,
+                'tt_effect'             => $ttEffect,
+                'extra_effect_applied'  => $extraEffect,
+                'dysfunction_triggered' => $dysfunction,
+                'was_hidden'            => $card->hasHiddenInfo($chosenOption),
+                'hidden_info_shown'     => $card->getHiddenInfoReveal(),
+                'reputation_effect'     => $repEffect,
+                'resources_effect'      => $resEffect,
+                'flexibility_effect'    => $flexEffect,
             ]);
+
+            // Create consequences
+            $createdConsequences = $this->consequenceEngine->createConsequences(
+                $player, $turn, $delayedEffects, $conditionalEffects
+            );
+            $turn->consequences_created = $createdConsequences->pluck('id')->toArray();
+            $turn->save();
+
+            // ── V2: Apply cross-player effects ──
+            $crossPlayerData = $card->getCrossPlayerEffects($chosenOption);
+            $appliedCrossEffects = [];
+            if (!empty($crossPlayerData)) {
+                $appliedCrossEffects = $this->crossPlayerEngine->applyCrossPlayerEffects(
+                    $room, $player, $turn, $crossPlayerData
+                );
+                $turn->cross_player_effects = $appliedCrossEffects;
+                $turn->save();
+            }
+
+            // ── V2: Track behaviors ──
+            $cardData = [
+                'behavior_tags' => $card->getBehaviorTags($chosenOption),
+                'is_krisis'     => $card->isKrisis(),
+                'cross_player'  => $crossPlayerData,
+                'option_text'   => $chosenOption === 'A' ? $card->opsi_a_teks : $card->opsi_b_teks,
+                'effects_a'     => [
+                    'mp' => $card->opsi_a_mp,
+                    'sp' => $card->opsi_a_sp,
+                    'tt' => $card->opsi_a_tt,
+                ],
+                'effects_b'     => [
+                    'mp' => $card->opsi_b_mp,
+                    'sp' => $card->opsi_b_sp,
+                    'tt' => $card->opsi_b_tt,
+                ],
+            ];
+            $trackedBehaviors = $this->behaviorTracker->trackBehaviors($turn, $player, $cardData);
+            $turn->behavior_data = $trackedBehaviors;
+            $turn->save();
 
             // Check if this triggers Final Round
             $triggeredFinal = $this->triggerFinalRoundIfNeeded($room, $player);
@@ -229,31 +318,39 @@ class GameService
             $this->advanceTurn($room);
 
             return [
-                'card'                 => $card,
-                'effects'              => [
-                    'mp' => $mpEffect,
-                    'sp' => $spEffect,
-                    'tt' => $ttEffect,
+                'card'                   => $card,
+                'effects'                => [
+                    'mp'         => $mpEffect,
+                    'sp'         => $spEffect,
+                    'tt'         => $ttEffect,
+                    'reputation' => $repEffect,
+                    'resources'  => $resEffect,
+                    'flexibility' => $flexEffect,
                 ],
-                'risk_die'             => $riskDieResult,
-                'dysfunction'          => $dysfunction,
-                'extra'                => $extraEffect,
-                'triggered_final_round' => $triggeredFinal,
-                'player'               => $player->fresh(),
+                'risk_die'               => $riskDieResult,
+                'dysfunction'            => $dysfunction,
+                'extra'                  => $extraEffect,
+                'triggered_final_round'  => $triggeredFinal,
+                'player'                 => $player->fresh(),
+                // V2 additions
+                'triggered_consequences' => $triggeredConsequences,
+                'created_consequences'    => $createdConsequences,
+                'cross_player_effects'   => $appliedCrossEffects,
+                'tracked_behaviors'       => $trackedBehaviors,
+                'was_hidden'             => $card->hasHiddenInfo($chosenOption),
+                'hidden_info'            => $card->getHiddenInfoReveal(),
             ];
         });
     }
 
     /**
      * Attempt the Rope Bridge check for a player.
-     * Only triggers final round if not already in final_round (prevents double-trigger).
      */
     public function attemptRopeBridge(GamePlayer $player): array
     {
         return DB::transaction(function () use ($player) {
             $result = $this->checkRopeBridge($player);
 
-            // Record the attempt on the latest turn
             $latestTurn = $player->turns()->latest()->first();
             if ($latestTurn) {
                 $latestTurn->rope_bridge_attempted = true;
@@ -261,9 +358,6 @@ class GameService
                 $latestTurn->save();
             }
 
-            // Only check final win if we haven't already entered final round.
-            // This prevents double-trigger from processTurn() + attemptRopeBridge()
-            // both calling checkFinalWin on the same player.
             $triggeredFinal = false;
             $room = $player->room;
             if ($room->status === GameStatus::InProgress) {
@@ -280,11 +374,6 @@ class GameService
 
     /**
      * Advance the turn to the next active player.
-     *
-     * CRITICAL FIX (Bug #2): In Final Round mode, we only check if the next player
-     * has taken their FINAL ROUND turn (i.e., a turn created AFTER final_round_started_at).
-     * Previously this checked ALL turns including pre-final-round ones, causing
-     * premature finishGame() on the very next player who had any prior turn.
      */
     public function advanceTurn(GameRoom $room): void
     {
@@ -301,7 +390,6 @@ class GameService
             return;
         }
 
-        // Determine the next player in rotation
         if (!$room->current_turn_player_id) {
             $next = $activePlayers->first();
         } else {
@@ -311,14 +399,10 @@ class GameService
             $next = $activePlayers[$nextIndex];
         }
 
-        // Set the next player's turn
         $room->current_turn_player_id = $next->id;
         $room->current_turn_started_at = now();
         $room->save();
 
-        // In Final Round, check if this player already had their final-round turn.
-        // Only count turns taken AFTER final_round_started_at to avoid counting
-        // turns from before final round was triggered (PRD 9.5 compliance).
         if ($room->status === GameStatus::FinalRound) {
             $hasFinalTurn = $room->turns()
                 ->where('game_player_id', $next->id)
@@ -331,8 +415,7 @@ class GameService
             }
         }
 
-        // Notify the next player
-        $next->user->notify(new \App\Notifications\TurnNotification($room, $next));
+        $next->user->notify(new TurnNotification($room, $next));
     }
 
     /**
@@ -357,16 +440,18 @@ class GameService
             return;
         }
 
-        // Auto-play: pick the option with higher TT (safer for team)
         $turnNumber = $currentPlayer->turns()->count() + 1;
         $card = $this->drawCard($currentPlayer, $turnNumber);
+
+        // Auto-play: pick the option with higher TT (safer for team)
         $autoOption = ($card->opsi_b_tt >= $card->opsi_a_tt) ? 'B' : 'A';
 
         $this->processTurn($currentPlayer, $autoOption, $card);
     }
 
     /**
-     * Finish the game: calculate scores, assign badges, rank players.
+     * Finish the game: calculate scores, assign badges, rank players,
+     * generate leadership profiles and real-world challenges.
      */
     public function finishGame(GameRoom $room): void
     {
@@ -376,7 +461,6 @@ class GameService
             $room->current_turn_started_at = null;
             $room->save();
 
-            // Calculate scores for all active players
             $players = $room->players()
                 ->where('is_active', true)
                 ->get()
@@ -385,7 +469,7 @@ class GameService
                     return $player;
                 });
 
-            // Sort: The Carrier (summit + TT>=8) first, then by score, then TT, then earlier turn_order
+            // Sort: The Carrier first, then by score, then TT, then earlier turn_order
             $sorted = $players->sortByDesc(function ($player) {
                 $isCarrier = ($player->current_level === 'summit' && $player->tt >= 8) ? '1' : '0';
                 return $isCarrier . '.' . $player->score . '.' . $player->tt . '.' . str_pad(99 - $player->turn_order, 2, '0', STR_PAD_LEFT);
@@ -393,7 +477,6 @@ class GameService
 
             $rank = 1;
             foreach ($sorted as $player) {
-                // Determine badge
                 if ($player->current_level === 'summit' && $player->tt >= 8) {
                     $badge = 'the_carrier';
                 } elseif ($player->current_level === 'summit' && $player->tt < 8) {
@@ -402,17 +485,27 @@ class GameService
                     $badge = 'none';
                 }
 
-                GameResult::create([
-                    'game_room_id'   => $room->id,
-                    'game_player_id' => $player->id,
-                    'final_level'    => $player->current_level,
-                    'final_mp'       => $player->mp,
-                    'final_sp'       => $player->sp,
-                    'final_tt'       => $player->tt,
-                    'final_score'    => $player->score,
-                    'badge'          => $badge,
-                    'rank'           => $rank,
+                $result = GameResult::create([
+                    'game_room_id'      => $room->id,
+                    'game_player_id'    => $player->id,
+                    'final_level'       => $player->current_level,
+                    'final_mp'          => $player->mp,
+                    'final_sp'          => $player->sp,
+                    'final_tt'          => $player->tt,
+                    'final_score'       => $player->score,
+                    'badge'             => $badge,
+                    'rank'              => $rank,
+                    'final_reputation'  => $player->reputation ?? 0,
+                    'final_resources'   => $player->resources ?? 0,
+                    'final_flexibility' => $player->flexibility ?? 0,
                 ]);
+
+                // ── V2: Generate Leadership Profile ──
+                $this->reflectionEngine->generateProfile($result);
+
+                // ── V2: Generate Real-World Challenge ──
+                $profile = $result->leadershipProfile;
+                $this->challengeGenerator->generateChallenge($result, $profile);
 
                 $rank++;
             }
@@ -420,7 +513,7 @@ class GameService
             // Notify all players
             foreach ($room->players as $gamePlayer) {
                 $gamePlayer->user->notify(
-                    new \App\Notifications\GameFinishedNotification($room, $gamePlayer)
+                    new GameFinishedNotification($room, $gamePlayer)
                 );
             }
         });
@@ -448,8 +541,76 @@ class GameService
             $room->save();
 
             $players->first()->user->notify(
-                new \App\Notifications\TurnNotification($room, $players->first())
+                new TurnNotification($room, $players->first())
             );
         });
+    }
+
+    // ── V2: Social Mechanics Methods ──
+
+    /**
+     * Create a promise between two players.
+     */
+    public function createPromise(GameRoom $room, GamePlayer $promiser, GamePlayer $recipient, string $type, string $description): \App\Models\Promise
+    {
+        return $this->socialEngine->createPromise($room, $promiser, $recipient, $type, $description);
+    }
+
+    /**
+     * Fulfill a promise.
+     */
+    public function fulfillPromise(\App\Models\Promise $promise): void
+    {
+        $this->socialEngine->fulfillPromise($promise);
+    }
+
+    /**
+     * Break a promise.
+     */
+    public function breakPromise(\App\Models\Promise $promise): void
+    {
+        $this->socialEngine->breakPromise($promise);
+    }
+
+    /**
+     * Create a vote event.
+     */
+    public function createVote(GameRoom $room, GamePlayer $triggeringPlayer, string $topic, string $description, string $type, array $options): \App\Models\Vote
+    {
+        return $this->socialEngine->createVote($room, $triggeringPlayer, $topic, $description, $type, $options);
+    }
+
+    /**
+     * Cast a vote.
+     */
+    public function castVote(\App\Models\Vote $vote, GamePlayer $player, string $choice): void
+    {
+        $this->socialEngine->castVote($vote, $player, $choice);
+    }
+
+    // ── V2: Get Active Consequences for UI ──
+
+    /**
+     * Get visible consequences for a player (for UI display).
+     */
+    public function getVisibleConsequences(GameRoom $room, int $playerId): \Illuminate\Database\Eloquent\Collection
+    {
+        return $this->consequenceEngine->getVisibleConsequences($room, $playerId);
+    }
+
+    /**
+     * Get all active promises for a room.
+     */
+    public function getActivePromises(GameRoom $room): \Illuminate\Database\Eloquent\Collection
+    {
+        return $this->socialEngine->getActivePromises($room);
+    }
+
+    /**
+     * Get all active votes for a room.
+     */
+    public function getActiveVotes(GameRoom $room): \Illuminate\Database\Eloquent\Collection
+    {
+        return $this->socialEngine->getActiveVotes($room);
     }
 }

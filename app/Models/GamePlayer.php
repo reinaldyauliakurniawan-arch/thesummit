@@ -18,17 +18,27 @@ class GamePlayer extends Model
         'tt',
         'turn_order',
         'is_active',
+        'reputation',
+        'resources',
+        'flexibility',
+        'promises_kept',
+        'promises_broken',
     ];
 
     protected function casts(): array
     {
         return [
-            'mp'         => 'integer',
-            'sp'         => 'integer',
-            'tt'         => 'integer',
-            'turn_order' => 'integer',
-            'is_active'  => 'boolean',
-            'joined_at'  => 'datetime',
+            'mp'              => 'integer',
+            'sp'              => 'integer',
+            'tt'              => 'integer',
+            'turn_order'      => 'integer',
+            'is_active'       => 'boolean',
+            'joined_at'       => 'datetime',
+            'reputation'      => 'integer',
+            'resources'       => 'integer',
+            'flexibility'     => 'integer',
+            'promises_kept'   => 'integer',
+            'promises_broken' => 'integer',
         ];
     }
 
@@ -52,6 +62,46 @@ class GamePlayer extends Model
     public function result()
     {
         return $this->hasOne(GameResult::class);
+    }
+
+    public function consequences()
+    {
+        return $this->hasMany(Consequence::class, 'game_player_id');
+    }
+
+    public function behaviors()
+    {
+        return $this->hasMany(PlayerBehavior::class, 'game_player_id');
+    }
+
+    public function promisesMade()
+    {
+        return $this->hasMany(Promise::class, 'promiser_player_id');
+    }
+
+    public function promisesReceived()
+    {
+        return $this->hasMany(Promise::class, 'recipient_player_id');
+    }
+
+    public function crossPlayerEffectsGiven()
+    {
+        return $this->hasMany(CrossPlayerEffect::class, 'source_player_id');
+    }
+
+    public function crossPlayerEffectsReceived()
+    {
+        return $this->hasMany(CrossPlayerEffect::class, 'target_player_id');
+    }
+
+    public function leadershipProfile()
+    {
+        return $this->hasOne(LeadershipProfile::class, 'game_player_id');
+    }
+
+    public function realWorldChallenge()
+    {
+        return $this->hasOne(RealWorldChallenge::class, 'game_player_id');
     }
 
     // ─── Card Tracking ──────────────────────────────────────────────

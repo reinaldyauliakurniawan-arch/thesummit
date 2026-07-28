@@ -25,17 +25,32 @@ class GameTurn extends Model
         'rope_bridge_attempted',
         'rope_bridge_success',
         'dysfunction_triggered',
+        'consequences_created',
+        'cross_player_effects',
+        'behavior_data',
+        'was_hidden',
+        'hidden_info_shown',
+        'reputation_effect',
+        'resources_effect',
+        'flexibility_effect',
     ];
 
     protected function casts(): array
     {
         return [
-            'risk_die_result'        => 'integer',
-            'mp_effect'              => 'integer',
-            'sp_effect'              => 'integer',
-            'tt_effect'              => 'integer',
-            'rope_bridge_attempted'  => 'boolean',
-            'rope_bridge_success'    => 'boolean',
+            'risk_die_result'         => 'integer',
+            'mp_effect'               => 'integer',
+            'sp_effect'               => 'integer',
+            'tt_effect'               => 'integer',
+            'rope_bridge_attempted'   => 'boolean',
+            'rope_bridge_success'     => 'boolean',
+            'consequences_created'    => 'array',
+            'cross_player_effects'    => 'array',
+            'behavior_data'            => 'array',
+            'was_hidden'              => 'boolean',
+            'reputation_effect'        => 'integer',
+            'resources_effect'        => 'integer',
+            'flexibility_effect'      => 'integer',
         ];
     }
 

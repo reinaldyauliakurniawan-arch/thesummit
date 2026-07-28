@@ -13,9 +13,6 @@ return [
 
     /**
      * Thresholds for Rope Bridge checks and final win.
-     * 'tt_required' => false means TT is NOT a gate for that transition
-     * (e.g. to_camp only checks MP+SP, not TT).
-     * When tt_required is false, the 'tt' key is ignored by meetsThreshold().
      */
     'thresholds' => [
         'to_camp'   => [
@@ -48,24 +45,61 @@ return [
     ],
 
     'risk_die' => [
-        'dysfunction_range'     => [1, 2],
-        'neutral_range'         => [3, 4],
-        'bonus_range'           => [5, 6],
+        'dysfunction_range'      => [1, 2],
+        'neutral_range'          => [3, 4],
+        'bonus_range'            => [5, 6],
         'dysfunction_tt_penalty' => -2,
         'bonus_tt_reward'        => 1,
     ],
 
     'dysfunctions' => [
-        'absence_of_trust'             => 'Absence of Trust',
-        'fear_of_conflict'             => 'Fear of Conflict',
-        'lack_of_commitment'           => 'Lack of Commitment',
-        'avoidance_of_accountability'  => 'Avoidance of Accountability',
-        'inattention_to_results'       => 'Inattention to Results',
+        'absence_of_trust'            => 'Absence of Trust',
+        'fear_of_conflict'            => 'Fear of Conflict',
+        'lack_of_commitment'          => 'Lack of Commitment',
+        'avoidance_of_accountability' => 'Avoidance of Accountability',
+        'inattention_to_results'      => 'Inattention to Results',
     ],
 
     'badges' => [
         'the_carrier' => ['label' => 'The Carrier'],
         'solo_peak'   => ['label' => 'Solo Peak'],
         'none'        => ['label' => 'Climber'],
+    ],
+
+    // ── V2: Persistent Consequences ──
+    'consequences' => [
+        'default_delay_rounds' => 2,       // Default rounds before delayed effect triggers
+        'max_active_per_player' => 5,       // Max pending consequences per player
+        'promise_expiry_turns'  => 5,       // Turns before an unfulfilled promise auto-breaks
+    ],
+
+    // ── V2: Team Interdependency ──
+    'team' => [
+        'shared_dysfunction_penalty' => 0.5, // Fraction of penalty shared to other players
+        'cooperative_recovery_threshold' => 3, // TT threshold to trigger cooperative recovery
+    ],
+
+    // ── V2: Social Mechanics ──
+    'social' => [
+        'promise_reputation_gain' => 2,
+        'promise_reputation_loss' => -3,
+        'promise_tt_loss_on_break' => -1,
+        'vote_timeout_seconds'    => 120,
+    ],
+
+    // ── V2: Leadership Identity ──
+    'leadership' => [
+        'behavior_types' => [
+            'risk_taking', 'collaboration', 'empathy',
+            'decisiveness', 'coaching', 'control', 'adaptability',
+        ],
+        'max_behavior_score' => 10,
+        'min_behavior_score' => -10,
+    ],
+
+    // ── V2: Hidden Information ──
+    'hidden_info' => [
+        'enabled' => true,
+        'reveal_probability' => 0.3,  // 30% of cards have hidden info
     ],
 ];

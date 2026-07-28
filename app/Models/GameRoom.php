@@ -81,6 +81,26 @@ class GameRoom extends Model
         return $this->hasMany(GameResult::class)->orderBy('rank');
     }
 
+    public function consequences()
+    {
+        return $this->hasMany(Consequence::class, 'game_room_id');
+    }
+
+    public function promises()
+    {
+        return $this->hasMany(Promise::class, 'game_room_id');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'game_room_id');
+    }
+
+    public function crossPlayerEffects()
+    {
+        return $this->hasMany(CrossPlayerEffect::class, 'game_room_id');
+    }
+
     // ─── Scopes ─────────────────────────────────────────────────────
 
     public function scopeActive($query)

@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\GameRoom;
 use App\Models\GamePlayer;
 use App\Models\ExpeditionCard;
+use App\Models\Promise;
+use App\Models\Vote;
 use App\Services\GameService;
 use App\Enums\Level;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +28,26 @@ class GameBoard extends Component
     public string $message = '';
     public bool $isMyTurn = false;
 
+    // V2 properties
+    public array $triggeredConsequences = [];
+    public array $createdConsequences = [];
+    public array $crossPlayerEffects = [];
+    public array $trackedBehaviors = [];
+    public bool $wasHidden = false;
+    public ?string $hiddenInfo = null;
+    public array $activeConsequences = [];
+    public array $activePromises = [];
+    public array $activeVotes = [];
+
+    // Promise/Vote UI state
+    public bool $showPromiseModal = false;
+    public bool $showVoteModal = false;
+    public string $promiseType = '';
+    public string $promiseDescription = '';
+    public ?int $promiseRecipientId = null;
+    public ?int $activeVoteId = null;
+    public string $voteChoice = '';
+
     public function mount(GameRoom $room): void
     {
         $this->room = $room->load([
@@ -38,6 +60,7 @@ class GameBoard extends Component
             ->where('user_id', Auth::id())
             ->firstOrFail();
         $this->checkTurn();
+        $this->loadV2Data();
     }
 
     public function checkTurn(): void
@@ -60,10 +83,34 @@ class GameBoard extends Component
         ]);
         $this->myPlayer->refresh();
         $this->checkTurn();
+        $this->loadV2Data();
 
         if ($this->room->status->value === 'finished') {
             $this->redirect(route('game.summary', $this->room));
         }
+    }
+
+    public function loadV2Data(): void
+    {
+        $this->activeConsequences = $this->room->consequences()
+            ->where('is_triggered', false)
+            ->where('is_hidden', false)
+            ->where('game_player_id', $this->myPlayer->id)
+            ->with(['originatingTurn.card'])
+            ->get()
+            ->toArray();
+
+        $this->activePromises = $this->room->promises()
+            ->active()
+            ->with(['promiser.user', 'recipient.user'])
+            ->get()
+            ->toArray();
+
+        $this->activeVotes = $this->room->votes()
+            ->active()
+            ->with(['triggeringPlayer.user'])
+            ->get()
+            ->toArray();
     }
 
     public function drawCard(GameService $gameService): void
@@ -96,7 +143,20 @@ class GameBoard extends Component
         $this->showCard = false;
         $this->showEffects = true;
 
-        // Check if player should be offered a Rope Bridge
+        // V2 data
+        $this->triggeredConsequences = $result['triggered_consequences'] ?? [];
+        $this->createdConsequences = collect($result['created_consequences'] ?? [])->map(fn($c) => [
+            'description' => $c->description,
+            'stat' => $c->stat,
+            'delta' => $c->delta,
+            'is_hidden' => $c->is_hidden,
+        ])->toArray();
+        $this->crossPlayerEffects = $result['cross_player_effects'] ?? [];
+        $this->trackedBehaviors = $result['tracked_behaviors'] ?? [];
+        $this->wasHidden = $result['was_hidden'] ?? false;
+        $this->hiddenInfo = $result['hidden_info'] ?? null;
+
+        // Check Rope Bridge
         $freshPlayer = $this->myPlayer->fresh();
         $currentLevel = Level::from($freshPlayer->current_level);
         $nextLevel = $currentLevel->next();
@@ -112,8 +172,14 @@ class GameBoard extends Component
             $this->message = 'Final Round! Semua pemain dapat 1 giliran terakhir.';
         }
 
+        // Show triggered consequence messages
+        if (!empty($this->triggeredConsequences)) {
+            $this->message .= ' Konsekuensi tertunda terpicu!';
+        }
+
         $this->currentCard = null;
         $this->checkTurn();
+        $this->loadV2Data();
     }
 
     public function attemptRopeBridge(GameService $gameService): void
@@ -147,6 +213,58 @@ class GameBoard extends Component
         $this->showRopeBridge = false;
     }
 
+    // ── V2: Promise Methods ──
+
+    public function showPromiseForm(): void
+    {
+        $this->showPromiseModal = true;
+        $this->promiseType = '';
+        $this->promiseDescription = '';
+        $this->promiseRecipientId = null;
+    }
+
+    public function hidePromiseForm(): void
+    {
+        $this->showPromiseModal = false;
+    }
+
+    public function submitPromise(GameService $gameService): void
+    {
+        if (!$this->promiseType || !$this->promiseRecipientId || !$this->promiseDescription) {
+            return;
+        }
+
+        $recipient = GamePlayer::find($this->promiseRecipientId);
+        if (!$recipient || $recipient->game_room_id !== $this->room->id) {
+            return;
+        }
+
+        $gameService->createPromise(
+            $this->room,
+            $this->myPlayer,
+            $recipient,
+            $this->promiseType,
+            $this->promiseDescription
+        );
+
+        $this->showPromiseModal = false;
+        $this->message = 'Janji dibuat! Ingat, janji tidak diwajibkan oleh sistem.';
+        $this->loadV2Data();
+    }
+
+    // ── V2: Vote Methods ──
+
+    public function castVoteOnActive(Vote $vote, GameService $gameService): void
+    {
+        if (!$this->voteChoice || $vote->game_room_id !== $this->room->id) {
+            return;
+        }
+
+        $gameService->castVote($vote, $this->myPlayer, $this->voteChoice);
+        $this->voteChoice = '';
+        $this->loadV2Data();
+    }
+
     public function render()
     {
         $allTurns = $this->room->turns()
@@ -161,7 +279,9 @@ class GameBoard extends Component
             ->orderBy('turn_order')
             ->get();
 
-        return view('livewire.game-board', compact('allTurns', 'players'))
+        $otherPlayers = $players->filter(fn ($p) => $p->id !== $this->myPlayer->id);
+
+        return view('livewire.game-board', compact('allTurns', 'players', 'otherPlayers'))
             ->layout('layouts.app');
     }
 }
