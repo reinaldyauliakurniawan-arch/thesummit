@@ -97,7 +97,7 @@ class ReflectionEngine
         // Find defensible items with strongest evidence
         $defensible = [];
         foreach ($lraAssessment as $code => $item) {
-            if ($item['defensible'] && $item['suggested_score'] !== null && $item['suggested_score'] !== 'mixed') {
+            if (($item['defensible'] ?? false) && $item['suggested_score'] !== null && $item['suggested_score'] !== 'mixed') {
                 $defensible[$code] = $item;
             }
         }
