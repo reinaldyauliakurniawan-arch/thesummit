@@ -152,3 +152,4 @@ class ExpeditionCard extends Model
     {
         return $this->hidden_info_reveal;
     }
+}

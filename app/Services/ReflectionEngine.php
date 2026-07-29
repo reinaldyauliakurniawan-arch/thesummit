@@ -121,13 +121,13 @@ class ReflectionEngine
             $quality = $item['quality_level'];
 
             if ($score >= 4) {
-                $items[] = ""{$label}" menunjukkan pola kuat ({$proving}/{$total} bukti, quality: {$quality})";
+                $items[] = "\"{$label}\" menunjukkan pola kuat ({$proving}/{$total} bukti, quality: {$quality})";
             } elseif ($score >= 3) {
-                $items[] = ""{$label}" menunjukkan pola yang konsisten ({$proving}/{$total} bukti, quality: {$quality})";
+                $items[] = "\"{$label}\" menunjukkan pola yang konsisten ({$proving}/{$total} bukti, quality: {$quality})";
             } elseif ($score >= 2) {
-                $items[] = ""{$label}" menunjukkan area yang perlu pengembangan ({$proving}/{$total} bukti mendukung, quality: {$quality})";
+                $items[] = "\"{$label}\" menunjukkan area yang perlu pengembangan ({$proving}/{$total} bukti mendukung, quality: {$quality})";
             } else {
-                $items[] = ""{$label}" menunjukkan kebutuhan intervensi aktif ({$proving}/{$total} bukti mendukung, quality: {$quality})";
+                $items[] = "\"{$label}\" menunjukkan kebutuhan intervensi aktif ({$proving}/{$total} bukti mendukung, quality: {$quality})";
             }
         }
 
