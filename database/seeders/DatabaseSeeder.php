@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call([
-            ExpeditionCardSeeder::class,
+            CardJsonSeeder::class,
             V2CardEnhancementSeeder::class,
         ]);
     }
