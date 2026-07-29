@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "080f26f646f2c6441c10f5153d4e24f0",
+    "content-hash": "81b98cb23fb03a8922fbdbb564fbaeed",
     "packages": [
         {
             "name": "brick/math",
@@ -6613,38 +6613,36 @@
         },
         {
             "name": "nunomaduro/collision",
-            "version": "v8.1.0",
+            "version": "v8.9.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "0d655ffbf3edf9b366e0eea5ab9c7871e0ab3357"
+                "reference": "fb53eacd509a1d303858e2d20cfebf2d630254ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/0d655ffbf3edf9b366e0eea5ab9c7871e0ab3357",
-                "reference": "0d655ffbf3edf9b366e0eea5ab9c7871e0ab3357",
+                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/fb53eacd509a1d303858e2d20cfebf2d630254ec",
+                "reference": "fb53eacd509a1d303858e2d20cfebf2d630254ec",
                 "shasum": ""
             },
             "require": {
-                "filp/whoops": "^2.15.4",
-                "nunomaduro/termwind": "^2.0.0",
+                "filp/whoops": "^2.18.4",
+                "nunomaduro/termwind": "^2.4.0",
                 "php": "^8.2.0",
-                "symfony/console": "^7.0.2"
+                "symfony/console": "^7.4.14 || ^8.1.1"
             },
             "conflict": {
-                "laravel/framework": "<11.0.0 || >=12.0.0",
-                "phpunit/phpunit": "<10.5.1 || >=12.0.0"
+                "laravel/framework": "<11.48.0 || >=14.0.0",
+                "phpunit/phpunit": "<11.5.50 || >=14.0.0"
             },
             "require-dev": {
-                "larastan/larastan": "^2.8.1",
-                "laravel/framework": "^11.0.0",
-                "laravel/pint": "^1.13.8",
-                "laravel/sail": "^1.27.0",
-                "laravel/sanctum": "^4.0.0",
-                "laravel/tinker": "^2.9.0",
-                "orchestra/testbench-core": "^9.0.0",
-                "pestphp/pest": "^2.31.0 || ^3.0.0",
-                "sebastian/environment": "^6.0.1 || ^7.0.0"
+                "brianium/paratest": "^7.8.5",
+                "larastan/larastan": "^3.10.0",
+                "laravel/framework": "^11.48.0 || ^12.56.0 || ^13.20.0",
+                "laravel/pint": "^1.29.3",
+                "orchestra/testbench-core": "^9.12.0 || ^10.12.1 || ^11.3.5",
+                "pestphp/pest": "^3.8.5 || ^4.7.5 || ^5.0.0",
+                "sebastian/environment": "^7.2.1 || ^8.1.2 || ^9.3.2"
             },
             "type": "library",
             "extra": {
@@ -6681,6 +6679,7 @@
                 "cli",
                 "command-line",
                 "console",
+                "dev",
                 "error",
                 "handling",
                 "laravel",
@@ -6706,7 +6705,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2024-01-12T13:38:24+00:00"
+            "time": "2026-07-15T19:09:14+00:00"
         },
         {
             "name": "phar-io/manifest",

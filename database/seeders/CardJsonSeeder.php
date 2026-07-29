@@ -10,11 +10,23 @@ class CardJsonSeeder extends Seeder
         ExpeditionCard::query()->delete();
 
         $cardsDir = database_path("cards");
-        $files = array_merge(
+        $allFiles = array_merge(
             glob("$cardsDir/*/*.json"),
             glob("$cardsDir/*/*/*.json")
         );
-        sort($files);
+
+        // Deduplicate by card_id to avoid UNIQUE constraint violations
+        $seen = [];
+        $files = [];
+        sort($allFiles);
+        foreach ($allFiles as $file) {
+            $json = json_decode(file_get_contents($file), true);
+            $id = $json['id'] ?? null;
+            if ($id && !isset($seen[$id])) {
+                $seen[$id] = true;
+                $files[] = $file;
+            }
+        }
 
         $count = 0;
         foreach ($files as $file) {
