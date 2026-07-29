@@ -1413,8 +1413,9 @@ class BehaviorTracker
 
         // Insufficient behavioral evidence: fewer than 2 observations
         if ($count < 2) {
+            $itemLabel = $itemConfig['label'] ?? $itemCode;
             return [
-                'label'                  => $itemConfig['label'] ?? $itemCode,
+                'label'                  => $itemLabel,
                 'tier'                   => $itemConfig['tier'] ?? 'PtP',
                 'category'               => $itemConfig['category'] ?? 'MINDSET',
                 'description'            => $itemConfig['description'] ?? '',
@@ -1434,7 +1435,7 @@ class BehaviorTracker
                 'defensible'              => false,
                 'fairness_status'         => 'insufficient_evidence',
                 'limited_coverage'        => $limitedCoverage,
-                'facilitator_explanation'  => "{$insufficientLabel} for \"{$itemConfig['label'] ?? $itemCode}\". Opportunities existed ({$opportunityCount} card(s) tested this) but only {$count} observation(s) recorded. Need at least 2.",
+                'facilitator_explanation'  => "{$insufficientLabel} for \"{$itemLabel}\". Opportunities existed ({$opportunityCount} card(s) tested this) but only {$count} observation(s) recorded. Need at least 2.",
             ];
         }
 
