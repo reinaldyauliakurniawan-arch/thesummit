@@ -278,7 +278,7 @@ class GameService
             $createdConsequences = $this->consequenceEngine->createConsequences(
                 $player, $turn, $delayedEffects, $conditionalEffects
             );
-            $turn->consequences_created = $createdConsequences->pluck('id')->toArray();
+            $turn->consequences_created = collect($createdConsequences)->pluck('id')->toArray();
             $turn->save();
 
             // ── V2: Apply cross-player effects ──

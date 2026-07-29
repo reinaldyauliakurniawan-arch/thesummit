@@ -61,7 +61,7 @@ return new class extends Migration
 
         Schema::create('notifications', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('type');
             $table->string('notifiable_type');
             $table->unsignedBigInteger('notifiable_id');
