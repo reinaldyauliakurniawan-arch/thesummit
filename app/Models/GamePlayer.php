@@ -213,8 +213,10 @@ class GamePlayer extends Model
             ->whereNotNull('behavior_data')
             ->pluck('behavior_data')
             ->flatMap(function ($data) {
-                // behavior_data is JSON with dimension => score mapping
-                $decoded = json_decode($data, true);
+                // behavior_data is cast to 'array' on GameTurn model, so Eloquent's
+                // pluck() already returns decoded PHP arrays here — do NOT json_decode again.
+                // Only fall back to json_decode if somehow still a raw string (defensive).
+                $decoded = is_array($data) ? $data : json_decode((string) $data, true);
                 if (!is_array($decoded)) return [];
                 // Get keys where magnitude >= 1 (meaningful evidence)
                 return array_keys(array_filter($decoded, fn($v) => abs($v ?? 0) >= 1));

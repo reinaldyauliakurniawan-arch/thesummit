@@ -397,7 +397,8 @@ class BehaviorTracker
             $crossEffects = $t->cross_player_effects;
             if (!$crossEffects) continue;
 
-            $decoded = json_decode($crossEffects, true);
+            // cross_player_effects is cast to 'array' on GameTurn, so it's already decoded
+            $decoded = is_array($crossEffects) ? $crossEffects : json_decode((string) $crossEffects, true);
             if (!is_array($decoded) || empty($decoded)) continue;
 
             $opportunities++;
@@ -477,7 +478,8 @@ class BehaviorTracker
             $behaviorData = $t->behavior_data;
             if (!$behaviorData) continue;
 
-            $decoded = json_decode($behaviorData, true);
+            // behavior_data is cast to 'array' on GameTurn, so it's already decoded
+            $decoded = is_array($behaviorData) ? $behaviorData : json_decode((string) $behaviorData, true);
             if (!is_array($decoded)) continue;
 
             // Check if any option had a coaching tag
