@@ -49,7 +49,7 @@ class CardJsonSeeder extends Seeder
                 "opsi_a_reputation"         => $this->stat($aEff, "reputation"),
                 "opsi_a_resources"          => $this->stat($aEff, "resources"),
                 "opsi_a_flexibility"        => $this->stat($aEff, "flexibility"),
-                "opsi_a_behavior_tags"      => $json["choices"]["A"]["behavior_tags"] ?? [],
+                "opsi_a_behavior_tags"      => $json["choices"]["A"]["behavior_tags"] ?? ($json["behavior_tags"]["A"] ?? []),
                 "opsi_a_delayed_effects"    => $this->delayed($aEff),
                 "opsi_a_conditional_effects"=> $this->conditional($aEff),
                 "opsi_a_cross_player"       => $this->team($aEff),
@@ -60,7 +60,7 @@ class CardJsonSeeder extends Seeder
                 "opsi_b_reputation"         => $this->stat($bEff, "reputation"),
                 "opsi_b_resources"          => $this->stat($bEff, "resources"),
                 "opsi_b_flexibility"        => $this->stat($bEff, "flexibility"),
-                "opsi_b_behavior_tags"      => $json["choices"]["B"]["behavior_tags"] ?? [],
+                "opsi_b_behavior_tags"      => $json["choices"]["B"]["behavior_tags"] ?? ($json["behavior_tags"]["B"] ?? []),
                 "opsi_b_delayed_effects"    => $this->delayed($bEff),
                 "opsi_b_conditional_effects"=> $this->conditional($bEff),
                 "opsi_b_cross_player"       => $this->team($bEff),
@@ -77,7 +77,8 @@ class CardJsonSeeder extends Seeder
     private function stat(array $effects, string $s): int
     {
         foreach ($effects as $e) {
-            if (($e["type"] ?? "") === "modify_stat" && ($e["params"]["stat"] ?? "") === $s)
+            $etype = $e["type"] ?? $e["primitive"] ?? "";
+            if ($etype === "modify_stat" && ($e["params"]["stat"] ?? "") === $s)
                 return $e["params"]["delta"] ?? 0;
         }
         return 0;
@@ -87,13 +88,14 @@ class CardJsonSeeder extends Seeder
     {
         $r = [];
         foreach ($effects as $e) {
-            if (($e["type"] ?? "") === "schedule_event") {
+            $etype = $e["type"] ?? $e["primitive"] ?? "";
+            if ($etype === "schedule_event") {
                 $inner = $e["params"]["event"] ?? [];
                 $r[] = [
                     "stat" => $inner["params"]["stat"] ?? "",
                     "delta" => $inner["params"]["delta"] ?? 0,
                     "trigger_after_rounds" => $e["params"]["trigger_after_rounds"] ?? 0,
-                    "label" => $e["params"]["label"] ?? "",
+                    "label" => $e["params"]["label"] ?? ($inner["reason"] ?? ""),
                     "is_hidden" => $e["params"]["is_hidden"] ?? false,
                 ];
             }
@@ -105,7 +107,8 @@ class CardJsonSeeder extends Seeder
     {
         $r = [];
         foreach ($effects as $e) {
-            if (($e["type"] ?? "") === "conditional_trigger") {
+            $etype = $e["type"] ?? $e["primitive"] ?? "";
+            if ($etype === "conditional_trigger") {
                 $inner = $e["params"]["event"] ?? [];
                 $r[] = [
                     "stat" => $inner["params"]["stat"] ?? "",
@@ -123,7 +126,8 @@ class CardJsonSeeder extends Seeder
     {
         $r = [];
         foreach ($effects as $e) {
-            if (($e["type"] ?? "") === "affect_team") {
+            $etype = $e["type"] ?? $e["primitive"] ?? "";
+            if ($etype === "affect_team") {
                 $inner = $e["params"]["effect"] ?? [];
                 $r[] = [
                     "stat" => $inner["params"]["stat"] ?? "",
