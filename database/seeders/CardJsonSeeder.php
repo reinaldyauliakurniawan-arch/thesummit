@@ -128,10 +128,14 @@ class CardJsonSeeder extends Seeder
         foreach ($effects as $e) {
             $etype = $e["type"] ?? $e["primitive"] ?? "";
             if ($etype === "affect_team") {
-                $inner = $e["params"]["effect"] ?? [];
+                $inner = $e["params"]["effect"]["params"] ?? $e["params"] ?? [];
+                $stat = $inner["stat"] ?? "";
+                if ($stat === "") {
+                    continue;
+                }
                 $r[] = [
-                    "stat" => $inner["params"]["stat"] ?? "",
-                    "delta" => $inner["params"]["delta"] ?? 0,
+                    "stat" => $stat,
+                    "delta" => $inner["delta"] ?? 0,
                     "exclude_source" => $e["params"]["exclude_source"] ?? true,
                 ];
             }

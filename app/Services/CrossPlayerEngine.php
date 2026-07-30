@@ -140,7 +140,12 @@ class CrossPlayerEngine
      */
     protected function applyStatChange(GamePlayer $target, string $stat, int $delta): void
     {
-        if (in_array($stat, ['mp', 'sp', 'tt'])) {
+        $allowedStats = ['mp', 'sp', 'tt', 'reputation', 'resources', 'flexibility'];
+        if ($stat === '' || !in_array($stat, $allowedStats, true)) {
+            return;
+        }
+
+        if (in_array($stat, ['mp', 'sp', 'tt'], true)) {
             $target->$stat = max(0, $target->$stat + $delta);
         } else {
             $target->$stat = $target->$stat + $delta;

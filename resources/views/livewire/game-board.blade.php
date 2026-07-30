@@ -107,7 +107,7 @@
                 <h3 class="text-xs font-semibold text-basecamp-300 mb-2">🗳️ {{ $vote['vote_topic'] }}</h3>
                 <p class="text-xs text-mountain-300 mb-2">{{ $vote['vote_description'] }}</p>
                 <div class="flex gap-2 flex-wrap">
-                    @foreach(json_decode($vote['options'] ?? '[]', true) as $option)
+                    @foreach(($vote['options'] ?? []) as $option)
                     <button wire:click="castVoteOnActive({{ $vote['id'] }}, '{{ $option }}')"
                             class="px-3 py-1 rounded-lg text-xs border {{ $voteChoice === $option ? 'border-trust-400 bg-trust-500 text-mountain-950' : 'border-mountain-600 text-mountain-300 hover:border-trust-400' }}">
                         {{ $option }}
@@ -261,7 +261,7 @@
                         @if($turn->dysfunction_triggered)
                             <span class="text-crisis-400">| Dysfunction!</span>
                         @endif
-                        @if($turn->cross_player_effects && count(json_decode($turn->cross_player_effects, true)) > 0)
+                        @if($turn->cross_player_effects && count($turn->cross_player_effects) > 0)
                             <span class="text-camp-300">| Tim Effect</span>
                         @endif
                     </div>

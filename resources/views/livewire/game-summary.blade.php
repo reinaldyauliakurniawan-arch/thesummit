@@ -213,7 +213,7 @@
                 @if($t->risk_die_result)<span class="text-mountain-500">| Die:{{ $t->risk_die_result }}</span>@endif
                 @if($t->dysfunction_triggered)<span class="text-crisis-400">| {{ str_replace('_',' ',$t->dysfunction_triggered) }}</span>@endif
                 @if($t->rope_bridge_success)<span class="text-camp-300">| Rope Bridge OK</span>@endif
-                @if($t->cross_player_effects && count(json_decode($t->cross_player_effects, true)) > 0)
+                @if($t->cross_player_effects && count($t->cross_player_effects) > 0)
                     <span class="text-camp-300">| Tim Effect</span>
                 @endif
             </div>
