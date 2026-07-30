@@ -102,7 +102,7 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "tt",
-            "delta": -3
+            "delta": -2
           }
         },
         {
@@ -116,7 +116,7 @@
           "primitive": "affect_player",
           "params": {
             "stat": "tt",
-            "delta": -2,
+            "delta": -1,
             "target_ref": "random_other"
           }
         },

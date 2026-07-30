@@ -105,14 +105,14 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "tt",
-            "delta": -3
+            "delta": -2
           }
         },
         {
           "primitive": "modify_stat",
           "params": {
             "stat": "reputation",
-            "delta": -2
+            "delta": -1
           }
         },
         {
@@ -130,9 +130,9 @@
               "primitive": "modify_stat",
               "params": {
                 "stat": "reputation",
-                "delta": -2
+                "delta": -1
               },
-              "reason": "Toxic culture spread — other teams也开始 hoarding"
+              "reason": "Toxic culture spread — other teams also started hoarding"
             },
             "trigger_after_rounds": 3
           }

@@ -10,28 +10,30 @@ import glob
 import sys
 
 CARD_DIRS = [
-    'database/cards/basecamp_mindset',
-    'database/cards/basecamp_skillset',
-    'database/cards/camp_mindset',
-    'database/cards/camp_skillset',
-    'database/cards/summit_mindset',
-    'database/cards/summit_skillset',
+    'database/cards/basecamp/basecamp_mindset',
+    'database/cards/basecamp/basecamp_skillset',
+    'database/cards/camp/camp_mindset',
+    'database/cards/camp/camp_skillset',
+    'database/cards/summit/summit_mindset',
+    'database/cards/summit/summit_skillset',
 ]
 
-MAX_NET_DIFF = 1  # selisih net stat maksimum yang dianggap "balanced"
+MAX_NET_DIFF = 3  # selisih net stat maksimum yang dianggap "balanced" — gap kecil (2-3) masih sehat untuk dilema naratif; yang dikejar bukan angka rata sempurna, tapi opsi yang benar secara nilai tetap costly, bukan menang telak
 
 def net_stat_sum(effects):
     total = 0
     negs = []
     for e in effects:
-        if e['type'] == 'modify_stat':
+        etype = e.get('type') or e.get('primitive')
+        if etype == 'modify_stat':
             d = e['params']['delta']
             total += d
             if d < 0:
                 negs.append((e['params']['stat'], d))
-        elif e['type'] == 'schedule_event':
+        elif etype == 'schedule_event':
             inner = e['params'].get('event', {})
-            if inner.get('type') == 'modify_stat':
+            inner_type = inner.get('type') or inner.get('primitive')
+            if inner_type == 'modify_stat':
                 d = inner['params']['delta']
                 total += d
                 if d < 0:

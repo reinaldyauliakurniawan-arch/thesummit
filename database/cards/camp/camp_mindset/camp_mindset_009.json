@@ -53,15 +53,22 @@
           }
         },
         {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
+        },
+        {
           "primitive": "schedule_event",
           "params": {
             "event": {
               "primitive": "modify_stat",
               "params": {
                 "stat": "reputation",
-                "delta": 2
+                "delta": 1
               },
-              "reason": "Management respected your data-driven advocacy"
+              "reason": "Management respected your data-driven advocacy, though initial pushback cost you capital"
             },
             "trigger_after_rounds": 4
           }

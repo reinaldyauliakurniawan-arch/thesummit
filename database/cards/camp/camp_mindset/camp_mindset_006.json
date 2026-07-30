@@ -60,6 +60,13 @@
             "delta": -1,
             "target_ref": "random_other"
           }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": -2
+          }
         }
       ],
       "lra_tags": {
@@ -98,6 +105,13 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "flexibility",
+            "delta": -1
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
             "delta": -1
           }
         }

@@ -114,6 +114,13 @@
           }
         },
         {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "sp",
+            "delta": -2
+          }
+        },
+        {
           "primitive": "affect_team",
           "params": {
             "stat": "tt",
