@@ -83,10 +83,19 @@ class GameLivewirePlaythroughTest extends TestCase
             $currentUser = $currentPlayer->user;
             $choice = $i % 2 === 0 ? 'A' : 'B';
 
-            Livewire::actingAs($currentUser)
+            $testable = Livewire::actingAs($currentUser)
                 ->test(GameBoard::class, ['room' => $room])
                 ->call('drawCard')
                 ->call('chooseOption', $choice);
+
+            // A real player attempts the Rope Bridge whenever the UI offers it.
+            // Without this call, current_level never advances past Basecamp,
+            // so the Summit-level final-win condition can never be met —
+            // this was the actual cause of the previous 300-turn timeout,
+            // not a game-balance or turn-loop bug.
+            if ($testable->get('showRopeBridge')) {
+                $testable->call('attemptRopeBridge');
+            }
 
             $turnsPlayed++;
         }
