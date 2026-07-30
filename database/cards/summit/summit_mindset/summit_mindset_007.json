@@ -49,7 +49,7 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "resources",
-            "delta": -1
+            "delta": -3
           }
         },
         {

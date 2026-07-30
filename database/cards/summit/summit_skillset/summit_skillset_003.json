@@ -61,6 +61,13 @@
           }
         },
         {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
+        },
+        {
           "primitive": "schedule_event",
           "params": {
             "event": {

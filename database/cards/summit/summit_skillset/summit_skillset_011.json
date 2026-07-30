@@ -90,20 +90,27 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "tt",
-            "delta": 3
-          }
-        },
-        {
-          "primitive": "modify_stat",
-          "params": {
-            "stat": "reputation",
             "delta": 2
           }
         },
         {
           "primitive": "modify_stat",
           "params": {
+            "stat": "reputation",
+            "delta": -3
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
             "stat": "flexibility",
+            "delta": -2
+          }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
             "delta": -2
           }
         },

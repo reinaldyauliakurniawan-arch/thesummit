@@ -53,13 +53,20 @@
           }
         },
         {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
+        },
+        {
           "primitive": "schedule_event",
           "params": {
             "event": {
               "primitive": "reputation_change",
               "params": {
-                "delta": 2,
-                "reason": "HR respected your integrity — word spreads"
+                "delta": 1,
+                "reason": "HR respected your integrity — word spreads, but management trust is damaged"
               }
             },
             "trigger_after_rounds": 5
