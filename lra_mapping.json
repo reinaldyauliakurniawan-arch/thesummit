@@ -1,0 +1,242 @@
+{
+  "basecamp_mindset_001": {
+    "A": {"PtP_M2": "proving", "PtP_S2": "proving", "R1_M2": "proving"},
+    "B": {"PtP_M2": "disproving", "R1_M2": "disproving", "R3_M2": "proving"}
+  },
+  "basecamp_mindset_002": {
+    "A": {"PtP_M2": "proving", "PtP_M5": "proving", "PtP_S2": "disproving"},
+    "B": {"PtP_M2": "disproving", "PtP_S2": "proving", "PtP_M5": "disproving"}
+  },
+  "basecamp_mindset_003": {
+    "A": {"PtP_M3": "proving", "R1_M1": "proving", "R1_M4": "disproving"},
+    "B": {"PtP_M4": "proving", "R1_M1": "disproving", "PtP_M3": "disproving"}
+  },
+  "basecamp_mindset_004": {
+    "A": {"PtP_M4": "proving", "R1_M4": "proving", "R1_S1": "proving"},
+    "B": {"PtP_M2": "proving", "PtP_M3": "proving", "PtP_M5": "proving"}
+  },
+  "basecamp_mindset_005": {
+    "A": {"PtP_M1": "proving", "PtP_S2": "proving", "PtP_M5": "proving"},
+    "B": {"PtP_M1": "disproving", "PtP_M5": "disproving"}
+  },
+  "basecamp_mindset_006": {
+    "A": {"R1_M1": "proving", "R1_M2": "proving", "PtP_M3": "proving"},
+    "B": {"PtP_M3": "proving", "R1_M1": "disproving"}
+  },
+  "basecamp_mindset_007": {
+    "A": {"PtP_M1": "proving", "PtP_M5": "proving", "PtP_S2": "proving", "R2_S4": "proving"},
+    "B": {"PtP_M1": "disproving", "PtP_M5": "disproving", "PtP_M2": "disproving"}
+  },
+  "basecamp_mindset_008": {
+    "A": {"PtP_M1": "proving", "PtP_S2": "proving", "R1_M2": "proving"},
+    "B": {"PtP_M1": "disproving", "PtP_M2": "disproving"}
+  },
+  "basecamp_mindset_009": {
+    "A": {"PtP_S2": "proving", "PtP_M2": "disproving"},
+    "B": {"PtP_M4": "proving", "PtP_M3": "proving", "PtP_M2": "proving"}
+  },
+  "basecamp_skillset_001": {
+    "A": {"PtP_S2": "proving", "R1_S1": "proving", "R2_S9": "proving"},
+    "B": {"PtP_M2": "proving", "PtP_S2": "disproving", "R2_S5": "proving"}
+  },
+  "basecamp_skillset_002": {
+    "A": {"PtP_M3": "proving", "R1_M1": "proving", "R1_S3": "proving"},
+    "B": {"PtP_M3": "proving", "PtP_M4": "proving", "R1_M2": "proving"}
+  },
+  "basecamp_skillset_003": {
+    "A": {"R1_S2": "disproving", "R1_S3": "proving"},
+    "B": {"R1_S2": "proving", "PtP_S2": "proving", "PtP_M4": "proving"}
+  },
+  "basecamp_skillset_004": {
+    "A": {"PtP_S1": "disproving", "R1_S4": "disproving", "R2_M2": "disproving"},
+    "B": {"PtP_S1": "proving", "R1_S4": "proving", "R2_M2": "proving"}
+  },
+  "basecamp_skillset_005": {
+    "A": {"R1_S2": "proving", "PtP_S2": "proving", "PtP_M4": "proving"},
+    "B": {"PtP_M4": "proving", "R1_S1": "disproving", "R1_S2": "disproving"}
+  },
+  "basecamp_skillset_006": {
+    "A": {"PtP_M3": "proving", "R1_M1": "proving", "R2_S7": "disproving"},
+    "B": {"R1_S1": "proving", "R2_S7": "proving"}
+  },
+  "basecamp_skillset_007": {
+    "A": {"R2_M1": "proving", "R2_S4": "proving", "PtP_M5": "proving"},
+    "B": {"R2_M1": "disproving", "PtP_M5": "disproving", "PtP_M4": "proving"}
+  },
+  "basecamp_skillset_008": {
+    "A": {"PtP_M2": "proving", "PtP_S1": "proving", "R1_S2": "proving"},
+    "B": {"PtP_M2": "disproving", "PtP_S1": "disproving", "PtP_M4": "proving"}
+  },
+  "basecamp_skillset_009": {
+    "A": {"PtP_S2": "proving", "R2_S5": "proving", "R3_S5": "proving"},
+    "B": {"PtP_S2": "proving", "R2_S4": "proving", "R2_S5": "disproving"}
+  },
+  "camp_mindset_001": {
+    "A": {"PtP_M5": "proving", "R2_M1": "proving", "R2_S6": "proving", "R2_S4": "proving"},
+    "B": {"R2_S4": "proving", "R2_M1": "disproving", "PtP_M5": "disproving"}
+  },
+  "camp_mindset_002": {
+    "A": {"R2_S4": "disproving", "PtP_M5": "proving", "R2_S5": "proving"},
+    "B": {"R2_S4": "proving", "R2_M1": "proving", "PtP_S2": "proving", "PtP_M5": "disproving"}
+  },
+  "camp_mindset_003": {
+    "A": {"PtP_M2": "proving", "PtP_M3": "proving", "R3_M2": "disproving"},
+    "B": {"PtP_M2": "disproving", "PtP_S2": "proving"}
+  },
+  "camp_mindset_004": {
+    "A": {"R2_S6": "proving", "PtP_M5": "proving", "R2_S1": "proving"},
+    "B": {"R2_S3": "proving", "R2_S6": "disproving"}
+  },
+  "camp_mindset_005": {
+    "A": {"R2_S6": "proving", "R2_S8": "proving", "R3_S5": "proving"},
+    "B": {"R2_S4": "proving", "R2_S6": "disproving", "R2_S8": "disproving"}
+  },
+  "camp_mindset_006": {
+    "A": {"R2_S6": "proving", "R2_M1": "proving", "R2_S8": "proving", "PtP_M5": "proving"},
+    "B": {"R2_S8": "proving", "PtP_M5": "disproving"}
+  },
+  "camp_mindset_007": {
+    "A": {"PtP_M1": "proving", "PtP_S2": "proving", "R2_S4": "proving", "R2_S2": "proving"},
+    "B": {"PtP_M1": "disproving", "PtP_M2": "disproving", "R2_S2": "disproving", "R2_S5": "disproving"}
+  },
+  "camp_mindset_008": {
+    "A": {"R2_S4": "proving", "R2_S5": "proving", "PtP_S2": "proving"},
+    "B": {"R2_S5": "disproving", "R2_S4": "disproving", "R3_S5": "disproving"}
+  },
+  "camp_mindset_009": {
+    "A": {"R2_S9": "proving", "PtP_S2": "proving", "R2_M1": "proving", "PtP_M5": "proving"},
+    "B": {"R2_M1": "disproving", "R2_S9": "disproving", "PtP_S2": "disproving", "PtP_M5": "disproving"}
+  },
+  "camp_skillset_001": {
+    "A": {"R2_S1": "proving", "R2_S5": "proving", "PtP_M5": "proving"},
+    "B": {"R2_S1": "proving", "R2_S3": "proving", "R2_S5": "disproving"}
+  },
+  "camp_skillset_002": {
+    "A": {"R2_S8": "proving", "R2_M2": "proving", "R2_S3": "proving", "PtP_S1": "proving"},
+    "B": {"R2_S5": "proving", "R2_S3": "proving", "R2_S8": "disproving"}
+  },
+  "camp_skillset_003": {
+    "A": {"R2_S8": "proving", "R2_S3": "proving", "R2_M2": "proving"},
+    "B": {"R2_S8": "proving", "R2_S3": "proving", "PtP_M4": "proving"}
+  },
+  "camp_skillset_004": {
+    "A": {"R2_S2": "proving", "R2_S6": "proving", "PtP_M5": "proving", "PtP_M3": "proving"},
+    "B": {"R2_S2": "proving", "R2_S3": "proving", "R2_S6": "disproving", "R3_S3": "disproving"}
+  },
+  "camp_skillset_005": {
+    "A": {"R2_S1": "proving", "R2_S5": "proving", "R2_S9": "proving"},
+    "B": {"R2_S1": "disproving", "R2_S9": "disproving", "R2_S5": "disproving"}
+  },
+  "camp_skillset_006": {
+    "A": {"R2_S6": "proving", "R2_S8": "proving", "R2_M1": "proving", "PtP_M5": "proving"},
+    "B": {"R2_S8": "proving", "R2_S6": "disproving", "R2_S5": "disproving"}
+  },
+  "camp_skillset_007": {
+    "A": {"R2_S5": "proving", "PtP_S1": "proving", "R2_M2": "proving", "PtP_M5": "proving"},
+    "B": {"R2_S5": "disproving", "R2_S4": "proving", "PtP_S1": "disproving", "PtP_M5": "disproving"}
+  },
+  "camp_skillset_008": {
+    "A": {"R3_S5": "proving", "R2_S9": "proving", "R2_S5": "proving"},
+    "B": {"R3_S2": "disproving", "R2_M1": "disproving", "R2_S9": "disproving", "R3_M2": "proving"}
+  },
+  "camp_skillset_009": {
+    "A": {"R2_S8": "proving", "R2_S1": "proving", "R2_S9": "proving", "PtP_M5": "proving"},
+    "B": {"R2_M1": "disproving", "R2_S1": "disproving", "R2_S8": "disproving", "R3_M2": "proving"}
+  },
+  "summit_mindset_001": {
+    "A": {"R3_M1": "proving", "R3_S5": "proving", "R2_S6": "proving", "PtP_M5": "proving"},
+    "B": {"R3_S3": "disproving", "R3_M1": "disproving", "R2_S6": "disproving"}
+  },
+  "summit_mindset_002": {
+    "A": {"R3_S4": "proving", "R3_S5": "proving", "R2_S6": "proving", "PtP_M2": "proving"},
+    "B": {"R3_S4": "disproving", "R3_M2": "proving", "PtP_M2": "disproving"}
+  },
+  "summit_mindset_003": {
+    "A": {"R3_S3": "proving", "R2_S2": "proving", "R2_S6": "proving", "PtP_M5": "proving"},
+    "B": {"R3_S3": "disproving", "R2_S2": "disproving", "R3_M2": "proving"}
+  },
+  "summit_mindset_004": {
+    "A": {"R3_S4": "proving", "R3_S5": "proving", "R2_S6": "proving", "PtP_M2": "proving"},
+    "B": {"R3_S4": "disproving", "R2_M2": "proving", "R2_S9": "disproving"}
+  },
+  "summit_mindset_005": {
+    "A": {"R3_S3": "proving", "R2_S2": "proving", "PtP_S2": "proving", "PtP_M1": "disproving"},
+    "B": {"PtP_M1": "proving", "R3_S3": "disproving", "R2_S2": "disproving", "R2_S5": "disproving", "R3_S5": "disproving"}
+  },
+  "summit_mindset_006": {
+    "A": {"R3_S5": "proving", "R2_S6": "proving", "PtP_M2": "proving", "R2_S5": "proving"},
+    "B": {"R3_M2": "proving", "R2_S6": "disproving", "PtP_M2": "disproving", "R3_S5": "disproving"}
+  },
+  "summit_mindset_007": {
+    "A": {"R3_S4": "proving", "R2_S9": "proving", "R2_M1": "proving", "PtP_M5": "proving"},
+    "B": {"R3_S4": "disproving", "R2_M1": "disproving", "R3_M2": "proving", "R2_S5": "disproving"}
+  },
+  "summit_mindset_008": {
+    "A": {"R3_S3": "proving", "R3_M1": "proving", "R2_S4": "proving", "R2_S6": "proving", "PtP_M5": "proving"},
+    "B": {"R3_M1": "proving", "PtP_S2": "proving", "R2_S4": "proving", "R2_S5": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_mindset_009": {
+    "A": {"PtP_M1": "proving", "R3_M1": "proving", "R2_S4": "proving", "R2_M2": "proving"},
+    "B": {"PtP_M1": "disproving", "R3_M1": "disproving", "R2_S5": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_mindset_010": {
+    "A": {"R3_S3": "proving", "PtP_M5": "proving", "R2_M1": "proving"},
+    "B": {"PtP_M5": "proving", "R2_M1": "proving", "R3_S3": "disproving", "PtP_M4": "proving"}
+  },
+  "summit_mindset_011": {
+    "A": {"R3_M1": "proving", "R2_S6": "proving", "R3_S3": "proving", "R2_S4": "proving", "PtP_M5": "proving"},
+    "B": {"R3_M1": "proving", "PtP_S2": "proving", "R2_S4": "proving", "R3_S3": "disproving", "R2_S5": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_mindset_012": {
+    "A": {"PtP_M1": "proving", "PtP_S1": "proving", "R2_M2": "proving", "R3_S5": "proving"},
+    "B": {"PtP_M1": "disproving", "PtP_S1": "disproving", "R2_M2": "disproving", "R3_S5": "disproving"}
+  },
+  "summit_skillset_001": {
+    "A": {"R3_S1": "proving", "R2_S3": "proving", "R2_S8": "proving", "PtP_S1": "proving"},
+    "B": {"R3_S1": "proving", "R2_S3": "proving", "R2_S8": "disproving"}
+  },
+  "summit_skillset_002": {
+    "A": {"R2_S7": "proving", "R3_S5": "proving", "R2_S9": "proving", "PtP_M5": "proving"},
+    "B": {"R2_S7": "proving", "R2_S9": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_skillset_003": {
+    "A": {"R3_S3": "proving", "PtP_S1": "proving", "PtP_M4": "proving"},
+    "B": {"R3_S3": "disproving", "R2_S3": "proving", "R2_S8": "disproving"}
+  },
+  "summit_skillset_004": {
+    "A": {"PtP_M2": "proving", "R2_S9": "proving", "R2_S3": "proving", "PtP_M5": "proving"},
+    "B": {"PtP_M2": "disproving", "R2_S9": "disproving", "R2_S3": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_skillset_005": {
+    "A": {"PtP_S1": "proving", "R2_M2": "proving", "R2_S8": "proving", "PtP_M1": "proving"},
+    "B": {"PtP_S1": "disproving", "R2_M2": "disproving", "R2_S5": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_skillset_006": {
+    "A": {"R3_S5": "proving", "R2_S4": "proving", "R2_S5": "proving", "PtP_S1": "proving"},
+    "B": {"R3_S5": "disproving", "R2_S4": "proving", "R2_S5": "disproving", "R3_S2": "disproving"}
+  },
+  "summit_skillset_007": {
+    "A": {"R3_S4": "proving", "R3_M2": "proving", "R2_S9": "proving", "R2_M1": "proving"},
+    "B": {"PtP_M2": "proving", "R3_M2": "disproving", "R2_S9": "disproving"}
+  },
+  "summit_skillset_008": {
+    "A": {"R3_M1": "proving", "R3_S3": "proving", "R2_S6": "proving", "R2_S4": "proving", "PtP_M5": "proving"},
+    "B": {"R3_M1": "disproving", "R3_S3": "disproving", "R2_M1": "disproving", "R2_S6": "disproving"}
+  },
+  "summit_skillset_009": {
+    "A": {"R2_M2": "proving", "R2_S8": "proving", "PtP_S1": "proving", "R3_S2": "proving"},
+    "B": {"R2_S3": "proving", "R2_M2": "proving", "R2_S8": "disproving"}
+  },
+  "summit_skillset_010": {
+    "A": {"R3_S5": "proving", "R2_S5": "proving", "R2_S9": "proving", "PtP_M5": "proving", "PtP_M2": "proving"},
+    "B": {"R3_S5": "disproving", "R2_S5": "disproving", "R3_S2": "disproving", "PtP_M5": "disproving"}
+  },
+  "summit_skillset_011": {
+    "A": {"R3_M2": "proving", "R2_S9": "proving", "PtP_M1": "disproving", "R2_S5": "disproving", "PtP_M5": "disproving"},
+    "B": {"PtP_M1": "proving", "PtP_S2": "proving", "R2_S4": "proving", "R2_S5": "proving", "PtP_M5": "proving", "R3_M2": "disproving"}
+  },
+  "summit_skillset_012": {
+    "A": {"PtP_M1": "proving", "PtP_S2": "proving", "R2_S4": "proving", "R2_S9": "proving"},
+    "B": {"PtP_M1": "disproving", "PtP_M5": "disproving", "R2_S4": "disproving", "R2_S9": "disproving"}
+  }
+}
