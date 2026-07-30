@@ -19,10 +19,9 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 });
 
-Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
-
 // Authenticated
 Route::middleware('auth')->group(function () {
+    Route::post('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     // Rooms
