@@ -13,13 +13,13 @@
             <div class="grid {{ ($threshold['tt_required'] ?? true) ? 'grid-cols-3' : 'grid-cols-2' }} gap-3 mb-6">
                 <div class="text-center p-3 rounded-lg bg-mountain-900/50 border border-mountain-700">
                     <div class="text-xs text-mountain-400 mb-1">MP</div>
-                    <div class="text-lg font-bold font-mono {{ $player->mp >= $threshold['mp'] ? 'text-basecamp-300' : 'text-crisis-400' }}">
+                    <div class="text-lg font-bold font-mono {{ $player->mp >= $threshold['mp'] ? 'text-trust-300' : 'text-crisis-400' }}">
                         {{ $player->mp }}/{{ $threshold['mp'] }}
                     </div>
                 </div>
                 <div class="text-center p-3 rounded-lg bg-mountain-900/50 border border-mountain-700">
                     <div class="text-xs text-mountain-400 mb-1">SP</div>
-                    <div class="text-lg font-bold font-mono {{ $player->sp >= $threshold['sp'] ? 'text-camp-300' : 'text-crisis-400' }}">
+                    <div class="text-lg font-bold font-mono {{ $player->sp >= $threshold['sp'] ? 'text-trust-300' : 'text-crisis-400' }}">
                         {{ $player->sp }}/{{ $threshold['sp'] }}
                     </div>
                 </div>

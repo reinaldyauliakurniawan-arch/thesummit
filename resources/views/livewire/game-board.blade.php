@@ -77,16 +77,16 @@
 
         <!-- V2: Active Consequences Panel -->
         @if(!empty($activeConsequences))
-            <div class="mb-4 p-3 rounded-xl bg-summit-900/30 border border-summit-700/50">
-                <h3 class="text-xs font-semibold text-summit-300 mb-2 flex items-center gap-1">
+            <div class="mb-4 p-3 rounded-xl bg-trust-900/30 border border-trust-700/50">
+                <h3 class="text-xs font-semibold text-trust-300 mb-2 flex items-center gap-1">
                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
                     Konsekuensi Aktif
                 </h3>
                 <div class="space-y-1.5 max-h-32 overflow-y-auto">
                     @foreach($activeConsequences as $cons)
-                    <div class="text-xs text-summit-200 flex items-start gap-1">
+                    <div class="text-xs text-trust-200 flex items-start gap-1">
                         <span class="text-crisis-400 flex-shrink-0">⏳</span>
-                        <span>{{ $cons['description'] }} <span class="text-summit-400">({{ $cons['stat'] }}{{ $cons['delta'] >= 0 ? '+' : '' }}{{ $cons['delta'] }})</span></span>
+                        <span>{{ $cons['description'] }} <span class="text-trust-400">({{ $cons['stat'] }}{{ $cons['delta'] >= 0 ? '+' : '' }}{{ $cons['delta'] }})</span></span>
                     </div>
                     @endforeach
                 </div>
@@ -111,9 +111,9 @@
 
         <!-- V2: Active Votes -->
         @if(!empty($activeVotes))
-            <div class="mb-4 p-3 rounded-xl bg-basecamp-900/20 border border-basecamp-700/30">
+            <div class="mb-4 p-3 rounded-xl bg-trust-900/20 border border-trust-700/30">
                 @foreach($activeVotes as $vote)
-                <h3 class="text-xs font-semibold text-basecamp-300 mb-2">🗳️ {{ $vote['vote_topic'] }}</h3>
+                <h3 class="text-xs font-semibold text-trust-300 mb-2">🗳️ {{ $vote['vote_topic'] }}</h3>
                 <p class="text-xs text-mountain-300 mb-2">{{ $vote['vote_description'] }}</p>
                 <div class="flex gap-2 flex-wrap">
                     @foreach(($vote['options'] ?? []) as $option)
@@ -254,7 +254,7 @@
                         <span class="text-mountain-500">pilih</span>
                         <span class="font-bold text-trust-300">{{ $turn->chosen_option }}</span>
                         @if($turn->was_hidden)
-                            <span class="px-1.5 py-0.5 rounded text-summit-300 bg-summit-800 text-[10px]">HIDDEN</span>
+                            <span class="px-1.5 py-0.5 rounded text-trust-300 bg-trust-900 text-[10px]">HIDDEN</span>
                         @endif
                     </div>
                     <div class="flex gap-2 text-mountain-400 flex-wrap">
@@ -262,7 +262,7 @@
                         <span>SP{{ $turn->sp_effect >= 0 ? '+' : '' }}{{ $turn->sp_effect }}</span>
                         <span>TT{{ $turn->tt_effect >= 0 ? '+' : '' }}{{ $turn->tt_effect }}</span>
                         @if($turn->reputation_effect)
-                            <span class="{{ $turn->reputation_effect >= 0 ? 'text-summit-300' : 'text-crisis-400' }}">R{{ $turn->reputation_effect >= 0 ? '+' : '' }}{{ $turn->reputation_effect }}</span>
+                            <span class="{{ $turn->reputation_effect >= 0 ? 'text-camp-300' : 'text-crisis-400' }}">R{{ $turn->reputation_effect >= 0 ? '+' : '' }}{{ $turn->reputation_effect }}</span>
                         @endif
                         @if($turn->risk_die_result)
                             <span class="text-mountain-500">| Die:{{ $turn->risk_die_result }}</span>
@@ -275,7 +275,7 @@
                         @endif
                     </div>
                     @if($turn->hidden_info_shown)
-                        <div class="mt-1 text-summit-400 italic text-[11px]">{{ $turn->hidden_info_shown }}</div>
+                        <div class="mt-1 text-trust-400 italic text-[11px]">{{ $turn->hidden_info_shown }}</div>
                     @endif
                 </div>
                 @endforeach

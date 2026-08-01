@@ -14,7 +14,7 @@
     <x-player-badge :badge="$results->first()->badge" :rank="1" size="lg" />
     </div>
     <div class="mt-3">
-        <h2 class="text-2xl font-bold text-mountain-100">{{ $results->first()->player->user->name }}</h2>
+        <h2 class="text-2xl font-bold font-expedition text-mountain-100">{{ $results->first()->player->user->name }}</h2>
         <p class="text-mountain-400 text-sm">Skor: {{ $results->first()->final_score }}</p>
     </div>
     @if($results->first()->badge === 'the_carrier')
@@ -22,9 +22,9 @@
     @elseif($results->first()->badge === 'the_catalyst')
         <p class="text-camp-400 text-sm mt-2 italic">"You didn't reach the top, but you lifted everyone closer."</p>
     @elseif($results->first()->badge === 'the_strategist')
-        <p class="text-summit-400 text-sm mt-2 italic">"True leadership is not about one strength — it's about many."</p>
+        <p class="text-mountain-400 text-sm mt-2 italic">"True leadership is not about one strength — it's about many."</p>
     @elseif($results->first()->badge === 'solo_peak')
-        <p class="text-summit-300 text-sm mt-2 italic">"You reached the peak. But who climbed with you?"</p>
+        <p class="text-mountain-400 text-sm mt-2 italic">"You reached the peak. But who climbed with you?"</p>
     @endif
 </div>
 @endif
@@ -40,11 +40,11 @@
                 <x-player-badge :badge="$r->badge" size="sm" />
             </div>
             <div class="flex gap-3 mt-1 text-xs flex-wrap">
-                <span class="text-basecamp-300">MP {{ $r->final_mp }}</span>
-                <span class="text-camp-300">SP {{ $r->final_sp }}</span>
+                <span class="text-trust-300">MP {{ $r->final_mp }}</span>
+                <span class="text-trust-300">SP {{ $r->final_sp }}</span>
                 <span class="text-trust-300">TT {{ $r->final_tt }}</span>
                 @if($r->final_reputation != 0)
-                    <span class="{{ $r->final_reputation >= 0 ? 'text-summit-300' : 'text-crisis-400' }}">Rep {{ $r->final_reputation }}</span>
+                    <span class="{{ $r->final_reputation >= 0 ? 'text-camp-300' : 'text-crisis-400' }}">Rep {{ $r->final_reputation }}</span>
                 @endif
             </div>
             <div class="text-xs text-mountain-500 mt-0.5">{{ ucfirst($r->final_level) }} — Skor: {{ $r->final_score }}</div>
@@ -104,16 +104,16 @@
 
         <!-- Key Turning Point -->
         @if($profile->key_turning_point)
-        <div class="p-4 rounded-xl bg-basecamp-900/20 border border-basecamp-700/30 mb-4">
-            <h3 class="text-xs uppercase tracking-wider text-basecamp-300 mb-2 font-semibold">Momen Kunci</h3>
+        <div class="p-4 rounded-xl bg-mountain-900/50 border border-mountain-700 mb-4">
+            <h3 class="text-xs uppercase tracking-wider text-trust-300 mb-2 font-semibold">Momen Kunci</h3>
             <p class="text-sm text-mountain-200 leading-relaxed">{{ $profile->key_turning_point }}</p>
         </div>
         @endif
 
         <!-- Missed Opportunities -->
         @if($profile->missed_opportunities)
-        <div class="p-4 rounded-xl bg-summit-900/20 border border-summit-700/30 mb-4">
-            <h3 class="text-xs uppercase tracking-wider text-summit-300 mb-2 font-semibold">Peluang yang Terlewat</h3>
+        <div class="p-4 rounded-xl bg-mountain-900/50 border border-mountain-700 mb-4">
+            <h3 class="text-xs uppercase tracking-wider text-mountain-300 mb-2 font-semibold">Peluang yang Terlewat</h3>
             <p class="text-sm text-mountain-200 leading-relaxed">{{ $profile->missed_opportunities }}</p>
         </div>
         @endif
@@ -199,7 +199,7 @@
                     <span class="px-1.5 py-0.5 rounded text-mountain-400 bg-mountain-800">{{ ucfirst($t->card->kategori) }}</span>
                 @endif
                 @if($t->was_hidden)
-                    <span class="px-1.5 py-0.5 rounded text-summit-300 bg-summit-800">Tersembunyi</span>
+                    <span class="px-1.5 py-0.5 rounded text-trust-300 bg-trust-900">Tersembunyi</span>
                 @endif
             </div>
             @if($t->card)
@@ -210,7 +210,7 @@
                 <span>SP{{ $t->sp_effect>=0?'+':'' }}{{ $t->sp_effect }}</span>
                 <span>TT{{ $t->tt_effect>=0?'+':'' }}{{ $t->tt_effect }}</span>
                 @if($t->reputation_effect)
-                    <span class="{{ $t->reputation_effect >= 0 ? 'text-summit-300' : 'text-crisis-400' }}">R{{ $t->reputation_effect >= 0 ? '+' : '' }}{{ $t->reputation_effect }}</span>
+                    <span class="{{ $t->reputation_effect >= 0 ? 'text-camp-300' : 'text-crisis-400' }}">R{{ $t->reputation_effect >= 0 ? '+' : '' }}{{ $t->reputation_effect }}</span>
                 @endif
                 @if($t->risk_die_result)<span class="text-mountain-500">| Die:{{ $t->risk_die_result }}</span>@endif
                 @if($t->dysfunction_triggered)<span class="text-crisis-400">| {{ str_replace('_',' ',$t->dysfunction_triggered) }}</span>@endif

@@ -9,13 +9,14 @@
 <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider {{ $card->level==='basecamp'?'bg-basecamp-500 text-white':($card->level==='camp'?'bg-camp-600 text-white':'bg-summit-600 text-summit-50') }}">{{ ucfirst($card->level) }}</span>
 <span class="px-2 py-0.5 rounded-full text-xs bg-mountain-700 text-mountain-200">{{ ucfirst($card->kategori) }}</span>
 @if($card->tipe==='krisis')<span class="px-2 py-0.5 rounded-full text-xs bg-crisis-950/50 text-crisis-400 border border-crisis-500/30 font-bold">KRISIS</span>@endif
-@if($card->has_hidden_info)<span class="px-2 py-0.5 rounded-full text-xs bg-summit-800 text-summit-300">? Tersembunyi</span>@endif
+@if($card->has_hidden_info)<span class="px-2 py-0.5 rounded-full text-xs bg-trust-900 text-trust-300">? Tersembunyi</span>@endif
 </div>
 <div class="relative bg-mountain-800 rounded-2xl border-2 {{ $levelBorder }} {{ $crisisTopBorder }} p-6 shadow-xl {{ $choosing?'animate-card-flip':'animate-fade-in' }} overflow-hidden">
     {{-- Level-based background texture --}}
     <div class="absolute inset-0 bg-[url('/images/expedition/{{ $card->level }}-bg.jpg')] bg-cover bg-center bg-blend-overlay opacity-[0.14] pointer-events-none rounded-2xl"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-mountain-800/40 via-mountain-800/70 to-mountain-800/95 pointer-events-none rounded-2xl"></div>
     <div class="relative z-10">
+        <x-card-illustration :kategori="$card->kategori" :tipe="$card->tipe" />
         <div class="mb-6"><h4 class="text-xs uppercase tracking-wider text-mountain-400 mb-2 font-semibold">Situasi Ekspedisi</h4><p class="text-mountain-100 leading-relaxed text-sm">{{ $card->teks_situasi }}</p></div>
 @if($choosing)
 <p class="text-center text-mountain-500 text-xs italic mb-3">Konsekuensi akan terungkap setelah kamu memilih.</p>
@@ -42,13 +43,13 @@
     <div class="relative z-10">
         <h4 class="text-xs uppercase tracking-wider text-mountain-400 mb-4 font-semibold">Efek Diterapkan</h4>
         <div class="flex justify-center gap-4 mb-4">
-        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['mp']>=0?'text-basecamp-300':'text-crisis-400' }}">{{ $effects['mp']>=0?'+':'' }}{{ $effects['mp'] }}</div><div class="text-xs text-mountain-400">MP</div></div>
-        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['sp']>=0?'text-camp-300':'text-crisis-400' }}">{{ $effects['sp']>=0?'+':'' }}{{ $effects['sp'] }}</div><div class="text-xs text-mountain-400">SP</div></div>
+        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['mp']>=0?'text-trust-300':'text-crisis-400' }}">{{ $effects['mp']>=0?'+':'' }}{{ $effects['mp'] }}</div><div class="text-xs text-mountain-400">MP</div></div>
+        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['sp']>=0?'text-trust-300':'text-crisis-400' }}">{{ $effects['sp']>=0?'+':'' }}{{ $effects['sp'] }}</div><div class="text-xs text-mountain-400">SP</div></div>
         <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['tt']>=0?'text-trust-300':'text-crisis-400' }}">{{ $effects['tt']>=0?'+':'' }}{{ $effects['tt'] }}</div><div class="text-xs text-mountain-400">TT</div></div>
         </div>
     @isset($effects['reputation'])
         <div class="flex justify-center gap-4 mb-2">
-        <div class="text-center"><div class="text-lg font-bold font-mono {{ ($effects['reputation']??0)>=0?'text-summit-300':'text-crisis-400' }}">{{ ($effects['reputation']??0)>=0?'+':'' }}{{ $effects['reputation']??0 }}</div><div class="text-xs text-mountain-400">Rep</div></div>
+        <div class="text-center"><div class="text-lg font-bold font-mono {{ ($effects['reputation']??0)>=0?'text-camp-300':'text-crisis-400' }}">{{ ($effects['reputation']??0)>=0?'+':'' }}{{ $effects['reputation']??0 }}</div><div class="text-xs text-mountain-400">Rep</div></div>
         <div class="text-center"><div class="text-lg font-bold font-mono {{ ($effects['resources']??0)>=0?'text-mountain-300':'text-crisis-400' }}">{{ ($effects['resources']??0)>=0?'+':'' }}{{ $effects['resources']??0 }}</div><div class="text-xs text-mountain-400">Res</div></div>
         </div>
     @endisset
@@ -62,20 +63,20 @@
 
     {{-- V2: Hidden Info Reveal --}}
     @if($wasHidden && $hiddenInfo)
-        <div class="border-t border-summit-700 pt-3 mt-3 animate-fade-in">
-        <div class="text-summit-300 text-xs font-semibold mb-1">Informasi Tersembunyi Terungkap:</div>
-        <div class="text-summit-200 text-xs italic">{{ $hiddenInfo }}</div>
+        <div class="border-t border-trust-700 pt-3 mt-3 animate-fade-in">
+        <div class="text-trust-300 text-xs font-semibold mb-1">Informasi Tersembunyi Terungkap:</div>
+        <div class="text-trust-200 text-xs italic">{{ $hiddenInfo }}</div>
         </div>
     @endif
 
     {{-- V2: Created Consequences --}}
     @if(!empty($createdConsequences))
-        <div class="border-t border-summit-700 pt-3 mt-3">
-        <div class="text-summit-300 text-xs font-semibold mb-1">Konsekuensi Baru Dibuat:</div>
+        <div class="border-t border-trust-700 pt-3 mt-3">
+        <div class="text-trust-300 text-xs font-semibold mb-1">Konsekuensi Baru Dibuat:</div>
         @foreach($createdConsequences as $cons)
-        <div class="text-xs text-summit-200 mt-1">
+        <div class="text-xs text-trust-200 mt-1">
             @if($cons['is_hidden'])
-            <span class="text-summit-400">???</span> — <span class="text-mountain-400">efek tersembunyi</span>
+            <span class="text-trust-400">???</span> — <span class="text-mountain-400">efek tersembunyi</span>
             @else
             ⏳ {{ $cons['description'] }} ({{ $cons['stat'] }}{{ $cons['delta']>=0?'+':'' }}{{ $cons['delta'] }})
             @endif
