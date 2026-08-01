@@ -1,10 +1,9 @@
 @props(['card'=>null,'showEffects'=>false,'effects'=>[],'riskDieResult'=>null,'dysfunction'=>null,'choosing'=>false,'wasHidden'=>false,'hiddenInfo'=>null,'createdConsequences'=>[],'crossPlayerEffects'=>[]])
+@if($card)
 @php
     $levelBorder = $card->level === 'basecamp' ? 'border-basecamp-500/60' : ($card->level === 'camp' ? 'border-camp-500/60' : 'border-summit-500/60');
-    $levelBg = $card->level === 'basecamp' ? 'bg-basecamp-800' : ($card->level === 'camp' ? 'bg-camp-800' : 'bg-summit-800');
     $crisisTopBorder = $card->tipe === 'krisis' ? 'border-t-4 border-t-crisis-500' : '';
 @endphp
-@if($card)
 <div class="max-w-lg mx-auto">
 <div class="flex items-center justify-center gap-2 mb-3">
 <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider {{ $card->level==='basecamp'?'bg-basecamp-500 text-white':($card->level==='camp'?'bg-camp-600 text-white':'bg-summit-600 text-summit-50') }}">{{ ucfirst($card->level) }}</span>
