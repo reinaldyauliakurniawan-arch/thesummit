@@ -1,7 +1,16 @@
 @props(['player' => null, 'thresholdKey' => null])
 
 @if($player)
-<div class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" wire:click="skipRopeBridge">
+<div class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4" wire:click="skipRopeBridge" x-data="{ burst: false, particles: Array.from({length: 24}, (_,i) => ({ id:i, x:(Math.random()*200-100), rot:(Math.random()*360), delay:(Math.random()*0.15), color: ['bg-trust-400','bg-camp-400','bg-mountain-300'][i%3] })) }">
+    <div class="fixed inset-0 pointer-events-none z-[60] overflow-hidden" x-show="burst" x-cloak>
+        <template x-for="p in particles" :key="p.id">
+            <div class="absolute left-1/2 top-1/3 w-2 h-2 rounded-sm"
+                 :class="p.color"
+                 x-show="burst"
+                 x-transition:enter="transition ease-out duration-700"
+                 :style="`transition-delay:${p.delay}s; transform: translate(${p.x}px, ${burst?200:0}px) rotate(${p.rot}deg); opacity:${burst?0:1};`"></div>
+        </template>
+    </div>
     <div class="bg-mountain-800 rounded-2xl border-2 border-trust-500 p-6 max-w-md w-full shadow-2xl animate-slide-up" wire:click.stop>
         <div class="text-center mb-4">
             <h3 class="text-xl font-bold text-mountain-100 font-expedition">Rope Bridge Check</h3>
@@ -38,7 +47,7 @@
             <button wire:click="skipRopeBridge" class="flex-1 px-4 py-2.5 rounded-xl border border-mountain-600 text-mountain-300 hover:bg-mountain-700 text-sm">
                 Lewati
             </button>
-            <button wire:click="attemptRopeBridge" class="flex-1 px-4 py-2.5 rounded-xl bg-trust-500 text-mountain-950 font-bold hover:bg-trust-400 text-sm">
+            <button x-on:click="burst = true" wire:click="attemptRopeBridge" class="flex-1 px-4 py-2.5 rounded-xl bg-trust-500 text-mountain-950 font-bold hover:bg-trust-400 text-sm">
                 Lintasi Rope Bridge
             </button>
         </div>

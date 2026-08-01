@@ -197,7 +197,7 @@
         @if($showPromiseModal)
             <div class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
                 <div class="bg-mountain-900 border border-mountain-600 rounded-2xl p-6 max-w-md w-full shadow-2xl">
-                    <h3 class="text-lg font-bold text-mountain-100 mb-4">Buat Janji</h3>
+                    <h3 class="font-expedition text-lg font-bold text-mountain-100 mb-4">Buat Janji</h3>
                     <p class="text-xs text-mountain-400 mb-4">Janji tidak diwajibkan sistem. Kamu bebas menepati atau melanggarnya — tapi ada konsekuensi reputasi.</p>
 
                     <div class="space-y-3">
@@ -245,7 +245,7 @@
 
         <!-- Turn log -->
         <div class="mt-8">
-            <h3 class="text-sm font-semibold text-mountain-300 mb-3">Log Ekspedisi</h3>
+            <h3 class="font-expedition text-sm font-semibold text-mountain-300 mb-3">Log Ekspedisi</h3>
             <div class="space-y-2 max-h-64 overflow-y-auto">
                 @foreach($allTurns as $turn)
                 <div class="p-3 rounded-lg bg-mountain-900/50 border border-mountain-800 text-xs">

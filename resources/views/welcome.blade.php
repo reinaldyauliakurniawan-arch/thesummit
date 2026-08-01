@@ -20,17 +20,17 @@
     <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
         <div class="p-4 rounded-xl bg-mountain-900/50 border border-mountain-800">
             <div class="w-10 h-10 rounded-lg bg-basecamp-500 flex items-center justify-center text-white font-bold mb-2">B</div>
-            <h3 class="font-semibold text-mountain-200 text-sm">Basecamp</h3>
+            <h3 class="font-expedition font-semibold text-mountain-200 text-sm">Basecamp</h3>
             <p class="text-xs text-mountain-400 mt-1">Leading Self — bangun fondasi mindset dan skillset.</p>
         </div>
         <div class="p-4 rounded-xl bg-mountain-900/50 border border-mountain-800">
             <div class="w-10 h-10 rounded-lg bg-camp-500 flex items-center justify-center text-white font-bold mb-2">C</div>
-            <h3 class="font-semibold text-mountain-200 text-sm">Camp</h3>
+            <h3 class="font-expedition font-semibold text-mountain-200 text-sm">Camp</h3>
             <p class="text-xs text-mountain-400 mt-1">Leading Others — latih kemampuan memimpin dan membangun tim.</p>
         </div>
         <div class="p-4 rounded-xl bg-mountain-900/50 border border-mountain-800">
             <div class="w-10 h-10 rounded-lg bg-summit-500 flex items-center justify-center text-summit-950 font-bold mb-2">S</div>
-            <h3 class="font-semibold text-mountain-200 text-sm">Summit</h3>
+            <h3 class="font-expedition font-semibold text-mountain-200 text-sm">Summit</h3>
             <p class="text-xs text-mountain-400 mt-1">Leading Leaders — pimpin para pemimpin, raih puncak bersama.</p>
         </div>
     </div>

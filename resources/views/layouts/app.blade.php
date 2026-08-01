@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="csrf-token" content="{{ csrf_token() }}"><title>{{ $title ?? 'The Summit' }}</title>@vite(['resources/css/app.css','resources/js/app.js'])<style>[x-cloak]{display:none!important}</style></head>
+<html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><meta name="csrf-token" content="{{ csrf_token() }}"><title>{{ $title ?? 'The Summit' }}</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">@vite(['resources/css/app.css','resources/js/app.js'])<style>[x-cloak]{display:none!important}</style></head>
 <body class="bg-mountain-950 text-mountain-100 min-h-screen font-sans antialiased">
 <nav class="bg-mountain-900/80 backdrop-blur border-b border-mountain-800 sticky top-0 z-40">
 <div class="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">

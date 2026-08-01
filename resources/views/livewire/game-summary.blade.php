@@ -188,7 +188,7 @@
 
 {{-- Turn History --}}
 <div class="mt-4">
-    <h3 class="text-sm font-semibold text-mountain-300 mb-3">Riwayat Ekspedisi</h3>
+    <h3 class="font-expedition text-sm font-semibold text-mountain-300 mb-3">Riwayat Ekspedisi</h3>
     <div class="space-y-2 max-h-96 overflow-y-auto">
         @foreach($turns as $t)
         <div class="p-3 rounded-lg bg-mountain-900/50 border border-mountain-800 text-xs">

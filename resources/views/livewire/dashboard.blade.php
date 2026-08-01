@@ -15,7 +15,7 @@
         <!-- Create room CTA -->
         <div class="bg-mountain-900/50 rounded-2xl border border-trust-500/30 animate-pulse-gold p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-                <h2 class="font-semibold text-mountain-100 text-lg">Mulai Ekspedisi Baru</h2>
+                <h2 class="font-expedition font-semibold text-mountain-100 text-lg">Mulai Ekspedisi Baru</h2>
                 <p class="text-sm text-mountain-400">Buat room dan undang 2-5 pendaki lainnya.</p>
             </div>
             <form method="POST" action="{{ route('rooms.store') }}">
@@ -48,7 +48,7 @@
         <!-- Notifications -->
         @if($un->count() > 0)
         <div class="bg-mountain-900/50 rounded-2xl border border-trust-500/30 p-4">
-            <h2 class="font-semibold text-mountain-200 text-sm mb-3 flex items-center gap-2">
+            <h2 class="font-expedition font-semibold text-mountain-200 text-sm mb-3 flex items-center gap-2">
                 <span class="w-2 h-2 bg-trust-400 rounded-full animate-pulse"></span>
                 Notifikasi
             </h2>
@@ -68,7 +68,7 @@
         <!-- Waiting rooms -->
         @if($wr->count() > 0)
         <div>
-            <h2 class="font-semibold text-mountain-200 text-sm mb-3">Menunggu Pemain</h2>
+            <h2 class="font-expedition font-semibold text-mountain-200 text-sm mb-3">Menunggu Pemain</h2>
             <div class="space-y-2">
                 @foreach($wr as $room)
                 <a href="{{ route('rooms.lobby', $room) }}"
@@ -89,7 +89,7 @@
         <!-- Active/finished games -->
         @if($ag->count() > 0)
         <div>
-            <h2 class="font-semibold text-mountain-200 text-sm mb-3">Game Aktif</h2>
+            <h2 class="font-expedition font-semibold text-mountain-200 text-sm mb-3">Game Aktif</h2>
             <div class="space-y-2">
                 @foreach($ag as $gamePlayer)
                 @php $gameRoom = $gamePlayer->room; @endphp
