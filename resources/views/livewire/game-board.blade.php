@@ -1,25 +1,28 @@
 <div wire:poll.5s>
-    <div class="relative w-full h-32 -mt-4 mb-4 overflow-hidden">
-    <div class="absolute inset-0 bg-[url('/images/expedition/{{ $myPlayer->current_level }}-bg.jpg')] bg-cover bg-center"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-mountain-950 via-mountain-950/60 to-mountain-950/10"></div>
+    <div class="relative w-full h-32 -mt-4 mb-4 overflow-hidden bg-[#1c1810]">
+    <div class="absolute inset-0" style="background-image:repeating-radial-gradient(circle at 15% 30%, transparent 0, transparent 30px, rgba(214,169,78,0.06) 31px, transparent 32px), repeating-radial-gradient(circle at 85% 70%, transparent 0, transparent 44px, rgba(214,169,78,0.05) 45px, transparent 46px);"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+        <span class="font-instrument text-[11px] tracking-[.3em] uppercase text-[#8a6a30]">{{ ucfirst($myPlayer->current_level) }} Level</span>
+    </div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#15130f] via-[#15130f]/60 to-transparent"></div>
 </div>
 <div class="max-w-2xl mx-auto px-4 pt-4 pb-8">
 
         <!-- Header -->
-        <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center justify-between mb-4 font-instrument">
             <div>
-                <span class="font-mono text-trust-400 font-bold">{{ $room->code }}</span>
+                <span class="text-[#d6a94e] font-bold tracking-widest">{{ $room->code }}</span>
                 @if($room->status->value === 'final_round')
-                    <span class="ml-2 px-2 py-0.5 rounded-full text-xs bg-trust-800 text-trust-200 font-bold animate-pulse">FINAL ROUND</span>
+                    <span class="ml-2 pill-notch pill-ember">Final Round</span>
                 @else
-                    <span class="ml-2 px-2 py-0.5 rounded-full text-xs bg-camp-800 text-camp-200">Bermain</span>
+                    <span class="ml-2 pill-notch" style="color:#7fae6c;border-color:#3d5a33;background:rgba(107,156,90,.1);">Bermain</span>
                 @endif
             </div>
-            <div class="flex items-center gap-2">
-                <button wire:click="showPromiseForm" class="text-xs text-mountain-400 px-2 py-1 rounded-lg border border-mountain-700 hover:border-trust-500 hover:text-trust-400" title="Buat Janji">
+            <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider">
+                <button wire:click="showPromiseForm" class="px-2 py-1 notch-sm border border-[#4a3a1b] text-[#a89c7d] hover:border-[#d6a94e] hover:text-[#d6a94e]" title="Buat Janji">
                     Janji
                 </button>
-                <button wire:click="refreshBoard" class="text-xs text-mountain-400 px-3 py-1 rounded-lg border border-mountain-700">
+                <button wire:click="refreshBoard" class="px-3 py-1 notch-sm border border-[#4a3a1b] text-[#a89c7d]">
                     Refresh
                 </button>
             </div>
@@ -29,37 +32,37 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
             @foreach($players as $player)
             @php
-                $avatarColors = ['bg-trust-500','bg-camp-500','bg-crisis-500','bg-mountain-500'];
+                $avatarColors = ['#d6a94e','#7fae6c','#e6603a','#8a97ab'];
                 $avatarColor = $avatarColors[$player->id % count($avatarColors)];
                 $mpPct = min(100, ($player->mp / 12) * 100);
                 $spPct = min(100, ($player->sp / 12) * 100);
                 $ttPct = min(100, ($player->tt / 10) * 100);
             @endphp
-            <div class="relative p-3 rounded-xl border {{ $room->current_turn_player_id === $player->id ? 'border-trust-500 bg-mountain-800' : 'border-mountain-800 bg-mountain-900/50' }}">
+            <div class="relative p-3 notch-sm {{ $room->current_turn_player_id === $player->id ? 'bg-[#241f17] border border-[#d6a94e]' : 'bg-[#1c1810] border border-[#332b1c]' }}">
                 @if($room->current_turn_player_id === $player->id)
-                    <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-trust-400 rounded-full animate-pulse"></div>
+                    <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#d6a94e] rounded-full animate-pulse"></div>
                 @endif
                 <div class="flex items-center gap-2 mb-2">
-                    <div class="w-6 h-6 rounded-full {{ $avatarColor }} flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">{{ strtoupper(substr($player->user->name,0,1)) }}</div>
-                    <div class="text-xs font-semibold {{ $player->user_id === auth()->id() ? 'text-trust-300' : 'text-mountain-300' }} truncate">
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-[#15130f] flex-shrink-0" style="background:{{ $avatarColor }};">{{ strtoupper(substr($player->user->name,0,1)) }}</div>
+                    <div class="text-xs font-field font-semibold {{ $player->user_id === auth()->id() ? 'text-[#d6a94e]' : 'text-[#cdc2a0]' }} truncate">
                         {{ $player->user->name }}{{ $player->user_id === auth()->id() ? ' (kamu)' : '' }}
                     </div>
                 </div>
-                <div class="space-y-1">
-                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-mountain-500 w-4">MP</span><div class="flex-1 h-1.5 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-trust-400 rounded-full" style="width:{{ $mpPct }}%"></div></div><span class="text-[10px] text-mountain-400 font-mono w-4 text-right">{{ $player->mp }}</span></div>
-                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-mountain-500 w-4">SP</span><div class="flex-1 h-1.5 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-trust-400 rounded-full" style="width:{{ $spPct }}%"></div></div><span class="text-[10px] text-mountain-400 font-mono w-4 text-right">{{ $player->sp }}</span></div>
-                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-mountain-500 w-4">TT</span><div class="flex-1 h-1.5 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-trust-400 rounded-full" style="width:{{ $ttPct }}%"></div></div><span class="text-[10px] text-mountain-400 font-mono w-4 text-right">{{ $player->tt }}</span></div>
+                <div class="space-y-1 font-instrument">
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4">MP</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $mpPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->mp }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4">SP</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $spPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->sp }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4">TT</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $ttPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->tt }}</span></div>
                 </div>
-                <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-mountain-800">
-                    <span class="text-[10px] {{ ($player->reputation ?? 0) >= 0 ? 'text-camp-400' : 'text-crisis-400' }}">Rep {{ $player->reputation ?? 0 }} · Res {{ $player->resources ?? 0 }}</span>
+                <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-[#332b1c] font-instrument">
+                    <span class="text-[10px] {{ ($player->reputation ?? 0) >= 0 ? 'text-[#7fae6c]' : 'text-[#e6603a]' }}">Rep {{ $player->reputation ?? 0 }} · Res {{ $player->resources ?? 0 }}</span>
                     @if(($player->promises_kept ?? 0) > 0 || ($player->promises_broken ?? 0) > 0)
                         <span class="text-[10px]">
-                            @if(($player->promises_kept ?? 0) > 0)<span class="text-camp-400">✓{{$player->promises_kept}}</span>@endif
-                            @if(($player->promises_broken ?? 0) > 0)<span class="text-crisis-400 ml-1">✗{{$player->promises_broken}}</span>@endif
+                            @if(($player->promises_kept ?? 0) > 0)<span class="text-[#7fae6c]">✓{{$player->promises_kept}}</span>@endif
+                            @if(($player->promises_broken ?? 0) > 0)<span class="text-[#e6603a] ml-1">✗{{$player->promises_broken}}</span>@endif
                         </span>
                     @endif
                 </div>
-                <div class="text-[10px] text-mountain-500 mt-1">{{ ucfirst($player->current_level) }}</div>
+                <div class="text-[10px] text-[#8a6a30] mt-1 font-instrument uppercase tracking-wider">{{ ucfirst($player->current_level) }}</div>
             </div>
             @endforeach
         </div>
@@ -77,16 +80,16 @@
 
         <!-- V2: Active Consequences Panel -->
         @if(!empty($activeConsequences))
-            <div class="mb-4 p-3 rounded-xl bg-trust-900/30 border border-trust-700/50">
-                <h3 class="text-xs font-semibold text-trust-300 mb-2 flex items-center gap-1">
+            <div class="mb-4 p-3 notch-sm bg-[#241f17] border border-[#6b5325]">
+                <h3 class="text-xs font-semibold text-[#d6a94e] mb-2 flex items-center gap-1 font-instrument uppercase tracking-wider">
                     <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
                     Konsekuensi Aktif
                 </h3>
-                <div class="space-y-1.5 max-h-32 overflow-y-auto">
+                <div class="space-y-1.5 max-h-32 overflow-y-auto font-field">
                     @foreach($activeConsequences as $cons)
-                    <div class="text-xs text-trust-200 flex items-start gap-1">
-                        <span class="text-crisis-400 flex-shrink-0">⏳</span>
-                        <span>{{ $cons['description'] }} <span class="text-trust-400">({{ $cons['stat'] }}{{ $cons['delta'] >= 0 ? '+' : '' }}{{ $cons['delta'] }})</span></span>
+                    <div class="text-xs text-[#cdc2a0] flex items-start gap-1">
+                        <span class="text-[#e6603a] flex-shrink-0">⏳</span>
+                        <span>{{ $cons['description'] }} <span class="text-[#d6a94e] font-instrument">({{ $cons['stat'] }}{{ $cons['delta'] >= 0 ? '+' : '' }}{{ $cons['delta'] }})</span></span>
                     </div>
                     @endforeach
                 </div>
@@ -95,13 +98,13 @@
 
         <!-- V2: Active Promises -->
         @if(!empty($activePromises))
-            <div class="mb-4 p-3 rounded-xl bg-trust-900/20 border border-trust-700/30">
-                <h3 class="text-xs font-semibold text-trust-300 mb-2">Janji Aktif</h3>
-                <div class="space-y-1.5">
+            <div class="mb-4 p-3 notch-sm bg-[#241f17] border border-[#6b5325]">
+                <h3 class="text-xs font-semibold text-[#d6a94e] mb-2 font-instrument uppercase tracking-wider">Janji Aktif</h3>
+                <div class="space-y-1.5 font-field">
                     @foreach($activePromises as $promise)
-                    <div class="text-xs text-trust-200">
-                        <span class="font-semibold">{{ $promise['promiser']['user']['name'] }}</span>
-                        → <span class="font-semibold">{{ $promise['recipient']['user']['name'] }}</span>:
+                    <div class="text-xs text-[#cdc2a0]">
+                        <span class="font-semibold text-[#e8dfc8]">{{ $promise['promiser']['user']['name'] }}</span>
+                        → <span class="font-semibold text-[#e8dfc8]">{{ $promise['recipient']['user']['name'] }}</span>:
                         {{ $promise['description'] }}
                     </div>
                     @endforeach
@@ -111,14 +114,14 @@
 
         <!-- V2: Active Votes -->
         @if(!empty($activeVotes))
-            <div class="mb-4 p-3 rounded-xl bg-trust-900/20 border border-trust-700/30">
+            <div class="mb-4 p-3 notch-sm bg-[#241f17] border border-[#6b5325]">
                 @foreach($activeVotes as $vote)
-                <h3 class="text-xs font-semibold text-trust-300 mb-2">🗳️ {{ $vote['vote_topic'] }}</h3>
-                <p class="text-xs text-mountain-300 mb-2">{{ $vote['vote_description'] }}</p>
-                <div class="flex gap-2 flex-wrap">
+                <h3 class="text-xs font-semibold text-[#d6a94e] mb-2 font-instrument">🗳️ {{ $vote['vote_topic'] }}</h3>
+                <p class="text-xs text-[#cdc2a0] mb-2 font-field">{{ $vote['vote_description'] }}</p>
+                <div class="flex gap-2 flex-wrap font-instrument text-xs uppercase tracking-wider">
                     @foreach(($vote['options'] ?? []) as $option)
                     <button wire:click="castVoteOnActive({{ $vote['id'] }}, '{{ $option }}')"
-                            class="px-3 py-1 rounded-lg text-xs border {{ $voteChoice === $option ? 'border-trust-400 bg-trust-500 text-mountain-950' : 'border-mountain-600 text-mountain-300 hover:border-trust-400' }}">
+                            class="px-3 py-1 notch-sm border {{ $voteChoice === $option ? 'border-[#d6a94e] bg-[#d6a94e] text-[#15130f]' : 'border-[#4a3a1b] text-[#a89c7d] hover:border-[#d6a94e]' }}">
                         {{ $option }}
                     </button>
                     @endforeach
@@ -129,33 +132,33 @@
 
         <!-- Status message -->
         @if($message)
-            <div class="mb-4 p-3 rounded-xl bg-trust-900/30 border border-trust-500/30 text-sm text-center">
+            <div class="mb-4 p-3 notch-sm bg-[#241f17] border border-[#6b5325] text-sm text-center font-field text-[#cdc2a0]">
                 {{ $message }}
             </div>
         @endif
 
         <!-- Waiting for turn -->
         @if(!$isMyTurn && $room->status->value !== 'finished')
-            <div class="text-center py-8 text-mountain-500">
-                <div class="text-sm mb-1">Bukan giliranmu.</div>
-                <div class="text-xs text-mountain-600">
+            <div class="text-center py-8">
+                <div class="text-sm mb-1 text-[#a89c7d] font-field">Bukan giliranmu.</div>
+                <div class="text-xs text-[#8a6a30] font-instrument">
                     @if($room->currentPlayer)
-                        Giliran <span class="text-mountain-400 font-semibold">{{ $room->currentPlayer->user->name }}</span>
+                        Giliran <span class="text-[#cdc2a0] font-semibold">{{ $room->currentPlayer->user->name }}</span>
                     @endif
                 </div>
-                <button wire:click="refreshBoard" class="mt-3 text-xs text-trust-400 hover:underline">Refresh</button>
+                <button wire:click="refreshBoard" class="mt-3 text-xs text-[#d6a94e] hover:underline font-instrument">Refresh</button>
             </div>
         @endif
 
         <!-- Draw card button -->
         @if($isMyTurn && !$showCard && !$showEffects)
             <div class="text-center py-6">
-                <p class="text-mountain-200 mb-4 font-semibold">Giliranmu!</p>
+                <p class="text-[#e8dfc8] mb-4 font-semibold font-field">Giliranmu!</p>
                 <button wire:click="drawCard"
-                        class="px-8 py-3 rounded-xl bg-trust-500 text-mountain-950 font-bold text-lg hover:bg-trust-400 animate-pulse-gold">
+                        class="px-8 py-3 notch-md bg-[#d6a94e] text-[#15130f] font-bold text-lg hover:bg-[#e3c483] animate-pulse-gold font-instrument uppercase tracking-wider">
                     Ambil Expedition Card
                 </button>
-                <p class="text-xs text-mountain-500 mt-2">
+                <p class="text-xs text-[#8a6a30] mt-2 font-instrument">
                     Turn #{{ $myPlayer->turns()->count() + 1 }}
                     — {{ $myPlayer->turns()->count() % 2 === 0 ? 'Mindset' : 'Skillset' }}
                 </p>
@@ -180,7 +183,7 @@
                 :crossPlayerEffects="$crossPlayerEffects" />
             <div class="text-center mt-4">
                 <button wire:click="refreshBoard"
-                        class="px-6 py-2 rounded-xl border border-mountain-600 text-mountain-300 text-sm">
+                        class="px-6 py-2 notch-sm border border-[#4a3a1b] text-[#cdc2a0] text-sm font-instrument uppercase tracking-wider">
                     Lanjut
                 </button>
             </div>
@@ -195,15 +198,18 @@
 
         <!-- V2: Promise Modal -->
         @if($showPromiseModal)
-            <div class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-                <div class="bg-mountain-900 border border-mountain-600 rounded-2xl p-6 max-w-md w-full shadow-2xl">
-                    <h3 class="font-expedition text-lg font-bold text-mountain-100 mb-4">Buat Janji</h3>
-                    <p class="text-xs text-mountain-400 mb-4">Janji tidak diwajibkan sistem. Kamu bebas menepati atau melanggarnya — tapi ada konsekuensi reputasi.</p>
+            <div class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+                <div class="card-frame max-w-md w-full">
+                <div class="card-frame-inner p-6">
+                <div class="grain-overlay" style="opacity:.25;"></div>
+                <div class="relative z-10">
+                    <h3 class="font-expedition text-lg font-bold text-[#e8dfc8] mb-4 tracking-wide">Buat Janji</h3>
+                    <p class="text-xs text-[#a89c7d] mb-4 font-field">Janji tidak diwajibkan sistem. Kamu bebas menepati atau melanggarnya — tapi ada konsekuensi reputasi.</p>
 
-                    <div class="space-y-3">
+                    <div class="space-y-3 font-instrument">
                         <div>
-                            <label class="text-xs text-mountain-300 block mb-1">Tipe Janji</label>
-                            <select wire:model="promiseType" class="w-full rounded-lg bg-mountain-800 border border-mountain-600 text-mountain-200 text-sm p-2">
+                            <label class="text-xs text-[#a89c7d] block mb-1 uppercase tracking-wider">Tipe Janji</label>
+                            <select wire:model="promiseType" class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2">
                                 <option value="">Pilih...</option>
                                 <option value="vote_for">Dukungan Suara</option>
                                 <option value="help_rescue">Menolong</option>
@@ -214,8 +220,8 @@
                         </div>
 
                         <div>
-                            <label class="text-xs text-mountain-300 block mb-1">Untuk Pemain</label>
-                            <select wire:model="promiseRecipientId" class="w-full rounded-lg bg-mountain-800 border border-mountain-600 text-mountain-200 text-sm p-2">
+                            <label class="text-xs text-[#a89c7d] block mb-1 uppercase tracking-wider">Untuk Pemain</label>
+                            <select wire:model="promiseRecipientId" class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2">
                                 <option value="">Pilih...</option>
                                 @foreach($otherPlayers as $op)
                                 <option value="{{ $op->id }}">{{ $op->user->name }}</option>
@@ -224,63 +230,65 @@
                         </div>
 
                         <div>
-                            <label class="text-xs text-mountain-300 block mb-1">Deskripsi</label>
+                            <label class="text-xs text-[#a89c7d] block mb-1 uppercase tracking-wider">Deskripsi</label>
                             <input wire:model="promiseDescription" type="text"
-                                   class="w-full rounded-lg bg-mountain-800 border border-mountain-600 text-mountain-200 text-sm p-2"
+                                   class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2 font-field"
                                    placeholder="Contoh: Akan mendukungmu di voting berikutnya">
                         </div>
                     </div>
 
-                    <div class="flex gap-3 mt-6">
-                        <button wire:click="submitPromise" class="flex-1 px-4 py-2 rounded-xl bg-trust-500 text-mountain-950 font-semibold text-sm hover:bg-trust-400">
+                    <div class="flex gap-3 mt-6 font-instrument text-sm uppercase tracking-wider">
+                        <button wire:click="submitPromise" class="flex-1 px-4 py-2 notch-sm bg-[#d6a94e] text-[#15130f] font-semibold hover:bg-[#e3c483]">
                             Buat Janji
                         </button>
-                        <button wire:click="hidePromiseForm" class="px-4 py-2 rounded-xl border border-mountain-600 text-mountain-300 text-sm">
+                        <button wire:click="hidePromiseForm" class="px-4 py-2 notch-sm border border-[#4a3a1b] text-[#a89c7d]">
                             Batal
                         </button>
                     </div>
+                </div>
+                </div>
                 </div>
             </div>
         @endif
 
         <!-- Turn log -->
         <div class="mt-8">
-            <h3 class="font-expedition text-sm font-semibold text-mountain-300 mb-3">Log Ekspedisi</h3>
+            <h3 class="font-expedition text-sm font-semibold text-[#cdc2a0] mb-3 tracking-wide">Log Ekspedisi</h3>
             <div class="space-y-2 max-h-64 overflow-y-auto">
                 @foreach($allTurns as $turn)
-                <div class="p-3 rounded-lg bg-mountain-900/50 border border-mountain-800 text-xs">
+                <div class="p-3 notch-sm bg-[#1c1810] border border-[#332b1c] text-xs font-instrument">
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="font-semibold text-mountain-200">{{ $turn->player->user->name }}</span>
-                        <span class="text-mountain-500">pilih</span>
-                        <span class="font-bold text-trust-300">{{ $turn->chosen_option }}</span>
+                        <span class="font-semibold text-[#e8dfc8] font-field">{{ $turn->player->user->name }}</span>
+                        <span class="text-[#8a6a30]">pilih</span>
+                        <span class="font-bold text-[#d6a94e]">{{ $turn->chosen_option }}</span>
                         @if($turn->was_hidden)
-                            <span class="px-1.5 py-0.5 rounded text-trust-300 bg-trust-900 text-[10px]">HIDDEN</span>
+                            <span class="pill-notch pill-brass">HIDDEN</span>
                         @endif
                     </div>
-                    <div class="flex gap-2 text-mountain-400 flex-wrap">
+                    <div class="flex gap-2 text-[#a89c7d] flex-wrap">
                         <span>MP{{ $turn->mp_effect >= 0 ? '+' : '' }}{{ $turn->mp_effect }}</span>
                         <span>SP{{ $turn->sp_effect >= 0 ? '+' : '' }}{{ $turn->sp_effect }}</span>
                         <span>TT{{ $turn->tt_effect >= 0 ? '+' : '' }}{{ $turn->tt_effect }}</span>
                         @if($turn->reputation_effect)
-                            <span class="{{ $turn->reputation_effect >= 0 ? 'text-camp-300' : 'text-crisis-400' }}">R{{ $turn->reputation_effect >= 0 ? '+' : '' }}{{ $turn->reputation_effect }}</span>
+                            <span class="{{ $turn->reputation_effect >= 0 ? 'text-[#7fae6c]' : 'text-[#e6603a]' }}">R{{ $turn->reputation_effect >= 0 ? '+' : '' }}{{ $turn->reputation_effect }}</span>
                         @endif
                         @if($turn->risk_die_result)
-                            <span class="text-mountain-500">| Die:{{ $turn->risk_die_result }}</span>
+                            <span class="text-[#8a6a30]">| Die:{{ $turn->risk_die_result }}</span>
                         @endif
                         @if($turn->dysfunction_triggered)
-                            <span class="text-crisis-400">| Dysfunction!</span>
+                            <span class="text-[#e6603a]">| Dysfunction!</span>
                         @endif
                         @if($turn->cross_player_effects && count($turn->cross_player_effects) > 0)
-                            <span class="text-camp-300">| Tim Effect</span>
+                            <span class="text-[#7fae6c]">| Tim Effect</span>
                         @endif
                     </div>
                     @if($turn->hidden_info_shown)
-                        <div class="mt-1 text-trust-400 italic text-[11px]">{{ $turn->hidden_info_shown }}</div>
+                        <div class="mt-1 text-[#d6a94e] italic text-[11px] font-field">{{ $turn->hidden_info_shown }}</div>
                     @endif
                 </div>
                 @endforeach
                 @if($allTurns->isEmpty())
-                    <p class="text-mountain-600 text-xs text-center py-4">Belum ada giliran.</p>
+                    <p class="text-[#4a3a1b] text-xs text-center py-4 font-field">Belum ada giliran.</p>
                 @endif
             </div>
         </div>

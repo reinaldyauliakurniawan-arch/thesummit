@@ -1,101 +1,107 @@
 @props(['card'=>null,'showEffects'=>false,'effects'=>[],'riskDieResult'=>null,'dysfunction'=>null,'choosing'=>false,'wasHidden'=>false,'hiddenInfo'=>null,'createdConsequences'=>[],'crossPlayerEffects'=>[]])
 @if($card)
-@php
-    $levelBorder = $card->level === 'basecamp' ? 'border-basecamp-500/60' : ($card->level === 'camp' ? 'border-camp-500/60' : 'border-summit-500/60');
-    $crisisTopBorder = $card->tipe === 'krisis' ? 'border-t-4 border-t-crisis-500' : '';
-@endphp
-<div class="max-w-lg mx-auto">
-<div class="flex items-center justify-center gap-2 mb-3">
-<span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider {{ $card->level==='basecamp'?'bg-basecamp-500 text-white':($card->level==='camp'?'bg-camp-600 text-white':'bg-summit-600 text-summit-50') }}">{{ ucfirst($card->level) }}</span>
-<span class="px-2 py-0.5 rounded-full text-xs bg-mountain-700 text-mountain-200">{{ ucfirst($card->kategori) }}</span>
-@if($card->tipe==='krisis')<span class="px-2 py-0.5 rounded-full text-xs bg-crisis-950/50 text-crisis-400 border border-crisis-500/30 font-bold">KRISIS</span>@endif
-@if($card->has_hidden_info)<span class="px-2 py-0.5 rounded-full text-xs bg-trust-900 text-trust-300">? Tersembunyi</span>@endif
-</div>
-<div class="relative bg-mountain-800 rounded-2xl border-2 {{ $levelBorder }} {{ $crisisTopBorder }} p-6 shadow-xl {{ $choosing?'animate-card-flip':'animate-fade-in' }} overflow-hidden">
-    {{-- Level-based background texture --}}
-    <div class="absolute inset-0 bg-[url('/images/expedition/{{ $card->level }}-bg.jpg')] bg-cover bg-center bg-blend-overlay opacity-[0.14] pointer-events-none rounded-2xl"></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-mountain-800/40 via-mountain-800/70 to-mountain-800/95 pointer-events-none rounded-2xl"></div>
-    <div class="relative z-10">
-        <x-card-illustration :kategori="$card->kategori" :tipe="$card->tipe" />
-        <div class="mb-6"><h4 class="text-xs uppercase tracking-wider text-mountain-400 mb-2 font-semibold">Situasi Ekspedisi</h4><p class="text-mountain-100 leading-relaxed text-sm">{{ $card->teks_situasi }}</p></div>
-@if($choosing)
-<p class="text-center text-mountain-500 text-xs italic mb-3">Konsekuensi akan terungkap setelah kamu memilih.</p>
-<div class="space-y-3">
-<button wire:click="chooseOption('A')" class="w-full text-left p-4 rounded-xl border-2 border-mountain-600 hover:border-trust-400 bg-mountain-900/50 hover:bg-mountain-900 transition-all group">
-<div class="flex items-start gap-3"><span class="w-8 h-8 rounded-lg bg-mountain-700 group-hover:bg-trust-500 flex items-center justify-center text-sm font-bold text-mountain-200 group-hover:text-white transition-colors flex-shrink-0">A</span><div>
-<p class="text-mountain-100 text-sm leading-relaxed">{{ $card->opsi_a_teks }}</p>
-</div></div></button>
-<button wire:click="chooseOption('B')" class="w-full text-left p-4 rounded-xl border-2 border-mountain-600 hover:border-trust-400 bg-mountain-900/50 hover:bg-mountain-900 transition-all group">
-<div class="flex items-start gap-3"><span class="w-8 h-8 rounded-lg bg-mountain-700 group-hover:bg-trust-500 flex items-center justify-center text-sm font-bold text-mountain-200 group-hover:text-white transition-colors flex-shrink-0">B</span><div>
-<p class="text-mountain-100 text-sm leading-relaxed">{{ $card->opsi_b_teks }}</p>
-</div></div></button>
-</div>@endif
+<div class="max-w-lg mx-auto relative">
+    <div class="absolute -top-3 -right-2 w-14 h-14 z-20">
+        <x-expedition-stamp :level="$card->level" />
     </div>
+    <div class="flex items-center gap-2 mb-3">
+        <span class="pill-notch pill-brass">{{ ucfirst($card->level) }}</span>
+        <span class="pill-notch" style="color:#a89c7d;border-color:#4a3a1b;background:rgba(255,255,255,.02);">{{ ucfirst($card->kategori) }}</span>
+        @if($card->tipe==='krisis')<span class="pill-notch pill-ember">Krisis</span>@endif
+        @if($card->has_hidden_info)<span class="pill-notch" style="color:#a89c7d;border-color:#4a3a1b;border-style:dashed;">? Tersembunyi</span>@endif
+    </div>
+    <div class="card-frame {{ $choosing?'animate-card-flip':'animate-fade-in' }}">
+        <div class="card-frame-inner p-6">
+            <div class="grain-overlay"></div>
+            <x-compass-watermark />
+            <div class="relative z-10">
+                <x-card-illustration :kategori="$card->kategori" :tipe="$card->tipe" />
+                <div class="mb-6">
+                    <h4 class="font-instrument text-[10px] uppercase tracking-[.18em] text-[#8a6a30] mb-2">Situasi Ekspedisi</h4>
+                    <p class="font-field text-[#e8dfc8] leading-relaxed text-[15px]">{{ $card->teks_situasi }}</p>
+                </div>
+                @if($choosing)
+                <p class="text-center text-[#a89c7d] text-[10px] italic mb-3 font-instrument">Konsekuensi akan terungkap setelah kamu memilih.</p>
+                <div class="space-y-3">
+                    <button wire:click="chooseOption('A')" class="opt-tablet">
+                        <span class="tag-notch absolute left-3.5 top-1/2 -translate-y-1/2 w-[26px] h-[26px]">A</span>
+                        {{ $card->opsi_a_teks }}
+                    </button>
+                    <button wire:click="chooseOption('B')" class="opt-tablet">
+                        <span class="tag-notch absolute left-3.5 top-1/2 -translate-y-1/2 w-[26px] h-[26px]">B</span>
+                        {{ $card->opsi_b_teks }}
+                    </button>
+                </div>
+                @endif
+            </div>
+        </div>
+    </div>
+    @if($card->tipe==='krisis' && $choosing)<p class="text-center text-[#e6603a] text-[10px] mt-3 animate-pulse font-instrument">Kartu Krisis! Risk Die otomatis setelah pilihan.</p>@endif
 </div>
-@if($card->tipe==='krisis' && $choosing)<p class="text-center text-crisis-400 text-xs mt-3 animate-pulse">Kartu Krisis! Risk Die otomatis setelah pilihan.</p>@endif
-</div>@endif
+@endif
 
 @if($showEffects && !empty($effects))
 <div class="max-w-lg mx-auto animate-slide-up">
-<div class="relative bg-mountain-800 rounded-2xl border border-mountain-600 p-6 shadow-xl text-center overflow-hidden">
-    {{-- Topo texture on effects card --}}
-    <div class="absolute inset-0 bg-[url('/images/expedition/topo-texture.jpg')] bg-cover bg-blend-overlay opacity-[0.04] pointer-events-none rounded-2xl"></div>
-    <div class="relative z-10">
-        <h4 class="text-xs uppercase tracking-wider text-mountain-400 mb-4 font-semibold">Efek Diterapkan</h4>
-        <div class="flex justify-center gap-4 mb-4">
-        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['mp']>=0?'text-trust-300':'text-crisis-400' }}">{{ $effects['mp']>=0?'+':'' }}{{ $effects['mp'] }}</div><div class="text-xs text-mountain-400">MP</div></div>
-        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['sp']>=0?'text-trust-300':'text-crisis-400' }}">{{ $effects['sp']>=0?'+':'' }}{{ $effects['sp'] }}</div><div class="text-xs text-mountain-400">SP</div></div>
-        <div class="text-center"><div class="text-2xl font-bold font-mono {{ $effects['tt']>=0?'text-trust-300':'text-crisis-400' }}">{{ $effects['tt']>=0?'+':'' }}{{ $effects['tt'] }}</div><div class="text-xs text-mountain-400">TT</div></div>
-        </div>
-    @isset($effects['reputation'])
-        <div class="flex justify-center gap-4 mb-2">
-        <div class="text-center"><div class="text-lg font-bold font-mono {{ ($effects['reputation']??0)>=0?'text-camp-300':'text-crisis-400' }}">{{ ($effects['reputation']??0)>=0?'+':'' }}{{ $effects['reputation']??0 }}</div><div class="text-xs text-mountain-400">Rep</div></div>
-        <div class="text-center"><div class="text-lg font-bold font-mono {{ ($effects['resources']??0)>=0?'text-mountain-300':'text-crisis-400' }}">{{ ($effects['resources']??0)>=0?'+':'' }}{{ $effects['resources']??0 }}</div><div class="text-xs text-mountain-400">Res</div></div>
-        </div>
-    @endisset
-    @if($riskDieResult !== null)
-        <div class="border-t border-mountain-700 pt-3 mt-3">
-        <div class="text-sm text-mountain-300 mb-1">Risk Die: <span class="font-bold text-lg">{{ $riskDieResult }}</span></div>
-        @if($riskDieResult<=2)<div class="text-crisis-400 text-xs font-semibold animate-pulse">Dysfunction: {{ config("summit.dysfunctions.$dysfunction",$dysfunction) }} (TT -2) | Semua pemain terdampak!</div>
-        @elseif($riskDieResult>=5)<div class="text-trust-400 text-xs font-semibold">Bonus! TT +1</div>
-        @else<div class="text-mountain-400 text-xs">Netral</div>@endif
-        </div>@endif
+    <div class="card-frame">
+        <div class="card-frame-inner p-6 text-center">
+            <div class="grain-overlay" style="opacity:.25;"></div>
+            <div class="relative z-10">
+                <h4 class="font-instrument text-[10px] uppercase tracking-[.18em] text-[#8a6a30] mb-4">Efek Diterapkan</h4>
+                <div class="flex justify-center gap-5 mb-2 flex-wrap">
+                    <x-stat-gauge :value="$effects['mp']" :max="4" label="MP" />
+                    <x-stat-gauge :value="$effects['sp']" :max="4" label="SP" />
+                    <x-stat-gauge :value="$effects['tt']" :max="4" label="TT" />
+                </div>
+                @isset($effects['reputation'])
+                <div class="flex justify-center gap-5 mb-2 mt-2">
+                    <x-stat-gauge :value="$effects['reputation']??0" :max="4" label="Rep" />
+                    <x-stat-gauge :value="$effects['resources']??0" :max="4" label="Res" />
+                </div>
+                @endisset
 
-    {{-- V2: Hidden Info Reveal --}}
-    @if($wasHidden && $hiddenInfo)
-        <div class="border-t border-trust-700 pt-3 mt-3 animate-fade-in">
-        <div class="text-trust-300 text-xs font-semibold mb-1">Informasi Tersembunyi Terungkap:</div>
-        <div class="text-trust-200 text-xs italic">{{ $hiddenInfo }}</div>
-        </div>
-    @endif
+                @if($riskDieResult !== null)
+                <div class="border-t border-[#4a3a1b] pt-3 mt-3 font-instrument">
+                    <div class="text-sm text-[#cdc2a0] mb-1">Risk Die: <span class="font-bold text-lg text-[#e8dfc8]">{{ $riskDieResult }}</span></div>
+                    @if($riskDieResult<=2)<div class="text-[#e6603a] text-xs font-semibold animate-pulse">Dysfunction: {{ config("summit.dysfunctions.$dysfunction",$dysfunction) }} (TT -2) | Semua pemain terdampak!</div>
+                    @elseif($riskDieResult>=5)<div class="text-[#7fae6c] text-xs font-semibold">Bonus! TT +1</div>
+                    @else<div class="text-[#a89c7d] text-xs">Netral</div>@endif
+                </div>
+                @endif
 
-    {{-- V2: Created Consequences --}}
-    @if(!empty($createdConsequences))
-        <div class="border-t border-trust-700 pt-3 mt-3">
-        <div class="text-trust-300 text-xs font-semibold mb-1">Konsekuensi Baru Dibuat:</div>
-        @foreach($createdConsequences as $cons)
-        <div class="text-xs text-trust-200 mt-1">
-            @if($cons['is_hidden'])
-            <span class="text-trust-400">???</span> — <span class="text-mountain-400">efek tersembunyi</span>
-            @else
-            ⏳ {{ $cons['description'] }} ({{ $cons['stat'] }}{{ $cons['delta']>=0?'+':'' }}{{ $cons['delta'] }})
-            @endif
-        </div>
-        @endforeach
-        </div>
-    @endif
+                @if($wasHidden && $hiddenInfo)
+                <div class="border-t border-[#6b5325] pt-3 mt-3 animate-fade-in font-instrument">
+                    <div class="text-[#d6a94e] text-xs font-semibold mb-1">Informasi Tersembunyi Terungkap:</div>
+                    <div class="text-[#cdc2a0] text-xs italic font-field">{{ $hiddenInfo }}</div>
+                </div>
+                @endif
 
-    {{-- V2: Cross-Player Effects --}}
-    @if(!empty($crossPlayerEffects))
-        <div class="border-t border-camp-700 pt-3 mt-3">
-        <div class="text-camp-300 text-xs font-semibold mb-1">Efek ke Tim:</div>
-        @foreach($crossPlayerEffects as $cpe)
-        <div class="text-xs text-camp-200 mt-1">
-            {{ $cpe['target'] }}: {{ $cpe['stat'] }}{{ $cpe['delta']>=0?'+':'' }}{{ $cpe['delta'] }} — {{ $cpe['description'] }}
-        </div>
-        @endforeach
-        </div>
-    @endif
+                @if(!empty($createdConsequences))
+                <div class="border-t border-[#6b5325] pt-3 mt-3 font-instrument text-left">
+                    <div class="text-[#d6a94e] text-xs font-semibold mb-1 text-center">Konsekuensi Baru Dibuat:</div>
+                    @foreach($createdConsequences as $cons)
+                    <div class="text-xs text-[#cdc2a0] mt-1">
+                        @if($cons['is_hidden'])
+                        <span class="text-[#d6a94e]">???</span> — <span class="text-[#a89c7d]">efek tersembunyi</span>
+                        @else
+                        ⏳ {{ $cons['description'] }} ({{ $cons['stat'] }}{{ $cons['delta']>=0?'+':'' }}{{ $cons['delta'] }})
+                        @endif
+                    </div>
+                    @endforeach
+                </div>
+                @endif
 
+                @if(!empty($crossPlayerEffects))
+                <div class="border-t border-[#3d5a33] pt-3 mt-3 font-instrument text-left">
+                    <div class="text-[#7fae6c] text-xs font-semibold mb-1 text-center">Efek ke Tim:</div>
+                    @foreach($crossPlayerEffects as $cpe)
+                    <div class="text-xs text-[#a8c79a] mt-1">
+                        {{ $cpe['target'] }}: {{ $cpe['stat'] }}{{ $cpe['delta']>=0?'+':'' }}{{ $cpe['delta'] }} — {{ $cpe['description'] }}
+                    </div>
+                    @endforeach
+                </div>
+                @endif
+            </div>
+        </div>
     </div>
-</div></div>@endif
+</div>
+@endif

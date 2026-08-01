@@ -2,11 +2,11 @@
 @php
 $sizes=['sm'=>'text-xs px-2 py-0.5','md'=>'text-sm px-3 py-1','lg'=>'text-base px-4 py-1.5'];
 $bg=[
-    'the_carrier'=>'bg-trust-500 text-white ring-2 ring-trust-300 animate-pulse-gold',
-    'the_catalyst'=>'bg-camp-500 text-white ring-2 ring-camp-300',
-    'the_strategist'=>'bg-summit-500 text-summit-950 ring-2 ring-summit-300',
-    'solo_peak'=>'bg-summit-500 text-summit-950 ring-2 ring-summit-300',
-    'none'=>'bg-mountain-700 text-mountain-200',
+    'the_carrier'=>'style="background:#d6a94e;color:#15130f;box-shadow:0 0 0 2px #e3c483;"',
+    'the_catalyst'=>'style="background:#6b9c5a;color:#15130f;box-shadow:0 0 0 2px #a8c79a;"',
+    'the_strategist'=>'style="background:#8a97ab;color:#15130f;box-shadow:0 0 0 2px #c3ccd8;"',
+    'solo_peak'=>'style="background:#8a97ab;color:#15130f;box-shadow:0 0 0 2px #c3ccd8;"',
+    'none'=>'style="background:#2c2519;color:#cdc2a0;"',
 ];
 $labels=[
     'the_carrier'=>'The Carrier',
@@ -34,11 +34,11 @@ $badgeIcons=[
 $badgeSizePx=['sm'=>'w-8 h-8','md'=>'w-11 h-11','lg'=>'w-16 h-16'];
 @endphp
 <div class="inline-flex flex-col items-center gap-1" title="{{ $descriptions[$badge]??'' }}">
-    <div class="{{ $badgeSizePx[$size]??$badgeSizePx['md'] }} rounded-full {{ $bg[$badge]??$bg['none'] }} flex items-center justify-center shadow-lg">
+    <div class="{{ $badgeSizePx[$size]??$badgeSizePx['md'] }} rounded-full flex items-center justify-center" {!! $bg[$badge]??$bg['none'] !!}>
         <svg class="w-1/2 h-1/2" fill="currentColor" viewBox="0 0 24 24">{!! $badgeIcons[$badge]??$badgeIcons['none'] !!}</svg>
     </div>
-    <div class="flex items-center gap-1">
-        @if($rank!==null)<span class="font-mono opacity-70 {{ $sizes[$size]??$sizes['md'] }}">#{{ $rank }}</span>@endif
-        <span class="{{ $sizes[$size]??$sizes['md'] }} font-bold">{{ $labels[$badge]??'Climber' }}</span>
+    <div class="flex items-center gap-1 font-instrument">
+        @if($rank!==null)<span class="opacity-70 {{ $sizes[$size]??$sizes['md'] }}">#{{ $rank }}</span>@endif
+        <span class="{{ $sizes[$size]??$sizes['md'] }} font-bold text-[#e8dfc8]">{{ $labels[$badge]??'Climber' }}</span>
     </div>
 </div>

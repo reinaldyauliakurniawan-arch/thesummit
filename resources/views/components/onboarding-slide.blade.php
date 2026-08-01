@@ -46,14 +46,17 @@
    class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
    @keydown.escape.window="dismiss()">
 
-    <div class="bg-mountain-800 rounded-2xl border border-mountain-600 max-w-lg w-full shadow-2xl overflow-hidden animate-slide-up"
+    <div class="card-frame max-w-lg w-full animate-slide-up"
          @click.outside="dismiss()">
+        <div class="card-frame-inner overflow-hidden">
+        <div class="grain-overlay" style="opacity:.25;"></div>
+        <div class="relative z-10">
 
         <!-- Slide indicator dots -->
         <div class="flex justify-center gap-1.5 pt-4">
             <template x-for="(s, i) in slides" :key="i">
-                <div class="h-2 rounded-full transition-all duration-300"
-                     :class="i === slide ? 'bg-trust-400 w-6' : 'bg-mountain-600 w-2'">
+                <div class="h-2 transition-all duration-300"
+                     :class="i === slide ? 'bg-[#d6a94e] w-6' : 'bg-[#332b1c] w-2'">
                 </div>
             </template>
         </div>
@@ -61,44 +64,44 @@
         <!-- Slide content -->
         <div class="p-6 text-center">
             <!-- Icon -->
-            <div class="mx-auto w-16 h-16 rounded-2xl bg-mountain-700 flex items-center justify-center mb-4">
+            <div class="mx-auto w-16 h-16 notch-sm bg-[#1c1810] border border-[#4a3a1b] flex items-center justify-center mb-4">
                 <!-- Mountain icon -->
-                <svg x-show="slides[slide].icon === 'mountain'" class="w-8 h-8 text-trust-400" fill="currentColor" viewBox="0 0 24 24">
+                <svg x-show="slides[slide].icon === 'mountain'" class="w-8 h-8 text-[#d6a94e]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2L2 22h20L12 2z"/>
                 </svg>
                 <!-- Compass icon -->
-                <svg x-show="slides[slide].icon === 'compass'" class="w-8 h-8 text-basecamp-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg x-show="slides[slide].icon === 'compass'" class="w-8 h-8 text-[#d6a94e]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <circle cx="12" cy="12" r="10"/><path d="M16.24 7.76l-2.12 6.36-6.36 2.12 2.12-6.36 6.36-2.12z"/>
                 </svg>
                 <!-- Cards icon -->
-                <svg x-show="slides[slide].icon === 'cards'" class="w-8 h-8 text-camp-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg x-show="slides[slide].icon === 'cards'" class="w-8 h-8 text-[#7fae6c]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/>
                 </svg>
                 <!-- Bridge icon -->
-                <svg x-show="slides[slide].icon === 'bridge'" class="w-8 h-8 text-trust-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <svg x-show="slides[slide].icon === 'bridge'" class="w-8 h-8 text-[#d6a94e]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/><line x1="20" y1="22" x2="20" y2="15"/>
                 </svg>
                 <!-- Badge icon -->
-                <svg x-show="slides[slide].icon === 'badge'" class="w-8 h-8 text-summit-400" fill="currentColor" viewBox="0 0 24 24">
+                <svg x-show="slides[slide].icon === 'badge'" class="w-8 h-8 text-[#8a97ab]" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                 </svg>
             </div>
 
             <!-- Title -->
-            <h3 class="text-xl font-bold text-mountain-100 mb-3 font-expedition"
+            <h3 class="text-xl font-bold text-[#e8dfc8] mb-3 font-expedition"
                 x-text="slides[slide].title"></h3>
 
             <!-- Body -->
-            <p class="text-mountain-300 text-sm leading-relaxed"
+            <p class="text-[#cdc2a0] text-sm leading-relaxed font-field"
                x-text="slides[slide].body"></p>
         </div>
 
         <!-- Navigation -->
-        <div class="px-6 pb-6 flex items-center justify-between">
+        <div class="px-6 pb-6 flex items-center justify-between font-instrument text-xs uppercase tracking-wider">
             <button x-show="slide > 0"
                     x-cloak
                     @click="prev()"
-                    class="text-sm text-mountain-400 hover:text-mountain-200 transition-colors">
+                    class="text-[#a89c7d] hover:text-[#e8dfc8] transition-colors">
                 &larr; Kembali
             </button>
 
@@ -106,14 +109,16 @@
 
             <div class="flex gap-3">
                 <button @click="dismiss()"
-                        class="text-sm text-mountain-500 hover:text-mountain-300 transition-colors px-3 py-2">
+                        class="text-[#8a6a30] hover:text-[#cdc2a0] transition-colors px-3 py-2">
                     Lewati
                 </button>
                 <button @click="isLast() ? dismiss() : next()"
-                        class="px-5 py-2 rounded-xl bg-trust-500 text-mountain-950 font-bold text-sm hover:bg-trust-400 transition-colors"
+                        class="px-5 py-2 notch-sm bg-[#d6a94e] text-[#15130f] font-bold hover:bg-[#e3c483] transition-colors"
                         x-text="isLast() ? 'Mulai Bermain!' : 'Lanjut'">
                 </button>
             </div>
+        </div>
+        </div>
         </div>
     </div>
 </div>
