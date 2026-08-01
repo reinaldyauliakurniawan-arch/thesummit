@@ -1,22 +1,48 @@
 <div wire:poll.10s>
-    <div class="max-w-4xl mx-auto px-4 pt-6 pb-4">
-        <h1 class="text-2xl font-bold font-expedition text-mountain-100">Basecamp Dashboard</h1>
-        <p class="text-mountain-400 text-sm mt-1">Selamat datang, {{ auth()->user()->name }}!</p>
+    <!-- Hero banner with background image -->
+    <div class="relative w-full h-60 md:h-80 overflow-hidden">
+        <div class="absolute inset-0 bg-[url('/images/expedition/hero-bg.jpg')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-mountain-950 via-mountain-950/70 to-mountain-950/20"></div>
+        <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+            <div class="max-w-4xl mx-auto">
+                <h1 class="text-3xl md:text-4xl font-bold font-expedition text-white drop-shadow-lg">Basecamp Dashboard</h1>
+                <p class="text-mountain-200 text-sm mt-1">Selamat datang, {{ auth()->user()->name }}!</p>
+            </div>
+        </div>
     </div>
 
-    <div class="max-w-4xl mx-auto px-4 pb-8 space-y-6">
+    <div class="max-w-4xl mx-auto px-4 pb-8 space-y-6 -mt-2">
         <!-- Create room CTA -->
-        <div class="bg-mountain-900/50 rounded-2xl border border-mountain-800 p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="bg-mountain-900/50 rounded-2xl border border-trust-500/30 animate-pulse-gold p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-                <h2 class="font-semibold text-mountain-100">Mulai Ekspedisi Baru</h2>
+                <h2 class="font-semibold text-mountain-100 text-lg">Mulai Ekspedisi Baru</h2>
                 <p class="text-sm text-mountain-400">Buat room dan undang 2-5 pendaki lainnya.</p>
             </div>
             <form method="POST" action="{{ route('rooms.store') }}">
                 @csrf
-                <button class="px-6 py-2.5 rounded-xl bg-trust-500 text-mountain-950 font-bold hover:bg-trust-400 text-sm whitespace-nowrap">
-                    + Buat Room
+                <button class="px-8 py-3.5 rounded-xl bg-trust-500 text-mountain-950 font-bold hover:bg-trust-400 text-base whitespace-nowrap">
+                    &#9650; Buat Room
                 </button>
             </form>
+        </div>
+
+        <!-- 3-step expedition explainer -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+            <div class="rounded-2xl border border-basecamp-700/40 bg-basecamp-950/30 p-5">
+                <div class="text-basecamp-400 text-xs font-bold uppercase tracking-wider mb-2">Tahap 1</div>
+                <h3 class="font-expedition text-lg text-basecamp-200 mb-1">Basecamp</h3>
+                <p class="text-sm text-mountain-400">Bangun fondasi kepemimpinan lewat keputusan sehari-hari.</p>
+            </div>
+            <div class="rounded-2xl border border-camp-700/40 bg-camp-950/30 p-5">
+                <div class="text-camp-400 text-xs font-bold uppercase tracking-wider mb-2">Tahap 2</div>
+                <h3 class="font-expedition text-lg text-camp-200 mb-1">Camp</h3>
+                <p class="text-sm text-mountain-400">Hadapi dilema tim yang lebih kompleks dan penuh tekanan.</p>
+            </div>
+            <div class="rounded-2xl border border-summit-700/40 bg-summit-950/30 p-5">
+                <div class="text-summit-400 text-xs font-bold uppercase tracking-wider mb-2">Tahap 3</div>
+                <h3 class="font-expedition text-lg text-summit-200 mb-1">Summit</h3>
+                <p class="text-sm text-mountain-400">Pimpin di level organisasi dengan taruhan tertinggi.</p>
+            </div>
         </div>
 
         <!-- Notifications -->
