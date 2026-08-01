@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.5s="refreshBoard">
     <div class="relative w-full h-32 -mt-4 mb-4 overflow-hidden bg-[#1c1810]">
     <div class="absolute inset-0" style="background-image:repeating-radial-gradient(circle at 15% 30%, transparent 0, transparent 30px, rgba(214,169,78,0.06) 31px, transparent 32px), repeating-radial-gradient(circle at 85% 70%, transparent 0, transparent 44px, rgba(214,169,78,0.05) 45px, transparent 46px);"></div>
     <div class="absolute inset-0 flex items-center justify-center">
