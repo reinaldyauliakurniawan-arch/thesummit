@@ -10,7 +10,9 @@
 <!-- Winner display -->
 @if($results->first() && $results->first()->badge !== 'none')
 <div class="text-center mb-8 animate-slide-up">
+    <div class="animate-badge-glow inline-block">
     <x-player-badge :badge="$results->first()->badge" :rank="1" size="lg" />
+    </div>
     <div class="mt-3">
         <h2 class="text-2xl font-bold text-mountain-100">{{ $results->first()->player->user->name }}</h2>
         <p class="text-mountain-400 text-sm">Skor: {{ $results->first()->final_score }}</p>

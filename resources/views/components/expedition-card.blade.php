@@ -12,55 +12,21 @@
 @if($card->has_hidden_info)<span class="px-2 py-0.5 rounded-full text-xs bg-summit-800 text-summit-300">? Tersembunyi</span>@endif
 </div>
 <div class="relative bg-mountain-800 rounded-2xl border-2 {{ $levelBorder }} {{ $crisisTopBorder }} p-6 shadow-xl {{ $choosing?'animate-card-flip':'animate-fade-in' }} overflow-hidden">
-    {{-- Topo texture overlay --}}
-    <div class="absolute inset-0 bg-[url('/images/expedition/topo-texture.jpg')] bg-cover bg-blend-overlay opacity-[0.06] pointer-events-none rounded-2xl"></div>
+    {{-- Level-based background texture --}}
+    <div class="absolute inset-0 bg-[url('/images/expedition/{{ $card->level }}-bg.jpg')] bg-cover bg-center bg-blend-overlay opacity-[0.14] pointer-events-none rounded-2xl"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-mountain-800/40 via-mountain-800/70 to-mountain-800/95 pointer-events-none rounded-2xl"></div>
     <div class="relative z-10">
         <div class="mb-6"><h4 class="text-xs uppercase tracking-wider text-mountain-400 mb-2 font-semibold">Situasi Ekspedisi</h4><p class="text-mountain-100 leading-relaxed text-sm">{{ $card->teks_situasi }}</p></div>
 @if($choosing)
+<p class="text-center text-mountain-500 text-xs italic mb-3">Konsekuensi akan terungkap setelah kamu memilih.</p>
 <div class="space-y-3">
 <button wire:click="chooseOption('A')" class="w-full text-left p-4 rounded-xl border-2 border-mountain-600 hover:border-trust-400 bg-mountain-900/50 hover:bg-mountain-900 transition-all group">
 <div class="flex items-start gap-3"><span class="w-8 h-8 rounded-lg bg-mountain-700 group-hover:bg-trust-500 flex items-center justify-center text-sm font-bold text-mountain-200 group-hover:text-white transition-colors flex-shrink-0">A</span><div>
 <p class="text-mountain-100 text-sm leading-relaxed">{{ $card->opsi_a_teks }}</p>
-<div class="flex gap-2 mt-1.5 text-xs flex-wrap">
-<span class="px-1.5 py-0.5 rounded bg-basecamp-900/50 text-basecamp-300">MP {{ $card->opsi_a_mp>=0?'+':'' }}{{ $card->opsi_a_mp }}</span>
-<span class="px-1.5 py-0.5 rounded bg-camp-900/50 text-camp-300">SP {{ $card->opsi_a_sp>=0?'+':'' }}{{ $card->opsi_a_sp }}</span>
-<span class="px-1.5 py-0.5 rounded bg-trust-900/50 text-trust-300">TT {{ $card->opsi_a_tt>=0?'+':'' }}{{ $card->opsi_a_tt }}</span>
-@if($card->opsi_a_reputation != 0)<span class="px-1.5 py-0.5 rounded bg-summit-900/50 text-summit-300">R {{ $card->opsi_a_reputation>=0?'+':'' }}{{ $card->opsi_a_reputation }}</span>@endif
-@if($card->opsi_a_resources != 0)<span class="px-1.5 py-0.5 rounded bg-mountain-700/50 text-mountain-300">Res {{ $card->opsi_a_resources>=0?'+':'' }}{{ $card->opsi_a_resources }}</span>@endif
-</div>
-@if($card->opsi_a_cross_player && count($card->opsi_a_cross_player) > 0)
-<div class="mt-1 text-xs text-camp-300 flex items-center gap-1">
-<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
-<span>Ada efek ke pemain lain</span>
-</div>
-@endif
-@if($card->opsi_a_delayed_effects && count($card->opsi_a_delayed_effects) > 0)
-<div class="mt-1 text-xs text-summit-300 flex items-center gap-1">
-<span>⏳ Konsekuensi tertunda</span>
-</div>
-@endif
 </div></div></button>
 <button wire:click="chooseOption('B')" class="w-full text-left p-4 rounded-xl border-2 border-mountain-600 hover:border-trust-400 bg-mountain-900/50 hover:bg-mountain-900 transition-all group">
 <div class="flex items-start gap-3"><span class="w-8 h-8 rounded-lg bg-mountain-700 group-hover:bg-trust-500 flex items-center justify-center text-sm font-bold text-mountain-200 group-hover:text-white transition-colors flex-shrink-0">B</span><div>
 <p class="text-mountain-100 text-sm leading-relaxed">{{ $card->opsi_b_teks }}</p>
-<div class="flex gap-2 mt-1.5 text-xs flex-wrap">
-<span class="px-1.5 py-0.5 rounded bg-basecamp-900/50 text-basecamp-300">MP {{ $card->opsi_b_mp>=0?'+':'' }}{{ $card->opsi_b_mp }}</span>
-<span class="px-1.5 py-0.5 rounded bg-camp-900/50 text-camp-300">SP {{ $card->opsi_b_sp>=0?'+':'' }}{{ $card->opsi_b_sp }}</span>
-<span class="px-1.5 py-0.5 rounded bg-trust-900/50 text-trust-300">TT {{ $card->opsi_b_tt>=0?'+':'' }}{{ $card->opsi_b_tt }}</span>
-@if($card->opsi_b_reputation != 0)<span class="px-1.5 py-0.5 rounded bg-summit-900/50 text-summit-300">R {{ $card->opsi_b_reputation>=0?'+':'' }}{{ $card->opsi_b_reputation }}</span>@endif
-@if($card->opsi_b_resources != 0)<span class="px-1.5 py-0.5 rounded bg-mountain-700/50 text-mountain-300">Res {{ $card->opsi_b_resources>=0?'+':'' }}{{ $card->opsi_b_resources }}</span>@endif
-</div>
-@if($card->opsi_b_cross_player && count($card->opsi_b_cross_player) > 0)
-<div class="mt-1 text-xs text-camp-300 flex items-center gap-1">
-<svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"/></svg>
-<span>Ada efek ke pemain lain</span>
-</div>
-@endif
-@if($card->opsi_b_delayed_effects && count($card->opsi_b_delayed_effects) > 0)
-<div class="mt-1 text-xs text-summit-300 flex items-center gap-1">
-<span>⏳ Konsekuensi tertunda</span>
-</div>
-@endif
 </div></div></button>
 </div>@endif
     </div>

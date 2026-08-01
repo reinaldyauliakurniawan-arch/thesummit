@@ -1,5 +1,9 @@
 <div wire:poll.5s>
-    <div class="max-w-2xl mx-auto px-4 pt-4 pb-8">
+    <div class="relative w-full h-32 -mt-4 mb-4 overflow-hidden">
+    <div class="absolute inset-0 bg-[url('/images/expedition/{{ $myPlayer->current_level }}-bg.jpg')] bg-cover bg-center"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-mountain-950 via-mountain-950/60 to-mountain-950/10"></div>
+</div>
+<div class="max-w-2xl mx-auto px-4 pt-4 pb-8">
 
         <!-- Header -->
         <div class="flex items-center justify-between mb-4">
@@ -24,33 +28,38 @@
         <!-- Player grid with v2 stats -->
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
             @foreach($players as $player)
-            <div class="relative p-2 rounded-xl border {{ $room->current_turn_player_id === $player->id ? 'border-trust-500 bg-mountain-800' : 'border-mountain-800 bg-mountain-900/50' }}">
+            @php
+                $avatarColors = ['bg-trust-500','bg-camp-500','bg-crisis-500','bg-mountain-500'];
+                $avatarColor = $avatarColors[$player->id % count($avatarColors)];
+                $mpPct = min(100, ($player->mp / 12) * 100);
+                $spPct = min(100, ($player->sp / 12) * 100);
+                $ttPct = min(100, ($player->tt / 10) * 100);
+            @endphp
+            <div class="relative p-3 rounded-xl border {{ $room->current_turn_player_id === $player->id ? 'border-trust-500 bg-mountain-800' : 'border-mountain-800 bg-mountain-900/50' }}">
                 @if($room->current_turn_player_id === $player->id)
                     <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-trust-400 rounded-full animate-pulse"></div>
                 @endif
-                <div class="text-xs font-semibold {{ $player->user_id === auth()->id() ? 'text-trust-300' : 'text-mountain-300' }} truncate">
-                    {{ $player->user->name }}{{ $player->user_id === auth()->id() ? ' (kamu)' : '' }}
-                </div>
-                <div class="flex gap-1 mt-1 flex-wrap">
-                    <span class="text-xs text-basecamp-300">M{{ $player->mp }}</span>
-                    <span class="text-xs text-camp-300">S{{ $player->sp }}</span>
-                    <span class="text-xs text-trust-300">T{{ $player->tt }}</span>
-                </div>
-                <div class="flex gap-1 mt-0.5">
-                    <span class="text-xs {{ ($player->reputation ?? 0) >= 0 ? 'text-summit-300' : 'text-crisis-400' }}">R{{ $player->reputation ?? 0 }}</span>
-                    <span class="text-xs text-mountain-400">Res{{ $player->resources ?? 0 }}</span>
-                </div>
-                <div class="text-xs text-mountain-500 mt-0.5">{{ ucfirst($player->current_level) }}</div>
-                @if(($player->promises_kept ?? 0) > 0 || ($player->promises_broken ?? 0) > 0)
-                    <div class="absolute bottom-1 right-1 flex gap-1">
-                        @if(($player->promises_kept ?? 0) > 0)
-                            <span class="text-xs text-trust-500" title="Janji dipenuhi">✓{{$player->promises_kept}}</span>
-                        @endif
-                        @if(($player->promises_broken ?? 0) > 0)
-                            <span class="text-xs text-crisis-500" title="Janji dilanggar">✗{{$player->promises_broken}}</span>
-                        @endif
+                <div class="flex items-center gap-2 mb-2">
+                    <div class="w-6 h-6 rounded-full {{ $avatarColor }} flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0">{{ strtoupper(substr($player->user->name,0,1)) }}</div>
+                    <div class="text-xs font-semibold {{ $player->user_id === auth()->id() ? 'text-trust-300' : 'text-mountain-300' }} truncate">
+                        {{ $player->user->name }}{{ $player->user_id === auth()->id() ? ' (kamu)' : '' }}
                     </div>
-                @endif
+                </div>
+                <div class="space-y-1">
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-mountain-500 w-4">MP</span><div class="flex-1 h-1.5 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-trust-400 rounded-full" style="width:{{ $mpPct }}%"></div></div><span class="text-[10px] text-mountain-400 font-mono w-4 text-right">{{ $player->mp }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-mountain-500 w-4">SP</span><div class="flex-1 h-1.5 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-trust-400 rounded-full" style="width:{{ $spPct }}%"></div></div><span class="text-[10px] text-mountain-400 font-mono w-4 text-right">{{ $player->sp }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-mountain-500 w-4">TT</span><div class="flex-1 h-1.5 bg-mountain-800 rounded-full overflow-hidden"><div class="h-full bg-trust-400 rounded-full" style="width:{{ $ttPct }}%"></div></div><span class="text-[10px] text-mountain-400 font-mono w-4 text-right">{{ $player->tt }}</span></div>
+                </div>
+                <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-mountain-800">
+                    <span class="text-[10px] {{ ($player->reputation ?? 0) >= 0 ? 'text-camp-400' : 'text-crisis-400' }}">Rep {{ $player->reputation ?? 0 }} · Res {{ $player->resources ?? 0 }}</span>
+                    @if(($player->promises_kept ?? 0) > 0 || ($player->promises_broken ?? 0) > 0)
+                        <span class="text-[10px]">
+                            @if(($player->promises_kept ?? 0) > 0)<span class="text-camp-400">✓{{$player->promises_kept}}</span>@endif
+                            @if(($player->promises_broken ?? 0) > 0)<span class="text-crisis-400 ml-1">✗{{$player->promises_broken}}</span>@endif
+                        </span>
+                    @endif
+                </div>
+                <div class="text-[10px] text-mountain-500 mt-1">{{ ucfirst($player->current_level) }}</div>
             </div>
             @endforeach
         </div>
