@@ -1,24 +1,27 @@
 @component('layouts.app')
-<div class="max-w-sm mx-auto px-4 py-12">
-    <div class="text-center mb-8">
-        <svg class="w-12 h-12 mx-auto text-trust-400 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
-        <h1 class="text-2xl font-bold font-expedition">Kembali ke Pendakian</h1>
+<div class="max-w-sm mx-auto px-4 py-12 relative">
+    <div class="absolute right-[-40px] top-[-20px] w-[160px] h-[160px] opacity-[.05] pointer-events-none">
+        <x-compass-watermark />
     </div>
-    <form method="POST" action="{{ route('login') }}" class="space-y-4">
+    <div class="text-center mb-8 relative">
+        <svg class="w-12 h-12 mx-auto text-[#d6a94e] mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/></svg>
+        <h1 class="text-2xl font-bold font-expedition text-[#e8dfc8] tracking-wide">Kembali ke Pendakian</h1>
+    </div>
+    <form method="POST" action="{{ route('login') }}" class="space-y-4 relative font-field">
         @csrf
         <div>
-            <label class="block text-sm text-mountain-300 mb-1">Email</label>
-            <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-2.5 rounded-xl bg-mountain-800 border border-mountain-700 text-mountain-100 focus:border-trust-400 focus:ring-1 focus:ring-trust-400 outline-none text-sm">
+            <label class="block text-xs text-[#a89c7d] mb-1 font-instrument uppercase tracking-wider">Email</label>
+            <input type="email" name="email" value="{{ old('email') }}" required class="w-full px-4 py-2.5 notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] focus:border-[#d6a94e] focus:ring-1 focus:ring-[#d6a94e] outline-none text-sm">
             @error('email')
-                <p class="text-crisis-400 text-xs mt-1">{{ $message }}</p>
+                <p class="text-[#e6603a] text-xs mt-1 font-instrument">{{ $message }}</p>
             @enderror
         </div>
         <div>
-            <label class="block text-sm text-mountain-300 mb-1">Password</label>
-            <input type="password" name="password" required class="w-full px-4 py-2.5 rounded-xl bg-mountain-800 border border-mountain-700 text-mountain-100 focus:border-trust-400 focus:ring-1 focus:ring-trust-400 outline-none text-sm">
+            <label class="block text-xs text-[#a89c7d] mb-1 font-instrument uppercase tracking-wider">Password</label>
+            <input type="password" name="password" required class="w-full px-4 py-2.5 notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] focus:border-[#d6a94e] focus:ring-1 focus:ring-[#d6a94e] outline-none text-sm">
         </div>
-        <button type="submit" class="w-full py-2.5 rounded-xl bg-trust-500 text-mountain-950 font-bold hover:bg-trust-400">Login</button>
+        <button type="submit" class="w-full py-2.5 notch-md bg-[#d6a94e] text-[#15130f] font-bold hover:bg-[#e3c483] font-instrument uppercase tracking-wider text-sm">Login</button>
     </form>
-    <p class="text-center text-sm text-mountain-400 mt-6">Belum punya akun? <a href="{{ route('register') }}" class="text-trust-400 hover:underline">Daftar</a></p>
+    <p class="text-center text-sm text-[#a89c7d] mt-6 font-field relative">Belum punya akun? <a href="{{ route('register') }}" class="text-[#d6a94e] hover:underline">Daftar</a></p>
 </div>
 @endcomponent
