@@ -65,8 +65,8 @@
             "event": {
               "primitive": "reputation_change",
               "params": {
-                "delta": 3,
-                "reason": "Industry recognized your integrity"
+                "delta": 1,
+                "reason": "Industry eventually recognized your integrity"
               },
               "trigger_after_rounds": 8
             }

@@ -51,6 +51,13 @@
             "stat": "flexibility",
             "delta": 1
           }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -2
+          }
         }
       ],
       "lra_tags": {

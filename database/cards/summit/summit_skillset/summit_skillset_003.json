@@ -64,7 +64,7 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "resources",
-            "delta": -2
+            "delta": -3
           }
         },
         {
@@ -74,7 +74,7 @@
               "primitive": "modify_stat",
               "params": {
                 "stat": "reputation",
-                "delta": 2
+                "delta": 1
               },
               "reason": "Pilot results convinced skeptics"
             },

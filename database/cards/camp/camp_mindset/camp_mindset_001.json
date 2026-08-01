@@ -100,6 +100,13 @@
             "delta": -2,
             "target_ref": "random_other"
           }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "flexibility",
+            "delta": -1
+          }
         }
       ],
       "lra_tags": {

@@ -97,7 +97,7 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "tt",
-            "delta": -3
+            "delta": -2
           }
         },
         {

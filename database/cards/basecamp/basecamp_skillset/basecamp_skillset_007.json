@@ -52,6 +52,13 @@
             "delta": 1,
             "target_ref": "random_other"
           }
+        },
+        {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
         }
       ],
       "lra_tags": {

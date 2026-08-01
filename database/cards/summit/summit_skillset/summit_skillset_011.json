@@ -42,14 +42,14 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "tt",
-            "delta": -4
+            "delta": -3
           }
         },
         {
           "primitive": "modify_stat",
           "params": {
             "stat": "reputation",
-            "delta": -2
+            "delta": -1
           }
         },
         {

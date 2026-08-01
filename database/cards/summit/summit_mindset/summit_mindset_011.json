@@ -42,7 +42,7 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "reputation",
-            "delta": -1
+            "delta": -2
           }
         },
         {

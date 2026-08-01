@@ -46,10 +46,17 @@
           }
         },
         {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "reputation",
+            "delta": -1
+          }
+        },
+        {
           "primitive": "create_promise",
           "params": {
             "type": "accountability",
-            "description": "Kamu berjanja memberi kesempatan untuk memperbaiki",
+            "description": "Kamu berjanji memberi kesempatan untuk memperbaiki",
             "target_ref": "random_other",
             "resolve_by_round": 4
           }

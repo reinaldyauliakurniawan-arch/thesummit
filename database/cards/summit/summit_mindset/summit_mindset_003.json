@@ -53,10 +53,17 @@
           }
         },
         {
+          "primitive": "modify_stat",
+          "params": {
+            "stat": "resources",
+            "delta": -2
+          }
+        },
+        {
           "primitive": "create_promise",
           "params": {
             "type": "promotion",
-            "description": "Kamu berjanja promosi dalam 3 bulan",
+            "description": "Kamu berjanji promosi dalam 3 bulan",
             "target_ref": "random_other",
             "resolve_by_round": 6
           }

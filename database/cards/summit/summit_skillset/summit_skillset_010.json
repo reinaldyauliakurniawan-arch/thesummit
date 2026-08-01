@@ -107,21 +107,21 @@
           "primitive": "modify_stat",
           "params": {
             "stat": "tt",
-            "delta": -3
+            "delta": -2
           }
         },
         {
           "primitive": "modify_stat",
           "params": {
             "stat": "reputation",
-            "delta": -2
+            "delta": -1
           }
         },
         {
           "primitive": "affect_team",
           "params": {
             "stat": "tt",
-            "delta": -2,
+            "delta": -1,
             "target_ref": "other_players"
           }
         },
