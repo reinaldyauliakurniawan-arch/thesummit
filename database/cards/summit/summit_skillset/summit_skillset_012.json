@@ -3,7 +3,7 @@
   "version": "1.0",
   "level": "summit",
   "category": "skillset",
-  "type": "krisis",
+  "type": "crisis",
   "metadata": {
     "author": "system",
     "created": "2026-07-28",
@@ -22,6 +22,7 @@
   "choices": {
     "A": {
       "label": "Laporkan — hentikan produk sampai fix",
+      "text": "Laporkan dan hentikan produk sampai safety testing selesai — menyelamatkan pengguna, tapi kamu jadi persona non-grata di manajemen dan karirmu bisa hancur.",
       "narrative": "Kamu melaporkan dan menghentikan produk sampai safety testing selesai. Ini menyelamatkan pengguna tapi kamu menjadi persona non-grata di manajemen dan karirmu bisa hancur.",
       "effects": [
         {
@@ -82,6 +83,7 @@
     },
     "B": {
       "label": "Diam — buat fix diam-diam dalam sistem",
+      "text": "Diam dan perbaiki masalah diam-diam dalam sistem — menghindari konflik, tapi jika ditemukan, kamu bisa dituduh sebagai bagian dari masalah.",
       "narrative": "Kamu tidak melaporkan tapi diam-diam memperbaiki masalah dalam sistem. Ini menghindari konflik tapi jika ditemukan, kamu bisa dituduh sebagai bagian dari masalah.",
       "effects": [
         {

@@ -3,7 +3,7 @@
   "version": "1.0",
   "level": "summit",
   "category": "mindset",
-  "type": "krisis",
+  "type": "crisis",
   "metadata": {
     "author": "system",
     "created": "2026-07-28",
@@ -22,6 +22,7 @@
   "choices": {
     "A": {
       "label": "Audit semua tim, perbaiki sistemik",
+      "text": "Audit menyeluruh dan perbaiki sistem secara terbuka — menunjukkan leadership, tapi semua lead terkena dampak dan bisa merasa kamu melempar mereka di bawah bus.",
       "narrative": "Kamu memulai audit menyeluruh dan memperbaiki sistem secara terbuka. Ini menunjukkan leadership tapi semua lead terkena dampak dan bisa merasa kamu melempar mereka di bawah bus.",
       "effects": [
         {
@@ -70,6 +71,7 @@
     },
     "B": {
       "label": "Perbaiki diam-diam ke depan",
+      "text": "Perbaiki praktik diam-diam ke depan tanpa audit formal — menghindari gejolak, tapi masalah mungkin terus terjadi tanpa kamu ketahui.",
       "narrative": "Kamu memperbaiki praktik secara diam-diam ke depan tanpa audit formal. Ini menghindari gejolak tapi masalah mungkin terus terjadi tanpa kamu ketahui.",
       "effects": [
         {

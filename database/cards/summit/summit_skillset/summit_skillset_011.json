@@ -3,7 +3,7 @@
   "version": "1.0",
   "level": "summit",
   "category": "skillset",
-  "type": "krisis",
+  "type": "crisis",
   "metadata": {
     "author": "system",
     "created": "2026-07-28",
@@ -22,6 +22,7 @@
   "choices": {
     "A": {
       "label": "Penuhi permintaan board — pecah janji",
+      "text": "Penuhi permintaan board dan lakukan PHK 20% — kamu selamat, tapi harus menghadapi mata anggota tim yang kamu khianati. Mereka tak akan pernah percaya janji lagi.",
       "narrative": "Kamu melakukan PHK 20% sesuai permintaan board. Kamu selamat tapi harus menghadapi mata anggota tim yang kamu khianati. Mereka tidak akan pernah percaya lagi pada janja manapun.",
       "effects": [
         {
@@ -77,6 +78,7 @@
     },
     "B": {
       "label": "Tolak dan taruh posisimu di garis",
+      "text": "Tolak permintaan board dan pertaruhkan posisimu sendiri — tim sangat terinspirasi, tapi kamu bisa kehilangan pekerjaan. Siapa yang akan melindungi mereka setelah kamu pergi?",
       "narrative": "Kamu menolak dan mempertaruhkan posisimu sendiri. Ini menunjukkan integritas luar biasa dan tim sangat terinspirasi, tapi kamu bisa kehilangan pekerjaan — dan siapa yang akan melindungi mereka setelah kamu pergi?",
       "effects": [
         {

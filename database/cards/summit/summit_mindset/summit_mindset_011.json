@@ -3,7 +3,7 @@
   "version": "1.0",
   "level": "summit",
   "category": "mindset",
-  "type": "krisis",
+  "type": "crisis",
   "metadata": {
     "author": "system",
     "created": "2026-07-28",
@@ -22,6 +22,7 @@
   "choices": {
     "A": {
       "label": "Konfrontasi privat, beri kesempatan perbaiki",
+      "text": "Konfrontasi privat, beri kesempatan perbaiki tanpa eskalasi — melindungi hubungan, tapi jika dia berulang, kamu ikut bertanggung jawab karena sudah tahu.",
       "narrative": "Kamu mengkonfrontasinya secara privat dan memberi kesempatan untuk memperbaiki tanpa eskalasi. Ini melindungi hubungan tapi jika dia berulang, kamu bertanggung jawab karena sudah tahu.",
       "effects": [
         {
@@ -90,6 +91,7 @@
     },
     "B": {
       "label": "Eskalasi ke HR — transparan dan tegas",
+      "text": "Eskalasi ke HR dengan bukti lengkap — melindungi organisasi, tapi hubungan dengan orang yang kamu bimbing hancur total dan dia bisa balik menuduhmu.",
       "narrative": "Kamu melaporkan ke HR dengan bukti lengkap. Ini melindungi organisasi tapi hubungan dengan orang yang kamu bimbing hancur total dan dia bisa balik menuduhmu.",
       "effects": [
         {
