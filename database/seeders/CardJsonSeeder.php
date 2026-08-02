@@ -10,15 +10,17 @@ class CardJsonSeeder extends Seeder
         ExpeditionCard::query()->delete();
 
         $cardsDir = database_path("cards");
-        $allFiles = array_merge(
-            glob("$cardsDir/*/*.json"),
-            glob("$cardsDir/*/*/*.json")
-        );
+        $flatFiles = glob("$cardsDir/*/*.json");
+        $nestedFiles = glob("$cardsDir/*/*/*.json");
+        sort($flatFiles);
+        sort($nestedFiles);
+        // Flat files diprioritaskan: skemanya sudah lengkap & kompatibel dengan seeder ini.
+        // Nested files (skema draft lain) hanya dipakai untuk id yang belum ada di flat.
+        $allFiles = array_merge($flatFiles, $nestedFiles);
 
         // Deduplicate by card_id to avoid UNIQUE constraint violations
         $seen = [];
         $files = [];
-        sort($allFiles);
         foreach ($allFiles as $file) {
             $json = json_decode(file_get_contents($file), true);
             $id = $json['id'] ?? null;
