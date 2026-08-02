@@ -55,7 +55,7 @@
     @endforeach
 </div>
 
-{{-- Reflection Report -->
+<!-- Reflection Report -->
 @if($myResult && $myResult->leadershipProfile)
     @php $profile = $myResult->leadershipProfile; @endphp
 
