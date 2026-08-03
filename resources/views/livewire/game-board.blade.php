@@ -6,7 +6,7 @@
     </div>
     <div class="absolute inset-0 bg-gradient-to-t from-[#15130f] via-[#15130f]/60 to-transparent"></div>
 </div>
-<div class="max-w-2xl mx-auto px-4 pt-4 pb-8">
+<div class="max-w-6xl mx-auto px-4 pt-4 pb-8">
 
         <!-- Header -->
         <div class="flex items-center justify-between mb-4 font-instrument">
@@ -25,8 +25,13 @@
             </div>
         </div>
 
-        <!-- Player grid with v2 stats -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
+        <div class="lg:grid lg:grid-cols-[1fr_340px] lg:gap-6 lg:items-start">
+        <div class="lg:min-w-0">
+
+        <!-- Player grid with v2 stats: stays visible alongside the active decision
+             so the acting player keeps team-impact awareness while choosing — that
+             visibility is the point, not just a stat readout. -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mb-6">
             @foreach($players as $player)
             @php
                 $avatarColors = ['#d6a94e','#7fae6c','#e6603a','#8a97ab'];
@@ -168,10 +173,15 @@
                 :thresholdKey="$myPlayer->current_level === 'basecamp' ? 'to_camp' : 'to_summit'" />
         @endif
 
-        <!-- Turn log -->
-        <div class="mt-8">
+        </div>
+
+        <!-- Turn log: on wide screens this sits as a persistent side panel so
+             players can review the decision trail — the reflection material —
+             without losing sight of the current decision. On mobile it stays
+             below, unchanged. -->
+        <div class="mt-8 lg:mt-0 lg:sticky lg:top-20">
             <h3 class="font-expedition text-sm font-semibold text-[#cdc2a0] mb-3 tracking-wide">Log Ekspedisi</h3>
-            <div class="space-y-2 max-h-64 overflow-y-auto">
+            <div class="space-y-2 max-h-64 lg:max-h-[calc(100vh-7rem)] overflow-y-auto">
                 @foreach($allTurns as $turn)
                 <div class="p-3 notch-sm bg-[#1c1810] border border-[#332b1c] text-xs font-instrument">
                     <div class="flex items-center gap-2 mb-1">
@@ -208,6 +218,7 @@
                     <p class="text-[#4a3a1b] text-xs text-center py-4 font-field">Belum ada giliran.</p>
                 @endif
             </div>
+        </div>
         </div>
     </div>
 </div>
