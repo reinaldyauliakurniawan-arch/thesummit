@@ -7,7 +7,7 @@
     <div class="flex items-center gap-2 mb-3">
         <span class="pill-notch pill-brass">{{ ucfirst($card->level) }}</span>
         <span class="pill-notch" style="color:#a89c7d;border-color:#4a3a1b;background:rgba(255,255,255,.02);">{{ ucfirst($card->kategori) }}</span>
-        @if($card->tipe==='krisis')<span class="pill-notch pill-ember">Krisis</span>@endif
+        @if($card->tipe==='krisis')<span class="pill-notch pill-ember" title="Kartu Krisis: setelah kamu memilih, sistem melempar Risk Die — bisa memicu dysfunction (TT -2, berdampak ke semua pemain) atau bonus (TT +1).">Krisis</span>@endif
         @if($card->has_hidden_info)<span class="pill-notch" style="color:#a89c7d;border-color:#4a3a1b;border-style:dashed;">? Tersembunyi</span>@endif
     </div>
     <div class="card-frame {{ $choosing?'animate-card-flip':'animate-fade-in' }}">
@@ -48,14 +48,14 @@
             <div class="relative z-10">
                 <h4 class="font-instrument text-[10px] uppercase tracking-[.18em] text-[#8a6a30] mb-4">Efek Diterapkan</h4>
                 <div class="flex justify-center gap-5 mb-2 flex-wrap">
-                    <x-stat-gauge :value="$effects['mp']" :max="4" label="MP" />
-                    <x-stat-gauge :value="$effects['sp']" :max="4" label="SP" />
-                    <x-stat-gauge :value="$effects['tt']" :max="4" label="TT" />
+                    <x-stat-gauge :value="$effects['mp']" :max="4" label="MP" title="Mindset Points — cara berpikir & adaptasi jangka panjang" />
+                    <x-stat-gauge :value="$effects['sp']" :max="4" label="SP" title="Skillset Points — kemampuan teknis & eksekusi" />
+                    <x-stat-gauge :value="$effects['tt']" :max="4" label="TT" title="Trust Tokens — modal kepercayaan antar rekan tim" />
                 </div>
                 @isset($effects['reputation'])
                 <div class="flex justify-center gap-5 mb-2 mt-2">
-                    <x-stat-gauge :value="$effects['reputation']??0" :max="4" label="Rep" />
-                    <x-stat-gauge :value="$effects['resources']??0" :max="4" label="Res" />
+                    <x-stat-gauge :value="$effects['reputation']??0" :max="4" label="Rep" title="Reputasi — bagaimana orang lain menilaimu secara publik" />
+                    <x-stat-gauge :value="$effects['resources']??0" :max="4" label="Res" title="Resources — aset material/operasional yang kamu kendalikan" />
                 </div>
                 @endisset
 

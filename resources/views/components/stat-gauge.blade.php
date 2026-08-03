@@ -1,4 +1,4 @@
-@props(['value' => 0, 'max' => 4, 'label' => '', 'size' => 54])
+@props(['value' => 0, 'max' => 4, 'label' => '', 'size' => 54, 'title' => ''])
 @php
     $radius = ($size/2) - 5;
     $circumference = 2 * M_PI * $radius;
@@ -16,5 +16,5 @@
                 transform="rotate(-90 {{ $center }} {{ $center }})" style="transition:stroke-dashoffset .6s ease;"/>
     </svg>
     <div class="font-instrument font-bold text-[19px] mt-1 {{ $positive ? 'text-[#7fae6c]' : 'text-[#e6603a]' }}">{{ $positive ? '+' : '' }}{{ $value }}</div>
-    <div class="font-instrument text-[9px] tracking-widest text-[#a89c7d] uppercase mt-0.5">{{ $label }}</div>
+    <div class="font-instrument text-[9px] tracking-widest text-[#a89c7d] uppercase mt-0.5" @if($title) title="{{ $title }}" @endif>{{ $label }}</div>
 </div>

@@ -32,6 +32,21 @@
              while making a decision on the right. -->
         <div class="lg:min-w-0">
 
+        <!-- Legend: always-visible, collapsible reference for stat abbreviations
+             so players can self-explain their own progress without asking
+             a facilitator what REP or RES means mid-decision. -->
+        <details class="mb-3 notch-sm bg-[#1c1810] border border-[#332b1c] p-3 font-instrument text-[10px] text-[#a89c7d]">
+            <summary class="cursor-pointer uppercase tracking-wider text-[#8a6a30] select-none">Kamus Istilah</summary>
+            <dl class="mt-2 space-y-1">
+                <div><dt class="inline font-bold text-[#d6a94e]">MP</dt> <dd class="inline">— Mindset Points: cara berpikir & adaptasi jangka panjang.</dd></div>
+                <div><dt class="inline font-bold text-[#d6a94e]">SP</dt> <dd class="inline">— Skillset Points: kemampuan teknis & eksekusi.</dd></div>
+                <div><dt class="inline font-bold text-[#d6a94e]">TT</dt> <dd class="inline">— Trust Tokens: modal kepercayaan antar rekan tim.</dd></div>
+                <div><dt class="inline font-bold text-[#d6a94e]">Rep</dt> <dd class="inline">— Reputasi: bagaimana orang lain menilaimu secara publik.</dd></div>
+                <div><dt class="inline font-bold text-[#d6a94e]">Res</dt> <dd class="inline">— Resources: aset material/operasional yang kamu kendalikan.</dd></div>
+                <div><dt class="inline font-bold text-[#e6603a]">Krisis</dt> <dd class="inline">— tipe kartu yang memicu Risk Die setelah kamu memilih; bisa menyebabkan dysfunction (semua pemain kena dampak) atau bonus.</dd></div>
+            </dl>
+        </details>
+
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
             @foreach($players as $player)
             @php
@@ -52,12 +67,12 @@
                     </div>
                 </div>
                 <div class="space-y-1 font-instrument">
-                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4">MP</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $mpPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->mp }}</span></div>
-                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4">SP</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $spPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->sp }}</span></div>
-                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4">TT</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $ttPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->tt }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4" title="Mindset Points — cara berpikir & adaptasi jangka panjang">MP</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $mpPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->mp }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4" title="Skillset Points — kemampuan teknis & eksekusi">SP</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $spPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->sp }}</span></div>
+                    <div class="flex items-center gap-1.5"><span class="text-[10px] text-[#8a6a30] w-4" title="Trust Tokens — modal kepercayaan antar rekan tim">TT</span><div class="flex-1 h-1.5 bg-[#15130f] border border-[#332b1c] overflow-hidden"><div class="h-full bg-[#d6a94e]" style="width:{{ $ttPct }}%"></div></div><span class="text-[10px] text-[#a89c7d] w-4 text-right">{{ $player->tt }}</span></div>
                 </div>
                 <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-[#332b1c] font-instrument">
-                    <span class="text-[10px] {{ ($player->reputation ?? 0) >= 0 ? 'text-[#7fae6c]' : 'text-[#e6603a]' }}">Rep {{ $player->reputation ?? 0 }} · Res {{ $player->resources ?? 0 }}</span>
+                    <span class="text-[10px] {{ ($player->reputation ?? 0) >= 0 ? 'text-[#7fae6c]' : 'text-[#e6603a]' }}"><span title="Reputasi — bagaimana orang lain menilaimu secara publik">Rep {{ $player->reputation ?? 0 }}</span> · <span title="Resources — aset material/operasional yang kamu kendalikan">Res {{ $player->resources ?? 0 }}</span></span>
                 </div>
                 <div class="text-[10px] text-[#8a6a30] mt-1 font-instrument uppercase tracking-wider">{{ ucfirst($player->current_level) }}</div>
             </div>
