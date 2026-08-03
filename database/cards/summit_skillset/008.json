@@ -4,142 +4,55 @@
   "level": "summit",
   "category": "skillset",
   "type": "crisis",
-  "metadata": {
-    "author": "summit-team",
-    "created": "2026-07-28",
-    "dysfunction_tag": "avoidance_of_accountability"
-  },
+  "metadata": { "author": "summit-team", "created": "2026-07-28", "dysfunction_tag": "avoidance_of_accountability" },
   "narrative": {
-    "situation": "Team lead membiarkan anggota underperform tanpa intervensi karena tidak mau terlihat kejam."
+    "situation": "Team lead membiarkan anggota underperform tanpa intervensi karena tidak mau terlihat kejam. Sudah 6 minggu berjalan dan dampaknya mulai kelihatan ke tim lain."
   },
   "choices": {
     "A": {
-      "text": "Coaching intensif tentang performance management yang tulus tapi tegas, dampingi prosesnya.",
+      "text": "Coaching privat ke lead tentang performance management, dan biarkan dia yang menjalankan percakapan dengan anggotanya sendiri.",
       "effects": [
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "sp",
-            "delta": 1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": 2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "reputation",
-            "delta": 1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "flexibility",
-            "delta": 1
-          }
-        },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "sp", "delta": 1 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "tt", "delta": 2 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "reputation", "delta": 1 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "flexibility", "delta": 1 } },
         {
           "type": "affect_team",
           "target": "other_players",
+          "params": { "effect": { "type": "modify_stat", "target": "self", "params": { "stat": "sp", "delta": 1 } }, "exclude_source": true }
+        },
+        {
+          "type": "conditional_trigger",
+          "target": "self",
           "params": {
-            "effect": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "sp",
-                "delta": 1
-              }
-            },
-            "exclude_source": true
+            "condition": { "type": "stat_threshold", "stat": "mp", "operator": "<=", "value": 4 },
+            "event": { "type": "modify_stat", "target": "self", "params": { "stat": "tt", "delta": -1 } },
+            "is_hidden": true,
+            "label": "Lead yang belum siap tetap butuh waktu — masalah berlarut lebih lama dari harapan"
           }
         }
       ],
-      "behavior_tags": {
-        "coaching": 2,
-        "collaboration": 1,
-        "empathy": 2
-      },
-      "lra_tags": {
-        "R3_M1": "proving",
-        "R3_S3": "proving",
-        "R2_S6": "proving",
-        "R2_S4": "proving",
-        "PtP_M5": "proving"
-      }
+      "behavior_tags": { "coaching": 2, "collaboration": 1, "empathy": 2 },
+      "lra_tags": { "R3_M1": "proving", "R3_S3": "proving", "R2_S6": "proving", "R2_S4": "proving", "PtP_M5": "proving" }
     },
     "B": {
-      "text": "Ambil alih proses performance management langsung untuk anggota yang underperform.",
+      "text": "Lakukan skip-level conversation langsung dengan anggota yang underperform, dengan lead-nya tetap hadir dan memimpin sebagian percakapan — bukan mengambil alih sepenuhnya.",
       "effects": [
+        { "type": "modify_stat", "target": "self", "params": { "stat": "sp", "delta": 2 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "resources", "delta": 1 } },
         {
-          "type": "modify_stat",
+          "type": "conditional_trigger",
           "target": "self",
           "params": {
-            "stat": "sp",
-            "delta": 2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": -2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "reputation",
-            "delta": -1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "flexibility",
-            "delta": -1
-          }
-        },
-        {
-          "type": "affect_team",
-          "target": "other_players",
-          "params": {
-            "effect": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "tt",
-                "delta": -1
-              }
-            },
-            "exclude_source": true
+            "condition": { "type": "stat_threshold", "stat": "tt", "operator": "<=", "value": 4 },
+            "event": { "type": "modify_stat", "target": "self", "params": { "stat": "tt", "delta": -1 } },
+            "is_hidden": true,
+            "label": "Tanpa modal trust yang cukup, lead merasa dilangkahi walau kamu tetap melibatkannya"
           }
         }
       ],
-      "behavior_tags": {
-        "control": 2,
-        "decisiveness": 2,
-        "coaching": -1,
-        "empathy": -1
-      },
-      "lra_tags": {
-        "R3_M1": "disproving",
-        "R3_S3": "disproving",
-        "R2_M1": "disproving",
-        "R2_S6": "disproving"
-      }
+      "behavior_tags": { "control": 1, "decisiveness": 1, "coaching": -1 },
+      "lra_tags": { "R3_M1": "disproving", "R3_S3": "disproving", "R2_M1": "disproving", "R2_S6": "disproving" }
     }
   }
 }

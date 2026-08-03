@@ -10,104 +10,53 @@
     "dysfunction_tag": "absence_of_trust"
   },
   "narrative": {
-    "situation": "Kamu tahu anggota tim akan di-PHK. Dia tidak tahu dan kamu diminta turunkan evaluasinya sebagai justifikasi."
+    "situation": "Kamu diminta menuliskan evaluasi kinerja yang lebih rendah dari kenyataan untuk salah satu anggota tim, sebagai dokumentasi pendukung PHK yang sudah diputuskan HR karena restrukturisasi. HR bilang ini prosedur standar supaya proses PHK 'terdokumentasi rapi' dan severance package anggota tim tetap cair penuh sesuai kontrak. Anggota tim itu sendiri belum tahu apa-apa.",
+    "hidden_reveal": "Anggota tim itu ternyata sudah dapat tawaran kerja baru dan berencana resign minggu depan — tapi HR dan kamu belum tahu itu saat keputusan ini dibuat."
+  },
+  "hidden_info": {
+    "enabled": true,
+    "reveal_timing": "after_choice",
+    "reveal_scope": "chooser"
   },
   "choices": {
     "A": {
-      "text": "Tolak permintaan dan sampaikan ke HR bahwa kamu tidak bisa menjadi bagian dari proses tidak transparan.",
+      "text": "Tolak menuliskan evaluasi palsu, minta HR pakai proses PHK standar tanpa manipulasi data performa.",
       "effects": [
+        { "type": "modify_stat", "target": "self", "params": { "stat": "mp", "delta": -1 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "tt", "delta": 1 } },
         {
-          "type": "modify_stat",
+          "type": "conditional_trigger",
           "target": "self",
           "params": {
-            "stat": "mp",
-            "delta": 2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": 1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "reputation",
-            "delta": 1
-          }
-        },
-        {
-          "type": "relationship_change",
-          "target": "other_players",
-          "params": {
-            "change": "trust_gained",
-            "delta": 1,
-            "description": "Integrity earns team respect"
+            "condition": { "type": "stat_threshold", "stat": "mp", "operator": "<=", "value": 3 },
+            "event": { "type": "modify_stat", "target": "self", "params": { "stat": "reputation", "delta": -1 } },
+            "is_hidden": true,
+            "label": "Pushback tanpa modal politik cukup dianggap gak kooperatif"
           }
         }
       ],
-      "behavior_tags": {
-        "decisiveness": 2,
-        "empathy": 2,
-        "control": 1
-      },
-      "lra_tags": {
-        "PtP_M1": "proving",
-        "PtP_S2": "proving",
-        "R2_S4": "proving",
-        "R2_S2": "proving"
-      }
+      "behavior_tags": { "decisiveness": 2, "empathy": 1, "control": 1 },
+      "lra_tags": { "PtP_M1": "proving", "PtP_S2": "proving", "R2_S4": "proving", "R2_S2": "proving" }
     },
     "B": {
-      "text": "Ikuti arahan manajemen karena ini keputusan bisnis.",
+      "text": "Ikuti prosedur HR dan tuliskan evaluasi sesuai permintaan mereka.",
       "effects": [
+        { "type": "modify_stat", "target": "self", "params": { "stat": "mp", "delta": 1 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "tt", "delta": -2 } },
+        { "type": "modify_stat", "target": "self", "params": { "stat": "resources", "delta": 1 } },
         {
-          "type": "modify_stat",
+          "type": "conditional_trigger",
           "target": "self",
           "params": {
-            "stat": "mp",
-            "delta": -1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "sp",
-            "delta": 1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": -2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "reputation",
-            "delta": -2
+            "condition": { "type": "stat_threshold", "stat": "tt", "operator": "<=", "value": 3 },
+            "event": { "type": "modify_stat", "target": "self", "params": { "stat": "reputation", "delta": -2 } },
+            "is_hidden": true,
+            "label": "Trust yang sudah rapuh membuat kepatuhan ini terlihat sebagai pengkhianatan"
           }
         }
       ],
-      "behavior_tags": {
-        "adaptability": 1,
-        "empathy": -2
-      },
-      "lra_tags": {
-        "PtP_M1": "disproving",
-        "PtP_M2": "disproving",
-        "R2_S2": "disproving",
-        "R2_S5": "disproving"
-      }
+      "behavior_tags": { "adaptability": 1, "empathy": -1 },
+      "lra_tags": { "PtP_M1": "disproving", "PtP_M2": "disproving", "R2_S2": "disproving", "R2_S5": "disproving" }
     }
   }
 }
