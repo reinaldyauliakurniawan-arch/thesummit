@@ -25,13 +25,14 @@
             </div>
         </div>
 
-        <div class="lg:grid lg:grid-cols-[1fr_340px] lg:gap-6 lg:items-start">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
+
+        <!-- Left column: stats + visual representation. Kept together and
+             always visible so the acting player sees team impact at a glance
+             while making a decision on the right. -->
         <div class="lg:min-w-0">
 
-        <!-- Player grid with v2 stats: stays visible alongside the active decision
-             so the acting player keeps team-impact awareness while choosing — that
-             visibility is the point, not just a stat readout. -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 mb-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-6">
             @foreach($players as $player)
             @php
                 $avatarColors = ['#d6a94e','#7fae6c','#e6603a','#8a97ab'];
@@ -67,6 +68,11 @@
         <div class="mb-6">
             <x-mountain-board :players="$players" :currentPlayerId="$room->current_turn_player_id" />
         </div>
+
+        </div>
+
+        <!-- Right column: turn / actions + log. -->
+        <div class="lg:min-w-0 mt-6 lg:mt-0">
 
         <!-- V2: Active Consequences Panel -->
         @if(!empty($activeConsequences))
@@ -173,15 +179,11 @@
                 :thresholdKey="$myPlayer->current_level === 'basecamp' ? 'to_camp' : 'to_summit'" />
         @endif
 
-        </div>
-
-        <!-- Turn log: on wide screens this sits as a persistent side panel so
-             players can review the decision trail — the reflection material —
-             without losing sight of the current decision. On mobile it stays
-             below, unchanged. -->
-        <div class="mt-8 lg:mt-0 lg:sticky lg:top-20">
+        <!-- Turn log: fixed short height, always scrollable — not meant to
+             grow long, just a quick scan-back reference. -->
+        <div class="mt-8">
             <h3 class="font-expedition text-sm font-semibold text-[#cdc2a0] mb-3 tracking-wide">Log Ekspedisi</h3>
-            <div class="space-y-2 max-h-64 lg:max-h-[calc(100vh-7rem)] overflow-y-auto">
+            <div class="space-y-2 max-h-64 overflow-y-auto">
                 @foreach($allTurns as $turn)
                 <div class="p-3 notch-sm bg-[#1c1810] border border-[#332b1c] text-xs font-instrument">
                     <div class="flex items-center gap-2 mb-1">
@@ -218,6 +220,8 @@
                     <p class="text-[#4a3a1b] text-xs text-center py-4 font-field">Belum ada giliran.</p>
                 @endif
             </div>
+        </div>
+
         </div>
         </div>
     </div>
