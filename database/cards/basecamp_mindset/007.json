@@ -10,7 +10,8 @@
     "dysfunction_tag": "absence_of_trust"
   },
   "narrative": {
-    "situation": "Kamu menemukan kesalahan besar dalam laporan yang sudah dikirim ke klien oleh rekanmu. Rekanmu itu teman dekatmu."
+    "situation": "Kamu menemukan kesalahan besar dalam laporan yang sudah dikirim ke klien oleh rekanmu. Rekanmu itu teman dekatmu.",
+    "hidden_reveal": "Ternyata klien sudah menemukan kesalahan itu sendiri dan sedang mengevaluasi respons tim."
   },
   "hidden_info": {
     "enabled": true,

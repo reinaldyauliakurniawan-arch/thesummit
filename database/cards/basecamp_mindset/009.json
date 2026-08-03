@@ -10,7 +10,8 @@
     "dysfunction_tag": "inattention_to_results"
   },
   "narrative": {
-    "situation": "Proyekmu dibatalkan tiba-tiba oleh manajemen tanpa penjelasan memadai. Kamu frustrasi dan kehilangan motivasi."
+    "situation": "Proyekmu dibatalkan tiba-tiba oleh manajemen tanpa penjelasan memadai. Kamu frustrasi dan kehilangan motivasi.",
+    "hidden_reveal": "Ternyata pembatalan karena anggaran direalokasi untuk proyek yang kamu tolak bulan lalu."
   },
   "hidden_info": {
     "enabled": true,
