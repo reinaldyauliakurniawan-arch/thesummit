@@ -16,6 +16,7 @@ class GameBoard extends Component
 {
     public GameRoom $room;
     public GamePlayer $myPlayer;
+    public bool $showDiscussion = false;
 
     public ?ExpeditionCard $currentCard = null;
     public bool $showCard = false;
@@ -50,15 +51,21 @@ class GameBoard extends Component
 
     public function mount(GameRoom $room): void
     {
+        // Hotseat mode: verify the authenticated user is the host, then
+        // point myPlayer at whoever currently has the turn — the "active
+        // player" concept replaces per-device auth entirely.
+        if ($room->host_user_id !== Auth::id()) {
+            abort(403);
+        }
+
         $this->room = $room->load([
             'players.user',
             'currentPlayer.user',
             'turns.card',
             'turns.player.user',
         ]);
-        $this->myPlayer = $room->players()
-            ->where('user_id', Auth::id())
-            ->firstOrFail();
+        $this->myPlayer = $this->room->currentPlayer
+            ?? $this->room->players()->orderBy('turn_order')->firstOrFail();
         $this->checkTurn();
         $this->loadV2Data();
     }
@@ -66,7 +73,16 @@ class GameBoard extends Component
     public function checkTurn(): void
     {
         $this->room->refresh();
+
+        // Re-point myPlayer at the current turn holder every time the
+        // board refreshes, since in hotseat mode the "active player"
+        // changes every turn on the same device.
+        $current = $this->room->currentPlayer;
+        if ($current) {
+            $this->myPlayer = $current;
+        }
         $this->myPlayer->refresh();
+
         $this->isMyTurn = (
             $this->room->current_turn_player_id === $this->myPlayer->id
             && in_array($this->room->status->value, ['in_progress', 'final_round'])
@@ -81,7 +97,6 @@ class GameBoard extends Component
             'turns.card',
             'turns.player.user',
         ]);
-        $this->myPlayer->refresh();
         $this->checkTurn();
         $this->loadV2Data();
 
@@ -211,6 +226,19 @@ class GameBoard extends Component
     public function skipRopeBridge(): void
     {
         $this->showRopeBridge = false;
+    }
+
+    // ── Hotseat: optional discussion pause before handing off the turn ──
+
+    public function toggleDiscussion(): void
+    {
+        $this->showDiscussion = !$this->showDiscussion;
+    }
+
+    public function nextTurn(): void
+    {
+        $this->showDiscussion = false;
+        $this->refreshBoard();
     }
 
     // ── V2: Promise Methods ──

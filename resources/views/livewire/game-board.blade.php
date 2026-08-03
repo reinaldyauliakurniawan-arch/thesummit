@@ -43,9 +43,9 @@
                     <div class="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#d6a94e] rounded-full animate-pulse"></div>
                 @endif
                 <div class="flex items-center gap-2 mb-2">
-                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-[#15130f] flex-shrink-0" style="background:{{ $avatarColor }};">{{ strtoupper(substr($player->user->name,0,1)) }}</div>
-                    <div class="text-xs font-field font-semibold {{ $player->user_id === auth()->id() ? 'text-[#d6a94e]' : 'text-[#cdc2a0]' }} truncate">
-                        {{ $player->user->name }}{{ $player->user_id === auth()->id() ? ' (kamu)' : '' }}
+                    <div class="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold text-[#15130f] flex-shrink-0" style="background:{{ $avatarColor }};">{{ strtoupper(substr($player->display_name,0,1)) }}</div>
+                    <div class="text-xs font-field font-semibold {{ $room->current_turn_player_id === $player->id ? 'text-[#d6a94e]' : 'text-[#cdc2a0]' }} truncate">
+                        {{ $player->display_name }}{{ $room->current_turn_player_id === $player->id ? ' (giliran)' : '' }}
                     </div>
                 </div>
                 <div class="space-y-1 font-instrument">
@@ -69,13 +69,7 @@
 
         <!-- My progress bar -->
         <div class="mb-6">
-            <x-progress-bar
-                :level="$myPlayer->current_level"
-                :mp="$myPlayer->mp"
-                :sp="$myPlayer->sp"
-                :tt="$myPlayer->tt"
-                :showThresholds="true"
-                :playerName="$myPlayer->user->name . ' (kamu)'" />
+            <x-mountain-board :players="$players" :currentPlayerId="$room->current_turn_player_id" />
         </div>
 
         <!-- V2: Active Consequences Panel -->
@@ -103,8 +97,8 @@
                 <div class="space-y-1.5 font-field">
                     @foreach($activePromises as $promise)
                     <div class="text-xs text-[#cdc2a0]">
-                        <span class="font-semibold text-[#e8dfc8]">{{ $promise['promiser']['user']['name'] }}</span>
-                        → <span class="font-semibold text-[#e8dfc8]">{{ $promise['recipient']['user']['name'] }}</span>:
+                        <span class="font-semibold text-[#e8dfc8]">{{ $promise['promiser']['guest_name'] ?? $promise['promiser']['user']['name'] ?? 'Pemain' }}</span>
+                        → <span class="font-semibold text-[#e8dfc8]">{{ $promise['recipient']['guest_name'] ?? $promise['recipient']['user']['name'] ?? 'Pemain' }}</span>:
                         {{ $promise['description'] }}
                     </div>
                     @endforeach
@@ -138,22 +132,11 @@
         @endif
 
         <!-- Waiting for turn -->
-        @if(!$isMyTurn && $room->status->value !== 'finished')
-            <div class="text-center py-8">
-                <div class="text-sm mb-1 text-[#a89c7d] font-field">Bukan giliranmu.</div>
-                <div class="text-xs text-[#8a6a30] font-instrument">
-                    @if($room->currentPlayer)
-                        Giliran <span class="text-[#cdc2a0] font-semibold">{{ $room->currentPlayer->user->name }}</span>
-                    @endif
-                </div>
-                <button wire:click="refreshBoard" class="mt-3 text-xs text-[#d6a94e] hover:underline font-instrument">Refresh</button>
-            </div>
-        @endif
-
-        <!-- Draw card button -->
+        <!-- Draw card button: hotseat, current player draws on the shared device -->
         @if($isMyTurn && !$showCard && !$showEffects)
             <div class="text-center py-6">
-                <p class="text-[#e8dfc8] mb-4 font-semibold font-field">Giliranmu!</p>
+                <p class="text-[#e8dfc8] mb-1 font-semibold font-field text-lg">Giliran {{ $myPlayer->display_name }}!</p>
+                <p class="text-xs text-[#a89c7d] mb-4 font-field">Serahkan perangkat ke {{ $myPlayer->display_name }} untuk mengambil kartu.</p>
                 <button wire:click="drawCard"
                         class="px-8 py-3 notch-md bg-[#d6a94e] text-[#15130f] font-bold text-lg hover:bg-[#e3c483] animate-pulse-gold font-instrument uppercase tracking-wider">
                     Ambil Expedition Card
@@ -181,10 +164,24 @@
                 :hiddenInfo="$hiddenInfo"
                 :createdConsequences="$createdConsequences"
                 :crossPlayerEffects="$crossPlayerEffects" />
+
+            <!-- Forum: optional discussion before handing off the turn -->
+            <div class="max-w-lg mx-auto mt-4">
+                <button wire:click="toggleDiscussion"
+                        class="w-full px-4 py-2 notch-sm border border-[#4a3a1b] text-[#a89c7d] text-xs font-instrument uppercase tracking-wider hover:border-[#d6a94e] hover:text-[#d6a94e]">
+                    {{ $showDiscussion ? 'Tutup Forum Diskusi' : 'Buka Forum Diskusi' }}
+                </button>
+                @if($showDiscussion)
+                <div class="mt-2 p-4 notch-sm bg-[#1c1810] border border-[#332b1c] text-center">
+                    <p class="text-sm text-[#cdc2a0] font-field">Diskusikan keputusan ini sebentar dengan pemain lain di meja. Tidak ada yang dicatat sistem — ini murni ruang obrolan.</p>
+                </div>
+                @endif
+            </div>
+
             <div class="text-center mt-4">
-                <button wire:click="refreshBoard"
-                        class="px-6 py-2 notch-sm border border-[#4a3a1b] text-[#cdc2a0] text-sm font-instrument uppercase tracking-wider">
-                    Lanjut
+                <button wire:click="nextTurn"
+                        class="px-6 py-2 notch-sm bg-[#d6a94e] text-[#15130f] font-bold text-sm font-instrument uppercase tracking-wider hover:bg-[#e3c483]">
+                    Lanjut ke Giliran Berikutnya
                 </button>
             </div>
         @endif
@@ -224,7 +221,7 @@
                             <select wire:model="promiseRecipientId" class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2">
                                 <option value="">Pilih...</option>
                                 @foreach($otherPlayers as $op)
-                                <option value="{{ $op->id }}">{{ $op->user->name }}</option>
+                                <option value="{{ $op->id }}">{{ $op->display_name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -258,7 +255,7 @@
                 @foreach($allTurns as $turn)
                 <div class="p-3 notch-sm bg-[#1c1810] border border-[#332b1c] text-xs font-instrument">
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="font-semibold text-[#e8dfc8] font-field">{{ $turn->player->user->name }}</span>
+                        <span class="font-semibold text-[#e8dfc8] font-field">{{ $turn->player->display_name }}</span>
                         <span class="text-[#8a6a30]">pilih</span>
                         <span class="font-bold text-[#d6a94e]">{{ $turn->chosen_option }}</span>
                         @if($turn->was_hidden)

@@ -15,7 +15,7 @@
     <x-player-badge :badge="$results->first()->badge" :rank="1" size="lg" />
     </div>
     <div class="mt-3">
-        <h2 class="text-2xl font-bold font-expedition text-[#e8dfc8] tracking-wide">{{ $results->first()->player->user->name }}</h2>
+        <h2 class="text-2xl font-bold font-expedition text-[#e8dfc8] tracking-wide">{{ $results->first()->player->display_name }}</h2>
         <p class="text-[#a89c7d] text-sm font-instrument">Skor: {{ $results->first()->final_score }}</p>
     </div>
     @if($results->first()->badge === 'the_carrier')
@@ -37,7 +37,7 @@
         <div class="text-lg font-bold font-instrument w-8 text-center {{ $r->rank===1?'text-[#d6a94e]':($r->rank===2?'text-[#cdc2a0]':'text-[#8a6a30]') }}">#{{ $r->rank }}</div>
         <div class="flex-1">
             <div class="flex items-center gap-2">
-                <span class="font-semibold text-[#e8dfc8] font-field">{{ $r->player->user->name }}</span>
+                <span class="font-semibold text-[#e8dfc8] font-field">{{ $r->player->display_name }}</span>
                 <x-player-badge :badge="$r->badge" size="sm" />
             </div>
             <div class="flex gap-3 mt-1 text-xs flex-wrap font-instrument">
@@ -55,9 +55,11 @@
     @endforeach
 </div>
 
-<!-- Reflection Report -->
-@if($myResult && $myResult->leadershipProfile)
-    @php $profile = $myResult->leadershipProfile; @endphp
+<!-- Reflection Reports: every player's profile is shown in turn order, since
+     everyone shares the same device (hotseat mode). -->
+@foreach($results as $result)
+@if($result->leadershipProfile)
+    @php $profile = $result->leadershipProfile; @endphp
 
     <div class="card-frame mb-8">
     <div class="card-frame-inner p-6 md:p-8">
@@ -67,7 +69,7 @@
 
         <div class="text-center mb-6">
             <span class="font-instrument text-[10px] uppercase tracking-[.25em] text-[#8a6a30]">Laporan Resmi Ekspedisi</span>
-            <h2 class="text-2xl font-bold text-[#e8dfc8] font-expedition tracking-wide mt-1">Profil Kepemimpinanmu</h2>
+            <h2 class="text-2xl font-bold text-[#e8dfc8] font-expedition tracking-wide mt-1">Profil Kepemimpinan {{ $result->player->display_name }}</h2>
         </div>
 
         <!-- Leadership Style — the verdict, emphasized -->
@@ -158,8 +160,8 @@
     </div>
 
     {{-- Real-World Challenge — separate mission card, distinct CTA --}}
-    @if($myResult && $myResult->realWorldChallenge)
-        @php $challenge = $myResult->realWorldChallenge; @endphp
+    @if($result->realWorldChallenge)
+        @php $challenge = $result->realWorldChallenge; @endphp
         <div class="mb-8">
             <div class="notch-md p-6" style="background:linear-gradient(160deg,#241f17,#1c1810);border:1px solid #d6a94e;">
                 <div class="flex items-center gap-2 mb-4">
@@ -178,7 +180,7 @@
                         Deadline: {{ $challenge->deadline ? $challenge->deadline->format('d M Y') : '1 minggu' }}
                     </span>
                     @if(!$challenge->is_completed)
-                        <button wire:click="markChallengeCompleted({{ $myResult->id }})"
+                        <button wire:click="markChallengeCompleted({{ $result->id }})"
                                 class="px-4 py-1.5 notch-sm bg-[#7fae6c] text-[#15130f] font-semibold hover:bg-[#a8c79a] uppercase tracking-wider">
                             Tandai Selesai
                         </button>
@@ -190,6 +192,7 @@
         </div>
     @endif
 @endif
+@endforeach
 
 {{-- Turn History --}}
 <div class="mt-4 relative">
@@ -198,7 +201,7 @@
         @foreach($turns as $t)
         <div class="p-3 notch-sm bg-[#1c1810] border border-[#332b1c] text-xs font-instrument">
             <div class="flex items-center gap-2 mb-1">
-                <span class="font-semibold text-[#e8dfc8] font-field">{{ $t->player->user->name }}</span>
+                <span class="font-semibold text-[#e8dfc8] font-field">{{ $t->player->display_name }}</span>
                 pilih <span class="font-bold text-[#d6a94e]">{{ $t->chosen_option }}</span>
                 @if($t->card)
                     <span class="px-1.5 py-0.5 notch-sm text-[#8a6a30] bg-[#241f17]">{{ ucfirst($t->card->kategori) }}</span>

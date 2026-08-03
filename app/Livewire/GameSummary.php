@@ -5,7 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\GameRoom;
 use App\Models\GameResult;
-use App\Models\RealWorldChallenge;
 use Illuminate\Support\Facades\Auth;
 
 class GameSummary extends Component
@@ -14,6 +13,10 @@ class GameSummary extends Component
 
     public function mount(GameRoom $room): void
     {
+        if ($room->host_user_id !== Auth::id()) {
+            abort(403);
+        }
+
         $this->room = $room->load([
             'results.player.user',
             'results.leadershipProfile',
@@ -28,7 +31,7 @@ class GameSummary extends Component
         if (!$result || $result->game_room_id !== $this->room->id) return;
 
         $challenge = $result->realWorldChallenge;
-        if ($challenge && $challenge->game_player_id === $this->room->players()->where('user_id', Auth::id())->first()?->id) {
+        if ($challenge) {
             $challenge->is_completed = true;
             $challenge->completed_at = now();
             $challenge->save();
@@ -47,9 +50,7 @@ class GameSummary extends Component
             ->orderBy('created_at')
             ->get();
 
-        $myResult = $results->first(fn ($r) => $r->player->user_id === Auth::id());
-
-        return view('livewire.game-summary', compact('results', 'turns', 'myResult'))
+        return view('livewire.game-summary', compact('results', 'turns'))
             ->layout('layouts.app');
     }
 }

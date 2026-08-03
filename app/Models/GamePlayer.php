@@ -12,6 +12,7 @@ class GamePlayer extends Model
     protected $fillable = [
         'game_room_id',
         'user_id',
+        'guest_name',
         'current_level',
         'mp',
         'sp',
@@ -52,6 +53,15 @@ class GamePlayer extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Display name for hotseat/local players: falls back to guest_name
+     * when there is no linked User account.
+     */
+    public function getDisplayNameAttribute(): string
+    {
+        return $this->user?->name ?? $this->guest_name ?? 'Pemain';
     }
 
     public function turns()

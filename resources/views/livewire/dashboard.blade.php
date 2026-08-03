@@ -15,20 +15,34 @@
     </div>
 
     <div class="max-w-4xl mx-auto px-4 pb-8 space-y-6 -mt-2">
-        <!-- Create room CTA -->
+        <!-- Create room CTA: host enters all local players at once (hotseat) -->
         <div class="card-frame animate-pulse-gold">
-        <div class="card-frame-inner p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div class="card-frame-inner p-6 md:p-8" x-data="{ names: ['','','' ] }">
             <div class="grain-overlay" style="opacity:.2;"></div>
             <div class="relative z-10">
-                <h2 class="font-expedition font-semibold text-[#e8dfc8] text-lg tracking-wide">Mulai Ekspedisi Baru</h2>
-                <p class="text-sm text-[#a89c7d] font-field">Buat room dan undang 2-5 pendaki lainnya.</p>
+                <h2 class="font-expedition font-semibold text-[#e8dfc8] text-lg tracking-wide mb-1">Mulai Ekspedisi Baru</h2>
+                <p class="text-sm text-[#a89c7d] font-field mb-4">Satu perangkat, mainkan bergiliran. Isi nama 3–6 pendaki.</p>
+                <form method="POST" action="{{ route('rooms.store') }}" class="space-y-2">
+                    @csrf
+                    <template x-for="(n, i) in names" :key="i">
+                        <div class="flex gap-2">
+                            <input :name="'names[' + i + ']'" x-model="names[i]" type="text" required maxlength="60"
+                                   :placeholder="'Nama Pendaki ' + (i+1)"
+                                   class="flex-1 notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2.5 font-field">
+                            <button type="button" x-show="names.length > 3" x-on:click="names.splice(i,1)"
+                                    class="px-3 notch-sm border border-[#4a3a1b] text-[#e6603a] text-xs">&times;</button>
+                        </div>
+                    </template>
+                    <div class="flex items-center justify-between pt-2">
+                        <button type="button" x-show="names.length < 6" x-on:click="names.push('')"
+                                class="text-xs text-[#d6a94e] font-instrument uppercase tracking-wider hover:underline">+ Tambah Pendaki</button>
+                        <button type="submit"
+                                class="px-8 py-3 notch-md bg-[#d6a94e] text-[#15130f] font-bold hover:bg-[#e3c483] text-sm font-instrument uppercase tracking-wider">
+                            &#9650; Mulai Ekspedisi
+                        </button>
+                    </div>
+                </form>
             </div>
-            <form method="POST" action="{{ route('rooms.store') }}" class="relative z-10">
-                @csrf
-                <button class="px-8 py-3.5 notch-md bg-[#d6a94e] text-[#15130f] font-bold hover:bg-[#e3c483] text-base whitespace-nowrap font-instrument uppercase tracking-wider">
-                    &#9650; Buat Room
-                </button>
-            </form>
         </div>
         </div>
 
@@ -87,7 +101,6 @@
                             <span class="font-bold text-[#d6a94e]">{{ $room->code }}</span>
                             <span class="text-sm text-[#cdc2a0] ml-2">{{ $room->players->count() }}/{{ config('summit.max_players') }}</span>
                         </div>
-                        <span class="text-xs text-[#8a6a30]">{{ $room->host->name }}</span>
                     </div>
                 </a>
                 @endforeach
@@ -100,8 +113,7 @@
         <div>
             <h2 class="font-expedition font-semibold text-[#cdc2a0] text-sm mb-3 tracking-wide">Game Aktif</h2>
             <div class="space-y-2">
-                @foreach($ag as $gamePlayer)
-                @php $gameRoom = $gamePlayer->room; @endphp
+                @foreach($ag as $gameRoom)
                 <a href="{{ $gameRoom->status === 'finished' ? route('game.summary', $gameRoom) : route('game.board', $gameRoom) }}"
                    class="block p-4 notch-sm bg-[#1c1810] border border-[#332b1c] hover:border-[#d6a94e]">
                     <div class="flex items-center justify-between font-instrument">

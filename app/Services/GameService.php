@@ -422,7 +422,7 @@ class GameService
             }
         }
 
-        $next->user->notify(new TurnNotification($room, $next));
+        $next->user?->notify(new TurnNotification($room, $next));
     }
 
     /**
@@ -526,7 +526,7 @@ class GameService
 
             // Notify all players
             foreach ($room->players as $gamePlayer) {
-                $gamePlayer->user->notify(
+                $gamePlayer->user?->notify(
                     new GameFinishedNotification($room, $gamePlayer)
                 );
             }
@@ -588,7 +588,7 @@ class GameService
             $room->current_turn_started_at = now();
             $room->save();
 
-            $players->first()->user->notify(
+            $players->first()->user?->notify(
                 new TurnNotification($room, $players->first())
             );
 

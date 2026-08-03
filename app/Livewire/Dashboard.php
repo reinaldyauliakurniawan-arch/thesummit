@@ -13,18 +13,14 @@ class Dashboard extends Component
         $user = Auth::user();
 
         $waitingRooms = GameRoom::where('status', 'waiting')
-            ->whereHas('players', function ($query) use ($user) {
-                $query->where('user_id', $user->id);
-            })
-            ->with(['host', 'players.user'])
+            ->where('host_user_id', $user->id)
+            ->with(['host', 'players'])
             ->latest()
             ->get();
 
-        $activeGames = \App\Models\GamePlayer::where('user_id', $user->id)
-            ->whereHas('room', function ($query) {
-                $query->whereIn('status', ['in_progress', 'final_round', 'finished']);
-            })
-            ->with('room')
+        $activeGames = GameRoom::whereIn('status', ['in_progress', 'final_round', 'finished'])
+            ->where('host_user_id', $user->id)
+            ->latest()
             ->get();
 
         $unreadNotifications = $user->unreadNotifications()->take(10)->get();

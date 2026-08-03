@@ -10,7 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class EnsureGamePlayer
 {
     /**
-     * Ensure the authenticated user is a player in the given game room.
+     * Ensure the authenticated user is the host of the given game room.
+     * The game is played hotseat (one device, one host session) so only
+     * the host needs to be authenticated to access the room.
      */
     public function handle(Request $request, Closure $next)
     {
@@ -20,7 +22,7 @@ class EnsureGamePlayer
             $room = GameRoom::findOrFail($room);
         }
 
-        if (!$room->players()->where('user_id', Auth::id())->exists()) {
+        if ($room->host_user_id !== Auth::id()) {
             abort(403);
         }
 
