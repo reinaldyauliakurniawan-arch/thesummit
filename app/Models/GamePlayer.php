@@ -84,16 +84,6 @@ class GamePlayer extends Model
         return $this->hasMany(PlayerBehavior::class, 'game_player_id');
     }
 
-    public function promisesMade()
-    {
-        return $this->hasMany(Promise::class, 'promiser_player_id');
-    }
-
-    public function promisesReceived()
-    {
-        return $this->hasMany(Promise::class, 'recipient_player_id');
-    }
-
     public function crossPlayerEffectsGiven()
     {
         return $this->hasMany(CrossPlayerEffect::class, 'source_player_id');

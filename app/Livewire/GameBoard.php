@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\GameRoom;
 use App\Models\GamePlayer;
 use App\Models\ExpeditionCard;
-use App\Models\Promise;
 use App\Models\Vote;
 use App\Services\GameService;
 use App\Enums\Level;
@@ -37,15 +36,10 @@ class GameBoard extends Component
     public bool $wasHidden = false;
     public ?string $hiddenInfo = null;
     public array $activeConsequences = [];
-    public array $activePromises = [];
     public array $activeVotes = [];
 
-    // Promise/Vote UI state
-    public bool $showPromiseModal = false;
+    // Vote UI state
     public bool $showVoteModal = false;
-    public string $promiseType = '';
-    public string $promiseDescription = '';
-    public ?int $promiseRecipientId = null;
     public ?int $activeVoteId = null;
     public string $voteChoice = '';
 
@@ -91,7 +85,7 @@ class GameBoard extends Component
 
     public function refreshBoard(): void
     {
-        $this->room->load([
+        $this->room = $this->room->fresh([
             'players.user',
             'currentPlayer.user',
             'turns.card',
@@ -112,12 +106,6 @@ class GameBoard extends Component
             ->where('is_hidden', false)
             ->where('game_player_id', $this->myPlayer->id)
             ->with(['originatingTurn.card'])
-            ->get()
-            ->toArray();
-
-        $this->activePromises = $this->room->promises()
-            ->active()
-            ->with(['promiser.user', 'recipient.user'])
             ->get()
             ->toArray();
 
@@ -237,47 +225,26 @@ class GameBoard extends Component
 
     public function nextTurn(): void
     {
+        // Reset all per-turn transient UI state before pulling fresh data,
+        // otherwise the previous turn's card/effects panel stays rendered
+        // until a full manual browser reload happens.
         $this->showDiscussion = false;
+        $this->showCard = false;
+        $this->showEffects = false;
+        $this->currentCard = null;
+        $this->lastEffects = [];
+        $this->riskDieResult = null;
+        $this->dysfunctionTriggered = null;
+        $this->message = '';
+        $this->triggeredConsequences = [];
+        $this->createdConsequences = [];
+        $this->crossPlayerEffects = [];
+        $this->trackedBehaviors = [];
+        $this->wasHidden = false;
+        $this->hiddenInfo = null;
+        $this->showRopeBridge = false;
+
         $this->refreshBoard();
-    }
-
-    // ── V2: Promise Methods ──
-
-    public function showPromiseForm(): void
-    {
-        $this->showPromiseModal = true;
-        $this->promiseType = '';
-        $this->promiseDescription = '';
-        $this->promiseRecipientId = null;
-    }
-
-    public function hidePromiseForm(): void
-    {
-        $this->showPromiseModal = false;
-    }
-
-    public function submitPromise(GameService $gameService): void
-    {
-        if (!$this->promiseType || !$this->promiseRecipientId || !$this->promiseDescription) {
-            return;
-        }
-
-        $recipient = GamePlayer::find($this->promiseRecipientId);
-        if (!$recipient || $recipient->game_room_id !== $this->room->id) {
-            return;
-        }
-
-        $gameService->createPromise(
-            $this->room,
-            $this->myPlayer,
-            $recipient,
-            $this->promiseType,
-            $this->promiseDescription
-        );
-
-        $this->showPromiseModal = false;
-        $this->message = 'Janji dibuat! Ingat, janji tidak diwajibkan oleh sistem.';
-        $this->loadV2Data();
     }
 
     // ── V2: Vote Methods ──

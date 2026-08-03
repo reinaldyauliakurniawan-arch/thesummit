@@ -216,9 +216,6 @@ class GameService
             // ── V2: Process pending consequences BEFORE the turn ──
             $triggeredConsequences = $this->consequenceEngine->processPendingConsequences($room);
 
-            // ── V2: Check expired promises ──
-            $this->socialEngine->checkExpiredPromises($room, $turnNumber);
-
             // Apply chosen option effects (including v2 stats)
             $effects = $this->applyCardEffects($player, $card, $chosenOption);
             $mpEffect = $effects['mp'];
@@ -614,30 +611,6 @@ class GameService
     // ── V2: Social Mechanics Methods ──
 
     /**
-     * Create a promise between two players.
-     */
-    public function createPromise(GameRoom $room, GamePlayer $promiser, GamePlayer $recipient, string $type, string $description): \App\Models\Promise
-    {
-        return $this->socialEngine->createPromise($room, $promiser, $recipient, $type, $description);
-    }
-
-    /**
-     * Fulfill a promise.
-     */
-    public function fulfillPromise(\App\Models\Promise $promise): void
-    {
-        $this->socialEngine->fulfillPromise($promise);
-    }
-
-    /**
-     * Break a promise.
-     */
-    public function breakPromise(\App\Models\Promise $promise): void
-    {
-        $this->socialEngine->breakPromise($promise);
-    }
-
-    /**
      * Create a vote event.
      */
     public function createVote(GameRoom $room, GamePlayer $triggeringPlayer, string $topic, string $description, string $type, array $options): \App\Models\Vote
@@ -661,14 +634,6 @@ class GameService
     public function getVisibleConsequences(GameRoom $room, int $playerId): \Illuminate\Database\Eloquent\Collection
     {
         return $this->consequenceEngine->getVisibleConsequences($room, $playerId);
-    }
-
-    /**
-     * Get all active promises for a room.
-     */
-    public function getActivePromises(GameRoom $room): \Illuminate\Database\Eloquent\Collection
-    {
-        return $this->socialEngine->getActivePromises($room);
     }
 
     /**

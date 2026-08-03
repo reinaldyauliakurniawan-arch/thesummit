@@ -86,11 +86,6 @@ class GameRoom extends Model
         return $this->hasMany(Consequence::class, 'game_room_id');
     }
 
-    public function promises()
-    {
-        return $this->hasMany(Promise::class, 'game_room_id');
-    }
-
     public function votes()
     {
         return $this->hasMany(Vote::class, 'game_room_id');

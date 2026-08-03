@@ -19,10 +19,7 @@
                 @endif
             </div>
             <div class="flex items-center gap-2 text-[10px] uppercase tracking-wider">
-                <button wire:click="showPromiseForm" class="px-2 py-1 notch-sm border border-[#4a3a1b] text-[#a89c7d] hover:border-[#d6a94e] hover:text-[#d6a94e]" title="Buat Janji">
-                    Janji
-                </button>
-                <button wire:click="refreshBoard" class="px-3 py-1 notch-sm border border-[#4a3a1b] text-[#a89c7d]">
+                <button wire:click="refreshBoard" wire:loading.attr="disabled" class="px-3 py-1 notch-sm border border-[#4a3a1b] text-[#a89c7d] disabled:opacity-50">
                     Refresh
                 </button>
             </div>
@@ -55,12 +52,6 @@
                 </div>
                 <div class="flex items-center justify-between mt-2 pt-1.5 border-t border-[#332b1c] font-instrument">
                     <span class="text-[10px] {{ ($player->reputation ?? 0) >= 0 ? 'text-[#7fae6c]' : 'text-[#e6603a]' }}">Rep {{ $player->reputation ?? 0 }} · Res {{ $player->resources ?? 0 }}</span>
-                    @if(($player->promises_kept ?? 0) > 0 || ($player->promises_broken ?? 0) > 0)
-                        <span class="text-[10px]">
-                            @if(($player->promises_kept ?? 0) > 0)<span class="text-[#7fae6c]">✓{{$player->promises_kept}}</span>@endif
-                            @if(($player->promises_broken ?? 0) > 0)<span class="text-[#e6603a] ml-1">✗{{$player->promises_broken}}</span>@endif
-                        </span>
-                    @endif
                 </div>
                 <div class="text-[10px] text-[#8a6a30] mt-1 font-instrument uppercase tracking-wider">{{ ucfirst($player->current_level) }}</div>
             </div>
@@ -84,22 +75,6 @@
                     <div class="text-xs text-[#cdc2a0] flex items-start gap-1">
                         <span class="text-[#e6603a] flex-shrink-0">⏳</span>
                         <span>{{ $cons['description'] }} <span class="text-[#d6a94e] font-instrument">({{ $cons['stat'] }}{{ $cons['delta'] >= 0 ? '+' : '' }}{{ $cons['delta'] }})</span></span>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        @endif
-
-        <!-- V2: Active Promises -->
-        @if(!empty($activePromises))
-            <div class="mb-4 p-3 notch-sm bg-[#241f17] border border-[#6b5325]">
-                <h3 class="text-xs font-semibold text-[#d6a94e] mb-2 font-instrument uppercase tracking-wider">Janji Aktif</h3>
-                <div class="space-y-1.5 font-field">
-                    @foreach($activePromises as $promise)
-                    <div class="text-xs text-[#cdc2a0]">
-                        <span class="font-semibold text-[#e8dfc8]">{{ $promise['promiser']['guest_name'] ?? $promise['promiser']['user']['name'] ?? 'Pemain' }}</span>
-                        → <span class="font-semibold text-[#e8dfc8]">{{ $promise['recipient']['guest_name'] ?? $promise['recipient']['user']['name'] ?? 'Pemain' }}</span>:
-                        {{ $promise['description'] }}
                     </div>
                     @endforeach
                 </div>
@@ -191,61 +166,6 @@
             <x-rope-bridge-check
                 :player="$myPlayer"
                 :thresholdKey="$myPlayer->current_level === 'basecamp' ? 'to_camp' : 'to_summit'" />
-        @endif
-
-        <!-- V2: Promise Modal -->
-        @if($showPromiseModal)
-            <div class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
-                <div class="card-frame max-w-md w-full">
-                <div class="card-frame-inner p-6">
-                <div class="grain-overlay" style="opacity:.25;"></div>
-                <div class="relative z-10">
-                    <h3 class="font-expedition text-lg font-bold text-[#e8dfc8] mb-4 tracking-wide">Buat Janji</h3>
-                    <p class="text-xs text-[#a89c7d] mb-4 font-field">Janji tidak diwajibkan sistem. Kamu bebas menepati atau melanggarnya — tapi ada konsekuensi reputasi.</p>
-
-                    <div class="space-y-3 font-instrument">
-                        <div>
-                            <label class="text-xs text-[#a89c7d] block mb-1 uppercase tracking-wider">Tipe Janji</label>
-                            <select wire:model="promiseType" class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2">
-                                <option value="">Pilih...</option>
-                                <option value="vote_for">Dukungan Suara</option>
-                                <option value="help_rescue">Menolong</option>
-                                <option value="share_resource">Berbagi Sumber Daya</option>
-                                <option value="support_bridge">Dukungan Rope Bridge</option>
-                                <option value="protect_trust">Melindungi Trust</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="text-xs text-[#a89c7d] block mb-1 uppercase tracking-wider">Untuk Pemain</label>
-                            <select wire:model="promiseRecipientId" class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2">
-                                <option value="">Pilih...</option>
-                                @foreach($otherPlayers as $op)
-                                <option value="{{ $op->id }}">{{ $op->display_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div>
-                            <label class="text-xs text-[#a89c7d] block mb-1 uppercase tracking-wider">Deskripsi</label>
-                            <input wire:model="promiseDescription" type="text"
-                                   class="w-full notch-sm bg-[#1c1810] border border-[#4a3a1b] text-[#e8dfc8] text-sm p-2 font-field"
-                                   placeholder="Contoh: Akan mendukungmu di voting berikutnya">
-                        </div>
-                    </div>
-
-                    <div class="flex gap-3 mt-6 font-instrument text-sm uppercase tracking-wider">
-                        <button wire:click="submitPromise" class="flex-1 px-4 py-2 notch-sm bg-[#d6a94e] text-[#15130f] font-semibold hover:bg-[#e3c483]">
-                            Buat Janji
-                        </button>
-                        <button wire:click="hidePromiseForm" class="px-4 py-2 notch-sm border border-[#4a3a1b] text-[#a89c7d]">
-                            Batal
-                        </button>
-                    </div>
-                </div>
-                </div>
-                </div>
-            </div>
         @endif
 
         <!-- Turn log -->
