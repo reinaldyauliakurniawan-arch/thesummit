@@ -36,7 +36,12 @@
             </div>
         </div>
     </div>
-    @if($card->tipe==='krisis' && $choosing)<p class="text-center text-[#e6603a] text-[10px] mt-3 animate-pulse font-instrument">Kartu Krisis! Risk Die otomatis setelah pilihan.</p>@endif
+    @if($card->tipe==='krisis' && $choosing)
+    <div class="text-center text-[#e6603a] text-[10px] mt-3 animate-pulse font-instrument leading-relaxed px-4">
+        <p class="font-bold uppercase tracking-wider">⚠ Kartu Krisis</p>
+        <p class="text-[#cdc2a0] normal-case tracking-normal mt-0.5">Apapun pilihanmu, akan ada kemungkinan konsekuensi negatif terhadap Trust Token timmu — ini mensimulasikan kenyataan bahwa keputusan pemimpin tidak selalu bisa dikendalikan hasilnya, sebaik apapun niatnya.</p>
+    </div>
+    @endif
 </div>
 @endif
 
