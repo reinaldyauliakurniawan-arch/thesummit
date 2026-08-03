@@ -1,4 +1,4 @@
-<div wire:poll.5s="refreshBoard">
+<div wire:poll.5s.keep-alive="refreshBoard">
     <div class="relative w-full h-32 -mt-4 mb-4 overflow-hidden bg-[#1c1810]">
     <div class="absolute inset-0" style="background-image:repeating-radial-gradient(circle at 15% 30%, transparent 0, transparent 30px, rgba(214,169,78,0.06) 31px, transparent 32px), repeating-radial-gradient(circle at 85% 70%, transparent 0, transparent 44px, rgba(214,169,78,0.05) 45px, transparent 46px);"></div>
     <div class="absolute inset-0 flex items-center justify-center">
@@ -138,9 +138,10 @@
             <div class="text-center py-6">
                 <p class="text-[#e8dfc8] mb-1 font-semibold font-field text-lg">Giliran {{ $myPlayer->display_name }}!</p>
                 <p class="text-xs text-[#a89c7d] mb-4 font-field">Serahkan perangkat ke {{ $myPlayer->display_name }} untuk mengambil kartu.</p>
-                <button wire:click="drawCard"
-                        class="px-8 py-3 notch-md bg-[#d6a94e] text-[#15130f] font-bold text-lg hover:bg-[#e3c483] animate-pulse-gold font-instrument uppercase tracking-wider">
-                    Ambil Expedition Card
+                <button wire:click="drawCard" wire:loading.attr="disabled" wire:target="drawCard"
+                        class="px-8 py-3 notch-md bg-[#d6a94e] text-[#15130f] font-bold text-lg hover:bg-[#e3c483] animate-pulse-gold font-instrument uppercase tracking-wider disabled:opacity-60 disabled:animate-none disabled:cursor-wait">
+                    <span wire:loading.remove wire:target="drawCard">Ambil Expedition Card</span>
+                    <span wire:loading wire:target="drawCard">Mengambil Kartu...</span>
                 </button>
                 <p class="text-xs text-[#8a6a30] mt-2 font-instrument">
                     Turn #{{ $myPlayer->turns()->count() + 1 }}
