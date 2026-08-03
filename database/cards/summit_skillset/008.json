@@ -49,23 +49,6 @@
           }
         },
         {
-          "type": "schedule_event",
-          "target": "self",
-          "params": {
-            "event": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "sp",
-                "delta": 1
-              }
-            },
-            "trigger_after_rounds": 3,
-            "is_hidden": false,
-            "label": "Coaching the coach multiplies impact"
-          }
-        },
-        {
           "type": "affect_team",
           "target": "other_players",
           "params": {

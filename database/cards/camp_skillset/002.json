@@ -79,6 +79,31 @@
             "stat": "sp",
             "delta": 2
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "flexibility",
+            "delta": 1
+          }
+        },
+        {
+          "type": "schedule_event",
+          "target": "self",
+          "params": {
+            "event": {
+              "type": "modify_stat",
+              "target": "self",
+              "params": {
+                "stat": "tt",
+                "delta": -1
+              }
+            },
+            "trigger_after_rounds": 3,
+            "is_hidden": true,
+            "label": "Silo knowledge creates single point of failure"
+          }
         }
       ],
       "behavior_tags": {

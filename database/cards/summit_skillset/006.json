@@ -94,7 +94,7 @@
           "target": "self",
           "params": {
             "stat": "sp",
-            "delta": 1
+            "delta": 2
           }
         },
         {

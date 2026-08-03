@@ -105,6 +105,14 @@
           }
         },
         {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": 1
+          }
+        },
+        {
           "type": "conditional_trigger",
           "target": "self",
           "params": {
