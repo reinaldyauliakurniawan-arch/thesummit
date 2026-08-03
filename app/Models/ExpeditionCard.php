@@ -138,6 +138,16 @@ class ExpeditionCard extends Model
     }
 
     /**
+     * Get LRA (Leadership Role Assessment) tags for an option.
+     * These live only in the raw card_json blob, not a dedicated column.
+     */
+    public function getLraTags(string $option): array
+    {
+        $decoded = json_decode($this->card_json ?? '', true);
+        return $decoded['choices'][$option]['lra_tags'] ?? [];
+    }
+
+    /**
      * Check if this card has hidden information for the chosen option.
      */
     public function hasHiddenInfo(string $option): bool

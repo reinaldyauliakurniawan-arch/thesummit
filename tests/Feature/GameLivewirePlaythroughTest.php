@@ -116,7 +116,8 @@ class GameLivewirePlaythroughTest extends TestCase
         }
 
         $viewerUser = $room->players()->first()->user;
-        $summaryStyle = $results->first()->leadershipProfile->leadership_style;
+        $viewerResult = $results->first(fn ($r) => $r->player->user_id === $viewerUser->id);
+        $summaryStyle = $viewerResult->leadershipProfile->leadership_style;
 
         Livewire::actingAs($viewerUser)
             ->test(GameSummary::class, ['room' => $room])

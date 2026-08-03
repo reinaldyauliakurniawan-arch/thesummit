@@ -136,7 +136,8 @@ class ReflectionEngine
         // Add contradictory items note
         $contradictory = [];
         foreach ($lraAssessment as $code => $item) {
-            if ($item['quality_level'] === 'contradictory') {
+            if ($code === '_opportunity_summary') continue;
+            if (($item['quality_level'] ?? null) === 'contradictory') {
                 $contradictory[] = $item['label'];
             }
         }

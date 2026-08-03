@@ -308,6 +308,11 @@ class GameService
                     'sp' => $card->opsi_b_sp,
                     'tt' => $card->opsi_b_tt,
                 ],
+                'lra_tags'      => [
+                    'A' => $card->getLraTags('A'),
+                    'B' => $card->getLraTags('B'),
+                ],
+                'card_narrative' => $card->teks_situasi,
             ];
             $trackedBehaviors = $this->behaviorTracker->trackBehaviors($turn, $player, $cardData);
             $turn->behavior_data = $trackedBehaviors;
