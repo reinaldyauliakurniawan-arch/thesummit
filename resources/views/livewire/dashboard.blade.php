@@ -114,7 +114,7 @@
             <h2 class="font-expedition font-semibold text-[#cdc2a0] text-sm mb-3 tracking-wide">Game Aktif</h2>
             <div class="space-y-2">
                 @foreach($ag as $gameRoom)
-                <a href="{{ $gameRoom->status === 'finished' ? route('game.summary', $gameRoom) : route('game.board', $gameRoom) }}"
+                <a href="{{ $gameRoom->status->value === 'finished' ? route('game.summary', $gameRoom) : route('game.board', $gameRoom) }}"
                    class="block p-4 notch-sm bg-[#1c1810] border border-[#332b1c] hover:border-[#d6a94e]">
                     <div class="flex items-center justify-between font-instrument">
                         <div>

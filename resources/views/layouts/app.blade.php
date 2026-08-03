@@ -8,7 +8,6 @@
 <div class="flex items-center gap-3 font-instrument text-[11px] uppercase tracking-wider">
 @auth
 <a href="{{ route('dashboard') }}" class="text-[#a89c7d] hover:text-[#e8dfc8]">Dashboard</a>
-<a href="{{ route('rooms.index') }}" class="text-[#a89c7d] hover:text-[#e8dfc8]">Rooms</a>
 <form method="POST" action="{{ route('logout') }}" class="inline">@csrf<button class="text-[#a89c7d] hover:text-[#e6603a]">Logout</button></form>
 @endauth
 @guest

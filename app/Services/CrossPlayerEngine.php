@@ -48,7 +48,7 @@ class CrossPlayerEngine
                 ]);
 
                 $applied[] = [
-                    'target'     => $target->user->name,
+                    'target'     => $target->display_name,
                     'stat'       => $stat,
                     'delta'      => $delta,
                     'description' => $description,

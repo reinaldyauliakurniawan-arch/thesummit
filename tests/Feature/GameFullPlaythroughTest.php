@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\GameRoom;
@@ -11,7 +10,6 @@ use App\Models\GamePlayer;
 use App\Models\ExpeditionCard;
 use App\Services\GameService;
 use App\Enums\GameStatus;
-use Illuminate\Support\Facades\Auth;
 
 class GameFullPlaythroughTest extends TestCase
 {
@@ -24,6 +22,24 @@ class GameFullPlaythroughTest extends TestCase
         // Seed expedition cards
         $this->seed(\Database\Seeders\CardJsonSeeder::class);
         $this->seed(\Database\Seeders\V2CardEnhancementSeeder::class);
+    }
+
+    /**
+     * Helper: create a room hosted by $host with $count local (guest) players.
+     */
+    protected function createHotseatRoom(User $host, int $count = 3): GameRoom
+    {
+        $room = GameRoom::create(['host_user_id' => $host->id]);
+
+        for ($i = 0; $i < $count; $i++) {
+            GamePlayer::create([
+                'game_room_id' => $room->id,
+                'guest_name'   => "Pendaki " . ($i + 1),
+                'turn_order'   => $i,
+            ]);
+        }
+
+        return $room;
     }
 
     public function test_home_page_loads(): void
@@ -61,61 +77,48 @@ class GameFullPlaythroughTest extends TestCase
         $response->assertRedirect('/dashboard');
     }
 
-    public function test_create_room_and_join(): void
+    public function test_host_creates_room_with_local_players(): void
     {
-        // Create 3 users
-        $users = [];
-        for ($i = 1; $i <= 3; $i++) {
-            $users[$i] = User::factory()->create([
-                'email' => "player{$i}@test.com",
-            ]);
-        }
+        $host = User::factory()->create(['email' => 'host@test.com']);
 
-        // User 1 creates a room
-        $room = $this->actingAs($users[1])
-            ->post('/rooms')
+        $this->actingAs($host)
+            ->post('/rooms', [
+                'names' => ['Alice', 'Bob', 'Charlie'],
+            ])
             ->assertRedirect();
 
         $room = GameRoom::first();
         $this->assertNotNull($room);
         $this->assertEquals(GameStatus::Waiting, $room->status);
-        $this->assertEquals(1, $room->players()->count());
+        $this->assertEquals($host->id, $room->host_user_id);
+        $this->assertEquals(3, $room->players()->count());
+        $this->assertEquals(
+            ['Alice', 'Bob', 'Charlie'],
+            $room->players()->orderBy('turn_order')->pluck('guest_name')->all()
+        );
+    }
 
-        // User 2 joins
-        $this->actingAs($users[2])
-            ->get("/rooms/join/{$room->code}")
-            ->assertRedirect();
+    public function test_only_host_can_access_room(): void
+    {
+        $host = User::factory()->create();
+        $stranger = User::factory()->create();
+        $room = $this->createHotseatRoom($host);
 
-        $this->assertEquals(2, $room->fresh()->players()->count());
+        $this->actingAs($stranger)
+            ->get("/rooms/{$room->id}/lobby")
+            ->assertForbidden();
 
-        // User 3 joins
-        $user3 = User::factory()->create();
-        $this->actingAs($user3)
-            ->get("/rooms/join/{$room->code}")
-            ->assertRedirect();
-
-        $this->assertEquals(3, $room->fresh()->players()->count());
+        $this->actingAs($host)
+            ->get("/rooms/{$room->id}/lobby")
+            ->assertStatus(200);
     }
 
     public function test_start_game_changes_status(): void
     {
-        $users = [];
-        for ($i = 1; $i <= 3; $i++) {
-            $users[$i] = User::factory()->create(['email' => "player{$i}@test.com"]);
-        }
+        $host = User::factory()->create();
+        $room = $this->createHotseatRoom($host);
 
-        // Create room and add 3 players
-        $room = GameRoom::create(['host_user_id' => $users[1]->id]);
-        foreach ($users as $user) {
-            GamePlayer::create([
-                'game_room_id' => $room->id,
-                'user_id'      => $user->id,
-                'turn_order'   => 0,
-            ]);
-        }
-
-        // Start game
-        $response = $this->actingAs($users[1])
+        $response = $this->actingAs($host)
             ->post("/rooms/{$room->id}/start");
 
         // Should redirect (not 500)
@@ -125,60 +128,36 @@ class GameFullPlaythroughTest extends TestCase
         $this->assertEquals(GameStatus::InProgress, $room->status);
     }
 
-    public function test_game_board_accessible_after_start(): void
+    public function test_game_board_accessible_by_host_only(): void
     {
-        $users = [];
-        for ($i = 1; $i <= 3; $i++) {
-            $users[$i] = User::factory()->create(['email' => "player{$i}@test.com"]);
-        }
+        $host = User::factory()->create();
+        $room = $this->createHotseatRoom($host);
 
-        $room = GameRoom::create(['host_user_id' => $users[1]->id]);
-        foreach ($users as $user) {
-            GamePlayer::create([
-                'game_room_id' => $room->id,
-                'user_id'      => $user->id,
-                'turn_order'   => 0,
-            ]);
-        }
-
-        // Start game
         $gameService = app(GameService::class);
         $gameService->startGame($room);
 
-        // Each user can access the game board
-        foreach ($users as $user) {
-            $response = $this->actingAs($user)
-                ->get("/game/{$room->id}");
-            $response->assertStatus(200);
-        }
+        // Host (the only authenticated party) can access the shared board
+        $response = $this->actingAs($host)->get("/game/{$room->id}");
+        $response->assertStatus(200);
     }
 
     public function test_draw_card_and_choose_option(): void
     {
-        $users = [];
-        for ($i = 1; $i <= 3; $i++) {
-            $users[$i] = User::factory()->create();
-        }
-
-        $room = GameRoom::create(['host_user_id' => $users[1]->id]);
-        foreach ($users as $user) {
-            GamePlayer::create([
-                'game_room_id' => $room->id,
-                'user_id'      => $user->id,
-                'turn_order'   => 0,
-            ]);
-        }
+        $host = User::factory()->create();
+        $room = $this->createHotseatRoom($host);
 
         // Start game
         $gameService = app(GameService::class);
         $gameService->startGame($room);
         $room->refresh();
 
-        // Get the current player's user
-        $currentPlayer = $room->players()->first();
-        $currentUser = $currentPlayer->user;
+        // Get the current turn's local player
+        $currentPlayer = $room->currentPlayer;
+        $this->assertNotNull($currentPlayer);
+        $this->assertNull($currentPlayer->user_id);
+        $this->assertNotNull($currentPlayer->guest_name);
 
-        // Draw a card via GameService directly (bypass Livewire auth requirement)
+        // Draw a card via GameService directly
         $turnNumber = $currentPlayer->turns()->count() + 1;
         $card = $gameService->drawCard($currentPlayer, $turnNumber);
         $this->assertNotNull($card);

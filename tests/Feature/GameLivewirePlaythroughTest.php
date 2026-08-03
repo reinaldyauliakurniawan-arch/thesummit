@@ -24,34 +24,35 @@ class GameLivewirePlaythroughTest extends TestCase
         $this->seed(\Database\Seeders\V2CardEnhancementSeeder::class);
     }
 
-    private function createRoomWithPlayers(int $count = 3): GameRoom
+    /**
+     * Hotseat mode: one authenticated host drives the shared device;
+     * the other players are local (guest_name) rows with no User account.
+     */
+    private function createHotseatRoom(int $count = 3): array
     {
-        $users = [];
-        for ($i = 1; $i <= $count; $i++) {
-            $users[$i] = User::factory()->create(['email' => "livewireplayer{$i}@test.com"]);
-        }
+        $host = User::factory()->create(['email' => 'livewirehost@test.com']);
+        $room = GameRoom::create(['host_user_id' => $host->id]);
 
-        $room = GameRoom::create(['host_user_id' => $users[1]->id]);
-        foreach ($users as $user) {
+        for ($i = 0; $i < $count; $i++) {
             GamePlayer::create([
                 'game_room_id' => $room->id,
-                'user_id'      => $user->id,
-                'turn_order'   => 0,
+                'guest_name'   => "Pendaki " . ($i + 1),
+                'turn_order'   => $i,
             ]);
         }
 
-        return $room;
+        return [$room, $host];
     }
 
     public function test_player_can_draw_and_choose_through_the_real_livewire_component(): void
     {
-        $room = $this->createRoomWithPlayers();
+        [$room, $host] = $this->createHotseatRoom();
         app(GameService::class)->startGame($room);
         $room->refresh();
 
-        $currentUser = $room->currentPlayer->user;
-
-        Livewire::actingAs($currentUser)
+        // In hotseat mode the host's authenticated session drives the board
+        // regardless of whose in-game turn it is.
+        Livewire::actingAs($host)
             ->test(GameBoard::class, ['room' => $room])
             ->assertSet('isMyTurn', true)
             ->call('drawCard')
@@ -63,7 +64,7 @@ class GameLivewirePlaythroughTest extends TestCase
 
     public function test_full_game_reaches_finished_status_through_livewire_and_summary_shows_reports(): void
     {
-        $room = $this->createRoomWithPlayers();
+        [$room, $host] = $this->createHotseatRoom();
         app(GameService::class)->startGame($room);
         $room->refresh();
 
@@ -76,14 +77,12 @@ class GameLivewirePlaythroughTest extends TestCase
                 break;
             }
 
-            $currentPlayer = $room->currentPlayer;
-            if (!$currentPlayer) {
+            if (!$room->currentPlayer) {
                 break;
             }
-            $currentUser = $currentPlayer->user;
             $choice = $i % 2 === 0 ? 'A' : 'B';
 
-            $testable = Livewire::actingAs($currentUser)
+            $testable = Livewire::actingAs($host)
                 ->test(GameBoard::class, ['room' => $room])
                 ->call('drawCard')
                 ->call('chooseOption', $choice);
@@ -115,11 +114,12 @@ class GameLivewirePlaythroughTest extends TestCase
             $this->assertNotNull($result->realWorldChallenge, "Missing real world challenge for result id {$result->id}");
         }
 
-        $viewerUser = $room->players()->first()->user;
-        $viewerResult = $results->first(fn ($r) => $r->player->user_id === $viewerUser->id);
+        $viewerResult = $results->first();
         $summaryStyle = $viewerResult->leadershipProfile->leadership_style;
 
-        Livewire::actingAs($viewerUser)
+        // Only the host has an authenticated session; the summary page
+        // shows every player's reflection report on the shared device.
+        Livewire::actingAs($host)
             ->test(GameSummary::class, ['room' => $room])
             ->assertSee($summaryStyle);
     }
