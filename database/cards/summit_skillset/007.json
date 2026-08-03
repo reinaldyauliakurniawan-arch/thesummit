@@ -21,7 +21,7 @@
           "target": "self",
           "params": {
             "stat": "mp",
-            "delta": 1
+            "delta": -1
           }
         },
         {

@@ -77,6 +77,14 @@
             "delta": 1,
             "description": "Safe space restored"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

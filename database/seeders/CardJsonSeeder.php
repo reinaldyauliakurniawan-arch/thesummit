@@ -55,6 +55,7 @@ class CardJsonSeeder extends Seeder
                 "opsi_a_delayed_effects"    => $this->delayed($aEff),
                 "opsi_a_conditional_effects"=> $this->conditional($aEff),
                 "opsi_a_cross_player"       => $this->team($aEff),
+                "opsi_a_relationship"       => $this->relationship($aEff),
                 "opsi_b_teks"               => $json["choices"]["B"]["text"] ?? "",
                 "opsi_b_mp"                 => $this->stat($bEff, "mp"),
                 "opsi_b_sp"                 => $this->stat($bEff, "sp"),
@@ -66,6 +67,7 @@ class CardJsonSeeder extends Seeder
                 "opsi_b_delayed_effects"    => $this->delayed($bEff),
                 "opsi_b_conditional_effects"=> $this->conditional($bEff),
                 "opsi_b_cross_player"       => $this->team($bEff),
+                "opsi_b_relationship"       => $this->relationship($bEff),
                 "dysfunction_tag"            => $json["metadata"]["dysfunction_tag"] ?? null,
                 "has_hidden_info"           => ($json["hidden_info"]["enabled"] ?? false) ? true : false,
                 "hidden_info_reveal"        => $json["narrative"]["hidden_reveal"] ?? null,
@@ -139,6 +141,28 @@ class CardJsonSeeder extends Seeder
                     "stat" => $stat,
                     "delta" => $inner["delta"] ?? 0,
                     "exclude_source" => $e["params"]["exclude_source"] ?? true,
+                ];
+            } elseif ($etype === "affect_player") {
+                $r[] = [
+                    "stat" => $e["params"]["stat"] ?? "",
+                    "delta" => $e["params"]["delta"] ?? 0,
+                    "exclude_source" => false,
+                ];
+            }
+        }
+        return $r;
+    }
+
+    private function relationship(array $effects): array
+    {
+        $r = [];
+        foreach ($effects as $e) {
+            $etype = $e["type"] ?? $e["primitive"] ?? "";
+            if ($etype === "relationship_change") {
+                $r[] = [
+                    "dimension" => $e["params"]["dimension"] ?? "trust",
+                    "delta" => $e["params"]["amount"] ?? $e["params"]["delta"] ?? 0,
+                    "reason" => $e["params"]["reason"] ?? "",
                 ];
             }
         }

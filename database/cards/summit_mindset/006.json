@@ -115,7 +115,7 @@
           "target": "self",
           "params": {
             "stat": "tt",
-            "delta": -2
+            "delta": -1
           }
         },
         {
@@ -123,15 +123,7 @@
           "target": "self",
           "params": {
             "stat": "reputation",
-            "delta": -1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "flexibility",
-            "delta": -1
+            "delta": 1
           }
         }
       ],

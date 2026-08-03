@@ -70,22 +70,6 @@
             "stat": "sp",
             "delta": 1
           }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "reputation",
-            "delta": -1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": -1
-          }
         }
       ],
       "behavior_tags": {

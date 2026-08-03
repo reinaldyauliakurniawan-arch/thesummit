@@ -85,6 +85,14 @@
             "is_hidden": false,
             "label": "Improved QA process earns trust"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

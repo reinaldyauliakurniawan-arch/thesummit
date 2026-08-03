@@ -96,22 +96,6 @@
           }
         },
         {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": -1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "flexibility",
-            "delta": -1
-          }
-        },
-        {
           "type": "schedule_event",
           "target": "self",
           "params": {

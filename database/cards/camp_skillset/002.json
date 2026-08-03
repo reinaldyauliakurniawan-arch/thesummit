@@ -79,22 +79,6 @@
             "stat": "sp",
             "delta": 2
           }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "tt",
-            "delta": -1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "flexibility",
-            "delta": -1
-          }
         }
       ],
       "behavior_tags": {

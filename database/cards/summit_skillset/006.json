@@ -94,7 +94,7 @@
           "target": "self",
           "params": {
             "stat": "sp",
-            "delta": 2
+            "delta": 1
           }
         },
         {
@@ -102,7 +102,7 @@
           "target": "self",
           "params": {
             "stat": "tt",
-            "delta": -3
+            "delta": -1
           }
         },
         {
@@ -110,30 +110,7 @@
           "target": "self",
           "params": {
             "stat": "reputation",
-            "delta": -2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "flexibility",
             "delta": -1
-          }
-        },
-        {
-          "type": "affect_team",
-          "target": "other_players",
-          "params": {
-            "effect": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "flexibility",
-                "delta": -1
-              }
-            },
-            "exclude_source": true
           }
         }
       ],

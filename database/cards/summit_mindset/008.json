@@ -153,6 +153,14 @@
             "is_hidden": true,
             "label": "Public shaming backfires"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "tt",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

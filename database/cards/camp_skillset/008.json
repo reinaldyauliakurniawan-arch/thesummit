@@ -56,6 +56,14 @@
             "delta": 1,
             "description": "Collaborative resolution builds respect"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

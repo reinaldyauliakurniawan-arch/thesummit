@@ -1,6 +1,6 @@
 {
   "id": "basecamp_skillset_009",
-  "version": "1.0",
+  "version": "1.1",
   "level": "basecamp",
   "category": "skillset",
   "type": "crisis",
@@ -10,8 +10,8 @@
     "dysfunction_tag": "fear_of_conflict"
   },
   "narrative": {
-    "situation": "Dua rekan kerja konflik tentang pendekatan teknis berbeda. Masing-masing minta kamu mendukung mereka di meeting besok.",
-    "hidden_reveal": "Ternyata atasan sudah tahu tentang konflik ini dan menunggu langkahmu."
+    "situation": "Kamu dan rekan setara punya pendekatan teknis berbeda untuk fitur yang kamu kerjakan bersama. Masing-masing yakin pendekatannya lebih baik.",
+    "hidden_reveal": "Atasan sudah tahu tentang ketidaksepakatan ini dan menunggu langkahmu."
   },
   "hidden_info": {
     "enabled": true,
@@ -20,13 +20,13 @@
   },
   "choices": {
     "A": {
-      "text": "Jadikan fasilitator dan bantu mereka temukan titik temu dari kedua pendekatan.",
+      "text": "Ajak diskusi terbuka, dengarkan pendapatnya dulu sebelum menyampaikan argumenmu.",
       "effects": [
         {
           "type": "modify_stat",
           "target": "self",
           "params": {
-            "stat": "sp",
+            "stat": "mp",
             "delta": 1
           }
         },
@@ -52,14 +52,14 @@
           "params": {
             "change": "trust_gained",
             "delta": 1,
-            "description": "Mediation earns respect from both sides"
+            "description": "Listening first builds mutual respect"
           }
         }
       ],
       "behavior_tags": {
-        "collaboration": 2,
-        "empathy": 1,
-        "coaching": 1
+        "empathy": 2,
+        "collaboration": 1,
+        "adaptability": 1
       },
       "lra_tags": {
         "PtP_S2": "proving",
@@ -68,7 +68,7 @@
       }
     },
     "B": {
-      "text": "Pilih yang kamu anggap paling tepat dan dukung di meeting.",
+      "text": "Tunjukkan data kenapa pendekatanmu lebih efisien dan minta dia buktikan klaimnya.",
       "effects": [
         {
           "type": "modify_stat",
@@ -82,51 +82,28 @@
           "type": "modify_stat",
           "target": "self",
           "params": {
-            "stat": "mp",
-            "delta": 1
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
             "stat": "tt",
-            "delta": -2
-          }
-        },
-        {
-          "type": "modify_stat",
-          "target": "self",
-          "params": {
-            "stat": "reputation",
             "delta": -1
           }
         },
         {
-          "type": "affect_team",
-          "target": "other_players",
+          "type": "modify_stat",
+          "target": "self",
           "params": {
-            "effect": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "tt",
-                "delta": -1
-              }
-            },
-            "exclude_source": true
+            "stat": "flexibility",
+            "delta": -1
           }
         }
       ],
       "behavior_tags": {
-        "decisiveness": 1,
-        "control": 2,
-        "empathy": -1
+        "decisiveness": 2,
+        "control": 1,
+        "collaboration": -1
       },
       "lra_tags": {
-        "PtP_S2": "proving",
-        "R2_S4": "proving",
-        "R2_S5": "disproving"
+        "PtP_S2": "disproving",
+        "R2_S5": "disproving",
+        "R2_M1": "proving"
       }
     }
   }

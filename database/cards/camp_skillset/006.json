@@ -70,6 +70,14 @@
             },
             "exclude_source": true
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

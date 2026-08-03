@@ -53,6 +53,14 @@
             "is_hidden": false,
             "label": "Clean docs earn long-term respect"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

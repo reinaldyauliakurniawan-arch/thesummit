@@ -93,6 +93,14 @@
             "is_hidden": false,
             "label": "Co-presentation builds team capability"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

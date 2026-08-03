@@ -39,6 +39,14 @@
             "stat": "reputation",
             "delta": 1
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

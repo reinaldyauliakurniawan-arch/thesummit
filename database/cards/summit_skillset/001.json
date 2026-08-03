@@ -78,6 +78,14 @@
             "is_hidden": false,
             "label": "Fair framework earns broad trust"
           }
+        },
+        {
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "mp",
+            "delta": -1
+          }
         }
       ],
       "behavior_tags": {

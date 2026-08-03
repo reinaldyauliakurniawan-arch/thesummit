@@ -1,17 +1,17 @@
 {
   "id": "basecamp_skillset_007",
-  "version": "1.0",
+  "version": "1.1",
   "level": "basecamp",
   "category": "skillset",
   "type": "crisis",
   "metadata": {
     "author": "summit-team",
     "created": "2026-07-28",
-    "dysfunction_tag": "absence_of_trust"
+    "dysfunction_tag": "fear_of_conflict"
   },
   "narrative": {
-    "situation": "Sistem yang kamu kelola downtime di jam sibuk. Kamu tidak tahu penyebabnya dan klien sudah komplain.",
-    "hidden_reveal": "Root cause sebenarnya adalah konfigurasi yang kamu skip di review terakhir."
+    "situation": "Kamu sedang kerjakan tugas individu yang kompleks dan deadline besok. Kamu stuck pada bagian yang tidak kamu kuasai dan semakin panik.",
+    "hidden_reveal": "Temen yang biasa bantu kamu sedang sibuk dengan deadline sendiri — tapi dia sebenarnya sudah menguasai area ini."
   },
   "hidden_info": {
     "enabled": true,
@@ -20,7 +20,7 @@
   },
   "choices": {
     "A": {
-      "text": "Kumpulkan tim, delegasikan investigasi, koordinasikan komunikasi ke klien.",
+      "text": "Minta bantuan teman yang lebih berpengalaman, meski dia juga sedang sibuk.",
       "effects": [
         {
           "type": "modify_stat",
@@ -42,81 +42,75 @@
           "type": "modify_stat",
           "target": "self",
           "params": {
-            "stat": "reputation",
+            "stat": "flexibility",
             "delta": 1
           }
         },
         {
-          "type": "affect_team",
+          "type": "modify_stat",
+          "target": "self",
+          "params": {
+            "stat": "resources",
+            "delta": -1
+          }
+        },
+        {
+          "type": "relationship_change",
           "target": "other_players",
           "params": {
-            "effect": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "tt",
-                "delta": 1
-              }
-            },
-            "exclude_source": true
+            "change": "trust_gained",
+            "delta": 1,
+            "description": "Asking for help shows vulnerability"
           }
         }
       ],
       "behavior_tags": {
-        "collaboration": 2,
-        "coaching": 1,
-        "control": -1
+        "collaboration": 1,
+        "empathy": 1,
+        "adaptability": 1
       },
       "lra_tags": {
-        "R2_M1": "proving",
-        "R2_S4": "proving",
-        "PtP_M5": "proving"
+        "PtP_M5": "proving",
+        "R2_S4": "proving"
       }
     },
     "B": {
-      "text": "Ambil alih investigasi sendiri sambil minta tim lain tangani komunikasi.",
+      "text": "Coba selesaikan sendiri sampai larut malam, cari workaround dari dokumentasi.",
       "effects": [
         {
           "type": "modify_stat",
           "target": "self",
           "params": {
             "stat": "sp",
-            "delta": 2
+            "delta": 1
           }
         },
         {
           "type": "modify_stat",
           "target": "self",
           "params": {
-            "stat": "tt",
-            "delta": -2
+            "stat": "mp",
+            "delta": -1
           }
         },
         {
-          "type": "affect_team",
-          "target": "other_players",
+          "type": "modify_stat",
+          "target": "self",
           "params": {
-            "effect": {
-              "type": "modify_stat",
-              "target": "self",
-              "params": {
-                "stat": "tt",
-                "delta": -1
-              }
-            },
-            "exclude_source": false
+            "stat": "flexibility",
+            "delta": -1
           }
         }
       ],
       "behavior_tags": {
         "decisiveness": 1,
-        "control": 2,
-        "collaboration": -2
+        "control": 1,
+        "collaboration": -1
       },
       "lra_tags": {
-        "R2_M1": "disproving",
-        "PtP_M5": "disproving",
-        "PtP_M4": "proving"
+        "R2_M1": "proving",
+        "R1_M4": "disproving",
+        "PtP_M5": "disproving"
       }
     }
   }
