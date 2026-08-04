@@ -31,6 +31,7 @@ class CardJsonSeeder extends Seeder
         }
 
         $count = 0;
+        $failed = [];
         foreach ($files as $file) {
             $json = json_decode(file_get_contents($file), true);
             if (!$json) continue;
@@ -38,12 +39,13 @@ class CardJsonSeeder extends Seeder
             $aEff = $json["choices"]["A"]["effects"] ?? [];
             $bEff = $json["choices"]["B"]["effects"] ?? [];
 
+            try {
             ExpeditionCard::create([
                 "card_id"                    => $json["id"],
                 "level"                      => $json["level"],
                 "kategori"                   => $json["category"],
                 "tipe"                       => $json["type"] === "crisis" ? "krisis" : "netral",
-                "teks_situasi"              => $json["narrative"]["situation"] ?? "",
+                "teks_situasi"              => $json["narrative"]["situation"] ?? "" ?: "",
                 "opsi_a_teks"               => $json["choices"]["A"]["text"] ?? "" ?: "",
                 "opsi_a_mp"                 => $this->stat($aEff, "mp"),
                 "opsi_a_sp"                 => $this->stat($aEff, "sp"),
@@ -74,8 +76,24 @@ class CardJsonSeeder extends Seeder
                 "card_json"                 => json_encode($json),
             ]);
             $count++;
+            } catch (\Throwable $e) {
+                $failed[] = basename($file) . ": " . $e->getMessage();
+            }
         }
-        $this->command->info("$count cards seeded from JSON files.");
+        if ($this->command) {
+            $this->command->info("$count cards seeded from JSON files.");
+            if ($failed) {
+                $this->command->error(count($failed) . " cards FAILED:");
+                foreach ($failed as $f) {
+                    $this->command->error("  - $f");
+                }
+            }
+        } else {
+            echo "$count cards seeded.\n";
+            foreach ($failed as $f) {
+                echo "FAILED: $f\n";
+            }
+        }
     }
 
     private function stat(array $effects, string $s): int
